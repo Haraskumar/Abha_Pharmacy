@@ -16,10 +16,14 @@ public class AbhaPharmacyApplication {
 	@Bean
 	public CommandLineRunner seedOwner(JdbcTemplate jdbcTemplate) {
 		return args -> {
-			Integer count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM STAFF WHERE Email = 'owner@abhapharmacy.com'", Integer.class);
-			if (count == null || count == 0) {
-				jdbcTemplate.update("INSERT INTO STAFF (FirstName, LastName, Email, PasswordHash, Role, LicenseNumber, HireDate, Salary) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-					"Super", "Admin", "owner@abhapharmacy.com", "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f", "OWNER", "OW-00001", "2020-01-01", 100000.00);
+			try {
+				Integer count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM STAFF WHERE Email = 'owner@abhapharmacy.com'", Integer.class);
+				if (count == null || count == 0) {
+					jdbcTemplate.update("INSERT INTO STAFF (FirstName, LastName, Email, PasswordHash, Role, LicenseNumber, HireDate, Salary) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+						"Super", "Admin", "owner@abhapharmacy.com", "ff7bd97b1a7789ddd2775122fd6817f3173672da9f802ceec57f284325bf589f", "OWNER", "OW-00001", "2020-01-01", 100000.00);
+				}
+			} catch (Exception e) {
+				System.err.println("WARN [SeedOwner]: Database seeding skipped or waiting for connection: " + e.getMessage());
 			}
 		};
 	}

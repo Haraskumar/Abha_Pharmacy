@@ -37,10 +37,12 @@ USER abhauser
 EXPOSE 8081 10000
 ENV SPRING_PROFILES_ACTIVE=production
 
-# JVM Container Optimization
+# JVM Container Optimization for PaaS (512MB RAM Free Tier Safe)
 ENTRYPOINT ["java", \
     "-XX:+UseContainerSupport", \
-    "-XX:MaxRAMPercentage=75.0", \
+    "-Xms128m", \
+    "-Xmx280m", \
+    "-XX:MaxMetaspaceSize=128m", \
     "-Djava.security.egd=file:/dev/./urandom", \
     "-jar", \
     "/app/app.jar"]
