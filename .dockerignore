@@ -1,0 +1,13 @@
+**/.git
+**/.gitignore
+**/target
+**/.idea
+**/.vscode
+**/*.iml
+**/*.log
+.env
+.env.*
+scratch/
+testsprite_tests/
+app_data/prescriptions/*
+!app_data/prescriptions/.gitkeep

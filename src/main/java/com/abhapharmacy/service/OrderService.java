@@ -152,6 +152,11 @@ public class OrderService {
     }
 
     @Transactional
+    public void recordPaymentSettlement(Integer orderId, String paymentStatus, String transactionRef) {
+        orderRepository.updatePaymentDetails(orderId, paymentStatus, transactionRef);
+    }
+
+    @Transactional
     public void processPosSale(Integer staffId, Integer medicineId, String batchNo, Integer quantity, BigDecimal unitPrice, BigDecimal discountAmount, String paymentMethod) {
         if (quantity <= 0) throw new IllegalArgumentException("Quantity must be positive.");
         if (discountAmount != null && discountAmount.compareTo(BigDecimal.ZERO) < 0) throw new IllegalArgumentException("Discount amount cannot be negative.");

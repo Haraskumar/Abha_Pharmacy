@@ -1,6 +1,13 @@
-# Abha Pharmacy Management System
+# Abha Clinical Pharmacy & Dispensary Management System
+[![CI Pipeline](https://github.com/Haraskumar/Abha_Pharmacy/actions/workflows/ci.yml/badge.svg)](https://github.com/Haraskumar/Abha_Pharmacy/actions/workflows/ci.yml)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.1.5-brightgreen.svg)](https://spring.io/projects/spring-boot)
+[![MySQL 8](https://img.shields.io/badge/MySQL-8.0-blue.svg)](https://www.mysql.com/)
+[![Gemini Clinical AI](https://img.shields.io/badge/Gemini%201.5-Clinical%20AI%20Copilot-orange.svg)](https://ai.google.dev/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)](https://www.docker.com/)
+[![CDSCO Compliance](https://img.shields.io/badge/Compliance-CDSCO%20Schedule%20H-teal.svg)](#schedule-h-compliance)
 
-A comprehensive, full-stack web application for managing a modern retail pharmacy. The proposed system is a dual-sided web application comprising a pharmacist/admin portal for inventory, sales, alerts, and fulfillment, and a customer portal for medicine discovery, prescription submission, order/refill requests, and delivery/pickup workflows. 
+A comprehensive, enterprise-grade clinical pharmacy management and dispensary portal engineered with **Spring Boot 3**, **MySQL 8 (3NF Normalized)**, **Tailwind CSS**, and **Google Gemini 1.5 Clinical AI Vision Copilot**. Regulated under the **Drugs and Cosmetics Rules** with real-time NPCI UPI settlement, automated payment webhooks, and Schedule H digital dispensation audit trails.
+ 
 
 ## Technology Stack
 - **Backend:** Java, Spring Boot
@@ -243,3 +250,37 @@ System-generated notifications tracking exceptions (e.g. stock, expiry) and thei
 - **No ORM Frameworks:** The project strictly avoids Spring Data JPA / Hibernate. All database interactions are written in pure SQL strings using `JdbcTemplate`, `RowMapper`, and `PreparedStatement`.
 - **Server-Side UI:** UI is rendered exclusively via Thymeleaf templates (`.html` files in `src/main/resources/templates/`), relying on standard form submissions rather than REST APIs.
 - **No Comments Rule:** Code is written cleanly and self-documenting without explanatory comments in the Java, HTML, CSS, or SQL files.
+
+
+---
+
+## 🐳 Production Deployment & Containerization (Docker)
+
+### 1. Instant Single-Command Stack (Docker Compose)
+Launch MySQL 8 and the Spring Boot application container with automated health checks:
+```bash
+docker compose up -d
+```
+Access the application at: `http://localhost:8081`
+
+### 2. Multi-Stage Dockerfile Build
+```bash
+docker build -t abha-pharmacy:latest .
+docker run -p 8081:8081 --env-file .env abha-pharmacy:latest
+```
+
+---
+
+## 💳 Payment Gateway & NPCI UPI Architecture
+
+- **Dynamic UPI Intent:** Generates RFC-compliant UPI deep links (`upi://pay?pa=9327090309@ybl&pn=Abha%20Pharmacy&am=...&cu=INR`) for PhonePe, Paytm, Google Pay, and BHIM.
+- **Automated Webhook Listener:** `POST /api/payments/razorpay/webhook` with HMAC-SHA256 cryptographic signature verification.
+- **Idempotent Reconciliation:** Atomic MySQL settlement updating `PaymentStatus = 'PAID'` and logging `TransactionRef`.
+
+---
+
+## 🤖 Gemini 1.5 Clinical AI Copilot
+
+- **Prescription OCR & Extraction:** Extracts handwritten dosage, frequency, and formulations directly from prescription uploads.
+- **Automated Dispense Calculation:** Pharmacists can click **"Auto-Fill Dispense Quantities from AI"** to match prescription items with batch inventory instantly.
+- **24/7 Clinical Helpline:** Toll-free & duty pharmacist assistance integrated via `+91 9168821562`.

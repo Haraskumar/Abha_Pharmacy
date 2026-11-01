@@ -42,3 +42,8 @@ app_data/prescriptions/*.jpg
 app_data/prescriptions/*.jpeg
 app_data/prescriptions/*.pdf
 !app_data/prescriptions/.gitkeep
+
+### Environment & Secrets ###
+.env
+.env.*
+!.env.example

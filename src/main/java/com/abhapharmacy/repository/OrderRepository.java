@@ -148,6 +148,10 @@ public class OrderRepository {
         jdbcTemplate.update("UPDATE `ORDER` SET OrderStatus = ?, PaymentStatus = ? WHERE OrderID = ?", status, paymentStatus, orderId);
     }
 
+    public void updatePaymentDetails(Integer orderId, String paymentStatus, String transactionRef) {
+        jdbcTemplate.update("UPDATE `ORDER` SET PaymentStatus = ?, TransactionRef = ? WHERE OrderID = ?", paymentStatus, transactionRef, orderId);
+    }
+
     public List<Map<String, Object>> findScheduleHDispensations() {
         String sql = "SELECT " +
                 "o.OrderID, o.OrderDate, o.OrderTime, " +

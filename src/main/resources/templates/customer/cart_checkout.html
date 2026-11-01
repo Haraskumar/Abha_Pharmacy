@@ -683,13 +683,19 @@
                 </div>
 
                 <div class="flex flex-col items-center justify-center p-4 bg-slate-50 rounded-2xl border border-slate-200">
-                    <span class="text-xs text-slate-600 mb-2 font-medium">Scan QR with GPay / PhonePe / Paytm / BHIM</span>
+                    <!-- App Selector Tabs -->
+                    <div class="flex items-center gap-1.5 p-1 bg-slate-200/70 rounded-xl mb-3 text-[11px] font-semibold">
+                        <button type="button" onclick="switchUpiHandle('9327090309@ybl', this)" class="upi-tab-btn px-2.5 py-1 rounded-lg bg-white text-teal-900 shadow-xs">PhonePe</button>
+                        <button type="button" onclick="switchUpiHandle('9327090309@paytm', this)" class="upi-tab-btn px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900">Paytm</button>
+                        <button type="button" onclick="switchUpiHandle('9327090309@upi', this)" class="upi-tab-btn px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900">BHIM / GPay</button>
+                    </div>
+
                     <div class="w-48 h-48 bg-white p-2 rounded-xl border border-slate-300 shadow-sm flex items-center justify-center">
                         <img id="upiQrImage" src="" alt="UPI QR Code" class="w-full h-full object-contain" />
                     </div>
                     <div class="mt-2 text-center space-y-1">
-                        <div class="inline-block text-[11px] font-mono font-bold text-slate-700 bg-white px-3 py-1 rounded border border-slate-200">
-                            VPA: 9327090309@upi
+                        <div class="inline-block text-[11px] font-mono font-bold text-slate-700 bg-white px-3 py-1 rounded border border-slate-200" id="activeVpaBadge">
+                            VPA: 9327090309@ybl
                         </div>
                         <p class="text-[10px] text-slate-500 font-medium">Beneficiary: Owner Account / Abha Pharmacy (9327090309)</p>
                     </div>
@@ -730,6 +736,30 @@
     <!-- Payment Modal Controller -->
     <script>
         let upiCountdownInterval = null;
+        function switchUpiHandle(newVpa, btnEl) {
+            window.activeVpa = newVpa;
+            document.querySelectorAll('.upi-tab-btn').forEach(b => {
+                b.className = 'upi-tab-btn px-2.5 py-1 rounded-lg text-slate-600 hover:text-slate-900';
+            });
+            if (btnEl) {
+                btnEl.className = 'upi-tab-btn px-2.5 py-1 rounded-lg bg-white text-teal-900 shadow-xs font-bold';
+            }
+            renderUpiQr(newVpa);
+        }
+
+        function renderUpiQr(vpa) {
+            const qrEl = document.getElementById('upiQrImage');
+            const deepLinkEl = document.getElementById('upiDeepLink');
+            const vpaBadge = document.getElementById('activeVpaBadge');
+            const amt = window.currentPayableAmount || '0.00';
+            const payeeName = 'Abha Pharmacy';
+            const upiPayload = `upi://pay?pa=${encodeURIComponent(vpa)}&pn=${encodeURIComponent(payeeName)}&am=${amt}&cu=INR&tn=AbhaPharmacyOrder`;
+
+            if (qrEl) qrEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiPayload)}`;
+            if (deepLinkEl) deepLinkEl.href = upiPayload;
+            if (vpaBadge) vpaBadge.textContent = 'VPA: ' + vpa;
+        }
+
 
         function openPaymentModal(netAmount) {
             const modal = document.getElementById('paymentModal');
@@ -744,13 +774,9 @@
             successScreen.classList.add('hidden');
             amountEl.textContent = '₹' + parseFloat(netAmount).toFixed(2);
 
-            const vpa = '9327090309@upi';
-            const payeeName = 'Abha Pharmacy';
-            const formattedAmt = parseFloat(netAmount).toFixed(2);
-            const upiPayload = `upi://pay?pa=${encodeURIComponent(vpa)}&pn=${encodeURIComponent(payeeName)}&am=${formattedAmt}&cu=INR&tn=AbhaPharmacyOrder`;
-            
-            qrEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiPayload)}`;
-            deepLinkEl.href = upiPayload;
+            window.currentPayableAmount = parseFloat(netAmount).toFixed(2);
+            window.activeVpa = window.activeVpa || '9327090309@ybl';
+            renderUpiQr(window.activeVpa);
 
             let seconds = 299;
             clearInterval(upiCountdownInterval);

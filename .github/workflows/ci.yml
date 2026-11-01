@@ -1,0 +1,38 @@
+name: Abha Pharmacy CI/CD Enterprise Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-verify:
+    name: Build & Code Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21 (Eclipse Temurin)
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Verify Maven Compilation & Dependencies
+        run: |
+          chmod +x ./mvnw || true
+          mvn clean compile -DskipTests -B
+
+      - name: Package Executable Spring Boot JAR
+        run: mvn package -DskipTests -B
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: abha-pharmacy-jar
+          path: target/*.jar
+          retention-days: 7

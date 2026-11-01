@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # MySQL 8 Relational Database Container
+  abha-mysql:
+    image: mysql:8.0.36
+    container_name: abha_pharmacy_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-Harash@123}
+      MYSQL_DATABASE: abha_pharmacy
+      MYSQL_USER: ${MYSQL_USER:-Abha_Pharmacy}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-pharmacy@123}
+    ports:
+      - "3307:3306"
+    volumes:
+      - abha_mysql_data:/var/lib/mysql
+      - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./src/main/resources/data.sql:/docker-entrypoint-initdb.d/02-data.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-Harash@123}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Spring Boot Enterprise Application
+  abha-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: abha_pharmacy_app
+    restart: always
+    depends_on:
+      abha-mysql:
+        condition: service_healthy
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://abha-mysql:3306/abha_pharmacy?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER:-Abha_Pharmacy}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD:-pharmacy@123}
+      PORT: 8081
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      RAZORPAY_KEY_ID: ${RAZORPAY_KEY_ID:-}
+      RAZORPAY_KEY_SECRET: ${RAZORPAY_KEY_SECRET:-}
+    volumes:
+      - abha_prescription_storage:/app/app_data/prescriptions
+
+volumes:
+  abha_mysql_data:
+    driver: local
+  abha_prescription_storage:
+    driver: local
