@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Digital Cart &amp; Delivery Checkout - Abha Pharmacy</title>
+    <link rel="icon" type="image/png" th:href="@{/images/favicon-32.png}" href="/images/favicon-32.png"/>
+    <link rel="apple-touch-icon" th:href="@{/images/favicon.png}" href="/images/favicon.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#faf8ff",
+                        surface: "#faf8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f2f3ff",
+                        "surface-container": "#eaedff",
+                        "surface-container-high": "#e2e7ff",
+                        "surface-container-highest": "#dae2fd",
+                        "on-surface": "#131b2e",
+                        "on-surface-variant": "#3e4944",
+                        primary: "#005f49",
+                        "primary-container": "#0d7a5f",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#a8ffdf",
+                        secondary: "#206a54",
+                        "secondary-container": "#a6eed2",
+                        "on-secondary-container": "#266e58",
+                        tertiary: "#005886",
+                        "tertiary-container": "#0071ac",
+                        "tertiary-fixed": "#cce5ff",
+                        outline: "#6e7a74",
+                        "outline-variant": "#bdc9c2",
+                        error: "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a"
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                        mono: ["JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-sans min-h-screen flex flex-col">
+    <!-- Header -->
+    <header th:replace="~{customer/fragments/customer_header :: header}"></header>
+
+    <main class="w-full pt-20 pb-16 px-4 lg:px-10 flex-1">
+        <div class="max-w-[1560px] mx-auto space-y-6">
+
+            <!-- Context Ribbon & Verification Header -->
+            <div class="bg-surface-container-lowest rounded-xl p-4 lg:p-5 shadow-xs border border-outline-variant/30 flex flex-col xl:flex-row items-start xl:items-center justify-between gap-4">
+                <div class="flex flex-col gap-2">
+                    <nav class="flex items-center gap-2 text-outline text-xs uppercase tracking-wide">
+                        <a href="/customer/dashboard" class="hover:text-primary transition-colors">Home Hub</a>
+                        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+                        <a href="/customer/catalog" class="hover:text-primary transition-colors">Medicines</a>
+                        <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+                        <span class="text-primary font-semibold">Cart &amp; Checkout</span>
+                    </nav>
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <div class="inline-flex items-center gap-1.5 bg-secondary-container/40 px-3 py-1 rounded-full text-on-secondary-container text-xs font-semibold">
+                            <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                            <span th:text="'#AB-' + (${customer != null ? customer.customerId : '1049'}) + ' • ' + (${customer != null ? customer.firstName + ' ' + customer.lastName : 'Patient'}) + ' (MOH Verified)'">#AB-1049 • Patient</span>
+                        </div>
+                        <div class="inline-flex items-center gap-1 bg-surface-container-high px-3 py-1 rounded-full text-on-surface-variant text-xs">
+                            <span class="material-symbols-outlined text-primary text-[15px]">verified</span>
+                            <span>Ayushman Digital Health Linked</span>
+                        </div>
+                        <div class="inline-flex items-center gap-1.5 bg-tertiary-fixed/60 px-3 py-1 rounded-full text-tertiary text-xs font-medium">
+                            <span class="material-symbols-outlined text-[15px]">timer</span>
+                            <span>Cart formulations reserved for <strong class="font-mono text-tertiary" id="reservation-timer">14:58</strong> min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3 bg-surface-container-low px-4 py-2.5 rounded-lg w-full xl:w-auto justify-between xl:justify-start">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-secondary text-[20px]">medical_services</span>
+                        <div class="flex flex-col">
+                            <span class="text-xs text-secondary font-semibold uppercase tracking-wider">Dispensary Gate Active</span>
+                            <span class="font-mono text-xs text-on-surface">24/7 Helpline: 1800-209-ABHA</span>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined text-outline text-[18px]">verified_user</span>
+                </div>
+            </div>
+
+            <!-- Flash alerts -->
+            <div th:if="${error}" class="bg-error-container text-on-error-container p-4 rounded-xl flex items-center gap-3 text-sm font-semibold">
+                <span class="material-symbols-outlined">error</span>
+                <span th:text="${error}"></span>
+            </div>
+            <div th:if="${success}" class="bg-emerald-50 text-emerald-800 p-4 rounded-xl border border-emerald-200 flex items-center gap-3 text-sm font-semibold">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span th:text="${success}"></span>
+            </div>
+
+            <!-- Single Form Wrapping Items & Financial Settlement -->
+            <form id="checkoutForm" th:action="@{/customer/order/cart}" method="post">
+                <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
+
+                    <!-- Left Column (8 of 12 cols): Formulations, Allocation & Delivery Address -->
+                    <section class="xl:col-span-8 space-y-6">
+
+                        <!-- Cart Formulations Container -->
+                        <div class="bg-surface-container-lowest rounded-xl shadow-xs border border-outline-variant/30 overflow-hidden">
+                            <div class="px-5 py-4 bg-surface-container-low flex flex-wrap items-center justify-between gap-3 border-b border-surface-container">
+                                <div class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-primary text-[22px]">inventory_2</span>
+                                    <div>
+                                        <h1 class="font-display font-bold text-base text-on-surface">Formulation Selection &amp; Quantity Matrix</h1>
+                                        <p class="text-xs text-outline">Verified under National Essential Drugs • Direct Inventory Allocation</p>
+                                    </div>
+                                </div>
+                                <div class="inline-flex items-center gap-1.5 bg-secondary-container px-3 py-1 rounded-full text-on-secondary-container text-xs font-semibold">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                    <span>Central Inventory Synced</span>
+                                </div>
+                            </div>
+
+                            <!-- List of formulations -->
+                            <div class="divide-y divide-surface-container">
+                                <article th:each="m, iterStat : ${medicines}"
+                                         class="p-5 hover:bg-surface-container-low/40 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4 formulation-row"
+                                         th:data-price="${m.latestPrice != null ? m.latestPrice : 25.0}"
+                                         th:data-medid="${m.medicineId}">
+                                    <div class="flex items-start gap-4 min-w-0">
+                                        <div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center shrink-0 text-primary">
+                                            <span class="material-symbols-outlined text-[24px]">pill</span>
+                                        </div>
+                                        <div class="space-y-1 min-w-0">
+                                            <div class="flex flex-wrap items-center gap-2">
+                                                <a th:href="@{'/customer/medicine/' + ${m.medicineId}}"
+                                                   class="font-display font-bold text-base text-on-surface hover:text-primary transition-colors truncate"
+                                                   th:text="${m.medicineName}">Medicine Name</a>
+                                                <span class="bg-surface-container text-on-surface-variant text-[11px] font-semibold px-2 py-0.5 rounded-full"
+                                                      th:text="${m.category}">Dosage Form</span>
+                                                <span class="font-mono text-[10px] text-outline px-1.5 py-0.5 bg-surface-container rounded"
+                                                      th:text="'MED-' + ${m.medicineId}">MED-00</span>
+                                            </div>
+                                            <p class="text-xs text-on-surface-variant" th:text="'Active Salt: ' + ${m.genericName}">Generic molecule</p>
+                                            <div class="flex flex-wrap items-center gap-3 font-mono text-xs text-outline">
+                                                <span>Manufacturer: <strong class="text-on-surface" th:text="${m.manufacturer}">Brand</strong></span>
+                                                <span>•</span>
+                                                <span>In Stock: <strong class="text-primary" th:text="${m.totalStock != null ? m.totalStock : 0} + ' units'">0 units</strong></span>
+                                                <span>•</span>
+                                                <span>MRP: <strong class="text-on-surface" th:text="'₹' + (${m.latestPrice != null ? m.latestPrice : '25.00'})">₹25.00</strong></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center justify-between md:justify-end gap-6 shrink-0 pt-2 md:pt-0">
+                                        <!-- Quantity Stepper -->
+                                        <div class="flex items-center bg-surface-container-high rounded-lg p-1">
+                                            <button type="button" class="w-7 h-7 flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface rounded transition btn-minus">
+                                                <span class="material-symbols-outlined text-[16px]">remove</span>
+                                            </button>
+                                            <input type="number"
+                                                   th:name="'qty_' + ${m.medicineId}"
+                                                   th:value="${iterStat.index == 0 ? 1 : 0}"
+                                                   min="0" max="20"
+                                                   class="w-12 text-center font-mono font-bold text-sm bg-transparent border-0 focus:outline-none qty-input" />
+                                            <button type="button" class="w-7 h-7 flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface rounded transition btn-plus">
+                                                <span class="material-symbols-outlined text-[16px]">add</span>
+                                            </button>
+                                        </div>
+
+                                        <!-- Item subtotal -->
+                                        <div class="text-right min-w-[90px]">
+                                            <span class="block text-[10px] uppercase tracking-wider text-outline font-semibold">Subtotal</span>
+                                            <span class="font-mono font-bold text-base text-primary item-subtotal"
+                                                  th:text="${iterStat.index == 0 ? '₹' + (m.latestPrice != null ? m.latestPrice : '25.00') : '₹0.00'}">₹0.00</span>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <div th:if="${#lists.isEmpty(medicines)}" class="p-8 text-center text-outline text-sm">
+                                    No medicines found available for checkout.
+                                </div>
+                            </div>
+
+                            <!-- Bottom Action ribbon -->
+                            <div class="px-5 py-3.5 bg-surface-container-low flex flex-wrap items-center justify-between gap-3 text-xs border-t border-surface-container">
+                                <a href="/customer/catalog" class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary font-semibold transition">
+                                    <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                                    <span>Continue Browsing Catalog</span>
+                                </a>
+                                <button type="button" id="clearCartBtn" class="inline-flex items-center gap-1 text-error hover:underline font-semibold transition">
+                                    <span class="material-symbols-outlined text-[16px]">remove_shopping_cart</span>
+                                    <span>Reset Quantities</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Fulfillment Mode Selector -->
+                        <div class="bg-surface-container-lowest rounded-xl p-5 shadow-xs border border-outline-variant/30 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">local_shipping</span>
+                                    <h2 class="font-display font-bold text-sm text-on-surface">Select Fulfillment Method</h2>
+                                </div>
+                                <span class="text-xs text-secondary font-semibold uppercase tracking-wider">Cold-Chain Compliant</span>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Delivery Option (Active) -->
+                                <label id="mode-delivery" class="relative flex flex-col p-4 rounded-xl cursor-pointer transition bg-primary/5 border-2 border-primary shadow-xs">
+                                    <input type="radio" name="orderType" value="ONLINE_DELIVERY" checked class="sr-only" id="radio-delivery" />
+                                    <div class="flex items-start justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div id="dot-delivery" class="w-5 h-5 rounded-full bg-primary flex items-center justify-center text-on-primary">
+                                                <span class="w-2 h-2 rounded-full bg-on-primary"></span>
+                                            </div>
+                                            <div>
+                                                <span class="font-display font-bold text-sm text-on-surface block">Express Doorstep Delivery</span>
+                                                <span class="text-xs text-secondary font-medium">Free above ₹200 • Cold-chain insulated pack</span>
+                                            </div>
+                                        </div>
+                                        <span id="badge-delivery" class="bg-primary text-on-primary font-mono text-[10px] px-2 py-0.5 rounded font-bold">SELECTED</span>
+                                    </div>
+                                    <p class="mt-2 text-xs text-on-surface-variant pl-8">
+                                        Temperature monitored (2°C - 8°C) sealed packaging with real-time tracking from licensed dispensary.
+                                    </p>
+                                </label>
+
+                                <!-- Pickup Option -->
+                                <label id="mode-pickup" class="relative flex flex-col p-4 rounded-xl cursor-pointer transition bg-surface-container-low border border-transparent hover:border-outline-variant">
+                                    <input type="radio" name="orderType" value="COUNTER_PICKUP" class="sr-only" id="radio-pickup" />
+                                    <div class="flex items-start justify-between">
+                                        <div class="flex items-center gap-3">
+                                            <div id="dot-pickup" class="w-5 h-5 rounded-full bg-surface-container-highest flex items-center justify-center">
+                                                <span class="w-2 h-2 rounded-full bg-transparent"></span>
+                                            </div>
+                                            <div>
+                                                <span class="font-display font-bold text-sm text-on-surface block">In-Pharmacy Counter Pickup</span>
+                                                <span class="text-xs text-outline">Ready in 30 mins at Koramangala Counter 02 • Free</span>
+                                            </div>
+                                        </div>
+                                        <span id="badge-pickup" class="font-mono text-xs text-outline font-semibold">FREE</span>
+                                    </div>
+                                    <p class="mt-2 text-xs text-outline pl-8">
+                                        Self-pickup. Requires valid ABHA ID or verification SMS token at collection gate.
+                                    </p>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Registered Delivery Destination Address -->
+                        <div class="bg-surface-container-lowest rounded-xl p-5 shadow-xs border border-outline-variant/30 space-y-4">
+                            <div class="flex items-center justify-between flex-wrap gap-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+                                    <h2 class="font-display font-bold text-sm text-on-surface">Delivery Destination Address</h2>
+                                </div>
+                                <a href="/customer/profile" class="inline-flex items-center gap-1 bg-surface-container-high hover:bg-surface-container-highest text-primary text-xs font-semibold px-3 py-1 rounded-lg transition">
+                                    <span class="material-symbols-outlined text-[15px]">edit</span>
+                                    <span>Edit in Profile</span>
+                                </a>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-surface-container-low p-4 rounded-xl border border-surface-container">
+                                <div class="md:col-span-2 space-y-1">
+                                    <div class="flex items-center gap-2">
+                                        <span class="font-display font-bold text-sm text-on-surface"
+                                              th:text="${customer != null ? customer.firstName + ' ' + customer.lastName : 'Priya Patel'}">Patient Name</span>
+                                        <span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 rounded">Primary Residence</span>
+                                    </div>
+                                    <p class="text-xs text-on-surface-variant font-medium"
+                                       th:text="${customer != null and customer.houseNo != null ? customer.houseNo + ', ' + customer.street : 'Flat 402, Royal Palms Residency, MG Road'}">
+                                        Address Line
+                                    </p>
+                                    <p class="text-xs text-outline">
+                                        <span th:text="${customer != null and customer.city != null ? customer.city : 'Jaipur'}">City</span> • Postal Pincode:
+                                        <strong class="font-mono text-on-surface" th:text="${customer != null and customer.pincode != null ? customer.pincode : '302006'}">302006</strong>
+                                    </p>
+                                    <p class="text-xs text-outline pt-1 flex items-center gap-1 font-mono">
+                                        <span class="material-symbols-outlined text-[15px] text-secondary">phone_iphone</span>
+                                        <span>Registered Phone: </span>
+                                        <strong class="text-on-surface" th:text="${phone != null and !phone.isEmpty() ? phone : '+91 98290 12345'}">+91 98290 12345</strong>
+                                    </p>
+                                </div>
+
+                                <div class="bg-surface-container-lowest p-3.5 rounded-lg flex flex-col justify-between space-y-2 border border-outline-variant/30">
+                                    <div>
+                                        <span class="text-[10px] text-outline uppercase tracking-wider block font-semibold">Assigned Route Slot</span>
+                                        <span class="text-xs font-bold text-primary flex items-center gap-1 mt-1">
+                                            <span class="material-symbols-outlined text-[16px]">schedule</span>
+                                            <span>Today, 2:00 PM - 5:00 PM</span>
+                                        </span>
+                                    </div>
+                                    <div class="inline-flex items-center gap-1 text-secondary text-xs font-medium">
+                                        <span class="material-symbols-outlined text-[14px]">eco</span>
+                                        <span>Cold Route Optimized</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Special Instructions -->
+                            <div class="space-y-1.5 pt-1">
+                                <label class="text-xs font-semibold text-on-surface flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-[16px] text-outline">speaker_notes</span>
+                                    <span>Special Instructions for Pharmacist &amp; Courier</span>
+                                    <span class="text-outline text-[11px] font-normal">(Optional)</span>
+                                </label>
+                                <textarea name="instructions" rows="2"
+                                          class="w-full bg-surface-container-low rounded-lg p-3 text-xs text-on-surface placeholder:text-outline border border-outline-variant/40 focus:outline-none focus:border-primary transition"
+                                          placeholder="e.g., Leave at building reception, call upon arrival, or special temperature note"></textarea>
+                            </div>
+                        </div>
+
+                    </section>
+
+                    <!-- Right Column (4 of 12 cols): Financial Breakdown & Settlement -->
+                    <aside class="xl:col-span-4 space-y-6">
+
+                        <!-- Order Bill Breakdown Card -->
+                        <div class="bg-surface-container-lowest rounded-xl p-5 shadow-xs border border-outline-variant/30 space-y-4">
+                            <div class="flex items-center justify-between border-b border-surface-container pb-3">
+                                <div>
+                                    <h2 class="font-display font-bold text-sm text-on-surface">Order Bill Breakdown</h2>
+                                    <span class="text-[11px] text-outline font-mono">INR Tax Invoice</span>
+                                </div>
+                                <span class="material-symbols-outlined text-outline text-[22px]">receipt_long</span>
+                            </div>
+
+                            <!-- Line items -->
+                            <div class="space-y-2 text-xs pt-1">
+                                <div class="flex justify-between items-center text-on-surface-variant">
+                                    <span>Gross Formulations MRP</span>
+                                    <span class="font-mono text-on-surface font-semibold" id="gross-mrp">₹0.00</span>
+                                </div>
+                                <div class="flex justify-between items-center text-secondary">
+                                    <span class="flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[15px]">local_offer</span>
+                                        <span>Community Health Subsidy</span>
+                                    </span>
+                                    <span class="font-mono font-bold" id="discount-val">- ₹0.00</span>
+                                </div>
+                                <div class="flex justify-between items-center text-on-surface-variant">
+                                    <span>Delivery &amp; Insulated Packaging</span>
+                                    <span class="font-mono text-secondary font-semibold" id="delivery-fee">FREE</span>
+                                </div>
+                                <div class="flex justify-between items-center text-on-surface-variant">
+                                    <span class="flex items-center gap-1">
+                                        <span>GST (CGST 6% + SGST 6%)</span>
+                                        <span class="material-symbols-outlined text-[13px] text-outline" title="Applicable 12% GST">info</span>
+                                    </span>
+                                    <span class="font-mono text-on-surface font-medium" id="gst-val">₹0.00</span>
+                                </div>
+
+                                <!-- Net Total Box -->
+                                <div class="pt-3">
+                                    <div class="bg-surface-container-low p-4 rounded-xl flex items-center justify-between border border-surface-container">
+                                        <div>
+                                            <span class="text-[11px] text-outline uppercase tracking-wider block font-semibold">Net Payable</span>
+                                            <span class="text-[11px] text-secondary">Inclusive of all medical taxes</span>
+                                        </div>
+                                        <div class="text-right">
+                                            <span class="font-mono font-extrabold text-2xl text-primary" id="net-total">₹0.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Payment Method Selector -->
+<div id="payment-section-container">
+                            <div class="space-y-2 pt-2 border-t border-surface-container">
+                                <span class="text-xs font-bold text-on-surface uppercase tracking-wider block">Clinical Settlement Method</span>
+                                <div class="space-y-2 text-xs">
+                                    <label class="flex items-center justify-between p-3 rounded-lg bg-primary/5 border border-primary cursor-pointer transition">
+                                        <div class="flex items-center gap-2.5">
+                                            <input type="radio" name="paymentMethod" value="COD" checked class="text-primary focus:ring-0" />
+                                            <div>
+                                                <span class="font-bold text-on-surface block">Cash on Delivery (COD)</span>
+                                                <span class="text-outline text-[11px]">Pay upon delivery verification</span>
+                                            </div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-outline text-[20px]">payments</span>
+                                    </label>
+                                    <label class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition border border-transparent">
+                                        <div class="flex items-center gap-2.5">
+                                            <input type="radio" name="paymentMethod" value="UPI" class="text-primary focus:ring-0" />
+                                            <div>
+                                                <span class="font-bold text-on-surface block">Instant UPI / QR Payment</span>
+                                                <span class="text-outline text-[11px]">GPay, PhonePe, Paytm, BHIM</span>
+                                            </div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-primary text-[20px]">qr_code_2</span>
+                                    </label>
+                                    <label class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low hover:bg-surface-container cursor-pointer transition border border-transparent">
+                                        <div class="flex items-center gap-2.5">
+                                            <input type="radio" name="paymentMethod" value="CARD" class="text-primary focus:ring-0" />
+                                            <div>
+                                                <span class="font-bold text-on-surface block">Card on Delivery</span>
+                                                <span class="text-outline text-[11px]">Debit/Credit card at doorstep</span>
+                                            </div>
+                                        </div>
+                                        <span class="material-symbols-outlined text-outline text-[20px]">credit_card</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            </div>
+<!-- Safety notice -->
+                            <div class="p-3 bg-surface-container-low rounded-lg flex items-start gap-2 border border-surface-container">
+                                <span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">verified</span>
+                                <p class="text-[11px] text-on-surface-variant leading-snug">
+                                    100% authentic formulations sourced directly from verified manufacturers.
+                                </p>
+                            </div>
+
+                            <!-- Confirm CTA -->
+                            <div class="space-y-2 pt-1">
+                                <button type="submit" id="submitOrderBtn"
+                                        class="w-full bg-primary hover:bg-primary-container text-on-primary font-display font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-xs transition active:scale-[0.99] text-sm">
+                                    <span class="material-symbols-outlined text-[18px]">lock</span>
+                                    <span>Confirm &amp; Place Pharmacy Order</span>
+                                </button>
+                                <div class="flex items-center justify-center gap-2 text-outline text-[11px]">
+                                    <span class="material-symbols-outlined text-[14px] text-secondary">security</span>
+                                    <span>Secure Encrypted Dispensation</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pharmacist Contact Widget -->
+                        <div class="bg-surface-container-low rounded-xl p-4 flex items-center gap-3 border border-surface-container">
+                            <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0">
+                                <span class="material-symbols-outlined text-[18px]">support_agent</span>
+                            </div>
+                            <div class="min-w-0">
+                                <span class="text-xs font-bold text-on-surface block">Clinical Assistance</span>
+                                <span class="text-[11px] text-on-surface-variant block truncate">Duty Pharmacist Dr. Rajesh is online</span>
+                            </div>
+                        </div>
+
+                    </aside>
+
+                </div>
+            </form>
+
+        </div>
+    </main>
+
+    <footer class="w-full bg-surface-container-low py-6 border-t border-surface-container">
+        <div class="max-w-[1560px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-on-surface-variant">
+            <div class="flex items-center gap-2">
+                <span class="font-display font-bold text-primary">Abha Pharmacy</span>
+                <span>• Quality Healthcare &amp; Digital Pharmacy Care. All rights reserved.</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="/customer/catalog" class="hover:text-primary transition-colors">Catalog</a>
+                <a href="/customer/orders" class="hover:text-primary transition-colors">Orders</a>
+                <a href="/customer/profile" class="hover:text-primary transition-colors">Profile</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Cart calculation and timer -->
+    <script>
+        (function() {
+            // Reservation countdown timer
+            let timeLeft = 14 * 60 + 58;
+            const timerEl = document.getElementById('reservation-timer');
+            if (timerEl) {
+                setInterval(() => {
+                    if (timeLeft <= 0) return;
+                    timeLeft--;
+                    const m = Math.floor(timeLeft / 60);
+                    const s = timeLeft % 60;
+                    timerEl.textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
+                }, 1000);
+            }
+
+            const rows = document.querySelectorAll('.formulation-row');
+            const grossEl = document.getElementById('gross-mrp');
+            const discountEl = document.getElementById('discount-val');
+            const gstEl = document.getElementById('gst-val');
+            const netEl = document.getElementById('net-total');
+            const submitBtn = document.getElementById('submitOrderBtn');
+
+            function recalculate() {
+                let grossTotal = 0;
+                let activeItems = 0;
+
+                rows.forEach(row => {
+                    const price = parseFloat(row.getAttribute('data-price')) || 0;
+                    const input = row.querySelector('.qty-input');
+                    const subtotalEl = row.querySelector('.item-subtotal');
+                    const qty = parseInt(input.value) || 0;
+                    const lineTotal = price * qty;
+                    if (subtotalEl) {
+                        subtotalEl.textContent = '₹' + lineTotal.toFixed(2);
+                    }
+                    if (qty > 0) {
+                        grossTotal += lineTotal;
+                        activeItems += qty;
+                    }
+                });
+
+                const discount = grossTotal > 100 ? 10.0 : 0.0;
+                const taxable = Math.max(0, grossTotal - discount);
+                const gst = taxable * 0.05; // 5% GST
+                const net = taxable + gst;
+
+                if (grossEl) grossEl.textContent = '₹' + grossTotal.toFixed(2);
+                if (discountEl) discountEl.textContent = '- ₹' + discount.toFixed(2);
+                if (gstEl) gstEl.textContent = '₹' + gst.toFixed(2);
+                if (netEl) netEl.textContent = '₹' + net.toFixed(2);
+
+                if (submitBtn) {
+                    if (activeItems === 0) {
+                        submitBtn.disabled = true;
+                        submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    } else {
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    }
+                }
+            }
+
+            rows.forEach(row => {
+                const minusBtn = row.querySelector('.btn-minus');
+                const plusBtn = row.querySelector('.btn-plus');
+                const input = row.querySelector('.qty-input');
+
+                minusBtn.addEventListener('click', () => {
+                    let val = parseInt(input.value) || 0;
+                    if (val > 0) {
+                        input.value = val - 1;
+                        recalculate();
+                    }
+                });
+
+                plusBtn.addEventListener('click', () => {
+                    let val = parseInt(input.value) || 0;
+                    if (val < 20) {
+                        input.value = val + 1;
+                        recalculate();
+                    }
+                });
+
+                input.addEventListener('change', () => {
+                    let val = parseInt(input.value) || 0;
+                    if (val < 0) val = 0;
+                    if (val > 20) val = 20;
+                    input.value = val;
+                    recalculate();
+                });
+            });
+
+            const clearBtn = document.getElementById('clearCartBtn');
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    rows.forEach(row => {
+                        const input = row.querySelector('.qty-input');
+                        if (input) input.value = 0;
+                    });
+                    recalculate();
+                });
+            }
+
+            const modeDelivery = document.getElementById('mode-delivery');
+            const modePickup = document.getElementById('mode-pickup');
+            const radioDelivery = document.getElementById('radio-delivery');
+            const radioPickup = document.getElementById('radio-pickup');
+            const dotDelivery = document.getElementById('dot-delivery');
+            const dotPickup = document.getElementById('dot-pickup');
+            const badgeDelivery = document.getElementById('badge-delivery');
+            const badgePickup = document.getElementById('badge-pickup');
+
+            function setFulfillmentMode(mode) {
+                if (mode === 'delivery') {
+                    if (radioDelivery) radioDelivery.checked = true;
+                    if (radioPickup) radioPickup.checked = false;
+                    modeDelivery.className = "relative flex flex-col p-4 rounded-xl cursor-pointer transition bg-primary/5 border-2 border-primary shadow-xs";
+                    modePickup.className = "relative flex flex-col p-4 rounded-xl cursor-pointer transition bg-surface-container-low border border-transparent hover:border-outline-variant";
+                    dotDelivery.className = "w-5 h-5 rounded-full bg-primary flex items-center justify-center text-on-primary";
+                    dotDelivery.innerHTML = '<span class="w-2 h-2 rounded-full bg-on-primary"></span>';
+                    dotPickup.className = "w-5 h-5 rounded-full bg-surface-container-highest flex items-center justify-center";
+                    dotPickup.innerHTML = '<span class="w-2 h-2 rounded-full bg-transparent"></span>';
+                    badgeDelivery.className = "bg-primary text-on-primary font-mono text-[10px] px-2 py-0.5 rounded font-bold";
+                    badgeDelivery.textContent = "SELECTED";
+                    badgePickup.className = "font-mono text-xs text-outline font-semibold";
+                    badgePickup.textContent = "FREE";
+                    
+                    const paymentSection = document.getElementById('payment-section-container');
+                    if(paymentSection) paymentSection.style.display = 'block';
+                }
+                else {
+                    if (radioDelivery) radioDelivery.checked = false;
+                    if (radioPickup) radioPickup.checked = true;
+                    modePickup.className = "relative flex flex-col p-4 rounded-xl cursor-pointer transition bg-primary/5 border-2 border-primary shadow-xs";
+                    modeDelivery.className = "relative flex flex-col p-4 rounded-xl cursor-pointer transition bg-surface-container-low border border-transparent hover:border-outline-variant";
+                    dotPickup.className = "w-5 h-5 rounded-full bg-primary flex items-center justify-center text-on-primary";
+                    dotPickup.innerHTML = '<span class="w-2 h-2 rounded-full bg-on-primary"></span>';
+                    dotDelivery.className = "w-5 h-5 rounded-full bg-surface-container-highest flex items-center justify-center";
+                    dotDelivery.innerHTML = '<span class="w-2 h-2 rounded-full bg-transparent"></span>';
+                    badgePickup.className = "bg-primary text-on-primary font-mono text-[10px] px-2 py-0.5 rounded font-bold";
+                    badgePickup.textContent = "SELECTED";
+                    badgeDelivery.className = "font-mono text-xs text-outline font-semibold";
+                    badgeDelivery.textContent = "FREE";
+                    
+                    const paymentSection = document.getElementById('payment-section-container');
+                    if(paymentSection) paymentSection.style.display = 'none';
+                }
+            }
+
+            if (modeDelivery) modeDelivery.addEventListener('click', () => setFulfillmentMode('delivery'));
+            if (modePickup) modePickup.addEventListener('click', () => setFulfillmentMode('pickup'));
+
+            // Sync with local storage
+            let cart = JSON.parse(localStorage.getItem('abha_cart') || '{}');
+            let hasLoadedCart = false;
+            rows.forEach(row => {
+                const medId = row.getAttribute('data-medid');
+                const input = row.querySelector('.qty-input');
+                if (cart[medId]) {
+                    input.value = cart[medId];
+                    hasLoadedCart = true;
+                } else if (Object.keys(cart).length > 0) {
+                    input.value = 0; // If cart has items, default others to 0
+                }
+            });
+            
+            // Clear cart on successful submit
+            const form = document.getElementById('checkoutForm');
+            if (form) {
+                form.addEventListener('submit', function() {
+                    localStorage.removeItem('abha_cart');
+                });
+            }
+
+            recalculate();
+        })();
+    </script>
+
+    <!-- Online Transaction & UPI Payment Gateway Modal -->
+    <div id="paymentModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 relative overflow-hidden">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                <div class="flex items-center gap-2">
+                    <img th:src="@{/images/logo_mark.png}" src="/images/logo_mark.png" alt="Logo" class="w-7 h-7 object-contain" />
+                    <div>
+                        <h3 class="font-display font-bold text-sm text-slate-900">Abha Pay — Unified Gateway</h3>
+                        <p class="text-[10px] text-slate-500">NPCI Certified 256-Bit Encrypted</p>
+                    </div>
+                </div>
+                <button type="button" onclick="closePaymentModal()" class="text-slate-400 hover:text-slate-700">
+                    <span class="material-symbols-outlined text-[20px]">close</span>
+                </button>
+            </div>
+
+            <!-- Main Interactive Content -->
+            <div id="paymentModalBody" class="space-y-4 pt-4">
+                <!-- Amount Banner -->
+                <div class="bg-teal-50 border border-teal-200/80 rounded-2xl p-4 flex items-center justify-between">
+                    <div>
+                        <span class="text-[10px] text-teal-700 uppercase tracking-wider font-semibold block">Payable Settlement</span>
+                        <span class="text-xs text-slate-600 font-medium">Digital Prescription &amp; Formulations</span>
+                    </div>
+                    <div class="text-right">
+                        <span id="modalPayableAmount" class="font-mono font-black text-2xl text-teal-900">₹0.00</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center justify-center p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                    <span class="text-xs text-slate-600 mb-2 font-medium">Scan QR with GPay / PhonePe / Paytm / BHIM</span>
+                    <div class="w-44 h-44 bg-white p-2 rounded-xl border border-slate-300 shadow-sm flex items-center justify-center">
+                        <img id="upiQrImage" src="" alt="UPI QR Code" class="w-full h-full object-contain" />
+                    </div>
+                    <div class="mt-2 text-center">
+                        <span class="text-[11px] font-mono font-bold text-slate-700 bg-white px-2.5 py-1 rounded border border-slate-200">VPA: abhapharmacy@icici</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs text-slate-500 px-1 font-mono">
+                    <span>Session Expires In:</span>
+                    <span id="upiTimer" class="font-bold text-teal-800">04:59</span>
+                </div>
+
+                <button type="button" id="simulateUpiBtn" onclick="simulatePaymentSuccess()"
+                        class="w-full py-3 bg-teal-700 hover:bg-teal-800 text-white rounded-xl font-bold text-xs shadow-sm flex items-center justify-center gap-2 transition active:scale-[0.98]">
+                    <span class="material-symbols-outlined text-[16px]">verified</span>
+                    <span>Authorize Instant UPI Settlement (Demo)</span>
+                </button>
+            </div>
+
+            <!-- Success State Animation -->
+            <div id="paymentSuccessScreen" class="py-8 flex flex-col items-center justify-center space-y-3 hidden">
+                <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[36px]">check_circle</span>
+                </div>
+                <h4 class="font-display font-bold text-base text-slate-900">Payment Authorized!</h4>
+                <p class="text-xs text-slate-500 font-mono" id="successTxnRef">Ref: TXN-UPI-984210</p>
+                <p class="text-[11px] text-emerald-700 font-medium">Writing order transaction to MySQL...</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

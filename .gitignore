@@ -1,0 +1,44 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-userId
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradletask/
+/build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### Temp & Logs ###
+*.log
+cookies*.txt
+admin_cookie.txt
+scratch/
+testsprite_tests/tmp/
+app_data/prescriptions/*.png
+app_data/prescriptions/*.jpg
+app_data/prescriptions/*.jpeg
+app_data/prescriptions/*.pdf
+!app_data/prescriptions/.gitkeep

@@ -1,0 +1,1451 @@
+--- Abha_Pharmacy_PRD_v1.1_Data_Traceable.docx ---
+PRODUCT REQUIREMENTS DOCUMENT (PRD)
+Abha Pharmacy Web Application — Customer Portal + Pharmacist/Admin Portal
+Abha Pharmacy Digital Transformation Project | Group 20 | Version 1.1 | 13 September 2026
+Document purpose
+Defines the product scope, user journeys, functional requirements, business rules, acceptance criteria, and requirement traceability for the semester web application. It is the product baseline for implementation and final lab/demo verification.
+Technology alignment
+The submitted proposal originally names HTML/CSS/JavaScript + Python/Flask. The latest lab guidance supplied with this request changes the implementation direction to Spring Boot, with server-side rendering expected and JDBC preferred over JPA. This PRD intentionally remains technology-neutral except where that change affects product behavior.
+1. Product Overview
+Abha Pharmacy is a local retail pharmacy that currently depends heavily on manual records. The proposed system is a dual-sided web application: a pharmacist/admin portal for inventory, sales, alerts and fulfillment, and a customer portal for medicine discovery, prescription submission, order/refill requests and delivery/pickup workflows.
+The source proposal describes a business serving roughly 150–200 transactions per day and more than 2,500 distinct SKUs. The product therefore needs a simple, reliable workflow rather than a feature-heavy marketplace experience.
+2. Goals and Success Criteria
+Goal
+Success criterion
+Customer convenience
+Customers can check medicine availability online, upload prescriptions, and submit pickup/delivery requests without first visiting the store.
+Inventory control
+Sales and stock changes are recorded digitally; low-stock and approaching-expiry items are surfaced to staff.
+Operational efficiency
+Pharmacists can process walk-in sales, prescription orders and alerts from one dashboard.
+Reduced waste
+Medicines approaching expiry are identified early so staff can act before loss occurs.
+Traceable transactions
+Every order contains status, payment information, items and responsible customer/staff references.
+Lab completeness
+Every functional requirement submitted in the project proposal is demonstrably implemented and testable during the final lab/demo.
+3. Users and Roles
+Role
+Primary responsibilities
+Access
+Customer
+Search catalog, register/login, view availability/price, upload prescription, request pickup/delivery/refill, view order status/history.
+Customer portal only.
+Staff / Pharmacist
+Manage medicine and batches, process POS sales, verify prescriptions, fulfill orders, resolve alerts, maintain operational records.
+Authenticated staff portal.
+Business owner / senior staff
+Operational oversight, inventory/sales review, exception handling.
+Same staff portal; exact authorization level can be implemented through the Role field in STAFF.
+4. Scope
+4.1 In scope
+Customer authentication and staff authentication with role separation.
+Medicine catalog search with availability and price for customer-visible medicines.
+Medicine master and batch-level inventory management.
+Low-stock and near-expiry alerts.
+Walk-in POS checkout with automatic stock deduction and digital receipt/transaction record.
+Prescription image upload, pharmacist verification, remarks and status tracking.
+Online order workflow for pickup and home delivery requests.
+Order fulfillment dashboard and customer order status visibility.
+Order/refill request support for repeat medication workflows.
+Basic daily/weekly/monthly revenue reporting derived from recorded transactions.
+4.2 Out of scope for the baseline
+Online payment-gateway integration unless separately required by the instructor/client.
+External courier platform integration; delivery is represented as an order type/workflow.
+Doctor/hospital integration or electronic prescription verification against an external registry.
+AI diagnosis, drug recommendation, symptom checking or medical advice.
+Multi-branch pharmacy operations and warehouse-level distribution.
+5. Functional Requirements
+ID
+Requirement
+Behavior
+Acceptance criterion
+FR-01
+Dual authentication
+System shall provide separate login paths/authorization for customers and staff, with role-based access control.
+Login succeeds only with valid credentials; customer cannot access staff pages; unauthenticated users are redirected to login.
+FR-02
+Customer registration and profile
+Customer shall be able to create an account and maintain CUSTOMER data: FirstName, LastName, HouseNo, Street, City, Pincode, Email, DateOfBirth and Gender; phone numbers are stored through CUSTOMER_PHONE.
+Valid registration creates one CUSTOMER record and associated phone record(s), with password stored only as a secure hash.
+FR-03
+Catalog search
+Customer shall search medicines by medicine name and view customer-visible availability and price.
+Search returns matching medicines and reflects current batch stock state.
+FR-04
+Medicine management
+Staff shall add/update MEDICINE master data: MedicineName, GenericName, Manufacturer, Category, RequiresPrescription, ReorderThreshold, BaseUnitPrice, StorageCondition and Description.
+Saved medicine persists all required master attributes and supports customer/staff search where appropriate.
+FR-05
+Batch management
+Staff shall manage BATCH data: MedicineID, BatchNo, MfgDate, ExpiryDate, QuantityInStock, CostPrice, SellingPrice, RackLocation, SupplierID, SupplyDate and PurchaseAmount.
+Each batch is linked to a medicine and supplier, supports expiry/stock tracking, and retains procurement and pricing data.
+FR-06
+Low-stock alerts
+System shall create/display an alert when stock falls below the applicable reorder threshold; the proposal explicitly cites a 10-unit example.
+Alert identifies the medicine/batch context and remains visible until resolved/handled.
+FR-07
+Expiry alerts
+System shall identify medicines/batches approaching expiry; the proposal specifies a 30-day warning window.
+Dashboard visibly flags qualifying batches and supports resolution/action recording.
+FR-08
+POS checkout
+Staff shall create walk-in sales containing one or more order items, payment method/status and discount information.
+Successful checkout records ORDER and ORDER_ITEM rows and deducts sold quantity atomically.
+FR-09
+Digital receipt
+System shall provide a receipt/confirmation view for completed sales.
+Receipt shows order identifier, date/time, item quantities, sale prices and order total/discount where applicable.
+FR-10
+Prescription upload
+Registered customer shall upload a prescription image in JPG/PNG format with pickup/delivery instructions.
+Upload is associated with the customer and stored as a PRESCRIPTION record with file reference and timestamp.
+FR-11
+Prescription verification
+Staff shall view incoming prescriptions, verify or reject them, record remarks and verification metadata.
+Status transition is persisted and the responsible staff member is captured.
+FR-12
+Order fulfillment
+Staff shall view, update and fulfill online orders, including pickup-ready notification/state.
+Order status changes are auditable and customer can see current status.
+FR-13
+Delivery request
+Customer shall be able to request home delivery for eligible refill/order workflows and provide delivery address.
+Delivery order persists address fields and order type.
+FR-14
+Refill request
+Registered customer shall be able to request a refill using prior purchase/order history.
+System creates a new request linked to the customer and relevant prescription/order context where applicable.
+FR-15
+Order history
+Customer shall view previous orders/refill requests and their statuses.
+Only the authenticated customer can access their own history.
+FR-16
+Reports
+Staff shall view daily, weekly and monthly revenue summaries from recorded orders/sales.
+Totals are calculated from persisted transaction data and update when new completed sales are recorded.
+FR-17
+Alert resolution
+Staff shall resolve alerts and record action taken, resolution status/date/time.
+Resolved alert remains historically traceable rather than being silently deleted.
+FR-18
+Data validation
+System shall validate required fields, dates, quantities, numeric ranges, file type and authorization before persistence.
+Invalid input produces actionable feedback without partially committing the transaction.
+FR-19
+Supplier management
+Staff shall maintain supplier records needed for procurement and batch receiving, including SupplierName, ContactPerson, Email, GSTIN, address and phone number(s).
+Supplier data can be created/updated and selected when recording a batch; supplier identity remains traceable from batch records.
+6. Core User Journeys
+Customer opens catalog → searches medicine → system reads current inventory → displays available/unavailable state and customer-visible price.
+Customer uploads prescription → authenticates → selects JPG/PNG → adds instructions → submits → staff sees pending verification → staff verifies/rejects with remarks.
+Staff performs walk-in sale → selects item/batch and quantity → validates stock → records payment/discount → commits order and stock deduction → displays receipt.
+Customer requests delivery/refill → chooses prior medication/order where applicable → supplies address/instructions → submits → staff reviews and updates fulfillment status.
+System detects operational exception → creates low-stock/expiry alert → staff views alert → takes action → resolves alert with action taken/date.
+7. Business Rules
+Rule
+Definition
+BR-01
+Only authenticated staff can create/update inventory, process POS sales, verify prescriptions, resolve alerts or change fulfillment status.
+BR-02
+A medicine may have multiple batches; stock must be maintained at batch level because expiry and sale price can differ by batch.
+BR-03
+A sale must not reduce stock below zero.
+BR-04
+Prescription-required medicines should not be treated as freely purchasable through the OTC customer flow; a verified prescription/order workflow is required.
+BR-05
+Low-stock threshold is stored per MEDICINE via ReorderThreshold; the project proposal uses 10 units as the example business threshold.
+BR-06
+Near-expiry warning window is 30 days, based on the proposal. This should be configurable in code/configuration rather than hard-coded into page text.
+BR-07
+Financial/transactional records are not physically deleted during normal operation; status-based closure/resolution is preferred for traceability.
+BR-08
+Order status, payment status and verification status should use controlled values rather than unrestricted text.
+BR-09
+A prescription upload must be associated with an authenticated customer and must not be publicly addressable without authorization.
+BR-10
+When a sale affects inventory, order creation and stock deduction must succeed together or fail together.
+BR-11
+Customer-facing catalog must not expose sensitive staff/internal fields such as cost price, supplier credentials or password hashes.
+BR-12
+The ERD/relational schema is the data-model baseline: CUSTOMER, CUSTOMER_PHONE, STAFF, STAFF_PHONE, SUPPLIER, SUPPLIER_PHONE, MEDICINE, BATCH, PRESCRIPTION, ORDER, ORDER_ITEM and ALERT.
+8. Non-Functional Requirements
+ID
+Requirement
+NFR-01
+Usability: staff workflows should minimize clicks for POS and alert handling; customer pages should be mobile-friendly.
+NFR-02
+Security: passwords stored as hashes; authorization checked server-side; prescription files protected from public exposure.
+NFR-03
+Integrity: inventory and order transactions use database transactions; referential integrity enforced by foreign keys.
+NFR-04
+Performance: common catalog/search/dashboard actions should feel responsive for a single-store workload of roughly 150–200 daily transactions and 2,500+ SKUs.
+NFR-05
+Maintainability: business logic separated from HTTP controllers and JDBC data-access code.
+NFR-06
+Auditability: staff-verification, alert-resolution and order status changes retain responsible staff/time fields where supported by the schema.
+NFR-07
+Compatibility: implementation should run in the lab environment with a standard Java/Spring Boot stack and relational database.
+NFR-08
+Reliability: validation and transaction boundaries must prevent partial orders or negative inventory caused by a failed request.
+9. Data Model Traceability
+Entity/table
+Product purpose
+CUSTOMER
+Customer identity, credentials, address and registration data.
+CUSTOMER_PHONE
+One-to-many customer phone numbers.
+STAFF
+Pharmacist/staff identity, role, license and employment data.
+STAFF_PHONE
+One-to-many staff phone numbers.
+SUPPLIER
+Supplier and contact/GST/business address details.
+SUPPLIER_PHONE
+Supplier phone numbers.
+MEDICINE
+Medicine master/catalog data including prescription flag and reorder threshold.
+BATCH
+Batch-specific manufacture/expiry/stock/pricing/location/supplier data.
+PRESCRIPTION
+Uploaded prescription metadata, patient/doctor details, verification state and staff remarks.
+ORDER
+Transaction/request header including type, status, payment and delivery address.
+ORDER_ITEM
+Line items, quantity and sale price at time of sale.
+ALERT
+Low-stock/expiry/operational exception tracking and resolution history.
+The relational schema submission lists the same twelve core tables and includes additional order/prescription/staff references needed to connect operational workflows. The ERD also identifies PLACES, UPLOADS, HANDLES, VERIFIES, RESOLVES, FULFILLS, CONTAINS_ITEM, SOLD_FROM, HAS_BATCH, SUPPLIES and TRIGGERS relationships.
+10. Final Lab Acceptance Checklist
+#
+Acceptance item
+Pass condition
+1
+Customer registration/login works.
+Demonstrated successfully in the running application; persisted state verified where applicable.
+2
+Staff login and role protection works.
+Demonstrated successfully in the running application; persisted state verified where applicable.
+3
+Medicine search shows correct availability/price.
+Demonstrated successfully in the running application; persisted state verified where applicable.
+4
+Staff can create/update medicine and batch records.
+Demonstrated successfully in the running application; persisted state verified where applicable.
+5
+Low-stock alert appears when threshold is crossed.
+Demonstrated successfully in the running application; persisted state verified where applicable.
+6
+Near-expiry alert appears within 30-day window.
+Demonstrated successfully in the running application; persisted state verified where applicable.
+7
+Walk-in sale creates order items and deducts inventory safely.
+Demonstrated successfully in the running application; persisted state verified where applicable.
+8
+Prescription JPG/PNG upload works and is visible to authorized staff.
+Demonstrated successfully in the running application; persisted state verified where applicable.
+9
+Staff can verify/reject prescription and add remarks.
+Demonstrated successfully in the running application; persisted state verified where applicable.
+10
+Pickup/delivery order can be created and status changed.
+Demonstrated successfully in the running application; persisted state verified where applicable.
+11
+Refill request can be initiated from customer history.
+Demonstrated successfully in the running application; persisted state verified where applicable.
+12
+Revenue report returns daily/weekly/monthly totals.
+Demonstrated successfully in the running application; persisted state verified where applicable.
+13
+Alert can be resolved with action taken recorded.
+Demonstrated successfully in the running application; persisted state verified where applicable.
+14
+Submitted functional requirements are demonstrable end-to-end.
+Demonstrated successfully in the running application; persisted state verified where applicable.
+11. Source and Change Notes
+Project Requirements Submission (7 Aug 2026) is the primary product-requirement baseline: dual portals, inventory/POS/alerts, search, prescription upload, fulfillment, refill and reporting.
+ER Diagram Final defines the conceptual entities and relationships used for traceability.
+Relational Schema Diagram defines the relational tables/attributes used as the database baseline.
+Latest lab guidance supplied in the request directs the implementation toward Spring Boot, likely server-side rendering, and JDBC instead of JPA. Because the guidance says "shayad" for SSR and "confirm" for the batch, SSR is treated as the recommended implementation assumption, not a formally verified instructor statement.
+No requirement was added for features not present in the source materials; where implementation details were necessary, they are marked as engineering decisions in the TRD.
+9.1 Complete Schema-to-PRD Attribute Traceability
+The PRD uses the submitted Relational Schema Diagram as the database baseline. Every schema attribute is accounted for below. “Product requirement” does not mean every attribute must appear as a visible field on every screen: credentials, audit timestamps, foreign keys, and derived values may be handled by the backend while still being explicitly specified and testable. This section prevents accidental omission while keeping implementation details out of user-facing requirements.
+Decision rule: Include an attribute in user-facing requirements when it affects a workflow, business decision, validation, displayed information, or persisted state that the user must understand. Keep an attribute backend-only when it is a security, key, relationship, audit, or derived implementation detail. In either case, it must remain present in the data model and covered by the TRD.
+CUSTOMER
+Attribute
+PRD treatment
+Reason / product significance
+CustomerID
+System identity / primary key
+Backend identity; not entered as a normal form field.
+FirstName
+Included
+Registration/profile field.
+LastName
+Included
+Registration/profile field.
+HouseNo
+Included
+Customer/delivery address.
+Street
+Included
+Customer/delivery address.
+City
+Included
+Customer/delivery address.
+Pincode
+Included
+Customer/delivery address / validation.
+Email
+Included
+Login/contact identifier.
+PasswordHash
+Backend-only
+Security representation of password; never shown or entered as a hash.
+DateOfBirth
+Included
+Profile data; required because it exists in the submitted schema.
+Gender
+Included
+Profile data; required because it exists in the submitted schema.
+RegistrationDate
+System-managed
+Recorded when registration occurs; useful for audit/history.
+CUSTOMER_PHONE
+Attribute
+PRD treatment
+Reason / product significance
+CustomerID
+Backend relationship
+Links phone row to CUSTOMER.
+PhoneNumber
+Included
+Customer contact number; can support one or multiple numbers.
+STAFF
+Attribute
+PRD treatment
+Reason / product significance
+StaffID
+System identity / primary key
+Backend identity.
+FirstName
+Included
+Staff identity/profile.
+LastName
+Included
+Staff identity/profile.
+Email
+Included
+Staff login/contact identifier.
+PasswordHash
+Backend-only
+Security representation; never exposed.
+Role
+Included
+Drives staff authorization and portal access.
+LicenseNumber
+Included
+Pharmacist credential/business record; shown where operationally relevant.
+HireDate
+Included
+Staff record / administrative data.
+Salary
+Backend-restricted
+Exists in the schema but should not be exposed in ordinary operational screens; restrict to authorized owner/admin views if required.
+STAFF_PHONE
+Attribute
+PRD treatment
+Reason / product significance
+StaffID
+Backend relationship
+Links phone row to STAFF.
+PhoneNumber
+Included / restricted
+Staff contact data; visibility limited by role.
+SUPPLIER
+Attribute
+PRD treatment
+Reason / product significance
+SupplierID
+System identity / primary key
+Backend identity.
+SupplierName
+Included
+Supplier management field.
+ContactPerson
+Included
+Supplier contact information.
+Email
+Included
+Supplier contact information.
+GSTIN
+Included
+Supplier business/tax identification.
+Street
+Included
+Supplier address.
+City
+Included
+Supplier address.
+State
+Included
+Supplier address.
+Pincode
+Included
+Supplier address / validation.
+SUPPLIER_PHONE
+Attribute
+PRD treatment
+Reason / product significance
+SupplierID
+Backend relationship
+Links phone row to SUPPLIER.
+PhoneNumber
+Included
+Supplier contact information.
+MEDICINE
+Attribute
+PRD treatment
+Reason / product significance
+MedicineID
+System identity / primary key
+Backend identity; referenced by batches and order items.
+MedicineName
+Included
+Core catalog/search field.
+GenericName
+Included
+Medicine information/search support.
+Manufacturer
+Included
+Catalog/inventory information.
+Category
+Included
+Catalog filtering/organization.
+RequiresPrescription
+Included
+Controls OTC vs prescription workflow.
+ReorderThreshold
+Included
+Drives low-stock alert logic.
+BaseUnitPrice
+Included
+Base catalog pricing metadata; actual batch sale price is stored separately.
+StorageCondition
+Included
+Operational inventory information.
+Description
+Included
+Customer/staff medicine information.
+BATCH
+Attribute
+PRD treatment
+Reason / product significance
+MedicineID
+Backend relationship
+Connects batch to medicine.
+BatchNo
+Included
+Operational batch identification; needed for traceability.
+MfgDate
+Included
+Batch lifecycle / audit.
+ExpiryDate
+Included
+Expiry validation and alerting.
+QuantityInStock
+Included
+Real-time inventory and stock deduction.
+CostPrice
+Staff/owner only
+Needed for purchasing/margin/reporting; never exposed to customers.
+SellingPrice
+Included
+Actual batch-level selling price.
+RackLocation
+Included
+Staff picking/stock-location workflow.
+SupplierID
+Backend relationship + staff-visible
+Links batch to supplier and supports stock provenance.
+SupplyDate
+Included
+Receiving/procurement history.
+PurchaseAmount
+Staff/owner only
+Procurement/financial record; not required in customer UI.
+PRESCRIPTION
+Attribute
+PRD treatment
+Reason / product significance
+PrescriptionID
+System identity / primary key
+Backend identity.
+PrescriptionImageURL
+Included
+File reference shown as protected prescription asset to authorized staff/customer context.
+UploadDate
+Included / system-managed
+Displays submission date / audit trail.
+UploadTime
+Included / system-managed
+Displays submission time / audit trail.
+DoctorName
+Included
+Prescription metadata.
+PatientName
+Included
+Prescription metadata.
+VerificationStatus
+Included
+Core prescription workflow state.
+PharmacistRemarks
+Included
+Staff verification/rejection explanation.
+Instructions
+Included
+Customer/order fulfillment instructions.
+CustomerID
+Backend relationship
+Associates prescription with authenticated customer.
+StaffID
+Backend relationship
+Records responsible verifying staff member.
+VerificationDate
+Included / system-managed
+Audit trail.
+VerificationTime
+Included / system-managed
+Audit trail.
+ORDER
+Attribute
+PRD treatment
+Reason / product significance
+OrderID
+System identity / primary key
+Transaction/request identity.
+OrderDate
+Included / system-managed
+Order history and reporting.
+OrderTime
+Included / system-managed
+Order history and reporting.
+OrderType
+Included
+Walk-in / pickup / delivery / refill workflow classification.
+OrderStatus
+Included
+Fulfillment lifecycle.
+PaymentMethod
+Included
+Payment information for applicable sales.
+PaymentStatus
+Included
+Payment lifecycle.
+DiscountAmount
+Included
+Pricing and receipt/reporting.
+HouseNo
+Included when delivery
+Delivery address.
+Street
+Included when delivery
+Delivery address.
+City
+Included when delivery
+Delivery address.
+Pincode
+Included when delivery
+Delivery address / validation.
+CustomerID
+Backend relationship
+Connects order to customer; may be nullable for walk-in sales depending on implementation and instructor rules.
+StaffID
+Backend relationship
+Records responsible staff for operational processing.
+PrescriptionID
+Backend relationship / conditional
+Links prescription-driven orders where applicable.
+ORDER_ITEM
+Attribute
+PRD treatment
+Reason / product significance
+OrderID
+Backend relationship
+Links line item to order.
+ItemSeqNo
+Included in receipt/order detail context
+Line-item sequence; mostly backend/display ordering.
+Quantity
+Included
+Quantity sold/requested.
+UnitPriceAtSale
+Included
+Historical selling price used for receipt/reporting.
+MedicineID
+Backend relationship
+Identifies sold medicine.
+BatchNo
+Included in staff/audit context
+Identifies exact batch sold; supports traceability and expiry-safe stock movement.
+ALERT
+Attribute
+PRD treatment
+Reason / product significance
+AlertID
+System identity / primary key
+Backend identity.
+AlertType
+Included
+Low stock, near expiry, and other operational categories.
+Message
+Included
+Human-readable action context.
+Status
+Included
+Open/resolved lifecycle.
+CreatedAt
+Included / system-managed
+Alert audit trail.
+ResolvedAt
+Included / system-managed
+Resolution audit trail.
+MedicineID
+Backend relationship
+Identifies medicine associated with alert.
+BatchNo
+Backend relationship / conditional
+Identifies exact batch for batch-level expiry alerts.
+StaffID
+Backend relationship
+Records responsible staff/resolver where applicable.
+ResolvedDate
+Included / system-managed
+Resolution audit trail.
+ActionTaken
+Included
+Records how the alert was handled.
+9.2 ERD vs Relational Schema Reconciliation
+The submitted ERD and relational schema are mostly aligned, but a few attributes are represented differently. The PRD follows the relational schema for implementation while documenting these differences so they are not mistaken for omissions.
+Source difference
+ERD submission
+Relational schema submission
+PRD decision
+Customer phone
+PhoneNumber appears inside CUSTOMER.
+Phone is normalized into CUSTOMER_PHONE(CustomerID, PhoneNumber).
+Use CUSTOMER_PHONE as the implementation baseline; PRD still requires customer phone capture.
+Customer age
+Age appears in the ERD.
+No Age column in CUSTOMER.
+Do not add Age as a stored field. If needed for UI, derive it from DateOfBirth; do not duplicate stored data without instructor approval.
+Staff phone
+PhoneNumber appears inside STAFF.
+Phone is normalized into STAFF_PHONE(StaffID, PhoneNumber).
+Use STAFF_PHONE as the implementation baseline; PRD still requires staff contact capture.
+Supplier phone
+PhoneNumber appears inside SUPPLIER.
+Phone is normalized into SUPPLIER_PHONE(SupplierID, PhoneNumber).
+Use SUPPLIER_PHONE as the implementation baseline.
+Order total
+TotalAmount appears in ERD ORDER.
+No TotalAmount column in submitted relational ORDER schema.
+Treat order total as a derived value from ORDER_ITEM quantities/prices minus DiscountAmount unless the instructor explicitly requires a stored TotalAmount column.
+Order-item subtotal
+ItemSubtotal appears in ERD ORDER_ITEM.
+No ItemSubtotal column in submitted relational ORDER_ITEM schema.
+Treat subtotal as a derived value from Quantity × UnitPriceAtSale unless the instructor explicitly requires a stored ItemSubtotal column.
+9.3 What This Means for the Existing Functional Requirements
+No functional requirement is removed because of this review. The change is that each requirement now has explicit data coverage. In particular, medicine and batch management must expose or persist the full business-relevant attribute set, while security keys, foreign keys, audit timestamps and derived totals remain specified as system-managed data rather than being forced into customer-facing forms.
+9.4 Attribute Coverage Standard
+Coverage class
+Meaning in this PRD
+Included
+The attribute is explicitly part of a business workflow, form, screen, validation rule, receipt, report, or operational record.
+System-managed
+The attribute is required and persisted, but generated from system events such as registration, upload, verification or resolution timestamps.
+Backend relationship
+The attribute connects records and is required for integrity, but is normally not a direct user-entered field.
+Backend-only / restricted
+The attribute is necessary for security, financial control, or access restriction and is intentionally hidden from ordinary users.
+Derived
+The value is calculated from persisted data and should not be duplicated as a stored column unless the instructor requires it.
+
+--- Abha_Pharmacy_TRD_v1.0.docx ---
+TECHNICAL REQUIREMENTS DOCUMENT (TRD)
+Abha Pharmacy Web Application — Spring Boot + Server-Side Rendering + JDBC
+Abha Pharmacy Digital Transformation Project | Group 20 | Version 1.0 | 13 September 2026
+Implementation baseline
+Recommended lab implementation: Spring Boot backend + server-side rendered HTML (Thymeleaf) + JDBC/JdbcTemplate + relational database. Avoid JPA/Hibernate unless the instructor explicitly changes the requirement.
+Important reconciliation
+The submitted proposal mentions Python/Flask; this TRD supersedes that implementation choice for the current lab build because the latest project/lab guidance says Spring Boot backend and indicates JDBC rather than JPA.
+1. Technical Objectives
+Implement the complete submitted functional scope with the existing relational schema as the database contract.
+Keep the architecture simple enough for lab evaluation and easy to explain in viva.
+Use server-side rendering so page generation, session checks and form handling are straightforward and demonstrable.
+Use JDBC/JdbcTemplate explicitly so SQL and transaction behavior are visible and aligned with the stated lab constraint.
+Preserve clean separation between controller, service, repository/DAO and view layers.
+2. Proposed Architecture
+Layer
+Technology / artifact
+Responsibility
+Presentation
+Thymeleaf + HTML5 + CSS + minimal JavaScript
+Render pages, forms, tables, validation messages and dashboards.
+Web/API boundary
+Spring MVC Controllers
+Map routes, bind forms, enforce access rules, call services, choose views/redirects.
+Business
+Spring Services
+Implement inventory logic, ordering, alerts, prescription verification, reports and transaction rules.
+Data access
+JdbcTemplate / NamedParameterJdbcTemplate + DAO/Repository classes
+Run explicit SQL, map ResultSets to domain/DTO objects and participate in transactions.
+Database
+MySQL or another instructor-approved relational DB
+Persist operational data using the submitted relational schema.
+File storage
+Server filesystem or instructor-approved storage
+Store prescription images; database stores PrescriptionImageURL/path reference, not image binary unless schema is changed.
+Security
+Spring Security or equivalent Spring MVC session authentication
+Password hashing, login session, route authorization and CSRF protection for state-changing forms.
+3. Suggested Project Structure
+src/main/java/.../abha/  config/  controller/    AuthController.java    CustomerController.java    StaffController.java    MedicineController.java    InventoryController.java    PrescriptionController.java    OrderController.java    AlertController.java    ReportController.java  service/    AuthService.java    CustomerService.java    MedicineService.java    InventoryService.java    PrescriptionService.java    OrderService.java    AlertService.java    ReportService.java  repository/    CustomerRepository.java    StaffRepository.java    MedicineRepository.java    BatchRepository.java    PrescriptionRepository.java    OrderRepository.java    AlertRepository.java  model/ or dto/  security/  util/src/main/resources/  templates/    auth/    customer/    staff/    medicine/    inventory/    prescription/    orders/    alerts/    reports/  static/    css/    js/  application.properties
+4. Route / Screen Plan
+Route
+Access
+Method
+View / result
+Purpose
+/login
+Public
+GET
+login.html
+Login screen.
+/login
+Public
+POST
+redirect
+Authenticate customer/staff.
+/register
+Public
+GET/POST
+register.html
+Customer registration.
+/medicines
+Customer/Public
+GET
+medicine-list.html
+Search/availability catalog.
+/customer/dashboard
+Customer
+GET
+customer-dashboard.html
+Customer home and quick actions.
+/customer/prescriptions/new
+Customer
+GET/POST
+prescription-upload.html
+Upload prescription.
+/customer/orders
+Customer
+GET
+orders.html
+Order history/status.
+/customer/refills/new
+Customer
+GET/POST
+refill-form.html
+Create refill request.
+/customer/orders/new
+Customer
+GET/POST
+order-form.html
+Create eligible pickup/delivery request.
+/staff/dashboard
+Staff
+GET
+staff-dashboard.html
+Inventory, alerts, pending work summary.
+/staff/medicines
+Staff
+GET/POST
+medicine-form/list
+Medicine master management.
+/staff/batches
+Staff
+GET/POST
+batch-form/list
+Batch and stock management.
+/staff/pos
+Staff
+GET/POST
+pos.html
+Walk-in sale checkout.
+/staff/prescriptions
+Staff
+GET
+prescription-queue.html
+Pending/verified/rejected prescriptions.
+/staff/prescriptions/{id}/verify
+Staff
+POST
+redirect
+Verify/reject prescription.
+/staff/orders
+Staff
+GET
+order-queue.html
+Fulfillment queue.
+/staff/orders/{id}/status
+Staff
+POST
+redirect
+Change fulfillment status.
+/staff/alerts
+Staff
+GET
+alerts.html
+View/resolve alerts.
+/staff/reports
+Staff
+GET
+reports.html
+Revenue summaries.
+5. Database Integration Requirements
+The relational schema is treated as the source of truth for the database layer. The current submission lists CUSTOMER, CUSTOMER_PHONE, STAFF, STAFF_PHONE, SUPPLIER, SUPPLIER_PHONE, MEDICINE, BATCH, PRESCRIPTION, ORDER, ORDER_ITEM and ALERT.
+Area
+JDBC requirement
+Transaction note
+Authentication
+Parameterized SELECT against CUSTOMER/STAFF; password hash verification in application security layer.
+Login itself does not require a multi-table transaction.
+Medicine/batch
+Parameterized INSERT/UPDATE/SELECT using NamedParameterJdbcTemplate where practical.
+Batch update should commit only after validation succeeds.
+POS
+Insert ORDER → insert ORDER_ITEM rows → deduct BATCH quantity → create any needed ALERTs.
+Use one @Transactional service method; any failure rolls back the full sale.
+Prescription
+Insert PRESCRIPTION metadata/file reference.
+File-write and database-write need an error strategy; do not leave orphan DB rows or inaccessible files.
+Order fulfillment
+Update ORDER and, where required by workflow, PRESCRIPTION verification state.
+Use one transaction for related state changes.
+Alert resolution
+Update ALERT status/resolution metadata.
+Keep historical record; resolve instead of delete.
+Reports
+Aggregate completed sales from ORDER/ORDER_ITEM.
+Read-only query; no write transaction needed.
+6. Critical SQL Patterns
+Operation
+Pattern / rule
+Catalog availability
+Join MEDICINE to BATCH and aggregate non-expired quantity. Do not expose cost price or internal supplier data.
+Sale deduction
+UPDATE BATCH SET QuantityInStock = QuantityInStock - ? WHERE MedicineID=? AND BatchNo=? AND QuantityInStock >= ?; verify updated row count equals 1.
+Low-stock detection
+Compare stock against MEDICINE.ReorderThreshold; create an ALERT only when an actionable condition is reached.
+Expiry detection
+Select batches whose ExpiryDate is within the configured warning window and whose stock is still positive.
+Revenue report
+Aggregate completed/qualifying ORDER rows by date range; use ORDER_ITEM for line-level totals where needed.
+Order history
+Filter by authenticated CustomerID. Never trust a customer-supplied CustomerID from a form.
+7. Inventory and Batch Strategy
+Medicine is the product/master record; Batch is the stock/expiry/pricing record.
+A medicine may have multiple active batches. Stock availability shown to customers should be the sum of saleable, non-expired quantities.
+For sale selection, the implementation should prefer the earliest-expiring valid batch (FEFO) when operationally practical. This is an engineering recommendation; the source documents do not explicitly mandate FEFO.
+Do not sell expired batches.
+Never allow a quantity update to produce negative stock.
+ReorderThreshold is medicine-level in the submitted relational schema, so low-stock evaluation should compare total saleable stock for the medicine against that threshold unless the instructor asks for batch-level behavior.
+8. Prescription File Handling
+Requirement
+Implementation
+Accepted format
+JPG/PNG only for the baseline requirement.
+Validation
+Validate extension and MIME type; enforce a configurable max upload size.
+Storage
+Use a non-public server directory or protected object storage. Store only a safe generated filename/path in PrescriptionImageURL.
+Access control
+Only the owning customer and authorized staff can retrieve a prescription image.
+Filename safety
+Never use the user-supplied filename directly as a filesystem path; generate server-side names.
+Lifecycle
+On database failure after file write, delete the newly written file or record it for cleanup; avoid orphaned uploads.
+9. Authentication and Authorization
+Customer and staff identities are stored separately as defined in the schema.
+Passwords must be hashed using a strong adaptive password hashing algorithm supported by Spring Security; never store plaintext passwords.
+Use session-based authentication for the server-rendered application.
+Protect staff routes by role, e.g. STAFF/PHARMACIST role; protect customer routes by CUSTOMER role.
+Use POST for state-changing operations and CSRF protection when using standard Spring Security form login.
+On every customer order/history operation, derive CustomerID from the authenticated principal/session rather than from a hidden form field alone.
+10. Validation and Error Handling
+Layer
+Validation / handling
+Browser/UI
+Required fields, input type hints, file chooser restrictions and user-friendly messages.
+Controller
+@Valid-style DTO validation where used; reject unauthorized requests before business processing.
+Service
+Business rules: stock sufficiency, status transitions, prescription eligibility, role restrictions.
+Repository
+Parameterized SQL only; convert SQL exceptions into application-level errors/logs.
+Transaction boundary
+Use @Transactional on multi-write service operations such as checkout and coupled fulfillment updates.
+User feedback
+Show concise error page/message and preserve form context where safe; never expose SQL stack traces to users.
+11. Status Models
+Domain
+Suggested controlled values
+Prescription VerificationStatus
+PENDING, VERIFIED, REJECTED
+OrderStatus
+PENDING, CONFIRMED, READY_FOR_PICKUP, OUT_FOR_DELIVERY, COMPLETED, CANCELLED
+PaymentStatus
+PENDING, PAID, FAILED, REFUNDED
+Alert Status
+OPEN, RESOLVED
+OrderType
+WALK_IN, PICKUP, DELIVERY, REFILL
+These values are implementation recommendations because the source documents define the fields but do not provide a canonical enum list. Keep the allowed values centralized so the final UI and SQL remain consistent.
+12. Security Checklist
+Check
+Required
+Password hashing
+Required
+Parameterized SQL / no string-concatenated user input
+Required
+Role checks on staff/customer routes
+Required
+CSRF protection for state-changing forms
+Required
+Protected prescription file access
+Required
+Server-side validation
+Required
+Safe file names and upload limits
+Required
+No sensitive values in logs
+Required
+Database credentials outside source control
+Required
+13. Testing Strategy
+Level
+Tests
+Unit
+Stock threshold logic; expiry window logic; order total/discount calculation; status transition validation.
+Repository/DAO
+CRUD operations and aggregate queries against a test database.
+Service integration
+POS transaction rollback, stock deduction, prescription verification, alert resolution.
+Controller/UI
+Login access, form validation, upload errors, customer/staff page authorization.
+End-to-end
+Customer registration → search → prescription/order → staff verification → fulfillment; staff POS → stock deduction → alert/report.
+14. Traceability: PRD to Technical Components
+PRD
+Technical implementation
+Verification
+FR-01
+AuthController + Spring Security/session
+Login + role separation
+FR-03
+MedicineController + MedicineRepository
+Catalog search
+FR-04/05
+MedicineController/InventoryService + repositories
+Medicine/batch CRUD
+FR-06/07
+AlertService + scheduled/dashboard query
+Low-stock/expiry alerts
+FR-08/09
+OrderController + OrderService + repositories
+POS and receipt
+FR-10/11
+PrescriptionController + file storage + PrescriptionRepository
+Upload and verification
+FR-12/13/14/15
+OrderController + OrderService
+Fulfillment, delivery, refill, history
+FR-16
+ReportController + ReportService
+Revenue summaries
+FR-17
+AlertController + AlertService
+Alert resolution
+FR-18
+DTO validation + service rules
+Validation
+NFR-02/03/05/06
+Security + service transactions + layered architecture
+Security/integrity/maintainability/auditability
+15. Development Sequence
+Freeze database schema and verify all primary/foreign keys against the submitted relational schema.
+Create Spring Boot project and database connectivity using JDBC/JdbcTemplate; confirm no JPA dependency is used.
+Build authentication and role protection first.
+Build medicine + batch CRUD and catalog search.
+Implement alerts for low stock and approaching expiry.
+Implement staff POS with one transactional checkout service.
+Implement prescription upload + staff verification.
+Implement customer orders/refills + staff fulfillment dashboard.
+Implement reports, validation hardening and final acceptance tests.
+Run a requirement-by-requirement demo using the PRD acceptance checklist.
+16. Open Decisions to Confirm with Faculty
+Decision
+Current recommendation
+Why confirmation is needed
+Server-side rendering engine
+Thymeleaf
+The supplied chat says “shayad server side rendering”; confirm whether Thymeleaf is the required/accepted renderer.
+Database engine
+MySQL (or the database already used by the course)
+Source documents define a relational schema but do not name the exact DB engine.
+JDBC API style
+JdbcTemplate / NamedParameterJdbcTemplate
+Aligns with the instruction that JPA should not be used; confirm whether raw JDBC is required instead of Spring JDBC.
+Payment integration
+Record payment method/status only
+Not specified in source requirements; avoids unnecessary gateway scope.
+Prescription file storage
+Local protected server directory
+Simple for a lab; confirm if deployment environment permits local storage.
+Exact role names
+STAFF/PHARMACIST and CUSTOMER
+ERD has STAFF.Role but no canonical enum list.
+17. Technical Risks and Mitigations
+Risk
+Mitigation
+Accidental JPA usage despite lab restriction
+Keep dependencies and repository layer JDBC-only; review pom.xml/build.gradle before submission.
+Inventory race condition
+Use transactional update with quantity condition and check affected row count; do not read-then-write without protection.
+Broken prescription uploads
+Validate file, generate safe filename, write file, persist metadata, and clean up on failure.
+Inconsistent status values
+Centralize constants/enums and validate transitions in service layer.
+Overly complex UI
+Keep server-rendered forms/tables and use JS only where it clearly improves the workflow.
+Mismatch between ERD and code
+Create repository queries directly from the submitted schema and test every foreign-key path before final demo.
+18. Definition of Done
+Application starts successfully in the expected lab environment.
+Database schema is connected through JDBC and all required CRUD/transaction queries execute.
+No JPA/Hibernate dependency is used unless faculty explicitly approves it.
+Customer and staff workflows are role-protected.
+All PRD FR-01 through FR-18 are demonstrated or have an explicit instructor-approved exclusion.
+POS stock deduction and rollback are tested.
+Prescription upload/verification and order fulfillment are tested.
+Near-expiry and low-stock behavior is visible in the staff dashboard.
+The final demo can trace a user action from rendered page → controller → service → JDBC query → database state → rendered result.
+19. Source Basis and Reconciliation Notes
+Project Requirements Submission dated 7 Aug 2026 supplies the product goals, user stories and functional requirements.
+ER Diagram Final supplies entities/relationships and the conceptual data model.
+Relational Schema Diagram supplies the table/attribute model.
+Latest lab chat supplied by the user supplies the implementation constraints/preferences: Spring Boot backend, likely server-side rendering, web-development paradigms, and JDBC rather than JPA.
+
+--- Abha_Pharmacy_UI_UX_Specification_v1.0.docx ---
+ABHA PHARMACY
+UI / UX SPECIFICATION
+A practical design blueprint for the dual-portal web application
+DESIGN INTENT: Make the pharmacy feel reliable, fast, calm, and operationally clear. Customers should find medicine availability or submit a prescription with minimal effort; pharmacists should see the next action immediately.
+Document control
+Value
+Document
+Abha Pharmacy UI/UX Specification
+Version
+1.0
+Status
+Implementation baseline
+Primary users
+Customers; Pharmacists / Staff
+Design context
+Web application; server-side rendered UI recommended by the current lab guidance
+Source basis
+Project requirements, ERD, relational schema, and the provided lab chat guidance
+1. Purpose and Design Scope
+This document defines the user experience, information architecture, screen-level behavior, visual system, interaction patterns, and usability acceptance criteria for the Abha Pharmacy web application. It is intended to be used alongside the PRD and TRD during implementation and lab evaluation.
+Source-derived scope: a dual-sided application serving customers and pharmacy staff, including medicine availability, prescription uploads, order fulfillment, inventory, point of sale, alerts, and reporting.
+Design recommendation: use one coherent visual language across both portals while making staff workflows denser and more task-oriented than customer screens.
+Implementation note: the current lab chat mentions Spring Boot, server-side rendering, and JDBC; the UX therefore favors traditional page-based navigation, predictable forms, validation, and progressive enhancement rather than SPA-only interactions.
+2. UX Principles
+Principle
+What it means in this product
+Priority
+Action first
+Every operational page should make the next action obvious: search, upload, verify, dispense, sell, reorder, resolve.
+P0
+Trust by clarity
+Show stock state, prescription status, order status, payment status, and validation errors explicitly.
+P0
+Low cognitive load
+Prefer short forms, grouped fields, meaningful defaults, and visible progress.
+P0
+Safety before speed
+For prescription medicine workflows, verification and staff confirmation are more important than one-click convenience.
+P0
+Operational density
+Staff dashboards should expose queues, warnings, dates, quantities, and statuses without excessive decoration.
+P1
+Mobile-first customer tasks
+Customers should comfortably search, upload a prescription image, review an order, and request delivery from a phone.
+P0
+3. Users and Primary Jobs
+Persona
+Primary jobs
+Main pain points
+UX response
+Customer
+Find a medicine; check availability; upload prescription; request pickup/delivery; request refill.
+Wasted trip; queues; uncertain availability; repeated visits.
+Search-first home; clear stock badges; simple upload; status tracking.
+Pharmacist / Staff
+Manage inventory; process POS sale; review prescriptions; fulfill orders; resolve alerts; view reports.
+Manual records; expiry risk; low-stock risk; reconciliation overhead.
+Action-oriented dashboard; alert queue; dense tables; clear verification states.
+Business owner
+Understand sales and operational risk.
+Manual accounting and fragmented records.
+Reports, summary KPIs, resolved-alert history, and audit-friendly status changes.
+3.1 Jobs-to-be-Done
+Customer: “Before I leave home, I want to know whether the medicine I need is available.”
+Customer: “I want to send my prescription once and know whether the pharmacy has prepared my order.”
+Staff: “I want one screen that tells me what needs attention now.”
+Staff: “When I sell a medicine, the inventory should reflect the sale immediately.”
+Owner: “I want daily/weekly/monthly sales and unresolved risk visible without manual calculation.”
+4. Information Architecture
+Portal
+Primary navigation
+Secondary / contextual navigation
+Public / Customer
+Home; Medicines; Login / Register; My Orders; Prescriptions; Profile
+Medicine detail; Upload prescription; Cart / checkout or request flow; Order detail; Refill request
+Staff
+Dashboard; POS; Inventory; Prescriptions; Orders; Alerts; Reports; Suppliers; Staff profile / Logout
+Medicine detail; Batch detail; Prescription verification; Order fulfillment; Alert resolution
+NAVIGATION RULE: Do not hide high-frequency staff actions inside deep menus. Dashboard, POS, Prescriptions, Orders, Inventory, and Alerts should be one click away after staff login.
+5. Screen Inventory and Responsibilities
+ID
+Screen
+Purpose
+Priority
+C-01
+Customer Home
+Search medicine, promote convenience, show key actions: Search, Upload Prescription, My Orders.
+P0
+C-02
+Medicine Search / Catalog
+Search by medicine name; display availability and price for appropriate items.
+P0
+C-03
+Medicine Detail
+Medicine information, prescription requirement, availability, and next action.
+P1
+C-04
+Customer Login / Registration
+Authentication and account creation.
+P0
+C-05
+Prescription Upload
+Image upload, instructions, pickup/delivery preference.
+P0
+C-06
+My Prescriptions
+List uploads with verification and fulfillment states.
+P1
+C-07
+My Orders
+Orders, statuses, amount/payment state, pickup/delivery details.
+P0
+C-08
+Order Detail / Refill
+Order timeline and “Request Refill” where applicable.
+P1
+A-01
+Staff Login
+Secure staff authentication.
+P0
+A-02
+Staff Dashboard
+KPIs, low-stock alerts, near-expiry items, pending prescriptions/orders.
+P0
+A-03
+Inventory
+Search, filter, create/update medicine and batch data.
+P0
+A-04
+POS
+Fast walk-in sale flow; stock deduction; receipt result.
+P0
+A-05
+Prescription Review
+Image preview, verification decision, remarks, instructions.
+P0
+A-06
+Order Fulfillment
+Pending → verified → preparing → ready → completed/cancelled.
+P0
+A-07
+Alerts
+Low-stock and expiry queue; resolve action and history.
+P0
+A-08
+Reports
+Daily, weekly, monthly revenue and operational summaries.
+P1
+A-09
+Supplier / Batch Detail
+Supplier information, batch dates, cost/sale prices, stock.
+P1
+6. Critical User Flows
+6.1 Customer Medicine Search
+1. Home → search field → enter medicine name
+2. Results show medicine name, strength/form where available, price, stock state, prescription requirement
+3. If in stock: show appropriate next action; if out of stock: offer prescription upload / contact or return-to-search path
+4. If no match: show helpful empty state and related search guidance
+6.2 Prescription Upload and Fulfillment
+1. Customer signs in → Upload Prescription
+2. Upload image → validate type/size → add instructions → choose pickup/delivery option
+3. Submit → confirmation with reference/status
+4. Staff sees pending prescription → opens image and details → verifies/rejects with remarks
+5. When accepted, staff creates/updates the associated fulfillment flow → customer sees status
+6. Staff marks ready/completed → customer sees the final status
+6.3 Staff POS
+1. Open POS → search/select medicine and batch → enter quantity
+2. Validate available quantity and any prescription requirement applicable to the transaction
+3. Review line items and total → choose payment method → confirm sale
+4. Show receipt summary → update stock and create order/sale record
+5. If stock crosses threshold, surface the alert without interrupting the completed transaction
+6.4 Inventory Alert Resolution
+1. Dashboard/Alerts shows low-stock and near-expiry items
+2. Open alert → see medicine, batch, quantity, dates, location, and suggested next action
+3. Resolve with action taken / remarks
+4. Alert moves to resolved state and retains a history record
+7. Visual Design System
+The exact brand colors are not defined by the source documents. The palette below is therefore a design recommendation for a pharmacy interface; it should be treated as an implementation baseline rather than a client-approved brand identity.
+Token
+Recommended value
+Usage
+Primary / Navy
+#17324D
+Header, strong headings, primary navigation, high-confidence actions
+Secondary Blue
+#1F5A8A
+Links, secondary actions, active navigation
+Operational Teal
+#2E7D72
+Success/positive operational states, selected indicators
+Danger
+#B42318
+Critical errors, unsafe/blocked states, urgent alerts
+Warning
+#9A6700
+Near expiry, low stock, pending attention
+Text
+#1D2730
+Primary body text
+Muted
+#66737F
+Supporting text and metadata
+Surface
+#F7FAFC
+Page backgrounds / alternate table rows
+Border
+#D9E2E8
+Card, table, input boundaries
+7.1 Typography
+Use a clean sans-serif system/web font. The current document uses Aptos for specification purposes; the web build may use a similarly readable sans-serif stack.
+Customer headings: prominent but compact. Staff tables: smaller, high-legibility text with strong column labels.
+Do not communicate status using color alone; pair status colors with text/icons.
+7.2 Spacing and Layout
+Use an 8px spacing rhythm for cards, fields, and sections.
+Use generous page padding for customers and tighter density for staff tables.
+Prefer 1-column forms on mobile, 2-column grouped forms on desktop where fields are logically related.
+8. Component Specification
+Component
+Behavior
+States / rules
+Search box
+Primary customer entry point; supports submit on Enter and clear action.
+Default; focused; loading; no results; error.
+Stock badge
+Shows current availability at a glance.
+In Stock; Low Stock; Out of Stock; state text must be explicit.
+Status badge
+Shows workflow state.
+Pending; Verified; Rejected; Preparing; Ready; Completed; Cancelled.
+Alert card
+Surfaces actionable risk.
+Low stock; Near expiry; Critical / blocked. Include action button.
+Data table
+Staff workhorse for inventory/orders/alerts.
+Loading; empty; filtered; error; row action.
+Form field
+Consistent label, input, hint, and inline validation.
+Default; focused; invalid; disabled; success where helpful.
+Upload dropzone
+Supports file picker and mobile-friendly selection.
+Empty; selected; validating; upload success; upload error.
+Confirmation dialog
+Only for irreversible/destructive operations.
+Confirm / cancel; clear consequences.
+Toast / inline notice
+Feedback after actions without losing page context.
+Success; warning; error; informational.
+9. Accessibility and Usability Requirements
+Every input has a visible, programmatic label; placeholders must not replace labels.
+Keyboard focus must be visible and move in logical order.
+Validation errors appear next to the affected field and in a summary for long forms.
+Images and prescription upload instructions must explain accepted file types and failure reasons.
+Status information is conveyed using text plus visual treatment; do not rely only on red/green.
+Buttons use action verbs: “Upload Prescription”, “Verify”, “Mark Ready”, “Resolve Alert”, “Complete Sale”.
+Tables should have clear column headings and remain usable on smaller screens through responsive treatment.
+10. Responsive Behavior
+Breakpoint intent
+Customer UI
+Staff UI
+Mobile
+Single-column, search-first, sticky primary action only where useful.
+Tables can become stacked cards or horizontally scroll when necessary; preserve critical fields.
+Tablet
+2-column content where useful; larger tap targets.
+Dashboard cards in 2-column layout; operational tables remain dense but readable.
+Desktop
+Wide search/results layout; clear content hierarchy.
+Persistent sidebar/top navigation; dense tables, split panes, and dashboard widgets where useful.
+11. UI/UX Implications of Server-Side Rendering
+Design pages as complete, meaningful states that work even before optional JavaScript enhancements.
+Each primary action should have a clear server route and return page; avoid interactions that exist only as client-side state.
+Use standard form submission patterns for login, registration, prescription upload, inventory updates, POS confirmation, and alert resolution.
+Where JavaScript is used, treat it as progressive enhancement for search suggestions, dynamic line totals, previews, or confirmation—not as the sole source of business state.
+After state-changing requests, use a post/redirect/get pattern so refresh does not accidentally repeat a transaction.
+LAB ALIGNMENT: The supplied chat says Spring Boot backend is required and mentions server-side rendering as a likely expectation. This specification therefore assumes SSR-compatible page flows, but the SSR choice should still be confirmed with the instructor before final implementation.
+12. Form and Validation UX
+Area
+Validation / UX rule
+Registration / Login
+Show field-level validation; do not expose whether a staff account exists through overly specific error messages.
+Medicine / Batch
+Dates should be explicit; expiry date cannot be silently ignored; quantity and prices require numeric validation.
+Prescription upload
+Allow only documented image formats from the project requirements; show a clear failure reason and retry option.
+POS quantity
+Prevent quantity from exceeding available stock; recalculate totals immediately when quantities change.
+Order / payment
+Do not show “completed” until the server confirms the state transition.
+Alert resolution
+Require action taken / remark where the workflow expects an auditable resolution.
+13. Empty, Loading, and Error States
+Scenario
+Required message pattern
+Next action
+No medicine results
+“No medicines found for …”
+Clear search / try another term
+No prescriptions
+Explain that uploaded prescriptions will appear here.
+Upload Prescription
+No orders
+Explain that completed/active orders will appear here.
+Browse Medicines / Upload Prescription
+No alerts
+“No active alerts.” Make the state reassuring, not alarming.
+Return to Dashboard
+Upload failure
+Explain format/size/network issue if known.
+Choose another file / retry
+Server/database error
+Do not expose stack traces or SQL details.
+Retry / contact staff / return safely
+Permission denied
+Explain that the action is restricted.
+Return to permitted area
+14. Requirements-to-Screen Traceability
+Source requirement
+UI/UX realization
+Primary screen(s)
+Dual authentication for admin and users
+Separate login entry points and role-aware navigation.
+C-04, A-01
+Inventory management
+Search/filter/table/forms for medicine and batch data.
+A-03, A-09
+POS and automatic stock deduction
+Fast sale screen with validation and confirmation.
+A-04
+Customer medicine search and availability
+Search-first catalog with explicit stock state and price.
+C-01, C-02, C-03
+Prescription upload
+Secure, guided image upload with status tracking.
+C-05, C-06, A-05
+Order fulfillment
+Status-driven staff queue and customer tracking.
+A-06, C-07, C-08
+Alerts for low stock / expiry
+Dashboard cards, alert table, resolution flow.
+A-02, A-07
+Reports
+Readable KPI summary plus period-based report view.
+A-08
+15. UX Acceptance Criteria
+Customer can discover the medicine search from the home page without reading instructions.
+Stock state is visible on every medicine result and is not represented only by color.
+Prescription upload clearly explains accepted image types and provides a success confirmation after submission.
+Customer can identify the current prescription/order status without contacting the pharmacy.
+Staff dashboard presents pending prescriptions, low-stock items, and near-expiry items as actionable work queues.
+Staff can reach POS, Inventory, Prescriptions, Orders, Alerts, and Reports directly from the authenticated staff area.
+Every state-changing form gives confirmation or an explicit error and never exposes raw backend errors.
+Critical destructive or irreversible actions use an explicit confirmation step.
+All important forms and tables remain usable on desktop and mobile widths.
+The UI remains understandable if JavaScript enhancements fail, consistent with an SSR implementation strategy.
+16. Recommended Prototype / Implementation Sequence
+1. Create the global shell: header, navigation, footer, buttons, forms, badges, alerts, table styles.
+2. Prototype the customer search and medicine availability flow first.
+3. Prototype staff dashboard + alerts next because they establish the core operational information hierarchy.
+4. Prototype prescription upload → staff verification → fulfillment status as the highest-value end-to-end workflow.
+5. Add POS and inventory as the operational transaction workflow.
+6. Finish reports, supplier/batch detail, profile, and lower-frequency screens.
+7. Run task-based usability checks using the acceptance criteria before visual polish.
+17. Open Decisions / Items to Confirm
+Decision
+Current assumption in this UI/UX document
+Why it matters
+Server-side rendering
+Recommended; design supports SSR page flows.
+Impacts interaction patterns, routing, validation, and progressive enhancement.
+JPA vs JDBC
+UI-neutral; no UI dependency on ORM choice.
+TRD/lab guidance indicates JDBC should be used; backend choice does not change the visible interaction model.
+Exact brand palette/logo
+Not specified in source documents; palette here is a recommendation.
+Client approval may require visual identity changes.
+Prescription image limits
+Project requires JPG/PNG; exact file-size limit is not specified in the source material.
+Needed for precise validation copy and backend constraints.
+Payment integration
+Payment method/status fields exist in the schema, but a specific gateway is not defined.
+Avoid designing gateway-specific UI until the backend/payment scope is confirmed.
+Delivery logistics
+Home delivery is a stated requirement; courier/tracking details are not specified.
+Keep UI to request/status until operational logistics are defined.
+18. Final UI/UX Review Checklist
+Every page has a clear page title and primary action.
+Primary navigation is consistent across all screens in a portal.
+All forms have labels, validation, error recovery, and success confirmation.
+Statuses use consistent language across customer and staff views.
+Inventory and order tables expose the minimum fields needed for decisions.
+Critical alerts are visually prominent but not noisy or repetitive.
+Customer mobile flows require as few steps as reasonably possible.
+No UI exposes SQL errors, stack traces, passwords, or internal identifiers unnecessarily.
+Prescription images are treated as sensitive content and not exposed through unsafe public links.
+UI copy remains consistent with the project terminology: Customer, Staff, Medicine, Batch, Prescription, Order, Order Item, Alert, Supplier.
+Appendix A — Source Basis
+Project Requirements Submission: defines the business context, problems, user stories, functional requirements, and proposed dual-portal behavior.
+ER Diagram Final: defines entities and major relationships used to structure the UI and workflow model.
+Relational Schema Diagram: defines the concrete relational entities/attributes that the staff-facing forms, tables, and workflow states must support.
+Provided lab chat: states that Spring Boot backend is to be used, server-side rendering may be expected, web-development paradigms may be discussed in the lab, and JDBC may be required instead of JPA.
+

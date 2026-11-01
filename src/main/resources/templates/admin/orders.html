@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/fragments/admin_head :: head}">
+    <title>Abha Pharmacy Admin - Orders</title>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col">
+    <header th:replace="~{admin/fragments/admin_header :: header}"></header>
+
+<main class="flex-1 max-w-[1600px] w-full mx-auto p-6 pb-14 min-h-screen space-y-6">
+    <div class="flex flex-col w-full space-y-6">
+
+        <!-- PAGE HEADER & ACTION CONTROLS -->
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-white p-6 rounded-xl shadow-xs border border-teal-200/80">
+            <div>
+                <div class="flex items-center gap-2 mb-1">
+                    <h1 class="font-display font-extrabold text-2xl tracking-tight text-slate-900">Manage Active Orders</h1>
+                    <span class="px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs uppercase tracking-wider font-semibold">Fulfillment</span>
+                </div>
+                <p class="text-xs text-slate-500">
+                    Review, update status, and manage active fulfillment workflows.
+                </p>
+            </div>
+            
+            <div th:if="${success}" class="p-3 text-xs text-emerald-800 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center gap-1.5" role="alert">
+                <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                <span class="font-bold">Success!</span> <span th:text="${success}"></span>
+            </div>
+            <div th:if="${error}" class="p-3 text-xs text-red-800 rounded-lg bg-red-50 border border-red-200 flex items-center gap-1.5" role="alert">
+                <span class="material-symbols-outlined text-[16px]">error</span>
+                <span class="font-bold">Error!</span> <span th:text="${error}"></span>
+            </div>
+        </div>
+
+        <!-- ORDERS DATA TABLE -->
+        <div class="bg-white rounded-xl shadow-xs overflow-hidden flex flex-col border border-teal-200/80">
+            <div class="p-0 overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                    <thead class="bg-teal-50/60 text-slate-700 border-b border-teal-100 text-[11px] font-bold uppercase tracking-wider">
+                        <tr>
+                            <th class="px-4 py-3 font-semibold">Order ID</th>
+                            <th class="px-4 py-3 font-semibold">Date &amp; Time</th>
+                            <th class="px-4 py-3 font-semibold">Order Type</th>
+                            <th class="px-4 py-3 font-semibold">Payment Status</th>
+                            <th class="px-4 py-3 font-semibold">Total Amount</th>
+                            <th class="px-4 py-3 font-semibold">Delivery Address</th>
+                            <th class="px-4 py-3 font-semibold">Current Status</th>
+                            <th class="px-4 py-3 font-semibold text-right">Update Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 font-medium">
+                        <tr th:if="${activeOrders.empty}">
+                            <td colspan="8" class="px-4 py-8 text-center text-slate-400 italic text-sm">No active orders found.</td>
+                        </tr>
+                        <tr th:each="o : ${activeOrders}" class="hover:bg-slate-50/80 transition-colors">
+                            <td class="px-4 py-3 font-bold font-mono text-teal-800" th:text="'#' + ${o.orderId}"></td>
+                            <td class="px-4 py-3 text-slate-500 font-mono" th:text="${o.orderDate} + ' ' + ${o.orderTime}"></td>
+                            <td class="px-4 py-3">
+                                <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-xs font-semibold" th:text="${o.orderType}"></span>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="px-2 py-0.5 rounded text-xs font-semibold"
+                                      th:classappend="${o.paymentStatus == 'PAID' ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-amber-50 text-amber-800 border border-amber-200'}"
+                                      th:text="${o.paymentStatus}"></span>
+                            </td>
+                            <td class="px-4 py-3 font-bold text-slate-900 font-mono" th:text="'₹' + ${o.totalAmount}"></td>
+                            <td class="px-4 py-3 text-xs text-slate-500">
+                                <div th:if="${o.houseNo != null}">
+                                    <span th:text="${o.houseNo} + ', ' + ${o.street}"></span><br/>
+                                    <span th:text="${o.city} + ' - ' + ${o.pincode}"></span>
+                                </div>
+                                <div th:if="${o.houseNo == null}" class="italic text-slate-400">N/A</div>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs font-semibold" th:text="${o.orderStatus}"></span>
+                            </td>
+                            <td class="px-4 py-3 text-right">
+                                <!-- Notice the admin endpoint uses /admin/orders/complete for completion -->
+                                <form th:if="${o.orderStatus != 'COMPLETED'}" th:action="@{/admin/orders/complete}" method="post" class="inline-flex">
+                                    <input type="hidden" name="orderId" th:value="${o.orderId}"/>
+                                    <button type="submit" class="px-3.5 py-1.5 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-semibold text-xs shadow-xs transition-colors flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[15px]">check_circle</span>
+                                        <span>Mark Complete</span>
+                                    </button>
+                                </form>
+                                <span th:if="${o.orderStatus == 'COMPLETED'}" class="text-xs text-slate-400 italic">Completed</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</main>
+</body>
+</html>

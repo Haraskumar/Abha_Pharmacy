@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="100%" height="100%">
+  <defs>
+    <linearGradient id="markRingGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="60%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="markTopLeafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#84cc16"/>
+      <stop offset="40%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="markMidLeafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a3e635"/>
+      <stop offset="50%" stop-color="#16a34a"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="markAccentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#065f46"/>
+    </linearGradient>
+    <filter id="markShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="1" dy="3" stdDeviation="2.5" flood-color="#064e3b" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <g transform="translate(-90, -45)" filter="url(#markShadow)">
+    <!-- Outer Ring -->
+    <path d="M 365 210 A 130 130 0 1 1 368 170" 
+          fill="none" 
+          stroke="url(#markRingGrad)" 
+          stroke-width="26" 
+          stroke-linecap="round"/>
+
+    <!-- Top Leaf Swoosh -->
+    <path d="M 160 120 C 185 160, 240 170, 310 165 C 360 162, 385 185, 395 220 C 380 185, 335 150, 260 152 C 200 154, 172 135, 160 120 Z" 
+          fill="url(#markTopLeafGrad)"/>
+
+    <!-- Middle Leaf Swoosh -->
+    <path d="M 175 205 C 190 260, 260 280, 335 285 C 375 288, 385 320, 388 345 C 375 310, 330 270, 250 262 C 200 257, 182 230, 175 205 Z" 
+          fill="url(#markMidLeafGrad)"/>
+
+    <!-- Accent Curves -->
+    <path d="M 205 272 C 240 300, 310 315, 360 325 C 330 312, 275 298, 230 282 C 215 277, 208 274, 205 272 Z" 
+          fill="url(#markAccentGrad)"/>
+    <path d="M 220 290 C 260 315, 320 328, 355 338 C 325 328, 280 315, 240 302 C 228 298, 222 294, 220 290 Z" 
+          fill="#059669"/>
+  </g>
+</svg>

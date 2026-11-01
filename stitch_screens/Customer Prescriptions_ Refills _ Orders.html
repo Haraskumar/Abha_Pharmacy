@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "background": "#faf8ff",
+        "surface-bright": "#faf8ff",
+        "on-secondary-fixed-variant": "#00513e",
+        "on-error": "#ffffff",
+        "primary-container": "#0d7a5f",
+        "on-tertiary-fixed-variant": "#004b73",
+        "surface-variant": "#dae2fd",
+        "secondary-fixed": "#a9f1d5",
+        "on-surface-variant": "#3e4944",
+        "tertiary-fixed-dim": "#93ccff",
+        "surface-dim": "#d2d9f4",
+        "inverse-on-surface": "#eef0ff",
+        "surface-container": "#eaedff",
+        "error-container": "#ffdad6",
+        "on-primary-container": "#a8ffdf",
+        "tertiary-container": "#0071ac",
+        "on-secondary-container": "#266e58",
+        "on-primary-fixed-variant": "#00513e",
+        "surface": "#faf8ff",
+        "on-primary-fixed": "#002117",
+        "surface-container-lowest": "#ffffff",
+        "on-tertiary-fixed": "#001d31",
+        "tertiary-fixed": "#cce5ff",
+        "inverse-surface": "#283044",
+        "on-tertiary-container": "#e1efff",
+        "on-background": "#131b2e",
+        "inverse-primary": "#7cd8b8",
+        "on-primary": "#ffffff",
+        "surface-container-high": "#e2e7ff",
+        "outline-variant": "#bdc9c2",
+        "primary-fixed": "#98f4d3",
+        "surface-container-highest": "#dae2fd",
+        "primary-fixed-dim": "#7cd8b8",
+        "secondary-container": "#a6eed2",
+        "surface-tint": "#006c53",
+        "secondary-fixed-dim": "#8ed5ba",
+        "primary": "#005f49",
+        "tertiary": "#005886",
+        "on-secondary": "#ffffff",
+        "on-secondary-fixed": "#002117",
+        "on-surface": "#131b2e",
+        "on-tertiary": "#ffffff",
+        "on-error-container": "#93000a",
+        "outline": "#6e7a74",
+        "secondary": "#206a54",
+        "surface-container-low": "#f2f3ff",
+        "error": "#ba1a1a"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+      },
+      "spacing": {
+        "margin-desktop": "2rem",
+        "space-xs": "0.25rem",
+        "space-lg": "1rem",
+        "space-md": "0.75rem",
+        "space-xl": "1.5rem",
+        "gutter-desktop": "1.5rem",
+        "space-sm": "0.5rem",
+        "margin": "1rem",
+        "gutter": "1rem"
+      },
+      "fontFamily": {
+        "label-sm": [
+          "Inter"
+        ],
+        "code-mono": [
+          "JetBrains Mono"
+        ],
+        "body-sm": [
+          "Inter"
+        ],
+        "headline-md": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-sm": [
+          "Plus Jakarta Sans"
+        ],
+        "label-lg": [
+          "Inter"
+        ],
+        "label-md": [
+          "Inter"
+        ],
+        "body-lg": [
+          "Inter"
+        ],
+        "body-md": [
+          "Inter"
+        ],
+        "display-lg": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-lg": [
+          "Plus Jakarta Sans"
+        ]
+      },
+      "fontSize": {
+        "label-sm": [
+          "11px",
+          {
+            "lineHeight": "14px",
+            "letterSpacing": "0.04em",
+            "fontWeight": "600"
+          }
+        ],
+        "code-mono": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "fontWeight": "500"
+          }
+        ],
+        "body-sm": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "fontWeight": "400"
+          }
+        ],
+        "headline-md": [
+          "20px",
+          {
+            "lineHeight": "28px",
+            "letterSpacing": "-0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "headline-sm": [
+          "16px",
+          {
+            "lineHeight": "24px",
+            "fontWeight": "600"
+          }
+        ],
+        "label-lg": [
+          "14px",
+          {
+            "lineHeight": "20px",
+            "fontWeight": "500"
+          }
+        ],
+        "label-md": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "letterSpacing": "0.025em",
+            "fontWeight": "600"
+          }
+        ],
+        "body-lg": [
+          "16px",
+          {
+            "lineHeight": "24px",
+            "fontWeight": "400"
+          }
+        ],
+        "body-md": [
+          "14px",
+          {
+            "lineHeight": "20px",
+            "fontWeight": "400"
+          }
+        ],
+        "display-lg": [
+          "32px",
+          {
+            "lineHeight": "40px",
+            "letterSpacing": "-0.02em",
+            "fontWeight": "700"
+          }
+        ],
+        "headline-lg": [
+          "24px",
+          {
+            "lineHeight": "32px",
+            "letterSpacing": "-0.015em",
+            "fontWeight": "600"
+          }
+        ]
+      }
+    }
+  }
+}</script></head><body class="bg-surface text-on-surface font-body-md text-body-md"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-gutter-desktop flex items-center justify-between"><div class="flex items-center gap-space-lg"><img alt="Abha Pharmacy Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UKKshijGLJayZJ52kylv1QYyrmTW9iDDNuwRGi8t8djnc9DmbtdF0cXohcFL5FZxP5sbiFwvVGx64TzlsmaVkCcr9uKx_LsHFjbS_GlKfc9GOPkHnCxDOaGcx6p5iy7Zh44i_zm-_tETqST-5ZfuC5uhUmPScByFwD7Hsp3-Th-OZ40rpI4yOLgbuJsMaZJ0Di-B8kxEcMFMQNtGZRCsqFQyv-_8GgFWECFTzREdMBCukbyS3zPfM11yM"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-none">Abha Pharmacy</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Patient Care &amp; Refills</span></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="inline-flex items-center gap-space-xs bg-surface-container-high px-space-md py-space-xs rounded-full"><span class="material-symbols-outlined text-[16px] text-tertiary">person</span><span class="font-label-sm text-label-sm text-on-surface uppercase tracking-wide">Customer Portal</span></div><a class="inline-flex items-center gap-space-xs bg-secondary-container px-space-sm py-space-xs rounded-full text-on-secondary-container hover:bg-secondary-fixed transition-colors" data-path="staff-dashboard" href="#"><span class="material-symbols-outlined text-[14px]">badge</span><span class="font-label-sm text-label-sm">Switch to Staff Portal</span></a></div><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold border-b-2 border-primary"><a class="py-space-md text-on-surface-variant hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="home" href="#">Home</a><a class="py-space-md text-on-surface-variant hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="medicine-discovery" href="#">Medicine Discovery</a><a aria-current="page" class="py-space-md transition-colors text-primary font-semibold border-b-2 border-primary" data-path="upload-prescription" href="#">Upload Prescription</a><a class="py-space-md text-on-surface-variant hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="refill-requests" href="#">Refill Requests</a><a class="py-space-md text-on-surface-variant hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="my-orders" href="#">My Orders</a><a class="py-space-md text-on-surface-variant hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="customer-profile" href="#">Customer Profile</a></nav><div class="flex items-center gap-space-xl"><div class="hidden xl:flex items-center gap-space-md text-on-surface-variant"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px]">schedule</span><span class="font-label-md text-label-md">Pharmacy Open • 24/7 Service</span></div><div class="h-4 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-label-sm text-label-sm text-primary uppercase font-bold">Live Prescription Intake</span></div></div><div class="h-6 w-px bg-surface-container-highest hidden sm:block"></div><div class="flex items-center gap-space-md"><div class="flex flex-col text-right hidden sm:flex"><span class="font-label-lg text-label-lg text-on-surface">Sara Al-Ghamdi</span><span class="font-label-sm text-label-sm text-on-surface-variant">Patient ID #AB-8802</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen px-gutter-desktop py-space-xl"><div class="flex flex-col w-full">
+<!-- Portal Context Header -->
+<div class="w-full bg-surface-container-low rounded-xl p-space-lg shadow-sm mb-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-headline-md text-headline-md">
+        PP
+      </div>
+<div>
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-headline-md text-headline-md text-on-surface">Priya Patel</span>
+<span class="bg-surface-container-highest text-on-surface-variant font-code-mono text-code-mono px-space-xs py-0.5 rounded">CUST-1049</span>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-space-xs py-0.5 rounded-full inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">verified_user</span> Verified Patient
+          </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Civil Lines, Jaipur • +91 98290 12345 • Reg: 2024-01-15</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-lowest p-1 rounded-lg shadow-sm overflow-x-auto" id="portalTabs">
+<button class="tab-btn px-space-md py-space-sm rounded-lg font-label-md text-label-md text-on-primary bg-primary shadow-sm flex items-center gap-space-xs transition-colors whitespace-nowrap" id="tab-upload" onclick="switchTab('upload')">
+<span class="material-symbols-outlined text-[16px]">upload_file</span>
+        1. Upload Prescription
+      </button>
+<button class="tab-btn px-space-md py-space-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface flex items-center gap-space-xs transition-colors whitespace-nowrap" id="tab-refill" onclick="switchTab('refill')">
+<span class="material-symbols-outlined text-[16px]">autorenew</span>
+        2. Refill Requests
+      </button>
+<button class="tab-btn px-space-md py-space-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface flex items-center gap-space-xs transition-colors whitespace-nowrap" id="tab-orders" onclick="switchTab('orders')">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+        3. Order History &amp; Tracking
+      </button>
+<button class="tab-btn px-space-md py-space-sm rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-on-surface flex items-center gap-space-xs transition-colors whitespace-nowrap" id="tab-profile" onclick="switchTab('profile')">
+<span class="material-symbols-outlined text-[16px]">person</span>
+        4. Customer Profile
+      </button>
+</div>
+</div>
+<!-- TAB 1: Prescription Upload -->
+<div class="tab-content flex flex-col gap-space-lg" id="content-upload">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Upload Card -->
+<div class="lg:col-span-5 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[20px]">medical_services</span>
+<span class="font-headline-sm text-headline-sm">New Prescription Intake</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">MOH Safe Protocol</span>
+</div>
+<form class="flex flex-col gap-space-md" id="rxForm" onsubmit="handlePrescriptionSubmit(event)">
+<!-- Dropzone -->
+<div class="relative bg-surface-container-low rounded-lg p-space-lg flex flex-col items-center justify-center text-center cursor-pointer group hover:bg-surface-container transition-colors">
+<input accept=".jpg,.jpeg,.png" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" id="rxFile" onchange="updateFileName(this)" required="" type="file"/>
+<div class="w-12 h-12 rounded-full bg-surface-container-high text-primary flex items-center justify-center mb-space-xs group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[24px]">cloud_upload</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface font-semibold" id="fileLabel">Upload Prescription Image</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Accepted formats: JPG, PNG (Max 10MB)</span>
+<span class="font-code-mono text-code-mono text-primary mt-space-xs hidden" id="fileNameDisplay"></span>
+</div>
+<!-- Patient & Doctor Inputs -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Patient Full Name</label>
+<input class="h-9 px-space-sm rounded bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest outline-none shadow-sm" id="patientNameInput" required="" type="text" value="Priya Patel"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Prescribing Doctor</label>
+<input class="h-9 px-space-sm rounded bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest outline-none shadow-sm" id="doctorNameInput" placeholder="e.g. Dr. Rajesh Sharma" required="" type="text"/>
+</div>
+</div>
+<!-- Special Instructions -->
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-label-sm text-on-surface-variant">Special Instructions for Pharmacist</label>
+<textarea class="p-space-sm rounded bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest outline-none shadow-sm resize-none" id="instructionsInput" placeholder="e.g. Please pack 1 month supply; verify generic substitute availability" rows="3"></textarea>
+</div>
+<!-- Security Notice -->
+<div class="bg-surface-container-high/60 rounded-lg p-space-sm flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">lock</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+<strong class="font-semibold text-on-surface">Protected Resource Security:</strong> Uploaded Rx images are encrypted under Pharmacy Data Compliance regulations. Strictly reviewed by registered pharmacists before stock dispensation.
+            </p>
+</div>
+<button class="h-10 bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg rounded font-semibold flex items-center justify-center gap-space-xs transition-colors shadow-sm" type="submit">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+            Submit Prescription for Verification
+          </button>
+</form>
+</div>
+<!-- Prescriptions Status Table View -->
+<div class="lg:col-span-7 bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[20px]">fact_check</span>
+<span class="font-headline-sm text-headline-sm">Uploaded Prescriptions Log</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">Real-time Verification Status</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-sm rounded-l">Rx ID / Date</th>
+<th class="py-space-sm px-space-sm">Doctor &amp; Patient</th>
+<th class="py-space-sm px-space-sm">Instructions</th>
+<th class="py-space-sm px-space-sm text-center">Status</th>
+<th class="py-space-sm px-space-sm rounded-r">Pharmacist Remarks</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm divide-y-0" id="rxTableBody">
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-space-sm px-space-sm align-top whitespace-nowrap">
+<div class="font-code-mono text-code-mono text-primary font-semibold">RX-2025-0814</div>
+<div class="text-on-surface-variant">2025-05-10 • 09:15</div>
+</td>
+<td class="py-space-sm px-space-sm align-top whitespace-nowrap">
+<div class="font-semibold text-on-surface">Dr. Ananya Rao</div>
+<div class="text-on-surface-variant">Priya Patel</div>
+</td>
+<td class="py-space-sm px-space-sm align-top">
+<span class="text-on-surface-variant line-clamp-2">Please pack 30-day course for blood pressure management.</span>
+</td>
+<td class="py-space-sm px-space-sm align-top text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 bg-[#ECFDF5] text-[#0A5C47] font-label-sm text-label-sm px-2 py-0.5 rounded-full uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-[#0A5C47]"></span> Verified
+                  </span>
+</td>
+<td class="py-space-sm px-space-sm align-top text-on-surface">
+<div class="bg-surface-container-low p-space-xs rounded font-body-sm text-body-sm">
+                    Verified by pharmacist STF-01. Ready for order placement.
+                  </div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-space-sm px-space-sm align-top whitespace-nowrap">
+<div class="font-code-mono text-code-mono text-primary font-semibold">RX-2025-0792</div>
+<div class="text-on-surface-variant">2025-05-08 • 14:20</div>
+</td>
+<td class="py-space-sm px-space-sm align-top whitespace-nowrap">
+<div class="font-semibold text-on-surface">Dr. Rajesh Sharma</div>
+<div class="text-on-surface-variant">Priya Patel</div>
+</td>
+<td class="py-space-sm px-space-sm align-top">
+<span class="text-on-surface-variant line-clamp-2">Urgent allergy antihistamines refill.</span>
+</td>
+<td class="py-space-sm px-space-sm align-top text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 bg-[#F0FDF4] text-[#0284C7] font-label-sm text-label-sm px-2 py-0.5 rounded-full uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-[#0284C7] animate-pulse"></span> Pending
+                  </span>
+</td>
+<td class="py-space-sm px-space-sm align-top text-on-surface-variant">
+<div class="bg-surface-container-low p-space-xs rounded font-body-sm text-body-sm">
+                    In queue: Senior clinical review underway.
+                  </div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-space-sm px-space-sm align-top whitespace-nowrap">
+<div class="font-code-mono text-code-mono text-primary font-semibold">RX-2025-0610</div>
+<div class="text-on-surface-variant">2025-04-12 • 11:05</div>
+</td>
+<td class="py-space-sm px-space-sm align-top whitespace-nowrap">
+<div class="font-semibold text-on-surface">Dr. K. Mehta</div>
+<div class="text-on-surface-variant">Priya Patel</div>
+</td>
+<td class="py-space-sm px-space-sm align-top">
+<span class="text-on-surface-variant line-clamp-2">Request generic parity for Montelukast.</span>
+</td>
+<td class="py-space-sm px-space-sm align-top text-center whitespace-nowrap">
+<span class="inline-flex items-center gap-1 bg-[#FEF2F2] text-[#DC2626] font-label-sm text-label-sm px-2 py-0.5 rounded-full uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-[#DC2626]"></span> Rejected
+                  </span>
+</td>
+<td class="py-space-sm px-space-sm align-top text-on-surface-variant">
+<div class="bg-surface-container-low p-space-xs rounded font-body-sm text-body-sm text-error">
+                    Doctor signature illegible. Please re-upload high-res document.
+                  </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB 2: Refill Requests Workflow -->
+<div class="tab-content hidden flex-col gap-space-lg" id="content-refill">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="max-w-3xl mb-space-lg">
+<div class="flex items-center gap-space-xs text-primary mb-1">
+<span class="material-symbols-outlined text-[20px]">autorenew</span>
+<span class="font-headline-sm text-headline-sm">Refill Request Center</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Request a quick refill from your past orders without re-uploading prescriptions when authorized refills remain on file.
+        </p>
+</div>
+<!-- Past Orders Refill Card -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<label class="font-label-md text-label-md text-on-surface">Select Prior Purchase to Refill:</label>
+<!-- Selectable Order Card 1 (Active selected) -->
+<div class="refill-card p-space-md rounded-xl bg-surface-container shadow-sm cursor-pointer transition-all" id="refillChoice1" onclick="selectRefillOrder('ORD-DEL-4012', this)">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
+<span class="w-2 h-2 rounded-full bg-surface-container-lowest"></span>
+</span>
+<span class="font-code-mono text-code-mono font-semibold text-primary">ORD-DEL-4012</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Dispatched 2025-04-10</span>
+</div>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-2 py-0.5 rounded-full">Refill Eligible</span>
+</div>
+<div class="space-y-1.5 pt-space-xs text-on-surface">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span>• Telmisartan 40mg (Strip of 15 tablets)</span>
+<span class="font-code-mono text-code-mono text-on-surface-variant">Qty: 2 • ₹240.00</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span>• Metformin Hydrochloride 500mg Extended Release</span>
+<span class="font-code-mono text-code-mono text-on-surface-variant">Qty: 2 • ₹116.00</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span>• Vitamin D3 60,000 IU Softgels</span>
+<span class="font-code-mono text-code-mono text-on-surface-variant">Qty: 1 • ₹98.00</span>
+</div>
+</div>
+</div>
+<!-- Selectable Order Card 2 -->
+<div class="refill-card p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container shadow-sm cursor-pointer transition-all" id="refillChoice2" onclick="selectRefillOrder('ORD-PCK-3980', this)">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="w-4 h-4 rounded-full bg-surface-container-highest flex items-center justify-center"></span>
+<span class="font-code-mono text-code-mono font-semibold text-on-surface">ORD-PCK-3980</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Picked Up 2025-03-02</span>
+</div>
+<span class="bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm px-2 py-0.5 rounded-full">Archived Order</span>
+</div>
+<div class="space-y-1.5 pt-space-xs text-on-surface-variant">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span>• Montelukast Sodium + Levocetirizine</span>
+<span class="font-code-mono text-code-mono">Qty: 1 • ₹145.00</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span>• Paracetamol 650mg Tabs</span>
+<span class="font-code-mono text-code-mono">Qty: 1 • ₹32.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Refill Summary & Confirmation Panel -->
+<div class="lg:col-span-5 bg-surface-container-low rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Refill Action Protocol</span>
+<span class="material-symbols-outlined text-primary">local_pharmacy</span>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg space-y-2">
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Target Prior Order:</span>
+<span class="font-code-mono text-code-mono font-bold text-primary" id="selectedOrderLabel">ORD-DEL-4012 (2025-04-10)</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Medication Count:</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">3 Items (5 Total Units)</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Estimated Total:</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold">₹454.00</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm pt-1">
+<span class="text-on-surface-variant">Fulfillment Preference:</span>
+<span class="text-on-surface font-semibold">Home Delivery</span>
+</div>
+</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">info</span>
+<span>Submitting creates an active linked fulfillment ticket for verification by the dispensing duty pharmacist.</span>
+</div>
+<button class="h-10 bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg rounded font-semibold flex items-center justify-center gap-space-xs transition-colors shadow-sm" onclick="triggerRefillConfirmation()">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+            Request Refill from this Order
+          </button>
+<div class="hidden bg-secondary-container text-on-secondary-container p-space-sm rounded-lg font-body-sm text-body-sm flex items-center gap-space-xs" id="refillAlert">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span>New refill order successfully queued! Reference: <strong>ORD-DEL-4095</strong></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB 3: Order History & Fulfillment Status -->
+<div class="tab-content hidden flex-col gap-space-lg" id="content-orders">
+<!-- Active Order Banner -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-headline-sm text-headline-sm text-on-surface">Order ORD-DEL-4089</span>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-2 py-0.5 rounded-full uppercase font-bold">
+            Order Ready
+          </span>
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span> Home Delivery
+          </span>
+</div>
+<div class="text-on-surface-variant font-label-md text-label-md flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+          Order Placed: 2025-05-09 15:30
+        </div>
+</div>
+<!-- Fulfillment Step Bar -->
+<div class="bg-surface-container-low rounded-lg p-space-md grid grid-cols-4 gap-space-xs text-center">
+<div class="flex flex-col items-center">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center text-[14px] mb-1">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Prescription Verified</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center text-[14px] mb-1">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Dispensed &amp; Packed</span>
+</div>
+<div class="flex flex-col items-center">
+<div class="w-7 h-7 rounded-full bg-primary-container text-on-primary ring-2 ring-primary flex items-center justify-center text-[14px] mb-1">
+<span class="material-symbols-outlined text-[14px]">inventory_2</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-bold">Order Ready</span>
+</div>
+<div class="flex flex-col items-center opacity-40">
+<div class="w-7 h-7 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center text-[14px] mb-1">
+<span class="material-symbols-outlined text-[14px]">done_all</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Out for Delivery</span>
+</div>
+</div>
+<!-- Delivery Address & Payment Metadata -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="bg-surface-container-low p-space-md rounded-lg">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant block mb-1">Delivery Destination</span>
+<p class="font-body-md text-body-md text-on-surface font-semibold">House No. 42B, Shanti Niketan, Civil Lines</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Jaipur, Rajasthan • Pincode: 302006</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant block mb-1">Payment &amp; Billing Summary</span>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Payment Method:</span>
+<span class="font-semibold text-on-surface inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">qr_code_2</span> UPI (Unified Payments)
+            </span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm mt-0.5">
+<span class="text-on-surface-variant">Payment Status:</span>
+<span class="text-primary font-bold">Completed</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm mt-0.5">
+<span class="text-on-surface-variant">Discount Applied:</span>
+<span class="font-code-mono text-code-mono text-on-surface">₹0.00</span>
+</div>
+</div>
+</div>
+<!-- Order Items Detail Table -->
+<div>
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mb-space-xs">Prescribed Order Items</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase">
+<th class="py-space-sm px-space-sm rounded-l">Medicine Name</th>
+<th class="py-space-sm px-space-sm text-right">Quantity</th>
+<th class="py-space-sm px-space-sm text-right">Unit Price (Sale)</th>
+<th class="py-space-sm px-space-sm text-right rounded-r">Total</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-sm px-space-sm">
+<div class="font-semibold text-on-surface">Telmisartan 40mg Tablets</div>
+<div class="text-on-surface-variant text-[11px]">Brand: Micardis generic parity • 1x15 Strip</div>
+</td>
+<td class="py-space-sm px-space-sm text-right font-code-mono text-code-mono">2</td>
+<td class="py-space-sm px-space-sm text-right font-code-mono text-code-mono">₹120.00</td>
+<td class="py-space-sm px-space-sm text-right font-code-mono text-code-mono font-semibold text-on-surface">₹240.00</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-sm px-space-sm">
+<div class="font-semibold text-on-surface">Atorvastatin 10mg Tablets</div>
+<div class="text-on-surface-variant text-[11px]">Cardiovascular therapy • 1x10 Pack</div>
+</td>
+<td class="py-space-sm px-space-sm text-right font-code-mono text-code-mono">1</td>
+<td class="py-space-sm px-space-sm text-right font-code-mono text-code-mono">₹85.00</td>
+<td class="py-space-sm px-space-sm text-right font-code-mono text-code-mono font-semibold text-on-surface">₹85.00</td>
+</tr>
+</tbody>
+<tfoot>
+<tr class="bg-surface-container-low/80 font-label-md text-label-md">
+<td class="py-space-sm px-space-sm text-right font-bold text-on-surface" colspan="3">Grand Total Payable:</td>
+<td class="py-space-sm px-space-sm text-right font-code-mono text-code-mono font-bold text-primary">₹325.00</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+</div>
+<!-- Completed Past Order Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pb-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-headline-sm text-headline-sm text-on-surface">Order ORD-PCK-4050</span>
+<span class="bg-[#ECFDF5] text-[#0A5C47] font-label-sm text-label-sm px-2 py-0.5 rounded-full uppercase font-bold">
+            Order Completed
+          </span>
+<span class="bg-surface-container text-on-surface font-label-sm text-label-sm px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">storefront</span> Pickup
+          </span>
+</div>
+<div class="text-on-surface-variant font-label-md text-label-md flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+          Completed: 2025-04-28 11:20
+        </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="bg-surface-container-low p-space-md rounded-lg">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant block mb-1">Fulfillment Mode</span>
+<p class="font-body-md text-body-md text-on-surface font-semibold">In-Pharmacy Counter Pickup</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Collected at Abha Pharmacy Main Branch, Counter 2</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant block mb-1">Settlement Details</span>
+<div class="flex items-center justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Payment Method:</span>
+<span class="font-semibold text-on-surface">Cash on Counter</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm mt-0.5">
+<span class="text-on-surface-variant">Payment Status:</span>
+<span class="text-primary font-bold">Completed</span>
+</div>
+<div class="flex items-center justify-between font-body-sm text-body-sm mt-0.5">
+<span class="text-on-surface-variant">Discount:</span>
+<span class="font-code-mono text-code-mono text-on-surface">₹0.00</span>
+</div>
+</div>
+</div>
+<!-- Items Table -->
+<div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase">
+<th class="py-space-sm px-space-sm rounded-l">Medicine Name</th>
+<th class="py-space-sm px-space-sm text-right">Quantity</th>
+<th class="py-space-sm px-space-sm text-right">Unit Price (Sale)</th>
+<th class="py-space-sm px-space-sm text-right rounded-r">Total</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-sm px-space-sm">
+<div class="font-semibold text-on-surface">Cetirizine 10mg Tablets</div>
+<div class="text-on-surface-variant text-[11px]">Allergy relief • Blister pack</div>
+</td>
+<td class="py-space-sm px-space-sm text-right font-code-mono text-code-mono">1</td>
+<td class="py-space-sm px-space-sm text-right font-code-mono text-code-mono">₹45.00</td>
+<td class="py-space-sm px-space-sm text-right font-code-mono text-code-mono font-semibold text-on-surface">₹45.00</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-sm px-space-sm">
+<div class="font-semibold text-on-surface">Salbutamol Inhaler 100mcg</div>
+<div class="text-on-surface-variant text-[11px]">Respiratory canister • 200 actuations</div>
+</td>
+<td class="py-space-sm px-space-sm text-right font-code-mono text-code-mono">1</td>
+<td class="py-space-sm px-space-sm text-right font-code-mono text-code-mono">₹160.00</td>
+<td class="py-space-sm px-space-sm text-right font-code-mono text-code-mono font-semibold text-on-surface">₹160.00</td>
+</tr>
+</tbody>
+<tfoot>
+<tr class="bg-surface-container-low/80 font-label-md text-label-md">
+<td class="py-space-sm px-space-sm text-right font-bold text-on-surface" colspan="3">Grand Total:</td>
+<td class="py-space-sm px-space-sm text-right font-code-mono text-code-mono font-bold text-primary">₹205.00</td>
+</tr>
+</tfoot>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB 4: Customer Profile Data -->
+<div class="tab-content hidden flex-col gap-space-lg" id="content-profile">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-md">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+<span class="font-headline-sm text-headline-sm">Customer Record &amp; Clinical File</span>
+</div>
+<span class="font-code-mono text-code-mono bg-surface-container px-space-sm py-1 rounded text-primary font-bold">
+          ID: CUST-1049
+        </span>
+</div>
+<!-- Strict Profile Specifications Grid (Zero Password Hash) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Full Legal Name</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Priya Patel</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">FirstName: Priya • LastName: Patel</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Verified Email Address</span>
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">priya.patel@example.com</span>
+<span class="font-label-sm text-label-sm text-primary inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Primary Notification Channel
+          </span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Registered Contact Number</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-code-mono">+91 98290 12345</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">CUSTOMER_PHONE • Verified SMS Dispatch</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Demographic Particulars</span>
+<div class="flex items-center gap-space-md font-body-md text-body-md text-on-surface">
+<span><strong>DOB:</strong> 1992-08-14</span>
+<span>•</span>
+<span><strong>Gender:</strong> Female</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Age: 32 Years • Adults Formulary</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">System Registration Date</span>
+<span class="font-body-lg text-body-lg text-on-surface font-semibold">2024-01-15</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Active record • MOH Patient Ledger</span>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Security &amp; Privacy Baseline</span>
+<span class="font-body-lg text-body-lg text-primary font-semibold inline-flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">lock</span> Encrypted Vault
+          </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Credentials safeguarded. Hash never exposed.</span>
+</div>
+</div>
+<!-- Address Box -->
+<div class="bg-surface-container-low p-space-md rounded-lg mt-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px] mt-0.5">home_pin</span>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Registered Delivery Address</span>
+<p class="font-headline-sm text-headline-sm text-on-surface">House No. 42B, Shanti Niketan, Civil Lines, Jaipur</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Postal Pincode: 302006 • Rajasthan State, India</p>
+</div>
+</div>
+<button class="h-9 px-space-md bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-md text-label-md rounded shadow-sm transition-colors self-start md:self-center">
+          Edit Delivery Profile
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function switchTab(tabId) {
+    const tabs = ['upload', 'refill', 'orders', 'profile'];
+    tabs.forEach(t => {
+      const content = document.getElementById(`content-${t}`);
+      const btn = document.getElementById(`tab-${t}`);
+      if (t === tabId) {
+        content.classList.remove('hidden');
+        content.classList.add('flex');
+        btn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+        btn.classList.remove('text-on-surface-variant');
+      } else {
+        content.classList.add('hidden');
+        content.classList.remove('flex');
+        btn.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+        btn.classList.add('text-on-surface-variant');
+      }
+    });
+  }
+
+  function updateFileName(input) {
+    if (input.files && input.files[0]) {
+      const label = document.getElementById('fileNameDisplay');
+      label.innerText = 'Attached: ' + input.files[0].name;
+      label.classList.remove('hidden');
+      document.getElementById('fileLabel').innerText = 'Prescription Attached';
+    }
+  }
+
+  function handlePrescriptionSubmit(e) {
+    e.preventDefault();
+    const doc = document.getElementById('doctorNameInput').value;
+    const pat = document.getElementById('patientNameInput').value;
+    const notes = document.getElementById('instructionsInput').value || 'Standard dispensation request';
+
+    const tableBody = document.getElementById('rxTableBody');
+    const newId = 'RX-2025-' + Math.floor(1000 + Math.random() * 9000);
+    const now = new Date();
+    const dateStr = now.toISOString().split('T')[0];
+    const timeStr = now.toTimeString().split(' ')[0].substring(0, 5);
+
+    const newRow = `
+      <tr class="hover:bg-surface-container-low/70 transition-colors bg-surface-container-low/30">
+        <td class="py-space-sm px-space-sm align-top whitespace-nowrap">
+          <div class="font-code-mono text-code-mono text-primary font-semibold">${newId}</div>
+          <div class="text-on-surface-variant">${dateStr} &bull; ${timeStr}</div>
+        </td>
+        <td class="py-space-sm px-space-sm align-top whitespace-nowrap">
+          <div class="font-semibold text-on-surface">${doc}</div>
+          <div class="text-on-surface-variant">${pat}</div>
+        </td>
+        <td class="py-space-sm px-space-sm align-top">
+          <span class="text-on-surface-variant line-clamp-2">${notes}</span>
+        </td>
+        <td class="py-space-sm px-space-sm align-top text-center whitespace-nowrap">
+          <span class="inline-flex items-center gap-1 bg-[#F0FDF4] text-[#0284C7] font-label-sm text-label-sm px-2 py-0.5 rounded-full uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#0284C7] animate-pulse"></span> Pending
+          </span>
+        </td>
+        <td class="py-space-sm px-space-sm align-top text-on-surface-variant">
+          <div class="bg-surface-container-low p-space-xs rounded font-body-sm text-body-sm">
+            Prescription successfully logged. Assigning to active pharmacist.
+          </div>
+        </td>
+      </tr>
+    `;
+    tableBody.insertAdjacentHTML('afterbegin', newRow);
+    document.getElementById('rxForm').reset();
+    document.getElementById('fileNameDisplay').classList.add('hidden');
+    document.getElementById('fileLabel').innerText = 'Upload Prescription Image';
+    alert('Prescription submitted successfully for clinical verification.');
+  }
+
+  function selectRefillOrder(orderId, cardElement) {
+    document.querySelectorAll('.refill-card').forEach(c => {
+      c.classList.remove('bg-surface-container');
+      c.classList.add('bg-surface-container-low');
+      const dot = c.querySelector('span.w-4');
+      dot.className = 'w-4 h-4 rounded-full bg-surface-container-highest flex items-center justify-center';
+      dot.innerHTML = '';
+    });
+
+    cardElement.classList.remove('bg-surface-container-low');
+    cardElement.classList.add('bg-surface-container');
+    const dot = cardElement.querySelector('span.w-4');
+    dot.className = 'w-4 h-4 rounded-full bg-primary flex items-center justify-center';
+    dot.innerHTML = '<span class="w-2 h-2 rounded-full bg-surface-container-lowest"></span>';
+
+    document.getElementById('selectedOrderLabel').innerText = orderId + (orderId === 'ORD-DEL-4012' ? ' (2025-04-10)' : ' (2025-03-02)');
+  }
+
+  function triggerRefillConfirmation() {
+    const alertBox = document.getElementById('refillAlert');
+    alertBox.classList.remove('hidden');
+    setTimeout(() => {
+      alertBox.classList.add('hidden');
+    }, 6000);
+  }
+</script></main><footer class="w-full bg-surface-container-low py-space-xl"><div class="w-full px-gutter-desktop flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm text-primary">Abha Pharmacy</span><span class="font-body-sm text-body-sm">© 2024 Licensed Ministry of Health Dispensation Facility. All rights reserved.</span></div><div class="flex items-center gap-space-lg"><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Emergency Hotline: 937</a><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Patient Privacy Policy</a><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Clinical Drug Formulary</a></div></div></footer></body></html>

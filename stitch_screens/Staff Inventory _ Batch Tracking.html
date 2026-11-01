@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "background": "#faf8ff",
+        "surface-bright": "#faf8ff",
+        "on-secondary-fixed-variant": "#00513e",
+        "on-error": "#ffffff",
+        "primary-container": "#0d7a5f",
+        "on-tertiary-fixed-variant": "#004b73",
+        "surface-variant": "#dae2fd",
+        "secondary-fixed": "#a9f1d5",
+        "on-surface-variant": "#3e4944",
+        "tertiary-fixed-dim": "#93ccff",
+        "surface-dim": "#d2d9f4",
+        "inverse-on-surface": "#eef0ff",
+        "surface-container": "#eaedff",
+        "error-container": "#ffdad6",
+        "on-primary-container": "#a8ffdf",
+        "tertiary-container": "#0071ac",
+        "on-secondary-container": "#266e58",
+        "on-primary-fixed-variant": "#00513e",
+        "surface": "#faf8ff",
+        "on-primary-fixed": "#002117",
+        "surface-container-lowest": "#ffffff",
+        "on-tertiary-fixed": "#001d31",
+        "tertiary-fixed": "#cce5ff",
+        "inverse-surface": "#283044",
+        "on-tertiary-container": "#e1efff",
+        "on-background": "#131b2e",
+        "inverse-primary": "#7cd8b8",
+        "on-primary": "#ffffff",
+        "surface-container-high": "#e2e7ff",
+        "outline-variant": "#bdc9c2",
+        "primary-fixed": "#98f4d3",
+        "surface-container-highest": "#dae2fd",
+        "primary-fixed-dim": "#7cd8b8",
+        "secondary-container": "#a6eed2",
+        "surface-tint": "#006c53",
+        "secondary-fixed-dim": "#8ed5ba",
+        "primary": "#005f49",
+        "tertiary": "#005886",
+        "on-secondary": "#ffffff",
+        "on-secondary-fixed": "#002117",
+        "on-surface": "#131b2e",
+        "on-tertiary": "#ffffff",
+        "on-error-container": "#93000a",
+        "outline": "#6e7a74",
+        "secondary": "#206a54",
+        "surface-container-low": "#f2f3ff",
+        "error": "#ba1a1a"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+      },
+      "spacing": {
+        "margin-desktop": "2rem",
+        "space-xs": "0.25rem",
+        "space-lg": "1rem",
+        "space-md": "0.75rem",
+        "space-xl": "1.5rem",
+        "gutter-desktop": "1.5rem",
+        "space-sm": "0.5rem",
+        "margin": "1rem",
+        "gutter": "1rem"
+      },
+      "fontFamily": {
+        "label-sm": [
+          "Inter"
+        ],
+        "code-mono": [
+          "JetBrains Mono"
+        ],
+        "body-sm": [
+          "Inter"
+        ],
+        "headline-md": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-sm": [
+          "Plus Jakarta Sans"
+        ],
+        "label-lg": [
+          "Inter"
+        ],
+        "label-md": [
+          "Inter"
+        ],
+        "body-lg": [
+          "Inter"
+        ],
+        "body-md": [
+          "Inter"
+        ],
+        "display-lg": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-lg": [
+          "Plus Jakarta Sans"
+        ]
+      },
+      "fontSize": {
+        "label-sm": [
+          "11px",
+          {
+            "lineHeight": "14px",
+            "letterSpacing": "0.04em",
+            "fontWeight": "600"
+          }
+        ],
+        "code-mono": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "fontWeight": "500"
+          }
+        ],
+        "body-sm": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "fontWeight": "400"
+          }
+        ],
+        "headline-md": [
+          "20px",
+          {
+            "lineHeight": "28px",
+            "letterSpacing": "-0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "headline-sm": [
+          "16px",
+          {
+            "lineHeight": "24px",
+            "fontWeight": "600"
+          }
+        ],
+        "label-lg": [
+          "14px",
+          {
+            "lineHeight": "20px",
+            "fontWeight": "500"
+          }
+        ],
+        "label-md": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "letterSpacing": "0.025em",
+            "fontWeight": "600"
+          }
+        ],
+        "body-lg": [
+          "16px",
+          {
+            "lineHeight": "24px",
+            "fontWeight": "400"
+          }
+        ],
+        "body-md": [
+          "14px",
+          {
+            "lineHeight": "20px",
+            "fontWeight": "400"
+          }
+        ],
+        "display-lg": [
+          "32px",
+          {
+            "lineHeight": "40px",
+            "letterSpacing": "-0.02em",
+            "fontWeight": "700"
+          }
+        ],
+        "headline-lg": [
+          "24px",
+          {
+            "lineHeight": "32px",
+            "letterSpacing": "-0.015em",
+            "fontWeight": "600"
+          }
+        ]
+      }
+    }
+  }
+}</script></head><body class="bg-surface text-on-surface font-body-md text-body-md"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-gutter-desktop flex items-center justify-between"><div class="flex items-center gap-space-lg"><img alt="Abha Pharmacy Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UKKshijGLJayZJ52kylv1QYyrmTW9iDDNuwRGi8t8djnc9DmbtdF0cXohcFL5FZxP5sbiFwvVGx64TzlsmaVkCcr9uKx_LsHFjbS_GlKfc9GOPkHnCxDOaGcx6p5iy7Zh44i_zm-_tETqST-5ZfuC5uhUmPScByFwD7Hsp3-Th-OZ40rpI4yOLgbuJsMaZJ0Di-B8kxEcMFMQNtGZRCsqFQyv-_8GgFWECFTzREdMBCukbyS3zPfM11yM"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-none">Abha Pharmacy</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Clinical Management System</span></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="inline-flex items-center gap-space-xs bg-secondary-container px-space-md py-space-xs rounded-full"><span class="material-symbols-outlined text-[16px] text-on-secondary-container">verified_user</span><span class="font-label-sm text-label-sm text-on-secondary-container uppercase tracking-wide">Operational Staff Portal</span></div><a class="inline-flex items-center gap-space-xs bg-surface-container-high px-space-sm py-space-xs rounded-full text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[14px]">swap_horiz</span><span class="font-label-sm text-label-sm">Switch to Customer View</span></a></div><div class="flex items-center gap-space-xl"><div class="hidden xl:flex items-center gap-space-md text-on-surface-variant"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px]">calendar_today</span><span class="font-label-md text-label-md">Oct 24, 2024</span></div><div class="h-4 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-label-sm text-label-sm text-primary uppercase font-bold">System Online • Node-01</span></div></div><div class="h-6 w-px bg-surface-container-highest hidden sm:block"></div><div class="flex items-center gap-space-md"><div class="flex flex-col text-right hidden sm:flex"><span class="font-label-lg text-label-lg text-on-surface">Dr. Tariq Al-Mansoor</span><span class="font-label-sm text-label-sm text-on-surface-variant">Chief Pharmacist • License #PH-4921</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-64 bg-surface-container-lowest z-40 flex flex-col justify-between py-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.03)] overflow-y-auto"><div class="flex flex-col gap-space-xs px-space-md"><div class="px-space-md py-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Clinical Operations</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="staff-dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-label-lg text-label-lg">Dashboard</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="pos-walk-in" href="#"><span class="material-symbols-outlined text-[20px]">point_of_sale</span><span class="font-label-lg text-label-lg">POS Walk-in</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="prescriptions-queue" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-label-lg text-label-lg">Prescriptions Queue</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="online-orders-management" href="#"><span class="material-symbols-outlined text-[20px]">local_shipping</span><span class="font-label-lg text-label-lg">Online Orders</span></a></nav><div class="h-px bg-surface-container-high my-space-xs mx-space-sm"></div><div class="px-space-md py-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Inventory Control</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="inventory-and-batches" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span class="font-label-lg text-label-lg">Inventory &amp; Batches</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="medicines-catalog" href="#"><span class="material-symbols-outlined text-[20px]">medication</span><span class="font-label-lg text-label-lg">Medicines Catalog</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="suppliers" href="#"><span class="material-symbols-outlined text-[20px]">handshake</span><span class="font-label-lg text-label-lg">Suppliers</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="stock-and-expiry-alerts" href="#"><span class="material-symbols-outlined text-[20px]">notification_important</span><span class="font-label-lg text-label-lg">Stock &amp; Expiry Alerts</span></a></nav><div class="h-px bg-surface-container-high my-space-xs mx-space-sm"></div><div class="px-space-md py-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Audits &amp; Identity</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="revenue-reports" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span><span class="font-label-lg text-label-lg">Revenue Reports</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="staff-profile" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span class="font-label-lg text-label-lg">Staff Profile</span></a></nav></div><div class="px-space-md pt-space-md border-t border-surface-container-high flex flex-col gap-space-xs"><div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant">Terminal: REG-04</span><span class="font-code-mono text-code-mono text-primary font-medium">READY</span></div></div></aside><div class="pl-64"><main class="w-full pt-16 bg-surface min-h-screen px-gutter-desktop py-space-xl"><div class="flex flex-col w-full gap-space-lg">
+<!-- System Safety Constraint Alert Strip -->
+<div class="flex items-center justify-between px-space-md py-space-xs rounded bg-surface-container-high text-on-surface shadow-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Clinical Safe-Stock Guard active</span>
+<span class="h-3 w-px bg-surface-variant"></span>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Negative inventory is strictly prohibited by database constraint check.</span>
+</div>
+<div class="flex items-center gap-space-md text-on-surface-variant">
+<span class="font-code-mono text-code-mono text-primary font-semibold">DB_INTEGRITY: ENFORCED</span>
+<span class="font-label-sm text-label-sm">Protocol v4.19</span>
+</div>
+</div>
+<!-- Primary Page Header Block -->
+<div class="flex flex-col xl:flex-row xl:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Node-01 Pharmacy Dispensary</span>
+<span class="text-on-surface-variant">•</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wide">Registry Partition B</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Inventory &amp; Batch Management</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+        Strict batch-level tracking, rack locations, expiry monitoring, and stock aggregation.
+      </p>
+</div>
+<!-- Primary Action Hub -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="inline-flex items-center gap-space-xs px-space-md h-10 rounded bg-primary text-on-primary hover:bg-surface-tint active:scale-[0.99] transition shadow-sm font-label-lg text-label-lg" onclick="document.getElementById('receive-drawer').classList.remove('translate-x-full')">
+<span class="material-symbols-outlined text-[18px]">add_box</span>
+<span>+ Add New Batch</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md h-10 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container-low transition shadow-sm font-label-lg text-label-lg" onclick="alert('Redirecting to Medicine Master Catalog provision form.')">
+<span class="material-symbols-outlined text-[18px] text-primary">medical_services</span>
+<span>+ Add New Medicine to Master</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-space-md h-10 rounded bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition shadow-sm font-label-lg text-label-lg" onclick="exportStockCSV()">
+<span class="material-symbols-outlined text-[18px]">download_for_offline</span>
+<span>Export Stock Sheet</span>
+</button>
+</div>
+</div>
+<!-- Real-time Clinical Metric Ribbon -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Active Tracked Batches</span>
+<span class="material-symbols-outlined text-[20px] text-primary">layers</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-sm">
+<span class="font-display-lg text-display-lg text-on-surface tracking-tight" id="metric-total-batches">1,482</span>
+<span class="font-label-sm text-label-sm text-primary bg-secondary-container px-space-xs py-0.5 rounded">All Units Active</span>
+</div>
+<div class="mt-space-xs flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="font-code-mono text-code-mono text-primary font-semibold">99.8%</span> verified against shelf audit
+      </div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Critical Low Stock</span>
+<span class="material-symbols-outlined text-[20px] text-error">warning</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-sm">
+<span class="font-display-lg text-display-lg text-error tracking-tight">14</span>
+<span class="font-label-sm text-label-sm text-error bg-error-container px-space-xs py-0.5 rounded">≤ Reorder Limit</span>
+</div>
+<div class="mt-space-xs flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+        Requires immediate supplier requisition
+      </div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Near Expiry (≤ 30d)</span>
+<span class="material-symbols-outlined text-[20px] text-tertiary">history_toggle_off</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-sm">
+<span class="font-display-lg text-display-lg text-on-surface tracking-tight">8</span>
+<span class="font-label-sm text-label-sm text-tertiary bg-tertiary-fixed px-space-xs py-0.5 rounded">Prioritize FIFO</span>
+</div>
+<div class="mt-space-xs flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+        Auto-routed to front dispensary racks
+      </div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Total Aggregated Value</span>
+<span class="material-symbols-outlined text-[20px] text-primary">account_balance_wallet</span>
+</div>
+<div class="flex items-baseline justify-between mt-space-sm">
+<span class="font-display-lg text-display-lg text-on-surface tracking-tight">418,290 <span class="font-label-md text-label-md text-on-surface-variant">SAR</span></span>
+<span class="font-code-mono text-code-mono text-primary font-bold">COST BASIS</span>
+</div>
+<div class="mt-space-xs flex items-center gap-space-xs text-on-surface-variant font-body-sm text-body-sm">
+        Aggregated internal purchase valuations
+      </div>
+</div>
+</div>
+<!-- Filtration, Search, and Mode Selectors -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row gap-space-md items-center justify-between">
+<!-- Universal Search Filter -->
+<div class="w-full lg:w-96 relative">
+<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full pl-10 pr-space-md h-10 rounded bg-surface-container-low text-on-surface placeholder:text-on-surface-variant focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary font-body-md text-body-md transition" id="batch-search-input" oninput="applyFilterSearch()" placeholder="Search by MedicineName, GenericName, BatchNo, RackLocation..." type="text"/>
+</div>
+<!-- Quick Filter Toggles -->
+<div class="flex flex-wrap items-center gap-space-xs w-full lg:w-auto" id="filter-pill-container">
+<button class="filter-pill px-space-md h-9 rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-sm transition" onclick="setFilter('all', this)">
+          All Batches
+        </button>
+<button class="filter-pill px-space-md h-9 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition" onclick="setFilter('low-stock', this)">
+          Low Stock (&lt; ReorderThreshold)
+        </button>
+<button class="filter-pill px-space-md h-9 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition" onclick="setFilter('near-expiry', this)">
+          Near Expiry (Within 30 Days)
+        </button>
+<button class="filter-pill px-space-md h-9 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition" onclick="setFilter('expiring-month', this)">
+          Expiring This Month
+        </button>
+</div>
+<!-- Live Count Tag -->
+<div class="hidden xl:flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span>Displaying:</span>
+<span class="font-code-mono text-code-mono text-primary font-bold" id="visible-record-count">6 Batches</span>
+</div>
+</div>
+</div>
+<!-- Primary Tabular Layout Container -->
+<div class="bg-surface-container-lowest rounded shadow-sm overflow-hidden flex flex-col">
+<!-- Audit Mode Info Banner -->
+<div class="px-space-md py-space-xs bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">table_chart</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Active Formulary Ledger</span>
+<span class="text-on-surface-variant">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sortable by expiration dates &amp; inventory balance</span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="inline-flex items-center gap-space-xs font-label-sm text-label-sm text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+          Auto-aggregation enabled
+        </span>
+<span class="inline-flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">lock</span> Staff-Only Cost Layer
+        </span>
+</div>
+</div>
+<!-- Responsive Scrollable Data Grid -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left font-body-sm text-body-sm whitespace-nowrap" id="batch-master-table">
+<thead class="bg-surface-container text-on-surface-variant uppercase font-label-sm text-label-sm tracking-wider sticky top-0 z-10 shadow-sm">
+<tr>
+<th class="py-space-sm px-space-md font-semibold">Medicine &amp; Generic Name</th>
+<th class="py-space-sm px-space-md font-semibold">Category</th>
+<th class="py-space-sm px-space-md font-semibold">Batch No (PK)</th>
+<th class="py-space-sm px-space-md font-semibold">Mfg / Expiry Date</th>
+<th class="py-space-sm px-space-md font-semibold text-right">In Stock (Units)</th>
+<th class="py-space-sm px-space-md font-semibold text-right">Cost Price (Internal)</th>
+<th class="py-space-sm px-space-md font-semibold text-right">Selling Price</th>
+<th class="py-space-sm px-space-md font-semibold">Rack Location</th>
+<th class="py-space-sm px-space-md font-semibold">Supplier ID &amp; Name</th>
+<th class="py-space-sm px-space-md font-semibold">Supply Date &amp; Total Amt</th>
+<th class="py-space-sm px-space-md font-semibold text-center">Batch Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container" id="batch-tbody">
+<!-- Row 1: Amoxicillin - Healthy Batch -->
+<tr class="hover:bg-secondary-container/20 transition group" data-category="Antibiotic" data-expiry="2026-04-15" data-status="Normal" data-stock="420" data-threshold="100">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface leading-tight">Amoxil Forte 500mg</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant italic">Amoxicillin Trihydrate</span>
+<span class="font-code-mono text-code-mono text-primary text-[10px]">MED-9021</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">
+                Antibiotic
+              </span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="font-code-mono text-code-mono font-bold text-on-surface bg-surface-container-high px-space-xs py-0.5 rounded">
+                BAT-2024-8891
+              </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col gap-0.5">
+<span class="font-code-mono text-code-mono text-on-surface">Exp: 2026-04-15</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mfg: 2024-03-10</span>
+<span class="inline-flex items-center gap-1 w-fit px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-[10px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Normal
+                </span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<div class="flex flex-col items-end">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold tabular-nums">420</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Min: 100</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right bg-surface-container-low/40">
+<div class="flex flex-col items-end">
+<span class="font-code-mono text-code-mono text-on-surface font-semibold tabular-nums">14.20 SAR</span>
+<span class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-wider">Internal Cost</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<span class="font-headline-sm text-headline-sm text-primary font-semibold tabular-nums">24.50 SAR</span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="inline-flex items-center gap-space-xs px-space-xs py-1 rounded bg-surface-container text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">shelves</span>
+<span class="font-code-mono text-code-mono font-medium">Rack B-03, Shelf 2</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">SUP-101</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">MedLife Pharma Distributors</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-code-mono text-code-mono text-on-surface">2024-03-25</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tot: 5,964.00 SAR</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary transition" onclick="openAggregateModal('BAT-2024-8891', 'Amoxil Forte 500mg', 'SUP-101')" title="Aggregate Stock / Receive Supply">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition" onclick="editBatch('BAT-2024-8891')" title="Edit Batch">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-high text-on-surface-variant hover:text-error transition" onclick="raiseAuditAlert('BAT-2024-8891')" title="Audit Alert">
+<span class="material-symbols-outlined text-[18px]">flag</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Metformin - Critical Low Stock Alert -->
+<tr class="hover:bg-secondary-container/20 transition group" data-category="Antidiabetic" data-expiry="2025-11-20" data-status="Normal" data-stock="18" data-threshold="50">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface leading-tight">Glucophage 850mg</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant italic">Metformin Hydrochloride</span>
+<span class="font-code-mono text-code-mono text-primary text-[10px]">MED-4102</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">
+                Antidiabetic
+              </span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="font-code-mono text-code-mono font-bold text-on-surface bg-surface-container-high px-space-xs py-0.5 rounded">
+                BAT-2023-7140
+              </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col gap-0.5">
+<span class="font-code-mono text-code-mono text-on-surface">Exp: 2025-11-20</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mfg: 2023-11-01</span>
+<span class="inline-flex items-center gap-1 w-fit px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-[10px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Normal
+                </span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<div class="flex flex-col items-end">
+<span class="font-headline-sm text-headline-sm text-error font-bold tabular-nums">18</span>
+<span class="inline-flex items-center gap-0.5 text-error font-label-sm text-[10px] font-bold uppercase tracking-tight">
+<span class="material-symbols-outlined text-[12px]">warning</span> Low Stock ≤ 50
+                </span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right bg-surface-container-low/40">
+<div class="flex flex-col items-end">
+<span class="font-code-mono text-code-mono text-on-surface font-semibold tabular-nums">9.80 SAR</span>
+<span class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-wider">Internal Cost</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<span class="font-headline-sm text-headline-sm text-primary font-semibold tabular-nums">17.25 SAR</span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="inline-flex items-center gap-space-xs px-space-xs py-1 rounded bg-surface-container text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">shelves</span>
+<span class="font-code-mono text-code-mono font-medium">Rack A-01, Shelf 4</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">SUP-108</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Gulf Pharmaceutical Ind.</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-code-mono text-code-mono text-on-surface">2023-11-15</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tot: 1,960.00 SAR</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary transition" onclick="openAggregateModal('BAT-2023-7140', 'Glucophage 850mg', 'SUP-108')" title="Aggregate Stock / Receive Supply">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition" onclick="editBatch('BAT-2023-7140')" title="Edit Batch">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-high text-on-surface-variant hover:text-error transition" onclick="raiseAuditAlert('BAT-2023-7140')" title="Audit Alert">
+<span class="material-symbols-outlined text-[18px]">flag</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Paracetamol - Near Expiry (Within 30 Days) -->
+<tr class="hover:bg-secondary-container/20 transition group" data-category="Analgesic" data-expiry="2024-11-14" data-status="Near Expiry" data-stock="120" data-threshold="40">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface leading-tight">Panadol Extra</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant italic">Paracetamol / Caffeine</span>
+<span class="font-code-mono text-code-mono text-primary text-[10px]">MED-1002</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">
+                Analgesic
+              </span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="font-code-mono text-code-mono font-bold text-on-surface bg-surface-container-high px-space-xs py-0.5 rounded">
+                BAT-2022-9011
+              </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col gap-0.5">
+<span class="font-code-mono text-code-mono text-tertiary font-bold">Exp: 2024-11-14</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mfg: 2022-11-01</span>
+<span class="inline-flex items-center gap-1 w-fit px-1.5 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-[10px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Near Expiry (21d)
+                </span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<div class="flex flex-col items-end">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold tabular-nums">120</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Min: 40</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right bg-surface-container-low/40">
+<div class="flex flex-col items-end">
+<span class="font-code-mono text-code-mono text-on-surface font-semibold tabular-nums">5.10 SAR</span>
+<span class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-wider">Internal Cost</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<span class="font-headline-sm text-headline-sm text-primary font-semibold tabular-nums">8.95 SAR</span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="inline-flex items-center gap-space-xs px-space-xs py-1 rounded bg-surface-container text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">shelves</span>
+<span class="font-code-mono text-code-mono font-medium">Rack A-02, Shelf 1</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">SUP-101</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">MedLife Pharma Distributors</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-code-mono text-code-mono text-on-surface">2022-11-20</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tot: 1,530.00 SAR</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary transition" onclick="openAggregateModal('BAT-2022-9011', 'Panadol Extra', 'SUP-101')" title="Aggregate Stock / Receive Supply">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition" onclick="editBatch('BAT-2022-9011')" title="Edit Batch">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-high text-on-surface-variant hover:text-error transition" onclick="raiseAuditAlert('BAT-2022-9011')" title="Audit Alert">
+<span class="material-symbols-outlined text-[18px]">flag</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Cetirizine - Expiring This Month -->
+<tr class="hover:bg-secondary-container/20 transition group" data-category="Antihistamine" data-expiry="2024-10-31" data-status="Near Expiry" data-stock="45" data-threshold="30">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface leading-tight">Zyrtec 10mg Tablets</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant italic">Cetirizine Hydrochloride</span>
+<span class="font-code-mono text-code-mono text-primary text-[10px]">MED-3341</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">
+                Antihistamine
+              </span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="font-code-mono text-code-mono font-bold text-on-surface bg-surface-container-high px-space-xs py-0.5 rounded">
+                BAT-2022-6419
+              </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col gap-0.5">
+<span class="font-code-mono text-code-mono text-error font-bold">Exp: 2024-10-31</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mfg: 2022-10-10</span>
+<span class="inline-flex items-center gap-1 w-fit px-1.5 py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-[10px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Expiring This Month (7d)
+                </span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<div class="flex flex-col items-end">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold tabular-nums">45</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Min: 30</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right bg-surface-container-low/40">
+<div class="flex flex-col items-end">
+<span class="font-code-mono text-code-mono text-on-surface font-semibold tabular-nums">11.40 SAR</span>
+<span class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-wider">Internal Cost</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<span class="font-headline-sm text-headline-sm text-primary font-semibold tabular-nums">19.75 SAR</span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="inline-flex items-center gap-space-xs px-space-xs py-1 rounded bg-surface-container text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">shelves</span>
+<span class="font-code-mono text-code-mono font-medium">Rack C-01, Shelf 2</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">SUP-114</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Universal MedSupply KSA</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-code-mono text-code-mono text-on-surface">2022-10-28</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tot: 1,710.00 SAR</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary transition" onclick="openAggregateModal('BAT-2022-6419', 'Zyrtec 10mg Tablets', 'SUP-114')" title="Aggregate Stock / Receive Supply">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition" onclick="editBatch('BAT-2022-6419')" title="Edit Batch">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-high text-on-surface-variant hover:text-error transition" onclick="raiseAuditAlert('BAT-2022-6419')" title="Audit Alert">
+<span class="material-symbols-outlined text-[18px]">flag</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Ciprofloxacin - Normal Stock -->
+<tr class="hover:bg-secondary-container/20 transition group" data-category="Antibiotic" data-expiry="2026-08-30" data-status="Normal" data-stock="310" data-threshold="60">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface leading-tight">Cipro 500mg</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant italic">Ciprofloxacin</span>
+<span class="font-code-mono text-code-mono text-primary text-[10px]">MED-2890</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">
+                Antibiotic
+              </span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="font-code-mono text-code-mono font-bold text-on-surface bg-surface-container-high px-space-xs py-0.5 rounded">
+                BAT-2024-3321
+              </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col gap-0.5">
+<span class="font-code-mono text-code-mono text-on-surface">Exp: 2026-08-30</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mfg: 2024-08-01</span>
+<span class="inline-flex items-center gap-1 w-fit px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-[10px] font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Normal
+                </span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<div class="flex flex-col items-end">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold tabular-nums">310</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Min: 60</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right bg-surface-container-low/40">
+<div class="flex flex-col items-end">
+<span class="font-code-mono text-code-mono text-on-surface font-semibold tabular-nums">18.60 SAR</span>
+<span class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-wider">Internal Cost</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<span class="font-headline-sm text-headline-sm text-primary font-semibold tabular-nums">31.00 SAR</span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="inline-flex items-center gap-space-xs px-space-xs py-1 rounded bg-surface-container text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">shelves</span>
+<span class="font-code-mono text-code-mono font-medium">Rack B-04, Shelf 1</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">SUP-101</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">MedLife Pharma Distributors</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-code-mono text-code-mono text-on-surface">2024-08-14</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tot: 5,766.00 SAR</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded bg-primary-container text-on-primary-container hover:bg-primary hover:text-on-primary transition" onclick="openAggregateModal('BAT-2024-3321', 'Cipro 500mg', 'SUP-101')" title="Aggregate Stock / Receive Supply">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition" onclick="editBatch('BAT-2024-3321')" title="Edit Batch">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-high text-on-surface-variant hover:text-error transition" onclick="raiseAuditAlert('BAT-2024-3321')" title="Audit Alert">
+<span class="material-symbols-outlined text-[18px]">flag</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 6: Ibuprofen - Expired Batch Warning -->
+<tr class="hover:bg-secondary-container/20 transition group" data-category="Analgesic" data-expiry="2024-09-30" data-status="Expired" data-stock="12" data-threshold="50">
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface leading-tight">Brufen 400mg</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant italic">Ibuprofen</span>
+<span class="font-code-mono text-code-mono text-primary text-[10px]">MED-1044</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">
+                Analgesic
+              </span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="font-code-mono text-code-mono font-bold text-on-surface bg-surface-container-high px-space-xs py-0.5 rounded">
+                BAT-2021-1102
+              </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col gap-0.5">
+<span class="font-code-mono text-code-mono text-error font-bold line-through">Exp: 2024-09-30</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mfg: 2021-09-12</span>
+<span class="inline-flex items-center gap-1 w-fit px-1.5 py-0.5 rounded bg-error text-on-error font-label-sm text-[10px] font-bold">
+<span class="material-symbols-outlined text-[12px]">block</span> Expired
+                </span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<div class="flex flex-col items-end">
+<span class="font-headline-sm text-headline-sm text-error font-bold tabular-nums">12</span>
+<span class="font-label-sm text-[10px] text-error uppercase font-bold tracking-tight">Quarantine Req</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right bg-surface-container-low/40">
+<div class="flex flex-col items-end">
+<span class="font-code-mono text-code-mono text-on-surface font-semibold tabular-nums">4.50 SAR</span>
+<span class="font-label-sm text-[10px] uppercase text-on-surface-variant tracking-wider">Internal Cost</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<span class="font-headline-sm text-headline-sm text-on-surface-variant line-through tabular-nums">8.00 SAR</span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="inline-flex items-center gap-space-xs px-space-xs py-1 rounded bg-error-container text-on-error-container">
+<span class="material-symbols-outlined text-[16px] text-error">lock_clock</span>
+<span class="font-code-mono text-code-mono font-medium">Quarantine Shelf Q-1</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">SUP-108</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Gulf Pharmaceutical Ind.</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-code-mono text-code-mono text-on-surface">2021-09-28</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Tot: 540.00 SAR</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md text-center">
+<div class="flex items-center justify-center gap-1">
+<button class="p-1.5 rounded bg-surface-container text-outline-variant cursor-not-allowed" disabled="" title="Cannot aggregate into expired batch">
+<span class="material-symbols-outlined text-[18px]">block</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition" onclick="editBatch('BAT-2021-1102')" title="Edit Batch">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+</button>
+<button class="p-1.5 rounded bg-error-container text-on-error-container hover:bg-error hover:text-on-error transition" onclick="raiseAuditAlert('BAT-2021-1102')" title="Audit Alert">
+<span class="material-symbols-outlined text-[18px]">report</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Meta & Pagination Indicator -->
+<div class="px-space-md py-space-sm bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm font-label-sm text-label-sm text-on-surface-variant">
+<div class="flex items-center gap-space-sm">
+<span>Showing 6 of 1,482 Batches in partition</span>
+<span class="h-3 w-px bg-outline-variant"></span>
+<span class="font-code-mono text-code-mono">Partition Checksum: OK-9941</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm font-label-sm text-label-sm hover:bg-surface-container transition disabled:opacity-50" disabled="">Previous</button>
+<span class="px-space-sm py-1 font-code-mono text-code-mono text-on-surface font-bold">Page 1 of 247</span>
+<button class="px-space-sm py-1 rounded bg-surface-container-lowest text-on-surface shadow-sm font-label-sm text-label-sm hover:bg-surface-container transition">Next</button>
+</div>
+</div>
+</div>
+<!-- Bottom Informative Bento Cards: Clinical Warehouse Map & Supplier Registry Summary -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-md">
+<!-- Visual Warehouse Map Rack Overview -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-space-lg rounded shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">warehouse</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">Dispensary Physical Rack Occupancy</span>
+</div>
+<span class="font-code-mono text-code-mono text-primary font-bold">TEMP: 21.4°C • HUMID: 42%</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+        Visual rack allocation guide for fast dispensation walk-ins and physical batch bin audits.
+      </p>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm my-space-md">
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Section A</span>
+<span class="font-code-mono text-code-mono text-[10px] text-primary">88% Cap</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Analgesics &amp; NSAIDs</span>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-primary h-full rounded-full" style="width: 88%;"></div>
+</div>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Section B</span>
+<span class="font-code-mono text-code-mono text-[10px] text-primary">64% Cap</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Antibiotics &amp; Antivirals</span>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-primary h-full rounded-full" style="width: 64%;"></div>
+</div>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Section C</span>
+<span class="font-code-mono text-code-mono text-[10px] text-primary">92% Cap</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Antihistamines / Cold</span>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-primary h-full rounded-full" style="width: 92%;"></div>
+</div>
+</div>
+<div class="p-space-sm rounded bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-error">Quarantine Q-1</span>
+<span class="font-code-mono text-code-mono text-[10px] text-error font-bold">12 Pcs</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Damaged / Expired Hold</span>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden mt-1">
+<div class="bg-error h-full rounded-full" style="width: 30%;"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Last sensor handshake: 4 minutes ago</span>
+<button class="text-primary hover:underline font-semibold flex items-center gap-1" onclick="alert('Printing physical shelf barcode labels...')">
+<span class="material-symbols-outlined text-[16px]">print</span> Print Bin Barcodes
+        </button>
+</div>
+</div>
+<!-- Active Verified Suppliers Reference -->
+<div class="bg-surface-container-lowest p-space-lg rounded shadow-sm flex flex-col justify-between">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface">Supplier Directory</span>
+<span class="material-symbols-outlined text-[20px] text-primary">handshake</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Linked distributor records for active batch receiving.
+        </p>
+</div>
+<div class="flex flex-col gap-space-sm my-space-md">
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low rounded">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">MedLife Pharma (SUP-101)</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Primary Supplier • Lead time: 24h</span>
+</div>
+<span class="font-code-mono text-code-mono text-primary font-semibold text-[11px]">84 Batches</span>
+</div>
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low rounded">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Gulf Pharma Ind. (SUP-108)</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Lead time: 48h</span>
+</div>
+<span class="font-code-mono text-code-mono text-primary font-semibold text-[11px]">32 Batches</span>
+</div>
+<div class="flex items-center justify-between p-space-xs bg-surface-container-low rounded">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-bold">Universal MedSupply (SUP-114)</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant">Lead time: 72h</span>
+</div>
+<span class="font-code-mono text-code-mono text-primary font-semibold text-[11px]">19 Batches</span>
+</div>
+</div>
+<a class="inline-flex items-center justify-between text-primary font-label-md text-label-md hover:underline pt-space-xs" data-path="suppliers" href="#">
+<span>Manage All Suppliers</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- SLIDE-OVER INSET DRAWER: 'Receive Stock / Auto-Aggregation' Modal -->
+<div class="fixed inset-y-0 right-0 w-full sm:w-[480px] bg-surface-container-lowest shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between" id="receive-drawer">
+<!-- Drawer Header -->
+<div class="p-space-lg bg-surface-container-high flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[24px] text-primary">add_to_photos</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Receive Stock &amp; Aggregate</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Inventory Ingestion &amp; Batch Merge</span>
+</div>
+</div>
+<button class="p-1 rounded-full text-on-surface-variant hover:bg-surface-container-highest transition" onclick="document.getElementById('receive-drawer').classList.add('translate-x-full')">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Drawer Content Body -->
+<div class="p-space-lg overflow-y-auto flex flex-col gap-space-lg">
+<!-- Critical Note Mandate -->
+<div class="bg-secondary-container/40 p-space-md rounded flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">merge_type</span>
+<div class="flex flex-col gap-0.5 text-on-secondary-container">
+<span class="font-label-md text-label-md font-bold">Auto-Aggregation Protocol</span>
+<p class="font-body-sm text-body-sm">
+            If new stock arrives for an existing batch, the system automatically aggregates it by adding the new quantity to the existing row, preventing database clutter while updating total purchase cost.
+          </p>
+</div>
+</div>
+<form class="flex flex-col gap-space-md" id="aggregate-form" onsubmit="handleAggregateSubmit(event)">
+<!-- Batch Number Select / Enter -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold flex items-center justify-between">
+<span>Batch Number (Select existing or enter new) *</span>
+<span class="font-code-mono text-code-mono text-primary text-[11px]">PK Identifier</span>
+</label>
+<input class="h-10 px-space-md rounded bg-surface-container-low text-on-surface focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none font-code-mono text-body-md transition" id="input-batch-no" list="existing-batches" placeholder="e.g., BAT-2024-8891 or New Batch ID" required="" type="text"/>
+<datalist id="existing-batches">
+<option value="BAT-2024-8891">Amoxil Forte 500mg (Existing)</option>
+<option value="BAT-2023-7140">Glucophage 850mg (Existing)</option>
+<option value="BAT-2022-9011">Panadol Extra (Existing)</option>
+<option value="BAT-2022-6419">Zyrtec 10mg Tablets (Existing)</option>
+<option value="BAT-2024-3321">Cipro 500mg (Existing)</option>
+</datalist>
+<span class="font-label-sm text-[11px] text-on-surface-variant">Selecting an existing Batch will invoke SQL row aggregate quantity accumulation.</span>
+</div>
+<!-- Medicine ID Reference -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Medicine Formulation</label>
+<select class="h-10 px-space-md rounded bg-surface-container-low text-on-surface focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none font-body-md text-body-md transition" id="input-medicine-id">
+<option value="MED-9021">Amoxil Forte 500mg (Amoxicillin Trihydrate)</option>
+<option value="MED-4102">Glucophage 850mg (Metformin HCl)</option>
+<option value="MED-1002">Panadol Extra (Paracetamol / Caffeine)</option>
+<option value="MED-3341">Zyrtec 10mg Tablets (Cetirizine)</option>
+<option value="MED-2890">Cipro 500mg (Ciprofloxacin)</option>
+</select>
+</div>
+<!-- Incoming Quantity & Purchase Cost Grid -->
+<div class="grid grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Incoming Quantity *</label>
+<input class="h-10 px-space-md rounded bg-surface-container-low text-on-surface focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none font-body-md text-body-md transition" id="input-quantity" min="1" placeholder="e.g., 100" required="" type="number"/>
+<span class="font-label-sm text-[10px] text-on-surface-variant">Units / Packs</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Purchase Cost (SAR) *</label>
+<input class="h-10 px-space-md rounded bg-surface-container-low text-on-surface focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none font-body-md text-body-md transition" id="input-cost" min="0.01" placeholder="Total Cost" required="" step="0.01" type="number"/>
+<span class="font-label-sm text-[10px] text-on-surface-variant">Internal staff ledger</span>
+</div>
+</div>
+<!-- Supply Date & Supplier Master ID -->
+<div class="grid grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Supply Date *</label>
+<input class="h-10 px-space-md rounded bg-surface-container-low text-on-surface focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none font-body-md text-body-md transition" id="input-supply-date" required="" type="date" value="2024-10-24"/>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Supplier ID *</label>
+<select class="h-10 px-space-md rounded bg-surface-container-low text-on-surface focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none font-body-md text-body-md transition" id="input-supplier-id" required="">
+<option value="SUP-101">SUP-101 (MedLife Pharma)</option>
+<option value="SUP-108">SUP-108 (Gulf Pharma Ind.)</option>
+<option value="SUP-114">SUP-114 (Universal MedSupply)</option>
+</select>
+</div>
+</div>
+<!-- Rack Location -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface font-semibold">Dispensary Rack Destination</label>
+<input class="h-10 px-space-md rounded bg-surface-container-low text-on-surface focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none font-body-md text-body-md transition" id="input-rack-location" type="text" value="Rack A-02, Shelf 3"/>
+</div>
+<!-- Auto-Calculation Preview Strip -->
+<div class="p-space-sm rounded bg-surface-container flex items-center justify-between text-on-surface">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Reconciliation Mode</span>
+<span class="font-label-md text-label-md font-bold text-primary">In-Place Increment</span>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Constraint Safety</span>
+<span class="font-code-mono text-code-mono text-primary font-bold">QTY &gt; 0 PASS</span>
+</div>
+</div>
+<!-- Drawer Submit Buttons -->
+<div class="flex items-center gap-space-sm pt-space-sm">
+<button class="flex-1 inline-flex items-center justify-center gap-space-xs h-11 rounded bg-primary text-on-primary hover:bg-surface-tint font-label-lg text-label-lg transition shadow-sm font-semibold" type="submit">
+<span class="material-symbols-outlined text-[18px]">cloud_sync</span>
+<span>Aggregate Into Batch</span>
+</button>
+<button class="px-space-md h-11 rounded bg-surface-container-high text-on-surface font-label-lg text-label-lg hover:bg-surface-container-highest transition" onclick="document.getElementById('receive-drawer').classList.add('translate-x-full')" type="button">
+            Cancel
+          </button>
+</div>
+</form>
+</div>
+<!-- Drawer Footer System Note -->
+<div class="p-space-md bg-surface-container-high text-center">
+<span class="font-label-sm text-[11px] text-on-surface-variant">Transaction logged under Chief Pharmacist: Dr. Tariq Al-Mansoor</span>
+</div>
+</div>
+<!-- Notification Banner Toast Container -->
+<div class="fixed bottom-6 right-6 hidden z-50 bg-inverse-surface text-inverse-on-surface px-space-lg py-space-md rounded shadow-xl flex items-center gap-space-md" id="toast">
+<span class="material-symbols-outlined text-primary-fixed" id="toast-icon">check_circle</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold" id="toast-title">Stock Aggregated</span>
+<span class="font-body-sm text-body-sm text-surface-container-high" id="toast-msg">Quantity added to existing batch row successfully.</span>
+</div>
+<button class="ml-space-md text-surface-container-highest hover:text-surface-bright" onclick="document.getElementById('toast').classList.add('hidden')">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+<script>
+  // Open Aggregate Modal pre-populated with clicked row details
+  function openAggregateModal(batchNo, medicineName, supplierId) {
+    const drawer = document.getElementById('receive-drawer');
+    const batchInput = document.getElementById('input-batch-no');
+    const supplierInput = document.getElementById('input-supplier-id');
+    
+    batchInput.value = batchNo;
+    if (supplierId) {
+      supplierInput.value = supplierId;
+    }
+    
+    drawer.classList.remove('translate-x-full');
+  }
+
+  // Handle Aggregate Form Submission with visual feedback
+  function handleAggregateSubmit(e) {
+    e.preventDefault();
+    const batchNo = document.getElementById('input-batch-no').value;
+    const qty = document.getElementById('input-quantity').value;
+    const cost = document.getElementById('input-cost').value;
+
+    // Simulate updating row in table
+    const rows = document.querySelectorAll('#batch-tbody tr');
+    let matched = false;
+
+    rows.forEach(row => {
+      const rowBatch = row.querySelector('.font-code-mono.font-bold').innerText.trim();
+      if (rowBatch === batchNo) {
+        const stockEl = row.querySelector('td:nth-child(5) .font-headline-sm');
+        if (stockEl) {
+          const current = parseInt(stockEl.innerText.replace(/,/g, ''), 10);
+          const added = parseInt(qty, 10);
+          stockEl.innerText = (current + added).toLocaleString();
+          stockEl.classList.remove('text-error');
+          stockEl.classList.add('text-primary');
+          matched = true;
+        }
+      }
+    });
+
+    document.getElementById('receive-drawer').classList.add('translate-x-full');
+
+    showToast(
+      matched ? 'Stock Aggregated Successfully' : 'New Batch Registered',
+      matched ? `Merged +${qty} units into existing Batch ${batchNo}. Cost updated.` : `New Batch ${batchNo} created with ${qty} initial units.`
+    );
+
+    // Reset Form
+    document.getElementById('aggregate-form').reset();
+  }
+
+  // Quick Filter Pill Controls
+  function setFilter(filterType, element) {
+    const pills = document.querySelectorAll('.filter-pill');
+    pills.forEach(p => {
+      p.className = 'filter-pill px-space-md h-9 rounded-full bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition';
+    });
+    element.className = 'filter-pill px-space-md h-9 rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-sm transition';
+
+    const rows = document.querySelectorAll('#batch-tbody tr');
+    let count = 0;
+
+    rows.forEach(row => {
+      const stock = parseInt(row.getAttribute('data-stock'), 10);
+      const threshold = parseInt(row.getAttribute('data-threshold'), 10);
+      const status = row.getAttribute('data-status');
+      const expiry = new Date(row.getAttribute('data-expiry'));
+      const now = new Date('2024-10-24');
+
+      let visible = false;
+
+      if (filterType === 'all') {
+        visible = true;
+      } else if (filterType === 'low-stock') {
+        visible = stock <= threshold;
+      } else if (filterType === 'near-expiry') {
+        const diffDays = Math.ceil((expiry - now) / (1000 * 60 * 60 * 24));
+        visible = diffDays <= 30 && diffDays >= 0;
+      } else if (filterType === 'expiring-month') {
+        visible = expiry.getFullYear() === now.getFullYear() && expiry.getMonth() === now.getMonth();
+      }
+
+      if (visible) {
+        row.style.display = '';
+        count++;
+      } else {
+        row.style.display = 'none';
+      }
+    });
+
+    document.getElementById('visible-record-count').innerText = `${count} Batches`;
+  }
+
+  // Universal Live Search
+  function applyFilterSearch() {
+    const term = document.getElementById('batch-search-input').value.toLowerCase().trim();
+    const rows = document.querySelectorAll('#batch-tbody tr');
+    let count = 0;
+
+    rows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      if (text.includes(term)) {
+        row.style.display = '';
+        count++;
+      } else {
+        row.style.display = 'none';
+      }
+    });
+
+    document.getElementById('visible-record-count').innerText = `${count} Batches`;
+  }
+
+  function editBatch(batchNo) {
+    showToast('Batch Editor Loaded', `Opening schema editor for PK: ${batchNo}`);
+  }
+
+  function raiseAuditAlert(batchNo) {
+    showToast('Quality Audit Triggered', `Audit Flag recorded for ${batchNo}. Dispatched to QA team.`);
+  }
+
+  function exportStockCSV() {
+    showToast('Stock Sheet Exported', 'Downloaded Abha_Dispensary_Batches_Oct2024.csv');
+  }
+
+  function showToast(title, msg) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toast-title').innerText = title;
+    document.getElementById('toast-msg').innerText = msg;
+    toast.classList.remove('hidden');
+
+    setTimeout(() => {
+      toast.classList.add('hidden');
+    }, 4500);
+  }
+</script></main></div></body></html>

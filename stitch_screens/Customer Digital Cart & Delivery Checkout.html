@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface": "#faf8ff", "on-secondary-fixed-variant": "#00513e", "on-error-container": "#93000a", "inverse-primary": "#7cd8b8", "tertiary-fixed-dim": "#93ccff", "tertiary-container": "#0071ac", "on-surface": "#131b2e", "background": "#faf8ff", "tertiary-fixed": "#cce5ff", "on-tertiary-container": "#e1efff", "secondary": "#206a54", "on-primary-fixed-variant": "#00513e", "surface-variant": "#dae2fd", "error-container": "#ffdad6", "secondary-container": "#a6eed2", "on-surface-variant": "#3e4944", "outline": "#6e7a74", "surface-container-high": "#e2e7ff", "surface-container-lowest": "#ffffff", "primary-fixed": "#98f4d3", "error": "#ba1a1a", "surface-container-highest": "#dae2fd", "outline-variant": "#bdc9c2", "on-primary-fixed": "#002117", "on-tertiary-fixed-variant": "#004b73", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "inverse-surface": "#283044", "on-secondary": "#ffffff", "surface-tint": "#006c53", "on-error": "#ffffff", "on-secondary-container": "#266e58", "on-background": "#131b2e", "primary": "#005f49", "secondary-fixed-dim": "#8ed5ba", "primary-fixed-dim": "#7cd8b8", "inverse-on-surface": "#eef0ff", "surface-container-low": "#f2f3ff", "on-secondary-fixed": "#002117", "on-primary-container": "#a8ffdf", "on-tertiary-fixed": "#001d31", "primary-container": "#0d7a5f", "tertiary": "#005886", "surface-container": "#eaedff", "surface-bright": "#faf8ff", "secondary-fixed": "#a9f1d5", "surface-dim": "#d2d9f4" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin-desktop": "2rem", "margin": "1rem", "space-xl": "1.5rem", "space-lg": "1rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1rem", "space-md": "0.75rem", "gutter-desktop": "1.5rem" }, "fontFamily": { "label-lg": [ "Inter" ], "body-lg": [ "Inter" ], "body-md": [ "Inter" ], "headline-md": [ "Plus Jakarta Sans" ], "label-sm": [ "Inter" ], "body-sm": [ "Inter" ], "headline-sm": [ "Plus Jakarta Sans" ], "code-mono": [ "JetBrains Mono" ], "display-lg": [ "Plus Jakarta Sans" ], "label-md": [ "Inter" ], "headline-lg": [ "Plus Jakarta Sans" ] }, "fontSize": { "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "500" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-md": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "headline-sm": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ], "code-mono": [ "12px", { "lineHeight": "16px", "fontWeight": "500" } ], "display-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.025em", "fontWeight": "600" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface text-on-surface font-body-md text-body-md"><header class="fixed top-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 w-full px-gutter-desktop flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-md" href="#"><img alt="Brand logo. - Primary color: #0d7a5f
+- Font: plusJakartaSans
+- Mode: light
+- Roundness: rounded-sm
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XTFfPMFs6lpg3XvevtJc4wDvFpbJTrfVLYUKLsJJHSrHljnWKj5fC-GJgyQ4DXdec4FV9d7C8lur-dZEYQlThZ94oEELBauJ7PxH3TpLBUs4Im3EVijfLSw5mkxDkFbF-g6JRzulSn_2U1RoJGeuriQOQqXIjh5LpwXNhwmExOBdHhbBq_jbHzlFoIUodJfWfMuVPUdtKrvLR4Cj8kMSx2HDZbx-3Anqn27frWhTQRMdaoP5taW-4JHQs"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-tight tracking-tight">Abha Pharmacy</span><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase">Clinical Dispensation</span></div></a><div class="hidden xl:flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-full"><span class="material-symbols-outlined text-secondary text-[16px]">support_agent</span><span class="font-label-sm text-label-sm text-secondary font-semibold">24/7 Helpline: 1800-209-ABHA</span></div></div><nav class="hidden lg:flex items-center gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-semibold rounded-lg"><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="medicine-discovery" href="#">Medicine Discovery</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="prescriptions" href="#">Prescriptions</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="orders" href="#">Orders</a><a aria-current="page" class="px-space-md py-space-sm transition-colors bg-primary-container text-on-primary font-semibold rounded-lg" data-path="cart" href="#">Cart</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="profile" href="#">Profile</a></nav><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm bg-secondary-container/40 px-space-md py-space-xs rounded-full"><span class="w-2 h-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm text-on-secondary-container font-semibold uppercase tracking-wider">ABHA ID: 91-8273-1092</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-14rem)]"><div class="flex flex-col w-full">
+<div class="w-full px-4 lg:px-8 py-6 max-w-[1560px] mx-auto space-y-6">
+<!-- Context Ribbon & Verification Header -->
+<div class="bg-surface-container-lowest rounded-xl p-4 lg:p-5 shadow-sm flex flex-col xl:flex-row items-start xl:items-center justify-between gap-4">
+<div class="flex flex-col gap-2">
+<nav class="flex items-center gap-2 text-outline font-label-sm text-label-sm tracking-wide uppercase">
+<span class="hover:text-primary transition-colors cursor-pointer">Home Hub</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="hover:text-primary transition-colors cursor-pointer">Medicines</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Cart &amp; Checkout</span>
+</nav>
+<div class="flex flex-wrap items-center gap-2.5">
+<div class="inline-flex items-center gap-1.5 bg-secondary-container/40 px-2.5 py-1 rounded-full text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            #AB-1049 • Priya Patel (MOH Verified)
+          </div>
+<div class="inline-flex items-center gap-1 bg-surface-container-high px-2.5 py-1 rounded-full text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-primary text-[15px]">verified</span>
+            Ayushman Digital Linked
+          </div>
+<div class="inline-flex items-center gap-1.5 bg-tertiary-fixed/60 px-3 py-1 rounded-full text-on-tertiary-fixed-variant font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-[15px]">timer</span>
+<span>Cart active: 3 formulations reserved for <strong class="font-code-mono text-tertiary" id="reservation-timer">14:58</strong> min</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-low px-4 py-2.5 rounded-lg w-full xl:w-auto justify-between xl:justify-start">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">medical_services</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary font-semibold uppercase tracking-wider">Pharmacy Open • Counter 02 Active</span>
+<span class="font-code-mono text-body-sm text-on-surface">24/7 Helpline: +91 1800-247-ABHA</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]">verified_user</span>
+</div>
+</div>
+<!-- Main Two-Column Content Canvas -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
+<!-- Left Column: Items, Allocation & Fulfillment (approx 70% width: 8 of 12 cols on desktop) -->
+<section class="xl:col-span-8 space-y-6">
+<!-- Cart List Container -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="px-5 py-4 bg-surface-container-low flex flex-wrap items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[22px]">inventory_2</span>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Prescription &amp; OTC Formulations</h1>
+<p class="font-label-sm text-label-sm text-outline">3 Items Selected • Validated under National Essential Diagnostics &amp; Drugs</p>
+</div>
+</div>
+<div class="inline-flex items-center gap-1.5 bg-secondary-container px-3 py-1 rounded-full text-on-secondary-container font-label-sm text-label-sm font-semibold tracking-wide">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+              Batch Allocation Active
+            </div>
+</div>
+<!-- Items Stack -->
+<div class="divide-y divide-surface-container">
+<!-- Item 1: Schedule H1 Antibiotic -->
+<article class="p-5 hover:bg-surface-container-low/40 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start gap-4 min-w-0">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[24px]">pill</span>
+</div>
+<div class="space-y-1.5 min-w-0">
+<div class="flex flex-wrap items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Augmentin 625 Duo</h2>
+<span class="bg-error-container text-on-error-container text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Schedule H1</span>
+<span class="bg-secondary-container text-on-secondary-container text-[11px] font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+                      Verified Rx #RX-2025-0814 attached
+                    </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Generic: Amoxicillin (500mg) + Clavulanic Acid (125mg) IP</p>
+<div class="flex flex-wrap items-center gap-3 font-code-mono text-body-sm text-outline">
+<span>Batch: <strong class="text-on-surface">BAT-2024-8891</strong></span>
+<span>•</span>
+<span>Exp: 2026-04</span>
+<span>•</span>
+<span>MRP: ₹185.00 / strip</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-6 shrink-0 pt-2 md:pt-0">
+<!-- Quantity Selector -->
+<div class="flex items-center bg-surface-container-high rounded-lg p-1">
+<button aria-label="Decrease quantity" class="w-7 h-7 flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface rounded transition" type="button">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="w-9 text-center font-code-mono font-semibold text-on-surface">2</span>
+<button aria-label="Increase quantity" class="w-7 h-7 flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface rounded transition" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+<!-- Price and Trash -->
+<div class="text-right min-w-[90px]">
+<span class="block font-label-sm text-label-sm text-outline">Subtotal</span>
+<span class="font-code-mono font-bold text-headline-sm text-primary">₹370.00</span>
+</div>
+<button class="p-2 text-outline hover:text-error hover:bg-error-container/40 rounded-lg transition" title="Remove formulation" type="button">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</article>
+<!-- Item 2: Dolo 650mg -->
+<article class="p-5 hover:bg-surface-container-low/40 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start gap-4 min-w-0">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[24px]">medication</span>
+</div>
+<div class="space-y-1.5 min-w-0">
+<div class="flex flex-wrap items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Dolo 650mg Tablet</h2>
+<span class="bg-surface-container-high text-on-surface-variant text-[11px] font-semibold px-2 py-0.5 rounded-full">OTC Formulation</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Generic: Paracetamol IP 650mg (Antipyretic / Analgesic)</p>
+<div class="flex flex-wrap items-center gap-3 font-code-mono text-body-sm text-outline">
+<span>Batch: <strong class="text-on-surface">BAT-2022-9011</strong></span>
+<span>•</span>
+<span>Exp: 2025-11</span>
+<span>•</span>
+<span>MRP: ₹32.50 / pack of 15</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-6 shrink-0 pt-2 md:pt-0">
+<div class="flex items-center bg-surface-container-high rounded-lg p-1">
+<button aria-label="Decrease quantity" class="w-7 h-7 flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface rounded transition" type="button">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="w-9 text-center font-code-mono font-semibold text-on-surface">2</span>
+<button aria-label="Increase quantity" class="w-7 h-7 flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface rounded transition" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+<div class="text-right min-w-[90px]">
+<span class="block font-label-sm text-label-sm text-outline">Subtotal</span>
+<span class="font-code-mono font-bold text-headline-sm text-primary">₹65.00</span>
+</div>
+<button class="p-2 text-outline hover:text-error hover:bg-error-container/40 rounded-lg transition" title="Remove formulation" type="button">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</article>
+<!-- Item 3: Cetmg 10mg -->
+<article class="p-5 hover:bg-surface-container-low/40 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start gap-4 min-w-0">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[24px]">vaccines</span>
+</div>
+<div class="space-y-1.5 min-w-0">
+<div class="flex flex-wrap items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Cetmg 10mg Tablets</h2>
+<span class="bg-surface-container-high text-on-surface-variant text-[11px] font-semibold px-2 py-0.5 rounded-full">OTC Formulation</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Generic: Cetirizine Dihydrochloride 10mg (Antihistaminic)</p>
+<div class="flex flex-wrap items-center gap-3 font-code-mono text-body-sm text-outline">
+<span>Batch: <strong class="text-on-surface">BAT-2022-6419</strong></span>
+<span>•</span>
+<span>Exp: 2024-10</span>
+<span>•</span>
+<span>MRP: ₹18.50 / 10 tabs</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-6 shrink-0 pt-2 md:pt-0">
+<div class="flex items-center bg-surface-container-high rounded-lg p-1">
+<button aria-label="Decrease quantity" class="w-7 h-7 flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface rounded transition" type="button">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="w-9 text-center font-code-mono font-semibold text-on-surface">1</span>
+<button aria-label="Increase quantity" class="w-7 h-7 flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-surface rounded transition" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+<div class="text-right min-w-[90px]">
+<span class="block font-label-sm text-label-sm text-outline">Subtotal</span>
+<span class="font-code-mono font-bold text-headline-sm text-primary">₹18.50</span>
+</div>
+<button class="p-2 text-outline hover:text-error hover:bg-error-container/40 rounded-lg transition" title="Remove formulation" type="button">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</article>
+</div>
+<!-- Bottom Card Operational Actions -->
+<div class="px-5 py-3.5 bg-surface-container-low/70 flex flex-wrap items-center justify-between gap-3 text-body-sm">
+<button class="inline-flex items-center gap-1.5 text-on-surface-variant hover:text-primary font-label-md text-label-md transition" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+              Continue Browsing Catalog
+            </button>
+<button class="inline-flex items-center gap-1.5 text-error hover:text-on-error-container font-label-md text-label-md transition" type="button">
+<span class="material-symbols-outlined text-[16px]">remove_shopping_cart</span>
+              Clear Cart
+            </button>
+</div>
+</div>
+<!-- Fulfillment Mode Selector -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">local_shipping</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Select Fulfillment Method</h2>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold uppercase tracking-wider">Cold-Chain Compliant</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Delivery Card: Active -->
+<label class="relative flex flex-col p-4 rounded-xl cursor-pointer transition bg-primary-fixed/20 shadow-sm">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="w-2 h-2 rounded-full bg-on-primary"></span>
+</div>
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold block">Express Doorstep Delivery</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">Free above ₹200 • Cold-chain insulated pack</span>
+</div>
+</div>
+<span class="bg-primary text-on-primary font-code-mono text-label-sm px-2 py-0.5 rounded font-bold">ACTIVE</span>
+</div>
+<p class="mt-3 font-body-sm text-body-sm text-on-surface-variant pl-8">
+                Temperature monitored (2°C - 8°C) sealed packaging with real-time tracking from licensed dispensary.
+              </p>
+</label>
+<!-- Pickup Card: Inactive -->
+<label class="relative flex flex-col p-4 rounded-xl cursor-pointer transition bg-surface-container-low hover:bg-surface-container">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="w-2 h-2 rounded-full bg-transparent"></span>
+</div>
+<div>
+<span class="font-headline-sm text-headline-sm text-on-surface font-bold block">In-Pharmacy Counter Pickup</span>
+<span class="font-label-sm text-label-sm text-outline">Ready in 30 mins at Central Dispensary Counter 02 • Free</span>
+</div>
+</div>
+<span class="font-code-mono text-label-sm text-outline font-semibold">FREE</span>
+</div>
+<p class="mt-3 font-body-sm text-body-sm text-outline pl-8">
+                Self-pickup. Requires valid ABHA ID QR Code or verification SMS at collection counter.
+              </p>
+</label>
+</div>
+</div>
+<!-- Registered Delivery Destination Card -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm space-y-4">
+<div class="flex items-center justify-between flex-wrap gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Delivery Destination Address</h2>
+</div>
+<button class="inline-flex items-center gap-1.5 bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md px-3 py-1 rounded-lg transition" type="button">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+              Edit Address
+            </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-surface-container-low p-4 rounded-lg">
+<div class="md:col-span-2 space-y-1">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Priya Patel</span>
+<span class="bg-secondary-container text-on-secondary-container text-[11px] font-bold px-2 py-0.5 rounded">Primary Residence</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant font-medium">Flat 402, Royal Palms Residency, MG Road, Civil Lines</p>
+<p class="font-body-sm text-body-sm text-outline">Jaipur, Rajasthan • Postal Pincode: <strong class="font-code-mono text-on-surface">302006</strong></p>
+<p class="font-body-sm text-body-sm text-outline pt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">phone_iphone</span>
+                Registered Phone: <span class="font-code-mono text-on-surface">+91 98290 12345</span>
+</p>
+</div>
+<!-- Delivery Slot Block -->
+<div class="bg-surface-container-lowest p-3.5 rounded-lg flex flex-col justify-between space-y-2">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block">Assigned Delivery Slot</span>
+<span class="font-label-lg text-label-lg font-bold text-primary flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+                  Today, 2:00 PM - 5:00 PM
+                </span>
+</div>
+<div class="inline-flex items-center gap-1.5 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[15px]">eco</span>
+                Batch Route Optimized
+              </div>
+</div>
+</div>
+<!-- Special Instructions Input & Guidance -->
+<div class="space-y-2 pt-1">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1.5" for="delivery-notes">
+<span class="material-symbols-outlined text-[16px] text-outline">speaker_notes</span>
+                Special Instructions for Pharmacist &amp; Courier
+              </label>
+<span class="font-label-sm text-label-sm text-outline">Optional</span>
+</div>
+<textarea class="w-full bg-surface-container-low rounded-lg p-3 text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest transition" id="delivery-notes" placeholder="e.g., Leave at building front desk, cold pack required, or call upon arrival" rows="2"></textarea>
+<div class="flex items-center gap-2 bg-secondary-container/30 px-3 py-1.5 rounded-md text-on-secondary-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">ac_unit</span>
+<span>Cold packaging automatically applied for temperature-sensitive drugs</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column: Financial Breakdown & Settlement (approx 30% width: 4 of 12 cols on desktop) -->
+<aside class="xl:col-span-4 space-y-6">
+<!-- Order Bill Breakdown Card -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm space-y-4">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Order Bill Breakdown</h2>
+<span class="font-label-sm text-label-sm text-outline">INR Tax Invoice • GST Exempt Schedule</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[22px]">receipt_long</span>
+</div>
+<!-- Line items -->
+<div class="space-y-2.5 font-body-md text-body-md pt-1">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Gross Items MRP (3 Formulations)</span>
+<span class="font-code-mono text-on-surface font-medium">₹453.50</span>
+</div>
+<div class="flex justify-between items-center text-secondary">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">local_offer</span>
+                Community Healthcare Discount
+              </span>
+<span class="font-code-mono font-bold">- ₹25.00</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Delivery &amp; Cold Packing Surcharge</span>
+<span class="font-code-mono text-secondary font-semibold">₹0.00 (FREE)</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="flex items-center gap-1">
+                Estimated GST (CGST 6% + SGST 6%)
+                <span class="material-symbols-outlined text-[14px] text-outline cursor-help" title="Standard statutory drug tax">info</span>
+</span>
+<span class="font-code-mono text-on-surface font-medium">₹56.50</span>
+</div>
+<!-- Net Total Box -->
+<div class="pt-3">
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider block">Net Payable Amount</span>
+<span class="font-label-sm text-label-sm text-secondary">Inclusive of all medical levies</span>
+</div>
+<div class="text-right">
+<span class="font-code-mono text-display-lg text-primary font-bold tracking-tight">₹485.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Payment Mode Selection -->
+<div class="space-y-3 pt-2">
+<span class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider block">Select Clinical Settlement Mode</span>
+<div class="space-y-2">
+<!-- UPI Option: Selected -->
+<label class="flex items-center justify-between p-3 rounded-lg bg-surface-container-high cursor-pointer transition">
+<div class="flex items-center gap-3">
+<div class="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-on-primary"></span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg font-semibold text-on-surface block">Instant UPI / QR Payment</span>
+<span class="font-label-sm text-label-sm text-outline">GPay, PhonePe, Paytm, BHIM</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px]">qr_code_2</span>
+</label>
+<!-- COD Option -->
+<label class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low hover:bg-surface-container-high/60 cursor-pointer transition">
+<div class="flex items-center gap-3">
+<div class="w-4 h-4 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg font-semibold text-on-surface block">Cash on Delivery (COD)</span>
+<span class="font-label-sm text-label-sm text-outline">Pay upon delivery verification</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px]">payments</span>
+</label>
+<!-- Card Payment -->
+<label class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low hover:bg-surface-container-high/60 cursor-pointer transition">
+<div class="flex items-center gap-3">
+<div class="w-4 h-4 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-transparent"></span>
+</div>
+<div>
+<span class="font-label-lg text-label-lg font-semibold text-on-surface block">Card Payment</span>
+<span class="font-label-sm text-label-sm text-outline">Debit/Credit card at doorstep terminal</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[20px]">credit_card</span>
+</label>
+</div>
+</div>
+<!-- Statutory Compliance Verification Warning -->
+<div class="p-3.5 bg-surface-container-low rounded-lg flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[20px] shrink-0 mt-0.5">verified</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+              Prescription verification applied automatically for Schedule H items. Authentic drugs guaranteed under <strong>Drugs &amp; Cosmetics Act 1945</strong>.
+            </p>
+</div>
+<!-- Checkout Primary CTA Button -->
+<div class="space-y-2 pt-2">
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-headline-sm font-semibold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-sm transition active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+              Confirm &amp; Place Pharmacy Order
+            </button>
+<div class="flex items-center justify-center gap-2 text-outline font-label-sm text-label-sm pt-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">security</span>
+<span>256-Bit Encrypted Dispensation • Fast-Track Dispense</span>
+</div>
+</div>
+<!-- Security Assurance Chips -->
+<div class="pt-3 flex flex-wrap items-center justify-center gap-2 text-center text-outline font-label-sm text-label-sm">
+<span class="bg-surface-container px-2 py-1 rounded">Zero-Contact Dispensation</span>
+<span class="bg-surface-container px-2 py-1 rounded">MOH Licensed Facility</span>
+<span class="bg-surface-container px-2 py-1 rounded">Batch Authenticated</span>
+</div>
+</div>
+<!-- Live Pharmacist Help Desk Widget -->
+<div class="bg-surface-container-low rounded-xl p-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0">
+<span class="material-symbols-outlined text-[20px]">support_agent</span>
+</div>
+<div class="min-w-0">
+<span class="font-label-md text-label-md font-bold text-on-surface block">Need Prescription Adjustments?</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block truncate">Registered Pharmacist Dr. Ananya is available on chat</span>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</div>
+<script>
+  // Simple countdown timer simulation for reserved formulations
+  (function initTimer() {
+    let timeLeft = 14 * 60 + 58;
+    const timerEl = document.getElementById('reservation-timer');
+    if (!timerEl) return;
+    
+    setInterval(() => {
+      if (timeLeft <= 0) return;
+      timeLeft--;
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerEl.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }, 1000);
+  })();
+</script></main><footer class="w-full bg-surface-container-low py-space-xl shadow-[0_-1px_6px_rgba(0,0,0,0.02)]"><div class="w-full px-gutter-desktop max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><img alt="Brand logo. - Primary color: #0d7a5f
+- Font: plusJakartaSans
+- Mode: light
+- Roundness: rounded-sm
+" class="h-6 w-auto object-contain opacity-80" src="https://lh3.googleusercontent.com/aida/AEtjO1XTFfPMFs6lpg3XvevtJc4wDvFpbJTrfVLYUKLsJJHSrHljnWKj5fC-GJgyQ4DXdec4FV9d7C8lur-dZEYQlThZ94oEELBauJ7PxH3TpLBUs4Im3EVijfLSw5mkxDkFbF-g6JRzulSn_2U1RoJGeuriQOQqXIjh5LpwXNhwmExOBdHhbBq_jbHzlFoIUodJfWfMuVPUdtKrvLR4Cj8kMSx2HDZbx-3Anqn27frWhTQRMdaoP5taW-4JHQs"/><span class="font-label-sm text-label-sm text-outline">© 2024 Abha Clinical Pharmacy Services. Compliant with CDSCO &amp; Drugs and Cosmetics Act.</span></div><div class="flex items-center gap-space-lg text-outline font-label-sm text-label-sm"><a class="hover:text-primary transition-colors" href="#">Terms of Dispensation</a><a class="hover:text-primary transition-colors" href="#">Prescription Verification Policy</a><a class="hover:text-primary transition-colors" href="#">Pharmacovigilance Helpdesk</a></div></div></footer></body></html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/fragments/admin_head :: head}">
+    <title>Abha Pharmacy - Point of Sale (POS) Billing</title>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col">
+    <!-- Header -->
+    <header th:replace="~{admin/fragments/admin_header :: header}"></header>
+
+    <main class="flex-1 p-6 max-w-[1600px] w-full mx-auto space-y-6">
+
+        <!-- Top Header & Station Banner -->
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-white p-6 rounded-xl shadow-xs border border-teal-200/80">
+            <div class="flex flex-col gap-1.5">
+                <div class="flex flex-wrap items-center gap-2.5">
+                    <h1 class="font-display font-extrabold text-2xl text-slate-900 tracking-tight">Direct Patient Dispensing &amp; Billing POS</h1>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs font-semibold">
+                        <span class="w-1.5 h-1.5 rounded-full bg-teal-600 animate-pulse"></span>
+                        <span>Walk-in Counter Active</span>
+                    </span>
+                    <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-teal-50 text-teal-800 border border-teal-200 text-xs font-mono font-bold">
+                        Multi-Medicine Cart Enabled
+                    </span>
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                    Search or register customer, select multiple medicines with required quantities, and complete the dispensation in a single consolidated bill.
+                </p>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a th:href="@{/admin/orders}" class="px-4 py-2 bg-teal-50 hover:bg-teal-100 text-teal-800 text-xs font-semibold rounded-lg transition-colors border border-teal-200 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px]">receipt_long</span>
+                    <span>View Recent Orders</span>
+                </a>
+                <a th:href="@{/admin/grn}" class="px-4 py-2 bg-teal-700 hover:bg-teal-800 text-white text-xs font-semibold rounded-lg shadow-xs transition-colors flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px]">inventory_2</span>
+                    <span>Check Stock / Batches</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Flash messages -->
+        <div th:if="${success}" class="bg-emerald-50 text-emerald-800 p-4 rounded-xl border border-emerald-200 flex items-center gap-3 text-sm font-semibold shadow-xs">
+            <span class="material-symbols-outlined text-emerald-600 text-[22px]">check_circle</span>
+            <span th:text="${success}"></span>
+        </div>
+        <div th:if="${error}" class="bg-red-50 text-red-800 p-4 rounded-xl border border-red-200 flex items-center gap-3 text-sm font-semibold shadow-xs">
+            <span class="material-symbols-outlined text-red-600 text-[22px]">error</span>
+            <span th:text="${error}"></span>
+        </div>
+
+        <!-- MAIN POS WORKFLOW CONSOLE -->
+        <form th:action="@{/admin/pos/checkout}" method="post" id="posBillingForm" class="space-y-6">
+
+            <!-- STEP 1: CUSTOMER IDENTIFICATION / REGISTRATION -->
+            <div class="bg-white rounded-xl border border-teal-200/80 shadow-xs p-5 space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+                    <div class="flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-lg bg-teal-50 text-teal-800 flex items-center justify-center font-bold text-xs border border-teal-200">1</span>
+                        <h2 class="font-display font-bold text-base text-slate-900">Patient / Customer Information</h2>
+                    </div>
+
+                    <!-- Mode Toggle Tabs -->
+                    <div class="inline-flex rounded-lg border border-slate-200 p-1 bg-slate-100 text-xs font-semibold">
+                        <button type="button" id="tabSearchCustomer" class="px-3 py-1.5 rounded-md bg-white text-teal-800 shadow-xs transition-all">
+                            Search Existing Customer
+                        </button>
+                        <button type="button" id="tabRegisterCustomer" class="px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition-all">
+                            + Register New Customer
+                        </button>
+                        <button type="button" id="tabWalkinCustomer" class="px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition-all">
+                            Anonymous Walk-in
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 1A: Search Existing Customer View -->
+                <div id="viewSearchCustomer" class="space-y-3">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+                        <div class="md:col-span-8">
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">
+                                Search &amp; Select Registered Customer (Name, Phone, or ID)
+                            </label>
+                            <select id="selectExistingCustomer" name="customerId" class="w-full h-10 px-3 rounded-lg bg-white border border-slate-300 text-slate-900 text-xs font-medium focus:outline-none focus:border-teal-700 transition">
+                                <option value="">-- Choose Existing Customer (or search below) --</option>
+                                <option th:each="c : ${customers}"
+                                        th:value="${c.customerId}"
+                                        th:data-name="${c.firstName + ' ' + (c.lastName != null ? c.lastName : '')}"
+                                        th:data-city="${c.city}"
+                                        th:text="${c.firstName + ' ' + (c.lastName != null ? c.lastName : '') + ' (CUST-' + c.customerId + ') — ' + (c.city != null ? c.city : 'N/A')}">
+                                    Customer Option
+                                </option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-4">
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Quick Search Filter</label>
+                            <input type="text" id="custSearchInput" placeholder="Type customer name to filter..."
+                                   class="w-full h-10 px-3 rounded-lg bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:bg-white focus:outline-none focus:border-teal-700 transition" />
+                        </div>
+                    </div>
+                    <div id="selectedCustBanner" class="hidden p-3 rounded-lg bg-teal-50 border border-teal-200 text-xs text-teal-900 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-teal-700 text-[18px]">verified</span>
+                            <span>Selected Patient: <strong id="selectedCustNameText">Name</strong> • <span id="selectedCustCityText">City</span></span>
+                        </div>
+                        <span class="font-mono text-[11px] font-bold text-teal-800">Linked to Bill</span>
+                    </div>
+                </div>
+
+                <!-- 1B: Register New Customer View -->
+                <div id="viewRegisterCustomer" class="hidden space-y-3 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                    <div class="flex items-center gap-1.5 text-xs font-bold text-teal-900 mb-1">
+                        <span class="material-symbols-outlined text-[16px] text-teal-700">person_add</span>
+                        <span>Counter Registration (Will be saved directly to Database)</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
+                        <div>
+                            <label class="font-semibold text-slate-700 block mb-1">First Name <span class="text-red-500">*</span></label>
+                            <input type="text" name="newCustomerFirstName" id="newCustFirst" placeholder="e.g. Rahul"
+                                   class="w-full h-9 px-3 rounded-lg bg-white border border-slate-300 text-slate-900 focus:outline-none focus:border-teal-700" />
+                        </div>
+                        <div>
+                            <label class="font-semibold text-slate-700 block mb-1">Last Name</label>
+                            <input type="text" name="newCustomerLastName" id="newCustLast" placeholder="e.g. Sharma"
+                                   class="w-full h-9 px-3 rounded-lg bg-white border border-slate-300 text-slate-900 focus:outline-none focus:border-teal-700" />
+                        </div>
+                        <div>
+                            <label class="font-semibold text-slate-700 block mb-1">Phone Number <span class="text-red-500">*</span></label>
+                            <input type="text" name="newCustomerPhone" id="newCustPhone" placeholder="+91 98210 44920"
+                                   class="w-full h-9 px-3 rounded-lg bg-white border border-slate-300 text-slate-900 focus:outline-none focus:border-teal-700" />
+                        </div>
+                        <div>
+                            <label class="font-semibold text-slate-700 block mb-1">City / Locality</label>
+                            <input type="text" name="newCustomerCity" id="newCustCity" placeholder="e.g. Koramangala"
+                                   class="w-full h-9 px-3 rounded-lg bg-white border border-slate-300 text-slate-900 focus:outline-none focus:border-teal-700" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1C: Walk-in Anonymous View -->
+                <div id="viewWalkinCustomer" class="hidden p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-600 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px] text-slate-400">info</span>
+                    <span>Billing as a general Walk-in Patient without recording account details.</span>
+                </div>
+            </div>
+
+            <!-- STEP 2: SELECT MEDICINES & BUILD DISPENSING CART -->
+            <div class="bg-white rounded-xl border border-teal-200/80 shadow-xs p-5 space-y-5">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                    <div class="flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-lg bg-teal-50 text-teal-800 flex items-center justify-center font-bold text-xs border border-teal-200">2</span>
+                        <h2 class="font-display font-bold text-base text-slate-900">Select Formulations to Dispense</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 font-mono">Simultaneous Multi-Item Selection</span>
+                </div>
+
+                <!-- Add Item Form Bar -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 items-end p-4 bg-slate-50 rounded-xl border border-slate-200">
+                    <!-- Medicine Select -->
+                    <div class="lg:col-span-6 space-y-1">
+                        <label class="block text-xs font-bold text-slate-900">
+                            Choose Medicine to Add to Bill:
+                        </label>
+                        <select id="medSelectPicker" class="w-full h-10 px-3 rounded-lg bg-white border border-slate-300 text-slate-900 text-xs font-medium focus:outline-none focus:border-teal-700 transition cursor-pointer">
+                            <option value="" disabled selected>-- Select in-stock medicine --</option>
+                            <option th:each="m : ${medicines}"
+                                    th:if="${m.totalStock > 0}"
+                                    th:value="${m.medicineId}"
+                                    th:data-price="${m.latestPrice}"
+                                    th:data-stock="${m.totalStock}"
+                                    th:data-name="${m.medicineName}"
+                                    th:data-generic="${m.genericName}"
+                                    th:text="${m.medicineName + ' (' + m.genericName + ') — In Stock: ' + m.totalStock + ' | ₹' + m.latestPrice}">
+                                Medicine Option
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Quantity Input -->
+                    <div class="lg:col-span-3 space-y-1">
+                        <label class="block text-xs font-bold text-slate-900">Quantity</label>
+                        <div class="flex items-center border border-slate-300 rounded-lg overflow-hidden h-10 bg-white">
+                            <button type="button" id="btnPickerMinus" class="w-10 h-full flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition">
+                                <span class="material-symbols-outlined text-[16px]">remove</span>
+                            </button>
+                            <input type="number" id="medPickerQty" min="1" max="999" value="1"
+                                   class="w-full text-center font-mono font-bold text-xs bg-transparent border-0 focus:outline-none text-slate-900" />
+                            <button type="button" id="btnPickerPlus" class="w-10 h-full flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition">
+                                <span class="material-symbols-outlined text-[16px]">add</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Add Button -->
+                    <div class="lg:col-span-3">
+                        <button type="button" id="btnAddMedToCart" class="w-full h-10 px-4 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs shadow-xs transition-colors flex items-center justify-center gap-1.5">
+                            <span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                            <span>+ Add to Bill</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Current Bill Table -->
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                            <span class="material-symbols-outlined text-teal-700 text-[18px]">receipt</span>
+                            <span>Current Dispensing Bill Formulations (<span id="cartCountBadge">0</span> items)</span>
+                        </h3>
+                        <button type="button" id="btnClearBill" class="text-xs text-red-600 hover:underline font-semibold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">delete</span>
+                            <span>Clear Bill</span>
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto rounded-xl border border-slate-200">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-teal-50/60 text-slate-700 border-b border-teal-100 text-[11px] font-bold uppercase tracking-wider">
+                                <tr>
+                                    <th class="py-2.5 px-3">#</th>
+                                    <th class="py-2.5 px-3">Medicine Name</th>
+                                    <th class="py-2.5 px-3">Generic Salt</th>
+                                    <th class="py-2.5 px-3 text-right">Unit MRP</th>
+                                    <th class="py-2.5 px-3 text-center">Quantity</th>
+                                    <th class="py-2.5 px-3 text-right">Subtotal</th>
+                                    <th class="py-2.5 px-3 text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cartTableBody" class="divide-y divide-slate-100 font-medium">
+                                <tr id="emptyCartRow">
+                                    <td colspan="7" class="py-8 text-center text-slate-400 italic">
+                                        No medicines added yet. Choose a medicine above and click "+ Add to Bill", or select from the directory below.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Hidden container holding dynamically created qty_{medicineId} inputs -->
+                    <div id="hiddenInputsContainer"></div>
+                </div>
+
+                <!-- Bill Settlement Bar -->
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="flex items-center gap-4">
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-700 uppercase mb-1">Payment Method</label>
+                            <select name="paymentMethod" class="h-10 px-3 rounded-lg bg-white border border-slate-300 text-xs font-semibold text-slate-900 focus:outline-none focus:border-teal-700">
+                                <option value="CASH">Cash (Counter)</option>
+                                <option value="UPI">UPI / QR Code</option>
+                                <option value="CARD">Debit / Credit Card</option>
+                            </select>
+                        </div>
+                        <div class="text-xs text-slate-500 font-mono hidden sm:block">
+                            Includes 12% GST
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="text-right">
+                            <span class="text-[10px] uppercase font-bold text-slate-500 block">Total Due:</span>
+                            <span class="font-display font-extrabold text-2xl text-teal-900 font-mono" id="grandTotalText">₹0.00</span>
+                        </div>
+
+                        <button type="submit" id="btnCompleteSale" class="px-8 py-3 rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-bold text-sm shadow-md transition-all flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[20px]">verified</span>
+                            <span>Authorize &amp; Complete Dispense</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+        <!-- INVENTORY QUICK-LOOKUP DIRECTORY TABLE -->
+        <div class="bg-white rounded-xl border border-teal-200/80 shadow-xs overflow-hidden space-y-4 p-5">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                <div>
+                    <h3 class="font-display font-bold text-base text-slate-900">In-Stock Formulations Quick Directory</h3>
+                    <p class="text-xs text-slate-500">Quickly add formulations directly to the dispensing bill above with 1 click.</p>
+                </div>
+                <div class="relative w-full sm:w-80">
+                    <span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 text-[18px]">search</span>
+                    <input type="text" id="inventorySearchInput" placeholder="Filter medicines by name or generic salt..."
+                           class="w-full pl-9 pr-3 py-2 bg-slate-50 rounded-lg text-xs text-slate-900 placeholder:text-slate-400 border border-slate-300 focus:bg-white focus:outline-none focus:border-teal-700 transition" />
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                    <thead class="bg-teal-50/60 text-slate-700 border-b border-teal-100 text-[11px] font-bold uppercase tracking-wider">
+                        <tr>
+                            <th class="py-3 px-4">#</th>
+                            <th class="py-3 px-4">Medicine &amp; Formulation</th>
+                            <th class="py-3 px-4">Generic Salt</th>
+                            <th class="py-3 px-4">Category</th>
+                            <th class="py-3 px-4 text-center">Available Stock</th>
+                            <th class="py-3 px-4 text-right">Unit MRP</th>
+                            <th class="py-3 px-4 text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 font-medium" id="inventoryTableBody">
+                        <tr th:each="m, iterStat : ${medicines}" class="hover:bg-slate-50/80 transition-colors med-row">
+                            <td class="py-3 px-4 text-slate-400 font-mono" th:text="${iterStat.count}">1</td>
+                            <td class="py-3 px-4">
+                                <div class="font-bold text-slate-900 text-sm med-name" th:text="${m.medicineName}">Medicine Name</div>
+                                <div class="text-[11px] text-slate-500" th:text="${m.manufacturer}">Manufacturer</div>
+                            </td>
+                            <td class="py-3 px-4 text-slate-600 med-generic" th:text="${m.genericName}">Generic Salt</td>
+                            <td class="py-3 px-4">
+                                <span th:if="${m.requiresPrescription}" class="badge-sch-h px-2 py-0.5 rounded text-[10px] font-bold">Schedule H</span>
+                                <span th:unless="${m.requiresPrescription}" class="badge-otc px-2 py-0.5 rounded text-[10px] font-bold">OTC</span>
+                            </td>
+                            <td class="py-3 px-4 text-center font-mono">
+                                <span th:if="${m.totalStock > 0}" class="text-teal-800 font-bold bg-teal-50 px-2 py-0.5 rounded border border-teal-200"
+                                      th:text="${m.totalStock} + ' units'">0 units</span>
+                                <span th:unless="${m.totalStock > 0}" class="text-red-600 font-bold bg-red-50 px-2 py-0.5 rounded border border-red-200">
+                                    Out of Stock
+                                </span>
+                            </td>
+                            <td class="py-3 px-4 text-right font-mono font-bold text-slate-900 text-sm"
+                                th:text="'₹' + ${m.latestPrice != null ? m.latestPrice : '0.00'}">₹0.00</td>
+                            <td class="py-3 px-4 text-center">
+                                <button th:if="${m.totalStock > 0}" type="button"
+                                        class="btn-quick-add-to-bill px-3 py-1.5 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-semibold text-xs transition-colors shadow-xs flex items-center gap-1 mx-auto"
+                                        th:data-id="${m.medicineId}"
+                                        th:data-price="${m.latestPrice}"
+                                        th:data-stock="${m.totalStock}"
+                                        th:data-name="${m.medicineName}"
+                                        th:data-generic="${m.genericName}">
+                                    <span class="material-symbols-outlined text-[15px]">add_circle</span>
+                                    <span>+ Add to Bill</span>
+                                </button>
+                                <span th:unless="${m.totalStock > 0}" class="text-slate-400 text-xs italic">Unavailable</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Client-side Logic for Tabs, Customer Filter, and Multi-Item Cart -->
+    <script>
+        (function() {
+            // 1. Customer Mode Tabs
+            const tabSearch = document.getElementById('tabSearchCustomer');
+            const tabRegister = document.getElementById('tabRegisterCustomer');
+            const tabWalkin = document.getElementById('tabWalkinCustomer');
+
+            const viewSearch = document.getElementById('viewSearchCustomer');
+            const viewRegister = document.getElementById('viewRegisterCustomer');
+            const viewWalkin = document.getElementById('viewWalkinCustomer');
+
+            const selectCust = document.getElementById('selectExistingCustomer');
+            const selectedCustBanner = document.getElementById('selectedCustBanner');
+            const selectedCustNameText = document.getElementById('selectedCustNameText');
+            const selectedCustCityText = document.getElementById('selectedCustCityText');
+
+            function setActiveTab(btn, activeView) {
+                [tabSearch, tabRegister, tabWalkin].forEach(b => {
+                    b.className = "px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 transition-all";
+                });
+                btn.className = "px-3 py-1.5 rounded-md bg-white text-teal-800 font-bold shadow-xs transition-all";
+
+                [viewSearch, viewRegister, viewWalkin].forEach(v => v.classList.add('hidden'));
+                activeView.classList.remove('hidden');
+
+                if (btn === tabWalkin) {
+                    selectCust.value = "";
+                    selectedCustBanner.classList.add('hidden');
+                }
+            }
+
+            tabSearch.addEventListener('click', () => setActiveTab(tabSearch, viewSearch));
+            tabRegister.addEventListener('click', () => setActiveTab(tabRegister, viewRegister));
+            tabWalkin.addEventListener('click', () => setActiveTab(tabWalkin, viewWalkin));
+
+            // Customer selection change
+            selectCust.addEventListener('change', () => {
+                const opt = selectCust.options[selectCust.selectedIndex];
+                if (opt && opt.value) {
+                    selectedCustNameText.textContent = opt.getAttribute('data-name') || "Customer";
+                    selectedCustCityText.textContent = opt.getAttribute('data-city') || "Locality on file";
+                    selectedCustBanner.classList.remove('hidden');
+                } else {
+                    selectedCustBanner.classList.add('hidden');
+                }
+            });
+
+            // Customer Quick search input
+            const custSearchInput = document.getElementById('custSearchInput');
+            if (custSearchInput) {
+                custSearchInput.addEventListener('input', () => {
+                    const q = custSearchInput.value.toLowerCase().trim();
+                    Array.from(selectCust.options).forEach((opt, idx) => {
+                        if (idx === 0) return;
+                        const txt = opt.textContent.toLowerCase();
+                        opt.style.display = !q || txt.includes(q) ? '' : 'none';
+                    });
+                });
+            }
+
+            // 2. Multi-Medicine Cart Engine
+            const cart = new Map(); // medicineId -> { id, name, generic, price, maxStock, qty }
+
+            const pickerSelect = document.getElementById('medSelectPicker');
+            const pickerQty = document.getElementById('medPickerQty');
+            const btnMinus = document.getElementById('btnPickerMinus');
+            const btnPlus = document.getElementById('btnPickerPlus');
+            const btnAdd = document.getElementById('btnAddMedToCart');
+
+            const cartTableBody = document.getElementById('cartTableBody');
+            const emptyCartRow = document.getElementById('emptyCartRow');
+            const hiddenInputsContainer = document.getElementById('hiddenInputsContainer');
+            const grandTotalText = document.getElementById('grandTotalText');
+            const cartCountBadge = document.getElementById('cartCountBadge');
+            const btnClear = document.getElementById('btnClearBill');
+
+            btnMinus.addEventListener('click', () => {
+                let q = parseInt(pickerQty.value) || 1;
+                if (q > 1) pickerQty.value = q - 1;
+            });
+
+            btnPlus.addEventListener('click', () => {
+                let q = parseInt(pickerQty.value) || 1;
+                const opt = pickerSelect.options[pickerSelect.selectedIndex];
+                const max = opt ? parseInt(opt.getAttribute('data-stock')) || 999 : 999;
+                if (q < max) pickerQty.value = q + 1;
+            });
+
+            function renderCart() {
+                // Clear body
+                cartTableBody.innerHTML = '';
+                hiddenInputsContainer.innerHTML = '';
+
+                if (cart.size === 0) {
+                    cartTableBody.appendChild(emptyCartRow);
+                    grandTotalText.textContent = '₹0.00';
+                    cartCountBadge.textContent = '0';
+                    return;
+                }
+
+                let total = 0;
+                let seq = 1;
+
+                cart.forEach((item, medId) => {
+                    const subtotal = item.price * item.qty;
+                    total += subtotal;
+
+                    // Add row to table
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-slate-50 transition-colors";
+                    tr.innerHTML = `
+                        <td class="py-2.5 px-3 font-mono text-slate-400">${seq++}</td>
+                        <td class="py-2.5 px-3 font-bold text-slate-900">${item.name}</td>
+                        <td class="py-2.5 px-3 text-slate-600">${item.generic}</td>
+                        <td class="py-2.5 px-3 text-right font-mono font-bold text-slate-800">₹${item.price.toFixed(2)}</td>
+                        <td class="py-2.5 px-3 text-center">
+                            <div class="inline-flex items-center border border-slate-300 rounded overflow-hidden h-7 bg-white">
+                                <button type="button" class="btn-cart-minus px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold" data-id="${medId}">-</button>
+                                <span class="px-2 font-mono font-bold text-xs">${item.qty}</span>
+                                <button type="button" class="btn-cart-plus px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold" data-id="${medId}">+</button>
+                            </div>
+                        </td>
+                        <td class="py-2.5 px-3 text-right font-mono font-bold text-teal-800">₹${subtotal.toFixed(2)}</td>
+                        <td class="py-2.5 px-3 text-center">
+                            <button type="button" class="btn-cart-remove text-red-500 hover:text-red-700 p-1 rounded hover:bg-red-50 transition" data-id="${medId}" title="Remove">
+                                <span class="material-symbols-outlined text-[16px]">close</span>
+                            </button>
+                        </td>
+                    `;
+                    cartTableBody.appendChild(tr);
+
+                    // Add hidden input for Spring MVC form submission
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = `qty_${medId}`;
+                    input.value = item.qty;
+                    hiddenInputsContainer.appendChild(input);
+                });
+
+                grandTotalText.textContent = '₹' + total.toFixed(2);
+                cartCountBadge.textContent = cart.size;
+
+                // Bind table row buttons
+                document.querySelectorAll('.btn-cart-minus').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const id = parseInt(btn.getAttribute('data-id'));
+                        const item = cart.get(id);
+                        if (item && item.qty > 1) {
+                            item.qty--;
+                            renderCart();
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.btn-cart-plus').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const id = parseInt(btn.getAttribute('data-id'));
+                        const item = cart.get(id);
+                        if (item && item.qty < item.maxStock) {
+                            item.qty++;
+                            renderCart();
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.btn-cart-remove').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const id = parseInt(btn.getAttribute('data-id'));
+                        cart.delete(id);
+                        renderCart();
+                    });
+                });
+            }
+
+            function addMedicineToCart(id, name, generic, price, maxStock, qty) {
+                if (!id) return;
+                if (cart.has(id)) {
+                    const existing = cart.get(id);
+                    existing.qty = Math.min(existing.qty + qty, maxStock);
+                } else {
+                    cart.set(id, { id, name, generic, price, maxStock, qty });
+                }
+                renderCart();
+            }
+
+            btnAdd.addEventListener('click', () => {
+                const opt = pickerSelect.options[pickerSelect.selectedIndex];
+                if (!opt || !opt.value) {
+                    alert('Please select a medicine formulation from the dropdown.');
+                    return;
+                }
+                const id = parseInt(opt.value);
+                const name = opt.getAttribute('data-name');
+                const generic = opt.getAttribute('data-generic');
+                const price = parseFloat(opt.getAttribute('data-price')) || 0;
+                const maxStock = parseInt(opt.getAttribute('data-stock')) || 999;
+                let qty = parseInt(pickerQty.value) || 1;
+                if (qty > maxStock) qty = maxStock;
+
+                addMedicineToCart(id, name, generic, price, maxStock, qty);
+                pickerQty.value = 1;
+            });
+
+            btnClear.addEventListener('click', () => {
+                cart.clear();
+                renderCart();
+            });
+
+            // Quick add from bottom inventory directory table
+            document.querySelectorAll('.btn-quick-add-to-bill').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = parseInt(btn.getAttribute('data-id'));
+                    const name = btn.getAttribute('data-name');
+                    const generic = btn.getAttribute('data-generic');
+                    const price = parseFloat(btn.getAttribute('data-price')) || 0;
+                    const maxStock = parseInt(btn.getAttribute('data-stock')) || 999;
+
+                    addMedicineToCart(id, name, generic, price, maxStock, 1);
+
+                    // Smooth visual feedback
+                    window.scrollTo({ top: 300, behavior: 'smooth' });
+                });
+            });
+
+            // Search filter for bottom directory
+            const invSearchInput = document.getElementById('inventorySearchInput');
+            const invRows = document.querySelectorAll('#inventoryTableBody .med-row');
+            if (invSearchInput) {
+                invSearchInput.addEventListener('input', () => {
+                    const q = invSearchInput.value.toLowerCase().trim();
+                    invRows.forEach(r => {
+                        const name = (r.querySelector('.med-name')?.textContent || '').toLowerCase();
+                        const generic = (r.querySelector('.med-generic')?.textContent || '').toLowerCase();
+                        if (!q || name.includes(q) || generic.includes(q)) {
+                            r.style.display = '';
+                        } else {
+                            r.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // Form validation before submit
+            document.getElementById('posBillingForm').addEventListener('submit', function(e) {
+                if (cart.size === 0) {
+                    e.preventDefault();
+                    alert('Please add at least one medicine to the bill before completing the dispensation.');
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "background": "#faf8ff",
+        "surface-bright": "#faf8ff",
+        "on-secondary-fixed-variant": "#00513e",
+        "on-error": "#ffffff",
+        "primary-container": "#0d7a5f",
+        "on-tertiary-fixed-variant": "#004b73",
+        "surface-variant": "#dae2fd",
+        "secondary-fixed": "#a9f1d5",
+        "on-surface-variant": "#3e4944",
+        "tertiary-fixed-dim": "#93ccff",
+        "surface-dim": "#d2d9f4",
+        "inverse-on-surface": "#eef0ff",
+        "surface-container": "#eaedff",
+        "error-container": "#ffdad6",
+        "on-primary-container": "#a8ffdf",
+        "tertiary-container": "#0071ac",
+        "on-secondary-container": "#266e58",
+        "on-primary-fixed-variant": "#00513e",
+        "surface": "#faf8ff",
+        "on-primary-fixed": "#002117",
+        "surface-container-lowest": "#ffffff",
+        "on-tertiary-fixed": "#001d31",
+        "tertiary-fixed": "#cce5ff",
+        "inverse-surface": "#283044",
+        "on-tertiary-container": "#e1efff",
+        "on-background": "#131b2e",
+        "inverse-primary": "#7cd8b8",
+        "on-primary": "#ffffff",
+        "surface-container-high": "#e2e7ff",
+        "outline-variant": "#bdc9c2",
+        "primary-fixed": "#98f4d3",
+        "surface-container-highest": "#dae2fd",
+        "primary-fixed-dim": "#7cd8b8",
+        "secondary-container": "#a6eed2",
+        "surface-tint": "#006c53",
+        "secondary-fixed-dim": "#8ed5ba",
+        "primary": "#005f49",
+        "tertiary": "#005886",
+        "on-secondary": "#ffffff",
+        "on-secondary-fixed": "#002117",
+        "on-surface": "#131b2e",
+        "on-tertiary": "#ffffff",
+        "on-error-container": "#93000a",
+        "outline": "#6e7a74",
+        "secondary": "#206a54",
+        "surface-container-low": "#f2f3ff",
+        "error": "#ba1a1a"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+      },
+      "spacing": {
+        "margin-desktop": "2rem",
+        "space-xs": "0.25rem",
+        "space-lg": "1rem",
+        "space-md": "0.75rem",
+        "space-xl": "1.5rem",
+        "gutter-desktop": "1.5rem",
+        "space-sm": "0.5rem",
+        "margin": "1rem",
+        "gutter": "1rem"
+      },
+      "fontFamily": {
+        "label-sm": [
+          "Inter"
+        ],
+        "code-mono": [
+          "JetBrains Mono"
+        ],
+        "body-sm": [
+          "Inter"
+        ],
+        "headline-md": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-sm": [
+          "Plus Jakarta Sans"
+        ],
+        "label-lg": [
+          "Inter"
+        ],
+        "label-md": [
+          "Inter"
+        ],
+        "body-lg": [
+          "Inter"
+        ],
+        "body-md": [
+          "Inter"
+        ],
+        "display-lg": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-lg": [
+          "Plus Jakarta Sans"
+        ]
+      },
+      "fontSize": {
+        "label-sm": [
+          "11px",
+          {
+            "lineHeight": "14px",
+            "letterSpacing": "0.04em",
+            "fontWeight": "600"
+          }
+        ],
+        "code-mono": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "fontWeight": "500"
+          }
+        ],
+        "body-sm": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "fontWeight": "400"
+          }
+        ],
+        "headline-md": [
+          "20px",
+          {
+            "lineHeight": "28px",
+            "letterSpacing": "-0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "headline-sm": [
+          "16px",
+          {
+            "lineHeight": "24px",
+            "fontWeight": "600"
+          }
+        ],
+        "label-lg": [
+          "14px",
+          {
+            "lineHeight": "20px",
+            "fontWeight": "500"
+          }
+        ],
+        "label-md": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "letterSpacing": "0.025em",
+            "fontWeight": "600"
+          }
+        ],
+        "body-lg": [
+          "16px",
+          {
+            "lineHeight": "24px",
+            "fontWeight": "400"
+          }
+        ],
+        "body-md": [
+          "14px",
+          {
+            "lineHeight": "20px",
+            "fontWeight": "400"
+          }
+        ],
+        "display-lg": [
+          "32px",
+          {
+            "lineHeight": "40px",
+            "letterSpacing": "-0.02em",
+            "fontWeight": "700"
+          }
+        ],
+        "headline-lg": [
+          "24px",
+          {
+            "lineHeight": "32px",
+            "letterSpacing": "-0.015em",
+            "fontWeight": "600"
+          }
+        ]
+      }
+    }
+  }
+}</script></head><body class="bg-surface text-on-surface font-body-md text-body-md"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-gutter-desktop flex items-center justify-between"><div class="flex items-center gap-space-lg"><img alt="Abha Pharmacy Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UKKshijGLJayZJ52kylv1QYyrmTW9iDDNuwRGi8t8djnc9DmbtdF0cXohcFL5FZxP5sbiFwvVGx64TzlsmaVkCcr9uKx_LsHFjbS_GlKfc9GOPkHnCxDOaGcx6p5iy7Zh44i_zm-_tETqST-5ZfuC5uhUmPScByFwD7Hsp3-Th-OZ40rpI4yOLgbuJsMaZJ0Di-B8kxEcMFMQNtGZRCsqFQyv-_8GgFWECFTzREdMBCukbyS3zPfM11yM"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-none">Abha Pharmacy</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Patient Care &amp; Refills</span></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="inline-flex items-center gap-space-xs bg-surface-container-high px-space-md py-space-xs rounded-full"><span class="material-symbols-outlined text-[16px] text-tertiary">person</span><span class="font-label-sm text-label-sm text-on-surface uppercase tracking-wide">Customer Portal</span></div><a class="inline-flex items-center gap-space-xs bg-secondary-container px-space-sm py-space-xs rounded-full text-on-secondary-container hover:bg-secondary-fixed transition-colors" data-path="staff-dashboard" href="#"><span class="material-symbols-outlined text-[14px]">badge</span><span class="font-label-sm text-label-sm">Switch to Staff Portal</span></a></div><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold border-b-2 border-primary"><a class="py-space-md text-on-surface-variant hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="home" href="#">Home</a><a class="py-space-md text-on-surface-variant hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="medicine-discovery" href="#">Medicine Discovery</a><a class="py-space-md text-on-surface-variant hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="upload-prescription" href="#">Upload Prescription</a><a class="py-space-md text-on-surface-variant hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="refill-requests" href="#">Refill Requests</a><a class="py-space-md text-on-surface-variant hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="my-orders" href="#">My Orders</a><a class="py-space-md text-on-surface-variant hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="customer-profile" href="#">Customer Profile</a></nav><div class="flex items-center gap-space-xl"><div class="hidden xl:flex items-center gap-space-md text-on-surface-variant"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px]">schedule</span><span class="font-label-md text-label-md">Pharmacy Open • 24/7 Service</span></div><div class="h-4 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-label-sm text-label-sm text-primary uppercase font-bold">Live Prescription Intake</span></div></div><div class="h-6 w-px bg-surface-container-highest hidden sm:block"></div><div class="flex items-center gap-space-md"><div class="flex flex-col text-right hidden sm:flex"><span class="font-label-lg text-label-lg text-on-surface">Sara Al-Ghamdi</span><span class="font-label-sm text-label-sm text-on-surface-variant">Patient ID #AB-8802</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-16 bg-surface min-h-screen px-gutter-desktop py-space-xl"><div class="flex flex-col w-full">
+<!-- Sub-header Breadcrumb & Verified Patient Context Bar -->
+<section class="w-full flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-xl">
+<div class="flex flex-col gap-space-xs">
+<!-- Breadcrumb navigation -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[14px]">home</span>
+          Home Hub
+        </a>
+<span class="text-outline-variant">/</span>
+<a class="hover:text-primary transition-colors" href="#">Medicine Discovery</a>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface font-semibold truncate max-w-[220px] sm:max-w-none">Paracetamol 500mg (MED-1002)</span>
+</nav>
+<div class="flex items-center gap-space-sm mt-space-xs">
+<a class="inline-flex items-center gap-space-xs text-primary hover:text-primary-container font-label-md text-label-md font-semibold transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+          Back to Medicine Catalog
+        </a>
+</div>
+</div>
+<!-- Verified Patient Context Ribbon -->
+<div class="inline-flex items-center gap-space-md bg-surface-container-low px-space-md py-space-sm rounded-full shadow-sm">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-code-mono text-code-mono text-on-surface font-semibold">PATIENT: #AB-1049</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-md text-label-md text-on-surface font-medium">Priya Patel</span>
+</div>
+<div class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container px-space-sm py-0.5 rounded-full font-label-sm text-label-sm font-semibold tracking-wide">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+        MOH VERIFIED
+      </div>
+</div>
+</section>
+<!-- Formulation Master Header Card -->
+<section class="w-full bg-surface-container-lowest rounded-xl shadow-sm p-space-xl mb-space-xl relative overflow-hidden">
+<!-- Subtle clinical micro-accent indicator line -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-primary"></div>
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-xl items-start">
+<!-- Left Hero Details -->
+<div class="xl:col-span-8 flex flex-col gap-space-md">
+<!-- Classification Badges & Toggle trigger -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="inline-flex items-center gap-space-xs bg-secondary-container text-on-secondary-container px-space-md py-space-xs rounded-full font-label-sm text-label-sm font-bold tracking-wider uppercase">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+            Over The Counter (OTC) • Schedule G Excluded
+          </div>
+<div class="inline-flex items-center gap-1 bg-surface-container text-tertiary px-space-sm py-space-xs rounded-full font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+            Instant Hub Fulfillment
+          </div>
+<!-- OTC vs Rx Modal/Dropdown Helper Info -->
+<div class="inline-flex items-center gap-1 text-on-surface-variant hover:text-primary cursor-pointer text-label-sm font-label-sm group">
+<span class="material-symbols-outlined text-[15px]">info</span>
+<span class="underline decoration-dotted group-hover:text-primary">OTC Dispensation Standard</span>
+</div>
+</div>
+<!-- Main Title and Active Molecule -->
+<div class="flex flex-col gap-space-xs mt-space-xs">
+<div class="flex items-baseline flex-wrap gap-x-space-md gap-y-1">
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight">Paracetamol 500mg Tablet</h1>
+<span class="font-code-mono text-code-mono px-space-sm py-0.5 bg-surface-container-high rounded text-on-surface-variant">FORM-1002-BLIST</span>
+</div>
+<p class="font-body-lg text-body-lg text-secondary font-medium">
+            Active Salt / Molecule: Acetaminophen IP 500mg
+          </p>
+</div>
+<!-- Metadata Attributes -->
+<div class="flex flex-wrap items-center gap-y-space-xs gap-x-space-lg text-on-surface-variant font-label-md text-label-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">factory</span>
+<span>Manufacturer:</span>
+<span class="font-semibold text-on-surface">PharmaCorp Laboratories Ltd.</span>
+</div>
+<div class="h-3 w-px bg-surface-container-highest hidden sm:block"></div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">tag</span>
+<span>Formulation Code:</span>
+<span class="font-code-mono text-code-mono text-on-surface font-semibold">MED-1002</span>
+</div>
+<div class="h-3 w-px bg-surface-container-highest hidden sm:block"></div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">pill</span>
+<span>Delivery Form:</span>
+<span class="font-semibold text-on-surface">Solid Oral Strip (B-Pack)</span>
+</div>
+</div>
+<!-- Availability Strip -->
+<div class="flex items-center gap-space-md p-space-sm bg-surface-container-low rounded-lg mt-space-xs">
+<div class="flex items-center gap-space-xs text-primary font-label-md text-label-md font-semibold">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+<span>In Stock: 100 units available for dispensation</span>
+</div>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Verified by Central Dispensary Shelf B-04</span>
+</div>
+</div>
+<!-- Right Pricing and Quick Order Summary Card -->
+<div class="xl:col-span-4 bg-surface-container-low rounded-xl p-space-lg flex flex-col justify-between h-full shadow-inner">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Retail Unit Price (Patient Tariff)</span>
+<div class="flex items-baseline gap-space-xs mt-space-xs">
+<span class="font-display-lg text-display-lg font-bold text-primary">₹2.50</span>
+<span class="font-label-md text-label-md text-on-surface-variant">/ tablet</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">
+            Pack of 10 Tablets: <span class="font-semibold text-on-surface">₹25.00</span> Base Unit Price (Inclusive of all Health Levies)
+          </p>
+</div>
+<!-- Visual Formulation Asset & Packaging Mini-Badge -->
+<div class="flex items-center gap-space-md mt-space-lg p-space-sm bg-surface-container-lowest rounded-lg">
+<img class="w-14 h-14 object-cover rounded-lg flex-shrink-0" data-alt="Close up clinical photograph of pharmaceutical grade blister packaging containing Paracetamol 500mg tablets, crisp white and mint green clinical foil seal in high key medical laboratory lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEkOdoYWeTUfiAnV1sB_KNWqhJmUO8GV0v7bbz56k7O_N9h1bYBfpMUiWWclOxJ8bvWKkRgUrCtDlEdtNrZ42qrGYnjMwilgy8RoV3-m2uFkpLgCocz0vrhPb-sxznKO7JlKTC0T_khi-vZXfufE5sI8HL8z03xeZsAhgzPwmrg7eU5AZw9XaDJoO_r9Y1rVE8BFoAraygzb2SuhRc4096a81pcSKze4IJU7Djij2TOr5qhVsUtVbHZg"/>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Standard Blister Foil</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">10x Tablets / Unit Blister</span>
+<span class="font-code-mono text-code-mono text-primary font-medium">Batch #EXP-2026-11</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Specifications Grid (3 Bespoke Clinical Cards) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-space-lg mb-space-xl">
+<!-- Card 1: Therapeutic Category -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between mb-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">cardiology</span>
+</div>
+<span class="font-code-mono text-code-mono bg-surface-container px-space-xs py-0.5 rounded text-tertiary font-medium">ATC N02BE01</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Therapeutic Category</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mt-space-xs">Analgesic &amp; Antipyretic</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">
+          Acts primarily within the Central Nervous System to inhibit prostaglandin synthesis, providing systemic pain modulation and heat regulation.
+        </p>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-surface-container flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Non-Opioid Class</span>
+<span class="text-primary font-semibold">First-Line Agent</span>
+</div>
+</div>
+<!-- Card 2: Stability & Storage Protocol -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between mb-space-md">
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[22px]">device_thermostat</span>
+</div>
+<div class="flex items-center gap-1 text-primary font-semibold font-label-sm text-label-sm bg-secondary-fixed/50 px-space-xs py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">check</span>
+          Stable &lt; 25°C
+        </div>
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Stability &amp; Storage Protocol</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mt-space-xs">Controlled Room Storage</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">
+          Store below 25°C in a dry place, away from direct sunlight &amp; moisture. Do not freeze. Keep container tightly sealed when not in active use.
+        </p>
+</div>
+<!-- Temperature Micro Gauge Graphic -->
+<div class="mt-space-md pt-space-sm border-t border-surface-container flex flex-col gap-1">
+<div class="flex justify-between items-center text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Recommended: 15°C - 25°C</span>
+<span class="font-code-mono text-code-mono text-primary font-bold">21°C Room Norm</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden flex">
+<div class="w-1/4 bg-tertiary-fixed-dim"></div>
+<div class="w-1/2 bg-primary"></div>
+<div class="w-1/4 bg-error-container"></div>
+</div>
+</div>
+</div>
+<!-- Card 3: Regulatory & Reorder Standard -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between">
+<div class="flex items-start justify-between mb-space-md">
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[22px]">policy</span>
+</div>
+<span class="font-code-mono text-code-mono bg-surface-container-high px-space-xs py-0.5 rounded text-on-surface font-semibold">CDSCO CERT</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Regulatory Standard</span>
+<h2 class="font-headline-md text-headline-md text-on-surface mt-space-xs">Schedule OTC Formulary</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">
+          Reorder Threshold: 20 units • CDSCO Verified • Schedule OTC Formulary. Fully compliant with active pharmacovigilance and serial batch registry.
+        </p>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-surface-container flex items-center justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Batch Dispense Limit:</span>
+<span class="font-code-mono text-code-mono font-bold text-on-surface">Max 30 tabs/tx</span>
+</div>
+</div>
+</section>
+<!-- Comprehensive Clinical Monograph Box -->
+<section class="w-full bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden mb-space-xl">
+<!-- Monograph Banner -->
+<div class="bg-surface-container-high px-space-xl py-space-md flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">menu_book</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Clinical Monograph &amp; Pharmacological Dossier</h3>
+</div>
+<div class="inline-flex items-center gap-space-xs bg-surface-container-lowest px-space-md py-0.5 rounded-full font-label-sm text-label-sm text-on-surface-variant font-medium">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+        Verified Formulary Monograph • Ref: IP/BP Standards
+      </div>
+</div>
+<div class="p-space-xl flex flex-col gap-space-xl">
+<!-- Section A: Indications & Clinical Usage -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<div class="lg:col-span-3 flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Section A</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Indications &amp; Clinical Dosage</h4>
+</div>
+<div class="lg:col-span-9 flex flex-col gap-space-md">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+            Paracetamol is indicated for the treatment of mild-to-moderate somatic and visceral pain states including tension headache, dental pain, dysmenorrhea, acute musculoskeletal discomfort, and as an antipyretic for temporary fever reduction associated with upper respiratory and viral infections.
+          </p>
+<!-- Dosing Matrix Table -->
+<div class="bg-surface-container-low rounded-lg p-space-md overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider border-b border-surface-container-high">
+<th class="pb-2">Patient Cohort</th>
+<th class="pb-2">Standard Dose</th>
+<th class="pb-2">Dosing Frequency</th>
+<th class="pb-2 text-right">Max 24h Ceiling</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high text-on-surface">
+<tr>
+<td class="py-2.5 font-semibold">Adults &amp; Adolescents (&gt;50kg)</td>
+<td class="py-2.5">500mg – 1000mg (1–2 Tablets)</td>
+<td class="py-2.5">Every 4 to 6 hours as needed</td>
+<td class="py-2.5 text-right font-code-mono text-code-mono font-bold text-primary">4000mg (8 tabs)</td>
+</tr>
+<tr>
+<td class="py-2.5 font-semibold">Pediatric / Underweight (&lt;50kg)</td>
+<td class="py-2.5">10–15 mg/kg/dose (Weight-based)</td>
+<td class="py-2.5">Every 6 hours</td>
+<td class="py-2.5 text-right font-code-mono text-code-mono font-bold text-on-surface">60 mg/kg / day</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="w-full h-px bg-surface-container"></div>
+<!-- Section B: Precautions & Contraindications (Warning Callout Box) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<div class="lg:col-span-3 flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-error font-bold">Section B</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Critical Precautions &amp; Warnings</h4>
+</div>
+<div class="lg:col-span-9">
+<!-- Warning Callout Box -->
+<div class="bg-error-container/40 rounded-xl p-space-lg flex flex-col sm:flex-row gap-space-md items-start">
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center flex-shrink-0 text-error">
+<span class="material-symbols-outlined text-[24px]">warning</span>
+</div>
+<div class="flex flex-col gap-space-xs text-on-surface">
+<h5 class="font-headline-sm text-headline-sm text-on-error-container font-semibold">Hepatotoxicity Alert &amp; Contraindications</h5>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+<strong class="text-on-surface">Absolute Contraindication:</strong> Severe hepatic impairment, acute active liver disease, or documented hypersensitivity to paracetamol.
+              </p>
+<ul class="list-disc list-inside font-body-sm text-body-sm text-on-surface-variant space-y-1 mt-1">
+<li><strong class="text-on-surface">Chronic Alcoholism:</strong> Daily consumption of ≥ 3 standard alcoholic units markedly amplifies liver damage risks from therapeutic doses.</li>
+<li><strong class="text-on-surface">Persistent Symptoms:</strong> Consult a qualified physician or pharmacist immediately if fever persists beyond 3 days or pain persists beyond 5 days.</li>
+<li><strong class="text-on-surface">Emergency Threshold:</strong> Accidental ingestion exceeding 4000mg requires immediate medical evaluation and administration of N-acetylcysteine (NAC) regardless of symptoms.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full h-px bg-surface-container"></div>
+<!-- Section C: Patient Usage Instructions & Pharmacist Remarks -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<div class="lg:col-span-3 flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary font-bold">Section C</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Administration &amp; Advice</h4>
+</div>
+<div class="lg:col-span-9 grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="bg-surface-container-low p-space-md rounded-lg flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">local_drink</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Ingestion Protocol</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Swallow whole with a full glass of water. Can be taken with or without food. Taking with meals may reduce potential minor gastric irritation.
+              </p>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-error flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">block</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Polypharmacy Check</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                Do not combine with any cold syrups, sinus capsules, or prescription analgesics that also contain Acetaminophen / APAP.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Action & Dispensation Protocol Bar (Sticky / Bottom Area) -->
+<section class="w-full bg-surface-container-lowest rounded-xl shadow-md p-space-lg mb-space-xl">
+<div class="flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-space-lg">
+<!-- Left: Quantity Calculation & Immediate Purchase Action -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-lg">
+<!-- Interactive Stepper -->
+<div class="flex items-center bg-surface-container-low rounded-lg p-1">
+<button aria-label="Decrease Quantity" class="w-9 h-9 flex items-center justify-center rounded bg-surface-container-lowest hover:bg-surface-container text-on-surface transition-colors shadow-xs" id="qty-minus">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<div class="px-space-md flex flex-col items-center">
+<span class="font-code-mono text-code-mono font-bold text-on-surface text-[14px]" id="qty-display">1</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant -mt-0.5">Strip (10 tabs)</span>
+</div>
+<button aria-label="Increase Quantity" class="w-9 h-9 flex items-center justify-center rounded bg-surface-container-lowest hover:bg-surface-container text-on-surface transition-colors shadow-xs" id="qty-plus">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+<!-- Total Breakdown Calculation -->
+<div class="flex flex-col">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Payable:</span>
+<span class="font-headline-md text-headline-md font-bold text-primary" id="price-total">₹25.00</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="tabs-summary">Total: ₹25.00 for 10 tablets</span>
+</div>
+<!-- Primary CTA -->
+<button class="bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg font-semibold px-space-xl py-space-md rounded-lg shadow-sm transition-all flex items-center justify-center gap-space-xs active:scale-[0.99]">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+          Order Formulation Now
+        </button>
+</div>
+<!-- Right: Prescription Notice Toggle & Direct Uplink -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center gap-space-md pt-space-md xl:pt-0 border-t xl:border-t-0 border-surface-container">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Specialized Schedule H or Combined Formulation?</span>
+<span class="font-body-sm text-body-sm text-on-surface">Doctor prescription verified electronically</span>
+</div>
+<a class="inline-flex items-center gap-space-xs bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-space-md py-space-sm rounded-lg font-label-md text-label-md font-medium transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px] text-tertiary">upload_file</span>
+          Upload Prescription
+        </a>
+</div>
+</div>
+<!-- Clinical Support Terminal Notice -->
+<div class="mt-space-md pt-space-sm border-t border-surface-container flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-sm text-label-sm font-label-sm text-on-surface-variant">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-primary">support_agent</span>
+<span>Need clinical help? Speak with on-duty clinical pharmacist <strong class="text-on-surface">Dr. Rajesh Sharma (Terminal #04)</strong></span>
+</div>
+<div class="flex items-center gap-space-md">
+<span class="flex items-center gap-1 text-primary">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+          Live In-House Dispenser Online
+        </span>
+<a class="text-tertiary hover:underline font-semibold" href="#">Start Secure Consultation</a>
+</div>
+</div>
+</section>
+<!-- Interactive JavaScript logic for dynamic unit pricing calculation -->
+<script>
+    (function() {
+      const minusBtn = document.getElementById('qty-minus');
+      const plusBtn = document.getElementById('qty-plus');
+      const qtyDisplay = document.getElementById('qty-display');
+      const priceTotal = document.getElementById('price-total');
+      const tabsSummary = document.getElementById('tabs-summary');
+
+      let currentQty = 1;
+      const unitPackPrice = 25.0; // ₹25.00 for 10 tablets
+
+      function updateCalc() {
+        qtyDisplay.textContent = currentQty;
+        const total = (currentQty * unitPackPrice).toFixed(2);
+        const totalTabs = currentQty * 10;
+        priceTotal.textContent = '₹' + total;
+        tabsSummary.textContent = 'Total: ₹' + total + ' for ' + totalTabs + ' tablets';
+      }
+
+      minusBtn.addEventListener('click', function() {
+        if (currentQty > 1) {
+          currentQty--;
+          updateCalc();
+        }
+      });
+
+      plusBtn.addEventListener('click', function() {
+        if (currentQty < 10) {
+          currentQty++;
+          updateCalc();
+        }
+      });
+    })();
+  </script>
+</div></main><footer class="w-full bg-surface-container-low py-space-xl"><div class="w-full px-gutter-desktop flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm text-primary">Abha Pharmacy</span><span class="font-body-sm text-body-sm">© 2024 Licensed Ministry of Health Dispensation Facility. All rights reserved.</span></div><div class="flex items-center gap-space-lg"><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Emergency Hotline: 937</a><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Patient Privacy Policy</a><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Clinical Drug Formulary</a></div></div></footer></body></html>

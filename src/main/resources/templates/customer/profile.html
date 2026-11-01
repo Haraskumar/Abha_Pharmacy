@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Customer Profile - Abha Pharmacy</title>
+    <link rel="icon" type="image/png" th:href="@{/images/favicon-32.png}" href="/images/favicon-32.png"/>
+    <link rel="apple-touch-icon" th:href="@{/images/favicon.png}" href="/images/favicon.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:"#005f49","primary-container":"#0d7a5f","on-primary":"#ffffff",surface:"#faf8ff","surface-container-lowest":"#ffffff","surface-container-low":"#f2f3ff","surface-container":"#eaedff","surface-container-high":"#e2e7ff","on-surface":"#131b2e","on-surface-variant":"#3e4944",outline:"#6e7a74","outline-variant":"#bdc9c2","secondary-container":"#a6eed2","on-secondary-container":"#266e58",error:"#ba1a1a"}}}}</script>
+</head>
+<body class="bg-surface text-on-surface font-[Inter] min-h-screen">
+    <!-- Header -->
+    <header th:replace="~{customer/fragments/customer_header :: header}"></header>
+
+    <!-- Main Content -->
+    <main class="w-full pt-20 pb-12 px-8 max-w-5xl mx-auto">
+        <!-- Flash messages -->
+        <div th:if="${success}" class="w-full bg-emerald-50 text-emerald-800 p-4 rounded-xl mb-6 flex items-center gap-2 text-sm shadow-sm border border-emerald-200">
+            <span class="material-symbols-outlined text-[20px]">check_circle</span>
+            <span th:text="${success}"></span>
+        </div>
+        <div th:if="${error}" class="w-full bg-red-50 text-red-800 p-4 rounded-xl mb-6 flex items-center gap-2 text-sm shadow-sm border border-red-200">
+            <span class="material-symbols-outlined text-[20px]">error</span>
+            <span th:text="${error}"></span>
+        </div>
+
+        <!-- Identity Banner -->
+        <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div class="w-14 h-14 rounded-2xl bg-primary-container text-on-primary flex items-center justify-center text-xl font-bold font-[Plus_Jakarta_Sans]" th:text="${customer != null and customer.firstName != null ? customer.firstName.substring(0,1) : 'P'}">
+                    P
+                </div>
+                <div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <h2 class="text-2xl font-bold text-on-surface font-[Plus_Jakarta_Sans]" th:text="${customer != null ? (customer.firstName + ' ' + (customer.lastName != null ? customer.lastName : '')) : 'Patient'}">Patient Name</h2>
+                        <span class="bg-surface-container font-mono text-xs px-2.5 py-0.5 rounded-lg text-primary font-bold" th:text="'CUST-' + ${session.customerId}">CUST-00</span>
+                        <span class="bg-secondary-container text-on-secondary-container text-xs px-2.5 py-0.5 rounded-full font-semibold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[13px]">verified_user</span>
+                            Verified Patient
+                        </span>
+                    </div>
+                    <p class="text-xs text-on-surface-variant mt-1">
+                        Abha Pharmacy Patient Account • Registered &amp; Verified
+                    </p>
+                </div>
+            </div>
+            <div>
+                <button onclick="document.getElementById('editProfileModal').classList.remove('hidden')" class="px-4 py-2 bg-primary text-on-primary rounded-xl text-xs font-semibold hover:opacity-95 transition-opacity flex items-center gap-1.5 shadow-sm">
+                    <span class="material-symbols-outlined text-[16px]">edit</span>
+                    <span>Edit Profile &amp; Address</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Profile Details Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+            <div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex flex-col justify-between">
+                <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Full Legal Name</span>
+                <div class="my-2">
+                    <p class="text-lg font-bold text-on-surface" th:text="${customer != null ? (customer.firstName + ' ' + (customer.lastName != null ? customer.lastName : '')) : ''}">Name</p>
+                    <p class="text-xs text-on-surface-variant mt-0.5" th:text="'First: ' + (${customer != null ? customer.firstName : ''}) + ' • Last: ' + (${customer != null ? customer.lastName : ''})"></p>
+                </div>
+                <span class="text-[11px] text-outline">Verified Identity</span>
+            </div>
+
+            <div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex flex-col justify-between">
+                <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Contact Email</span>
+                <div class="my-2">
+                    <p class="text-sm font-bold text-on-surface break-all" th:text="${customer != null ? customer.email : ''}">email@domain.com</p>
+                    <p class="text-xs text-primary font-semibold mt-0.5 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">check_circle</span> Primary Notification
+                    </p>
+                </div>
+                <span class="text-[11px] text-outline">Unique Account Identifier</span>
+            </div>
+
+            <div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex flex-col justify-between">
+                <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Registered Phone</span>
+                <div class="my-2">
+                    <p class="text-lg font-bold text-on-surface font-mono" th:text="${phone != null and !phone.isEmpty() ? phone : 'Not Provided'}">+91 00000 00000</p>
+                    <p class="text-xs text-on-surface-variant mt-0.5">Primary Contact • Delivery Alerts</p>
+                </div>
+                <span class="text-[11px] text-outline">Used for Delivery Alerts</span>
+            </div>
+
+            <div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex flex-col justify-between">
+                <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Demographics</span>
+                <div class="my-2">
+                    <p class="text-sm font-semibold text-on-surface">
+                        <span th:text="${customer != null and customer.dateOfBirth != null ? 'DOB: ' + customer.dateOfBirth : 'DOB: N/A'}"></span>
+                        •
+                        <span th:text="${customer != null and customer.gender != null ? customer.gender : 'N/A'}"></span>
+                    </p>
+                    <p class="text-xs text-on-surface-variant mt-0.5">Age-restricted Formulary Check</p>
+                </div>
+                <span class="text-[11px] text-outline">Standard Patient Record</span>
+            </div>
+
+            <div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex flex-col justify-between">
+                <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Registration Date</span>
+                <div class="my-2">
+                    <p class="text-base font-bold text-on-surface font-mono" th:text="${customer != null and customer.registrationDate != null ? customer.registrationDate : 'N/A'}">2024-01-01</p>
+                    <p class="text-xs text-on-surface-variant mt-0.5">Active Account Status</p>
+                </div>
+                <span class="text-[11px] text-outline">Permanent Record</span>
+            </div>
+
+            <div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex flex-col justify-between">
+                <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Account Security</span>
+                <div class="my-2">
+                    <p class="text-sm font-bold text-primary flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px]">verified_user</span> Password Protected
+                    </p>
+                    <p class="text-xs text-on-surface-variant mt-0.5">Your credentials are encrypted &amp; secure</p>
+                </div>
+                <span class="text-[11px] text-outline">Secure Login Enabled</span>
+            </div>
+        </div>
+
+        <!-- Address Box -->
+        <div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border border-outline-variant/30">
+            <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 mt-0.5">
+                    <span class="material-symbols-outlined text-[24px]">home_pin</span>
+                </div>
+                <div>
+                    <span class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider block mb-1">Registered Delivery Address</span>
+                    <p class="text-base font-bold text-on-surface" th:text="${customer != null ? (customer.houseNo + ', ' + customer.street) : 'Address not set'}">House No. 12A, Main Street</p>
+                    <p class="text-xs text-on-surface-variant mt-0.5" th:text="${customer != null ? (customer.city + ' • Pincode: ' + customer.pincode) : ''}">City • Pincode</p>
+                </div>
+            </div>
+            <button onclick="document.getElementById('editProfileModal').classList.remove('hidden')" class="px-4 py-2 bg-surface-container-low hover:bg-surface-container text-on-surface rounded-xl text-xs font-semibold transition-colors">
+                Change Address
+            </button>
+        </div>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-surface-container-lowest rounded-2xl shadow-xl max-w-lg w-full p-6 border border-outline-variant/30">
+            <div class="flex items-center justify-between pb-4 border-b border-surface-container">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-[20px]">edit</span>
+                    <h3 class="text-base font-bold text-on-surface font-[Plus_Jakarta_Sans]">Update Profile &amp; Address</h3>
+                </div>
+                <button onclick="document.getElementById('editProfileModal').classList.add('hidden')" class="text-on-surface-variant hover:text-on-surface">
+                    <span class="material-symbols-outlined text-[20px]">close</span>
+                </button>
+            </div>
+            <form th:action="@{/customer/profile/update}" method="post" class="mt-4 flex flex-col gap-3">
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-on-surface-variant uppercase mb-1">First Name</label>
+                        <input type="text" name="firstName" th:value="${customer != null ? customer.firstName : ''}" required class="w-full h-9 px-3 rounded-lg bg-surface-container-low border border-outline-variant text-sm"/>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-on-surface-variant uppercase mb-1">Last Name</label>
+                        <input type="text" name="lastName" th:value="${customer != null ? customer.lastName : ''}" required class="w-full h-9 px-3 rounded-lg bg-surface-container-low border border-outline-variant text-sm"/>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-on-surface-variant uppercase mb-1">Phone Number</label>
+                    <input type="tel" name="phone" th:value="${phone}" placeholder="9876543210" class="w-full h-9 px-3 rounded-lg bg-surface-container-low border border-outline-variant text-sm"/>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-on-surface-variant uppercase mb-1">House No</label>
+                        <input type="text" name="houseNo" th:value="${customer != null ? customer.houseNo : ''}" required class="w-full h-9 px-3 rounded-lg bg-surface-container-low border border-outline-variant text-sm"/>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-on-surface-variant uppercase mb-1">Street</label>
+                        <input type="text" name="street" th:value="${customer != null ? customer.street : ''}" required class="w-full h-9 px-3 rounded-lg bg-surface-container-low border border-outline-variant text-sm"/>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-on-surface-variant uppercase mb-1">City</label>
+                        <input type="text" name="city" th:value="${customer != null ? customer.city : ''}" required class="w-full h-9 px-3 rounded-lg bg-surface-container-low border border-outline-variant text-sm"/>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-on-surface-variant uppercase mb-1">Pincode</label>
+                        <input type="text" name="pincode" th:value="${customer != null ? customer.pincode : ''}" required class="w-full h-9 px-3 rounded-lg bg-surface-container-low border border-outline-variant text-sm"/>
+                    </div>
+                </div>
+                <div class="pt-3 flex justify-end gap-2 border-t border-surface-container mt-2">
+                    <button type="button" onclick="document.getElementById('editProfileModal').classList.add('hidden')" class="px-4 py-2 bg-surface-container-low text-on-surface rounded-lg text-xs font-semibold hover:bg-surface-container transition-colors">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-5 py-2 bg-primary text-on-primary rounded-lg text-xs font-semibold hover:opacity-95 transition-opacity">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

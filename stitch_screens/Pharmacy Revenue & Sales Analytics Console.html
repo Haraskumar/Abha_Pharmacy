@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface": "#faf8ff", "on-secondary-fixed-variant": "#00513e", "on-error-container": "#93000a", "inverse-primary": "#7cd8b8", "tertiary-fixed-dim": "#93ccff", "tertiary-container": "#0071ac", "on-surface": "#131b2e", "background": "#faf8ff", "tertiary-fixed": "#cce5ff", "on-tertiary-container": "#e1efff", "secondary": "#206a54", "on-primary-fixed-variant": "#00513e", "surface-variant": "#dae2fd", "error-container": "#ffdad6", "secondary-container": "#a6eed2", "on-surface-variant": "#3e4944", "outline": "#6e7a74", "surface-container-high": "#e2e7ff", "surface-container-lowest": "#ffffff", "primary-fixed": "#98f4d3", "error": "#ba1a1a", "surface-container-highest": "#dae2fd", "outline-variant": "#bdc9c2", "on-primary-fixed": "#002117", "on-tertiary-fixed-variant": "#004b73", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "inverse-surface": "#283044", "on-secondary": "#ffffff", "surface-tint": "#006c53", "on-error": "#ffffff", "on-secondary-container": "#266e58", "on-background": "#131b2e", "primary": "#005f49", "secondary-fixed-dim": "#8ed5ba", "primary-fixed-dim": "#7cd8b8", "inverse-on-surface": "#eef0ff", "surface-container-low": "#f2f3ff", "on-secondary-fixed": "#002117", "on-primary-container": "#a8ffdf", "on-tertiary-fixed": "#001d31", "primary-container": "#0d7a5f", "tertiary": "#005886", "surface-container": "#eaedff", "surface-bright": "#faf8ff", "secondary-fixed": "#a9f1d5", "surface-dim": "#d2d9f4" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin-desktop": "2rem", "margin": "1rem", "space-xl": "1.5rem", "space-lg": "1rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1rem", "space-md": "0.75rem", "gutter-desktop": "1.5rem" }, "fontFamily": { "label-lg": [ "Inter" ], "body-lg": [ "Inter" ], "body-md": [ "Inter" ], "headline-md": [ "Plus Jakarta Sans" ], "label-sm": [ "Inter" ], "body-sm": [ "Inter" ], "headline-sm": [ "Plus Jakarta Sans" ], "code-mono": [ "JetBrains Mono" ], "display-lg": [ "Plus Jakarta Sans" ], "label-md": [ "Inter" ], "headline-lg": [ "Plus Jakarta Sans" ] }, "fontSize": { "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "500" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-md": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "headline-sm": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ], "code-mono": [ "12px", { "lineHeight": "16px", "fontWeight": "500" } ], "display-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.025em", "fontWeight": "600" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface text-on-surface font-body-md text-body-md"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col justify-between py-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col gap-space-lg"><div class="px-space-lg flex items-center gap-space-md"><img alt="Brand logo. - Primary color: #0d7a5f
+- Font: plusJakartaSans
+- Mode: light
+- Roundness: rounded-sm
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XTFfPMFs6lpg3XvevtJc4wDvFpbJTrfVLYUKLsJJHSrHljnWKj5fC-GJgyQ4DXdec4FV9d7C8lur-dZEYQlThZ94oEELBauJ7PxH3TpLBUs4Im3EVijfLSw5mkxDkFbF-g6JRzulSn_2U1RoJGeuriQOQqXIjh5LpwXNhwmExOBdHhbBq_jbHzlFoIUodJfWfMuVPUdtKrvLR4Cj8kMSx2HDZbx-3Anqn27frWhTQRMdaoP5taW-4JHQs"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-none">Abha Core</span><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase mt-0.5">Pharma OS</span></div></div><div class="px-space-md"><div class="h-px w-full bg-surface-container-highest"></div></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-semibold rounded-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span>Dashboard</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="pos-walk-in" href="#"><span class="material-symbols-outlined text-[20px]">point_of_sale</span>POS Walk-in</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="prescriptions-queue" href="#"><span class="material-symbols-outlined text-[20px]">clinical_notes</span>Prescriptions Queue</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="inventory-batches" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span>Inventory &amp; Batches</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="schedule-h-h1-register" href="#"><span class="material-symbols-outlined text-[20px]">gavel</span>Schedule H &amp; H1 Register</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="online-orders" href="#"><span class="material-symbols-outlined text-[20px]">shopping_bag</span>Online Orders</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="alerts" href="#"><span class="material-symbols-outlined text-[20px]">warning</span>Alerts</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="suppliers" href="#"><span class="material-symbols-outlined text-[20px]">local_shipping</span>Suppliers</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="reports" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span>Reports</a></nav></div><div class="px-space-md flex flex-col gap-space-xs"><div class="bg-surface-container-lowest p-space-md rounded-lg shadow-[0_1px_2px_rgba(15,23,42,0.04)]"><div class="flex items-center justify-between mb-space-xs"><span class="font-label-sm text-label-sm text-outline">Dispensary Gate</span><span class="w-2 h-2 rounded-full bg-secondary"></span></div><p class="font-code-mono text-code-mono text-on-surface font-semibold">DISP-TERMINAL-04</p></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-gutter-desktop"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-full"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span></span><span class="font-label-sm text-label-sm text-secondary font-semibold uppercase tracking-wider">Gateway Online • CDSCO Synced</span></div><div class="hidden md:flex items-center gap-space-xs text-outline font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px]">schedule</span><span>Next Audit: 18:00 IST</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-md text-right"><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface font-semibold">Pharm. Rajesh Varma, R.Ph</span><span class="font-code-mono text-code-mono text-outline">Lic #PB-DL-19842A</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="p-margin-desktop flex flex-col gap-space-xl">
+<!-- Top Header Banner & Context -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-lg text-headline-lg text-on-surface">Reports &amp; Revenue Audits</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Dynamic JDBC Aggregation • Live Ledger Synced
+          </span>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+<span>Duty In-Charge:</span>
+<span class="font-label-md text-label-md text-on-surface">Dr. Rajesh Sharma, Pharmacist &amp; Admin</span>
+<span class="font-code-mono text-code-mono text-outline">Lic #PB-PHA-2018-4912</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm self-start md:self-auto">
+<button class="flex items-center gap-space-xs px-space-md py-space-sm bg-surface-container-lowest text-on-surface font-label-md text-label-md rounded-lg shadow-sm hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px] text-tertiary">table_view</span>
+<span>Download Excise CSV</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-space-sm bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-sm hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+<span>Export Form GSTR-1 PDF</span>
+</button>
+</div>
+</div>
+<!-- Filter Ribbon Bar -->
+<div class="bg-surface-container-lowest p-space-sm rounded-lg shadow-sm flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-1 bg-surface-container-low p-1 rounded-md">
+<button class="px-space-md py-1 rounded text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface transition-colors">Today</button>
+<button class="px-space-md py-1 rounded text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface transition-colors">This Week</button>
+<button class="px-space-md py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm shadow-sm">This Month</button>
+<button class="px-space-md py-1 rounded text-on-surface-variant font-label-sm text-label-sm hover:text-on-surface transition-colors">Year-to-Date</button>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-space-xs px-space-md py-1.5 bg-surface-container-low rounded-md text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-outline">calendar_month</span>
+<span class="font-code-mono text-code-mono">01/10/2024 - 24/10/2024</span>
+<span class="font-label-sm text-label-sm text-outline ml-1">(24 Days Active)</span>
+</div>
+<button class="p-1.5 text-outline hover:text-on-surface rounded hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Section 1: Executive Metrics Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Total Net Revenue</span>
+<span class="font-code-mono text-[26px] font-bold text-on-surface mt-1">₹1,48,250.00</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>+14.2%
+          </span>
+</div>
+<div class="mt-space-md pt-space-sm border-t-0 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">385 Completed sales orders</span>
+<span class="material-symbols-outlined text-[20px] text-primary">account_balance_wallet</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Gross Sales Volume</span>
+<span class="font-code-mono text-[26px] font-bold text-on-surface mt-1">385 <span class="text-sm font-normal text-outline">Orders</span></span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-tertiary font-label-sm text-label-sm">
+            Atomic Sync
+          </span>
+</div>
+<div class="mt-space-md pt-space-sm flex flex-col gap-1">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>298 Walk-in POS</span>
+<span>87 Delivery/App</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container-high rounded-full overflow-hidden flex">
+<div class="h-full bg-primary" style="width: 77%"></div>
+<div class="h-full bg-tertiary" style="width: 23%"></div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Average Order Value (AOV)</span>
+<span class="font-code-mono text-[26px] font-bold text-on-surface mt-1">₹385.06</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm flex items-center gap-0.5">
+            +₹22.50
+          </span>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Across OTC &amp; Prescription items</span>
+<span class="material-symbols-outlined text-[20px] text-secondary">receipt_long</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Prescription vs OTC Split</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-code-mono text-[20px] font-bold text-primary">62%</span>
+<span class="font-label-sm text-label-sm text-outline">Rx</span>
+<span class="font-code-mono text-[20px] font-bold text-tertiary ml-2">38%</span>
+<span class="font-label-sm text-label-sm text-outline">OTC</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[20px] text-outline">medication</span>
+</div>
+<div class="mt-space-md pt-space-sm flex flex-col gap-1">
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden flex">
+<div class="h-full bg-primary" style="width: 62%"></div>
+<div class="h-full bg-tertiary" style="width: 38%"></div>
+</div>
+<div class="flex items-center justify-between font-code-mono text-[11px] text-outline mt-0.5">
+<span>₹91,915.00 Rx</span>
+<span>₹56,335.00 OTC</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Analytics & Trends (60% / 40% Grid) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Left Trajectory Chart: 60% (7 cols) -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-md">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Daily Sales &amp; Cash Flow Trajectory</span>
+<span class="font-body-sm text-body-sm text-outline">Aggregated October 2024 Dispensation Velocity</span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-sm bg-primary"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Walk-in POS</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-sm bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Online Orders</span>
+</div>
+</div>
+</div>
+<!-- Inline High-Fidelity SVG Chart -->
+<div class="w-full h-64 relative flex flex-col justify-end">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 600 200">
+<!-- Gridlines -->
+<line stroke="#eaedff" stroke-width="1" x1="0" x2="600" y1="40" y2="40"></line>
+<line stroke="#eaedff" stroke-width="1" x1="0" x2="600" y1="90" y2="90"></line>
+<line stroke="#eaedff" stroke-width="1" x1="0" x2="600" y1="140" y2="140"></line>
+<line stroke="#eaedff" stroke-width="1" x1="0" x2="600" y1="190" y2="190"></line>
+<!-- Daily Stacked Bars (Oct 1 - Oct 24) -->
+<!-- 1 --> <rect fill="#005f49" height="70" rx="1" width="12" x="15" y="120"></rect>
+<!-- 1 online --> <rect fill="#206a54" height="20" rx="1" width="12" x="15" y="100"></rect>
+<!-- 2 --> <rect fill="#005f49" height="85" rx="1" width="12" x="38" y="105"></rect>
+<!-- 2 online --> <rect fill="#206a54" height="24" rx="1" width="12" x="38" y="81"></rect>
+<!-- 3 --> <rect fill="#005f49" height="65" rx="1" width="12" x="61" y="125"></rect>
+<!-- 3 online --> <rect fill="#206a54" height="15" rx="1" width="12" x="61" y="110"></rect>
+<!-- 4 --> <rect fill="#005f49" height="90" rx="1" width="12" x="84" y="100"></rect>
+<!-- 4 online --> <rect fill="#206a54" height="30" rx="1" width="12" x="84" y="70"></rect>
+<!-- 5 --> <rect fill="#005f49" height="75" rx="1" width="12" x="107" y="115"></rect>
+<!-- 5 online --> <rect fill="#206a54" height="20" rx="1" width="12" x="107" y="95"></rect>
+<!-- 6 (Sunday peak) --> <rect fill="#005f49" height="110" rx="1" width="12" x="130" y="80"></rect>
+<!-- 6 online --> <rect fill="#206a54" height="35" rx="1" width="12" x="130" y="45"></rect>
+<!-- 7 --> <rect fill="#005f49" height="65" rx="1" width="12" x="153" y="125"></rect>
+<!-- 7 online --> <rect fill="#206a54" height="22" rx="1" width="12" x="153" y="103"></rect>
+<!-- 8 --> <rect fill="#005f49" height="80" rx="1" width="12" x="176" y="110"></rect>
+<!-- 8 online --> <rect fill="#206a54" height="25" rx="1" width="12" x="176" y="85"></rect>
+<!-- 9 --> <rect fill="#005f49" height="95" rx="1" width="12" x="199" y="95"></rect>
+<!-- 9 online --> <rect fill="#206a54" height="28" rx="1" width="12" x="199" y="67"></rect>
+<!-- 10 (Peak day ₹8,200) -->
+<rect fill="#005f49" height="120" rx="1" width="12" x="222" y="70"></rect>
+<rect fill="#206a54" height="42" rx="1" width="12" x="222" y="28"></rect>
+<circle cx="228" cy="24" fill="#0071ac" r="3"></circle>
+<!-- 11 --> <rect fill="#005f49" height="80" rx="1" width="12" x="245" y="110"></rect>
+<!-- 11 online --> <rect fill="#206a54" height="20" rx="1" width="12" x="245" y="90"></rect>
+<!-- 12 --> <rect fill="#005f49" height="70" rx="1" width="12" x="268" y="120"></rect>
+<!-- 12 online --> <rect fill="#206a54" height="25" rx="1" width="12" x="268" y="95"></rect>
+<!-- 13 --> <rect fill="#005f49" height="90" rx="1" width="12" x="291" y="100"></rect>
+<!-- 13 online --> <rect fill="#206a54" height="30" rx="1" width="12" x="291" y="70"></rect>
+<!-- 14 --> <rect fill="#005f49" height="85" rx="1" width="12" x="314" y="105"></rect>
+<!-- 14 online --> <rect fill="#206a54" height="24" rx="1" width="12" x="314" y="81"></rect>
+<!-- 15 --> <rect fill="#005f49" height="60" rx="1" width="12" x="337" y="130"></rect>
+<!-- 15 online --> <rect fill="#206a54" height="18" rx="1" width="12" x="337" y="112"></rect>
+<!-- 16 --> <rect fill="#005f49" height="75" rx="1" width="12" x="360" y="115"></rect>
+<!-- 16 online --> <rect fill="#206a54" height="20" rx="1" width="12" x="360" y="95"></rect>
+<!-- 17 --> <rect fill="#005f49" height="85" rx="1" width="12" x="383" y="105"></rect>
+<!-- 17 online --> <rect fill="#206a54" height="25" rx="1" width="12" x="383" y="80"></rect>
+<!-- 18 (Peak Day) -->
+<rect fill="#005f49" height="122" rx="1" width="12" x="406" y="68"></rect>
+<rect fill="#206a54" height="40" rx="1" width="12" x="406" y="28"></rect>
+<circle cx="412" cy="24" fill="#0071ac" r="3"></circle>
+<!-- 19 --> <rect fill="#005f49" height="88" rx="1" width="12" x="429" y="102"></rect>
+<!-- 19 online --> <rect fill="#206a54" height="24" rx="1" width="12" x="429" y="78"></rect>
+<!-- 20 --> <rect fill="#005f49" height="75" rx="1" width="12" x="452" y="115"></rect>
+<!-- 20 online --> <rect fill="#206a54" height="22" rx="1" width="12" x="452" y="93"></rect>
+<!-- 21 --> <rect fill="#005f49" height="92" rx="1" width="12" x="475" y="98"></rect>
+<!-- 21 online --> <rect fill="#206a54" height="28" rx="1" width="12" x="475" y="70"></rect>
+<!-- 22 --> <rect fill="#005f49" height="80" rx="1" width="12" x="498" y="110"></rect>
+<!-- 22 online --> <rect fill="#206a54" height="25" rx="1" width="12" x="498" y="85"></rect>
+<!-- 23 --> <rect fill="#005f49" height="100" rx="1" width="12" x="521" y="90"></rect>
+<!-- 23 online --> <rect fill="#206a54" height="32" rx="1" width="12" x="521" y="58"></rect>
+<!-- 24 (Today's Peak) -->
+<rect fill="#005f49" height="125" rx="1" width="12" x="544" y="65"></rect>
+<rect fill="#206a54" height="45" rx="1" width="12" x="544" y="20"></rect>
+<circle cx="550" cy="16" fill="#0071ac" r="3"></circle>
+<!-- Smooth Trendline Overlay -->
+<path d="M 21 100 Q 84 75 136 45 T 228 28 T 320 81 T 412 28 T 550 20" fill="none" opacity="0.8" stroke="#0071ac" stroke-dasharray="3,3" stroke-width="2"></path>
+</svg>
+<div class="flex items-center justify-between text-outline font-code-mono text-[10px] mt-2 border-t-0 px-2">
+<span>01 OCT</span>
+<span>06 OCT</span>
+<span>10 OCT (₹8.2k)</span>
+<span>15 OCT</span>
+<span>18 OCT (₹8.1k)</span>
+<span>24 OCT (₹8.4k)</span>
+</div>
+</div>
+<div class="mt-space-md bg-surface-container-low p-space-sm rounded-lg flex items-center gap-space-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-[20px]">pace</span>
+<span class="font-body-sm text-body-sm">
+<strong class="font-semibold text-on-surface">Peak Trading Velocity:</strong> 10:00 AM - 1:00 PM &amp; 6:00 PM - 8:30 PM (Dispensation velocity reached 38 orders/hr on Oct 24).
+          </span>
+</div>
+</div>
+<!-- Right Column: Payment Channels & GST-1 Compliance: 40% (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Payment Channels Breakdown -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">Payment &amp; Settlement Mix</span>
+<span class="material-symbols-outlined text-outline text-[18px]">payments</span>
+</div>
+<div class="flex items-center gap-space-lg my-space-xs">
+<!-- Donut Visual (Inline SVG) -->
+<div class="relative w-28 h-28 flex-shrink-0">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<!-- Background ring -->
+<circle cx="18" cy="18" fill="none" r="15.9155" stroke="#eaedff" stroke-width="4"></circle>
+<!-- UPI 58% -->
+<circle cx="18" cy="18" fill="none" r="15.9155" stroke="#005f49" stroke-dasharray="58, 100" stroke-dashoffset="0" stroke-width="4"></circle>
+<!-- Cash 27% -->
+<circle cx="18" cy="18" fill="none" r="15.9155" stroke="#206a54" stroke-dasharray="27, 100" stroke-dashoffset="-58" stroke-width="4"></circle>
+<!-- Card 15% -->
+<circle cx="18" cy="18" fill="none" r="15.9155" stroke="#0071ac" stroke-dasharray="15, 100" stroke-dashoffset="-85" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+<span class="font-code-mono text-label-sm font-bold text-on-surface">385</span>
+<span class="font-label-sm text-[9px] text-outline uppercase">Trans</span>
+</div>
+</div>
+<!-- Legend and Details -->
+<div class="flex flex-col gap-space-xs flex-1">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-body-sm text-body-sm text-on-surface">UPI / Dynamic QR</span>
+</div>
+<span class="font-code-mono text-label-md font-semibold text-on-surface">₹85,985.00 <span class="text-outline text-body-sm font-normal">(58%)</span></span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-body-sm text-on-surface">Counter Cash</span>
+</div>
+<span class="font-code-mono text-label-md font-semibold text-on-surface">₹40,027.50 <span class="text-outline text-body-sm font-normal">(27%)</span></span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary-container"></span>
+<span class="font-body-sm text-body-sm text-on-surface">POS Debit/Credit</span>
+</div>
+<span class="font-code-mono text-label-md font-semibold text-on-surface">₹22,237.50 <span class="text-outline text-body-sm font-normal">(15%)</span></span>
+</div>
+</div>
+</div>
+</div>
+<!-- GST-1 Compliance Audit Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between flex-1">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface">Tax Compliance (GST-1)</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold">RECONCILED</span>
+</div>
+<div class="flex flex-col gap-space-xs py-space-xs font-body-sm text-body-sm">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span>Gross MRP Retail Turnover</span>
+<span class="font-code-mono text-on-surface">₹1,55,420.00</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant">
+<span>Healthcare Discounts Granted</span>
+<span class="font-code-mono text-error">-₹7,170.00</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-medium">
+<span>Net Taxable Turnover</span>
+<span class="font-code-mono text-on-surface font-semibold">₹1,32,366.00</span>
+</div>
+<div class="flex items-center justify-between text-outline text-[12px]">
+<span>Central GST (CGST 6.0%)</span>
+<span class="font-code-mono">₹7,942.00</span>
+</div>
+<div class="flex items-center justify-between text-outline text-[12px]">
+<span>State GST (SGST 6.0%)</span>
+<span class="font-code-mono">₹7,942.00</span>
+</div>
+</div>
+<div class="mt-space-xs pt-space-xs bg-surface-container-low px-space-md py-space-sm rounded-lg flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Total GST Remitted</span>
+<span class="font-code-mono text-label-lg font-bold text-primary">₹15,884.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: High-Velocity Formulations Ledger (Data Table) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-space-lg flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Top 10 High-Velocity Formulations Ledger</span>
+<span class="font-body-sm text-body-sm text-outline">Real-time prescription dispensation velocity &amp; stock revenue contribution</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="pl-8 pr-3 py-1 bg-surface-container-low rounded-md text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none focus:bg-surface-container-high transition-colors" placeholder="Filter formulation..." type="text"/>
+</div>
+<button class="flex items-center gap-1 px-3 py-1 bg-surface-container-low text-on-surface font-label-sm text-label-sm rounded-md hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+            Export
+          </button>
+</div>
+</div>
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container-low text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<tr>
+<th class="py-2.5 px-space-lg">Rank</th>
+<th class="py-2.5 px-space-lg">Formulation &amp; Brand</th>
+<th class="py-2.5 px-space-lg">Active Generic Salt</th>
+<th class="py-2.5 px-space-lg">Category</th>
+<th class="py-2.5 px-space-lg text-right">Units Dispensed</th>
+<th class="py-2.5 px-space-lg text-right">Unit MRP</th>
+<th class="py-2.5 px-space-lg text-right">Total Revenue</th>
+<th class="py-2.5 px-space-lg text-center">Batch Status</th>
+</tr>
+</thead>
+<tbody class="divide-none">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-sm px-space-lg font-code-mono font-bold text-primary">#01</td>
+<td class="py-space-sm px-space-lg">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Augmentin 625 Duo</span>
+<span class="font-code-mono text-[11px] text-outline">GSK • 10 Tabs Strip</span>
+</div>
+</td>
+<td class="py-space-sm px-space-lg text-on-surface-variant">Amoxicillin (500mg) + Clavulanic Acid (125mg)</td>
+<td class="py-space-sm px-space-lg">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-[10px] font-semibold">ANTIBIOTIC</span>
+</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono font-medium text-on-surface">420 Strips</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono text-outline">₹201.20</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono font-bold text-on-surface">₹84,504.00</td>
+<td class="py-space-sm px-space-lg text-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Available
+                </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest">
+<td class="py-space-sm px-space-lg font-code-mono font-bold text-primary">#02</td>
+<td class="py-space-sm px-space-lg">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Dolo 650mg Tablets</span>
+<span class="font-code-mono text-[11px] text-outline">Micro Labs • 15 Tabs Blister</span>
+</div>
+</td>
+<td class="py-space-sm px-space-lg text-on-surface-variant">Paracetamol IP (650mg)</td>
+<td class="py-space-sm px-space-lg">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-tertiary font-label-sm text-[10px] font-semibold">ANALGESIC</span>
+</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono font-medium text-on-surface">850 Strips</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono text-outline">₹30.90</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono font-bold text-on-surface">₹26,265.00</td>
+<td class="py-space-sm px-space-lg text-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Available
+                </span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-sm px-space-lg font-code-mono font-bold text-primary">#03</td>
+<td class="py-space-sm px-space-lg">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Glycomet 500mg SR</span>
+<span class="font-code-mono text-[11px] text-outline">USV Ltd • 20 Tabs Strip</span>
+</div>
+</td>
+<td class="py-space-sm px-space-lg text-on-surface-variant">Metformin Hydrochloride (500mg SR)</td>
+<td class="py-space-sm px-space-lg">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-secondary font-label-sm text-[10px] font-semibold">DIABETES</span>
+</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono font-medium text-on-surface">340 Strips</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono text-outline">₹44.15</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono font-bold text-on-surface">₹15,011.00</td>
+<td class="py-space-sm px-space-lg text-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Available
+                </span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest">
+<td class="py-space-sm px-space-lg font-code-mono font-bold text-primary">#04</td>
+<td class="py-space-sm px-space-lg">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Pan-40 Tablets</span>
+<span class="font-code-mono text-[11px] text-outline">Alkem • 15 Tabs Alu-Alu</span>
+</div>
+</td>
+<td class="py-space-sm px-space-lg text-on-surface-variant">Pantoprazole Sodium (40mg)</td>
+<td class="py-space-sm px-space-lg">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-outline font-label-sm text-[10px] font-semibold">ANTACID / PPI</span>
+</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono font-medium text-on-surface">190 Strips</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono text-outline">₹68.00</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono font-bold text-on-surface">₹12,920.00</td>
+<td class="py-space-sm px-space-lg text-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Low: 8 Left
+                </span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors">
+<td class="py-space-sm px-space-lg font-code-mono font-bold text-primary">#05</td>
+<td class="py-space-sm px-space-lg">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Cetzine 10mg</span>
+<span class="font-code-mono text-[11px] text-outline">Dr. Reddy's • 10 Tabs</span>
+</div>
+</td>
+<td class="py-space-sm px-space-lg text-on-surface-variant">Cetirizine Dihydrochloride (10mg)</td>
+<td class="py-space-sm px-space-lg">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-tertiary-container font-label-sm text-[10px] font-semibold">ANTIHISTAMINE</span>
+</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono font-medium text-on-surface">260 Strips</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono text-outline">₹21.40</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono font-bold text-on-surface">₹5,564.00</td>
+<td class="py-space-sm px-space-lg text-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Available
+                </span>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-lowest">
+<td class="py-space-sm px-space-lg font-code-mono font-bold text-primary">#06</td>
+<td class="py-space-sm px-space-lg">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Amoxil 500mg Caps</span>
+<span class="font-code-mono text-[11px] text-outline">GSK • 15 Capsules</span>
+</div>
+</td>
+<td class="py-space-sm px-space-lg text-on-surface-variant">Amoxicillin Trihydrate (500mg)</td>
+<td class="py-space-sm px-space-lg">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-[10px] font-semibold">ANTIBIOTIC</span>
+</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono font-medium text-on-surface">54 Strips</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono text-outline">₹74.00</td>
+<td class="py-space-sm px-space-lg text-right font-code-mono font-bold text-on-surface">₹3,996.00</td>
+<td class="py-space-sm px-space-lg text-center">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Available
+                </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Bottom Pagination & Regulatory Statement -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant">
+          Displaying top 6 high-demand medicines out of <strong class="font-semibold text-on-surface">1,420 active SKUs</strong>
+</span>
+<div class="flex items-center gap-space-sm">
+<span class="font-code-mono text-[11px] text-outline">
+            Statutory Audit: Atomic batch linkages verified
+          </span>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded hover:bg-surface-container-high text-outline transition-colors" disabled="">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<span class="font-code-mono text-body-sm px-2 text-on-surface font-semibold">1</span>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

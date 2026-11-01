@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/fragments/admin_head :: head}">
+    <title>Fulfill Prescription - Abha Pharmacy Admin</title>
+</head>
+<body class="bg-surface-container-low font-body-md text-on-surface antialiased min-h-screen flex flex-col">
+    <header th:replace="~{admin/fragments/admin_header :: header}"></header>
+
+    <main class="flex-1 p-6 max-w-5xl w-full mx-auto space-y-6">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <a th:href="@{/admin/prescriptions}" class="p-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:text-slate-900 transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                </a>
+                <div>
+                    <h1 class="font-headline-lg text-headline-lg font-bold text-on-surface">Fulfill Prescription Order</h1>
+                    <p class="text-xs text-on-surface-variant font-mono" th:text="'Prescription Reference #' + ${prescription.prescriptionId}">Rx #00</p>
+                </div>
+            </div>
+            <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-amber-100 text-amber-800">Verification Pending</span>
+        </div>
+
+        <!-- Prescription Context Summary & Image View -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div class="md:col-span-4" th:if="${prescription.prescriptionImageUrl != null and !prescription.prescriptionImageUrl.isEmpty()}">
+                <span class="text-xs text-slate-500 uppercase tracking-wider font-semibold block mb-2">Prescription Scan</span>
+                <a th:href="@{'/files/prescriptions/' + ${prescription.prescriptionImageUrl}}" target="_blank" class="block group relative">
+                    <img th:src="@{'/files/prescriptions/' + ${prescription.prescriptionImageUrl}}" alt="Prescription Scan" class="w-full h-56 object-cover rounded-xl border border-slate-200 group-hover:opacity-95 transition-opacity bg-slate-50">
+                    <span class="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2.5 py-1 rounded-lg flex items-center gap-1 backdrop-blur-xs font-semibold">
+                        <span class="material-symbols-outlined text-[14px]">zoom_in</span> Full View
+                    </span>
+                </a>
+            </div>
+            <div th:class="${prescription.prescriptionImageUrl != null and !prescription.prescriptionImageUrl.isEmpty()} ? 'md:col-span-8 space-y-4' : 'md:col-span-12 space-y-4'">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <span class="text-xs text-slate-500 uppercase tracking-wider font-semibold block mb-1">Upload Timestamp</span>
+                        <p class="text-sm font-bold text-slate-800 font-mono" th:text="${prescription.uploadDate} + (${prescription.uploadTime != null ? ' ' + prescription.uploadTime : ''})">2024-01-01</p>
+                        <p class="text-xs text-slate-500 mt-0.5" th:text="'Customer ID: CUST-' + ${prescription.customerId}">CUST-00</p>
+                    </div>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-500 uppercase tracking-wider font-semibold block mb-1">Patient Instructions / Doctor Salt Request</span>
+                    <p class="text-sm text-slate-800 bg-slate-50 p-3 rounded-xl border border-slate-100 italic" th:text="${prescription.instructions != null and !prescription.instructions.isEmpty() ? prescription.instructions : 'No specific patient notes.'}">
+                        Instructions...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gemini Clinical AI Prescription Copilot Card -->
+        <div th:if="${aiAnalysis != null}" class="bg-gradient-to-br from-slate-900 via-teal-950 to-slate-900 text-white rounded-2xl p-6 shadow-md border border-teal-500/30 space-y-4">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center border border-teal-500/30">
+                        <span class="material-symbols-outlined text-[24px]">psychology</span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-sm font-bold tracking-wide">Gemini Clinical AI Prescription Copilot</h2>
+                            <span class="bg-teal-400/20 text-teal-300 text-[10px] font-mono px-2.5 py-0.5 rounded-full border border-teal-400/30 font-bold" th:text="'Confidence: ' + ${aiAnalysis.confidenceScore}">Confidence: 96%</span>
+                        </div>
+                        <p class="text-[11px] text-slate-300">Automated OCR salt extraction, physician credentialing &amp; MySQL catalog auto-matching</p>
+                    </div>
+                </div>
+                <button type="button" onclick="autoFillAi()" class="bg-teal-500 hover:bg-teal-400 text-slate-950 text-xs font-bold px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition shadow-sm hover:scale-[1.02] active:scale-[0.98]">
+                    <span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+                    <span>Auto-Fill Dispense Quantities from AI</span>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 text-xs">
+                <div class="bg-white/5 border border-white/10 p-3.5 rounded-xl">
+                    <span class="text-slate-400 block text-[10px] uppercase font-semibold">Detected Prescribing Physician</span>
+                    <strong class="text-white text-xs block mt-0.5" th:text="${aiAnalysis.doctorName}">Dr. R. K. Singhal, MD</strong>
+                    <span class="text-[11px] font-mono text-teal-400" th:text="'Registration: ' + ${aiAnalysis.doctorRegNo}">MCI-REG-19842</span>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-3.5 rounded-xl">
+                    <span class="text-slate-400 block text-[10px] uppercase font-semibold">AI Diagnosed Indication</span>
+                    <strong class="text-white text-xs block mt-0.5" th:text="${aiAnalysis.diagnosis}">Upper Respiratory Tract Infection</strong>
+                    <span class="text-[11px] text-emerald-400 flex items-center gap-1 mt-0.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Schedule H Scrutiny Passed</span>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-3.5 rounded-xl">
+                    <span class="text-slate-400 block text-[10px] uppercase font-semibold">Matched Catalog Formulations</span>
+                    <div class="flex flex-wrap gap-1 mt-1">
+                        <span th:each="it : ${aiAnalysis.matchedItems}" class="bg-teal-500/20 text-teal-300 text-[10px] font-mono px-2 py-0.5 rounded border border-teal-500/30" th:text="${it.medicineName} + ' (' + ${it.suggestedQuantity} + 'x)'">Item (1x)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white/5 border border-white/10 p-3 rounded-xl text-xs text-slate-300 flex items-start gap-2">
+                <span class="material-symbols-outlined text-teal-400 text-[16px] shrink-0 mt-0.5">verified</span>
+                <span th:text="${aiAnalysis.clinicalGuidance}">Clinical Guidance...</span>
+            </div>
+        </div>
+
+        <!-- Medicine Selection & Fulfillment Form -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+            <h2 class="text-base font-bold text-slate-900 mb-1">Dispensing Formulations &amp; Quantities</h2>
+            <p class="text-xs text-slate-500 mb-4">Select items to include in the verified prescription order. Stock will be deducted automatically from active batches.</p>
+
+            <form th:action="@{/admin/prescriptions/fulfill}" method="post" class="space-y-6">
+                <input type="hidden" name="prescriptionId" th:value="${prescription.prescriptionId}"/>
+
+                <div class="overflow-x-auto rounded-xl border border-slate-200">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-teal-50/60 text-slate-700 font-bold uppercase border-b border-teal-100 text-[11px] tracking-wider">
+                            <tr>
+                                <th class="py-3 px-4">Medicine Name &amp; Salt</th>
+                                <th class="py-3 px-4">Category</th>
+                                <th class="py-3 px-4 text-center">In Stock</th>
+                                <th class="py-3 px-4 text-right">Unit Price</th>
+                                <th class="py-3 px-4 text-center">Dispense Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 font-medium">
+                            <tr th:each="m : ${medicines}" class="hover:bg-slate-50/60">
+                                <td class="py-3 px-4">
+                                    <div class="font-bold text-slate-900" th:text="${m.medicineName}">Paracetamol</div>
+                                    <div class="text-[11px] text-slate-500" th:text="${m.genericName}">Salt</div>
+                                </td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px]" th:text="${m.category}">Analgesic</span>
+                                </td>
+                                <td class="py-3 px-4 text-center font-mono font-bold" th:text="${m.totalStock}">0</td>
+                                <td class="py-3 px-4 text-right font-mono font-bold text-teal-800" th:text="${m.latestPrice != null ? '₹' + m.latestPrice : 'N/A'}">₹0.00</td>
+                                <td class="py-3 px-4 text-center">
+                                    <input type="number" th:name="${'qty_' + m.medicineId}" min="0" th:max="${m.totalStock != null ? m.totalStock : 0}" value="0" class="w-20 px-2 py-1 bg-slate-50 border border-slate-300 rounded-lg text-center font-mono font-bold text-xs focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-600/30"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Pharmacist Clinical Remarks &amp; Dosage Instructions</label>
+                    <textarea name="remarks" rows="3" placeholder="e.g. Approved 1x daily after food. Generic parity verified." required class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-600/30"></textarea>
+                </div>
+
+                <div class="pt-4 border-t border-slate-100 flex items-center justify-end gap-3">
+                    <a th:href="@{/admin/prescriptions}" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-semibold text-xs hover:bg-slate-50 transition-colors">
+                        Cancel
+                    </a>
+                    <button type="submit" class="px-6 py-2.5 bg-teal-700 hover:bg-teal-800 text-white rounded-xl font-bold text-xs shadow-sm flex items-center gap-1.5 transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                        <span>Approve &amp; Generate Order</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script th:inline="javascript">
+        function autoFillAi() {
+            /*[# th:if="${aiAnalysis != null}"]*/
+            /*[# th:each="it : ${aiAnalysis.matchedItems}"]*/
+            var medId = /*[[${it.medicineId}]]*/ 0;
+            var suggestedQty = /*[[${it.suggestedQuantity}]]*/ 1;
+            var inputEl = document.querySelector('input[name="qty_' + medId + '"]');
+            if (inputEl) {
+                inputEl.value = suggestedQty;
+                inputEl.classList.remove('bg-slate-50', 'border-slate-300');
+                inputEl.classList.add('bg-teal-50', 'border-teal-600', 'text-teal-900', 'font-black');
+            }
+            /*[/]*/
+            var remarksEl = document.querySelector('textarea[name="remarks"]');
+            if (remarksEl) {
+                var doc = /*[[${aiAnalysis.doctorName}]]*/ 'Dr. R. K. Singhal';
+                var diag = /*[[${aiAnalysis.diagnosis}]]*/ 'Prescription verified';
+                remarksEl.value = "AI Clinical Copilot verified: Formulations matched for " + doc + " (" + diag + "). Batch allocation confirmed under FEFO protocol.";
+                remarksEl.classList.add('border-teal-500', 'bg-teal-50/40');
+            }
+            /*[/]*/
+        }
+    </script>
+</body>
+</html>

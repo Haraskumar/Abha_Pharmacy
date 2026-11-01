@@ -1,0 +1,1397 @@
+[
+  {
+    "id": "TC001",
+    "title": "Customer signs in and reaches the dashboard",
+    "description": "This verifies that a customer can sign in with valid credentials and land on the customer dashboard.",
+    "category": "Customer Authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/customer"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email address field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the customer dashboard is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC002",
+    "title": "Staff can sign in to the operational dashboard",
+    "description": "This test verifies that a staff user can authenticate through the staff portal and reach the staff dashboard.",
+    "category": "Staff Authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the staff dashboard is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC003",
+    "title": "Place an order from the cart",
+    "description": "A signed-in customer can review the cart, choose fulfillment and payment options, and successfully place a pharmacy order.",
+    "category": "Digital Cart & Multi-Item Checkout",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/customer"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the customer login credentials with {{LOGIN_USER}} and {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /customer/cart"
+      },
+      {
+        "type": "action",
+        "description": "Choose a fulfillment mode"
+      },
+      {
+        "type": "action",
+        "description": "Select a payment method"
+      },
+      {
+        "type": "action",
+        "description": "Place the pharmacy order"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a successful order confirmation is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC004",
+    "title": "Staff can process a walk-in sale from the POS",
+    "description": "This test verifies that a staff user can select medicines and batches, enter valid quantities, complete checkout, and see the receipt summary.",
+    "category": "Staff Point of Sale (POS)",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open the POS page"
+      },
+      {
+        "type": "action",
+        "description": "Select a medicine and batch"
+      },
+      {
+        "type": "action",
+        "description": "Enter a valid sale quantity"
+      },
+      {
+        "type": "action",
+        "description": "Complete the checkout"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a receipt summary is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the sale is recorded"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC005",
+    "title": "Access the customer dashboard after login",
+    "description": "A signed-in customer can reach the protected dashboard and see their account overview.",
+    "category": "Customer Authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/customer"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the customer login credentials with {{LOGIN_USER}} and {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /customer/dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the customer dashboard is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC006",
+    "title": "Staff is prevented from entering the dashboard without signing in",
+    "description": "This test verifies that an unauthenticated user cannot access the staff dashboard and is kept on the login flow.",
+    "category": "Staff Authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /admin/dashboard"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the staff login page is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC007",
+    "title": "Access the customer cart after login",
+    "description": "A signed-in customer can open the protected cart page and view their checkout workspace.",
+    "category": "Customer Authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/customer"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the customer login credentials with {{LOGIN_USER}} and {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /customer/cart"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the cart checkout page is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC008",
+    "title": "Block non-owner access to staff management",
+    "description": "This test verifies that a non-owner admin cannot access the staff management page and is kept out of the restricted area.",
+    "category": "Staff Management & RBAC",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for a non-owner staff account"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the staff management page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify access to staff management is denied"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a restricted access message is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC009",
+    "title": "Access the prescription upload page after login",
+    "description": "A signed-in customer can open the protected prescription upload page and see the upload form.",
+    "category": "Customer Authentication",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/customer"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the customer login credentials with {{LOGIN_USER}} and {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /customer/prescription/upload"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the prescription upload page is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC010",
+    "title": "Staff can review and approve a pending prescription",
+    "description": "This test verifies that a staff user can open a pending prescription, review it, approve it with remarks, and see the updated status.",
+    "category": "Prescription Verification Queue",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open the prescription verification queue"
+      },
+      {
+        "type": "action",
+        "description": "Open a pending prescription"
+      },
+      {
+        "type": "action",
+        "description": "Approve the prescription"
+      },
+      {
+        "type": "action",
+        "description": "Add verification remarks"
+      },
+      {
+        "type": "action",
+        "description": "Submit the verification decision"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated verification status is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC011",
+    "title": "Upload a prescription for review",
+    "description": "A signed-in customer can submit a supported prescription file with instructions and receive a confirmation.",
+    "category": "Prescription Upload",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/customer"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the customer login credentials with {{LOGIN_USER}} and {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /customer/prescription/upload"
+      },
+      {
+        "type": "action",
+        "description": "Choose a supported prescription file"
+      },
+      {
+        "type": "action",
+        "description": "Enter doctor or dosage instructions"
+      },
+      {
+        "type": "action",
+        "description": "Submit the prescription"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a prescription submission confirmation is visible"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC012",
+    "title": "Customer reviews medicine details and places an OTC order",
+    "description": "This verifies that a customer can adjust quantity within the allowed range, see the total update, and submit an OTC order from a medicine detail page.",
+    "category": "Clinical Monograph & Direct OTC Ordering",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/customer"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email address field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open a medicine detail page from the catalog"
+      },
+      {
+        "type": "action",
+        "description": "Adjust the quantity to a valid amount"
+      },
+      {
+        "type": "action",
+        "description": "Submit the formulation order"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the order is successfully placed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC013",
+    "title": "Update cart quantities before checkout",
+    "description": "A signed-in customer can change item quantities in the cart and see the order summary update before placing the order.",
+    "category": "Digital Cart & Multi-Item Checkout",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/customer"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the customer login credentials with {{LOGIN_USER}} and {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /customer/cart"
+      },
+      {
+        "type": "action",
+        "description": "Adjust an item quantity in the cart"
+      },
+      {
+        "type": "action",
+        "description": "Review the updated order summary"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the cart reflects the updated quantities and total"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC014",
+    "title": "Staff can correct an over-quantity POS entry before checkout",
+    "description": "This test verifies that the POS shows quantity validation feedback when stock is exceeded and allows the staff user to reduce the quantity and complete checkout.",
+    "category": "Staff Point of Sale (POS)",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open the POS page"
+      },
+      {
+        "type": "action",
+        "description": "Select a medicine and batch"
+      },
+      {
+        "type": "action",
+        "description": "Enter a quantity that exceeds available stock"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a quantity validation error is visible"
+      },
+      {
+        "type": "action",
+        "description": "Reduce the quantity to a valid amount"
+      },
+      {
+        "type": "action",
+        "description": "Complete the checkout"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a receipt summary is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC015",
+    "title": "Add a new staff account",
+    "description": "This test verifies that an owner can create a new staff account and see it appear in the staff list.",
+    "category": "Staff Management & RBAC",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for an owner-level account"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the staff management page"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff member name field with a unique name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff email field with a unique email address"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff password field with a valid password"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff license field with a valid license number"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff salary field with a valid salary amount"
+      },
+      {
+        "type": "action",
+        "description": "Select a staff role"
+      },
+      {
+        "type": "action",
+        "description": "Submit the staff form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new staff account appears in the list"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC016",
+    "title": "Customer searches the catalog and finds matching medicines",
+    "description": "This verifies that a customer can search the medicine catalog and see matching results.",
+    "category": "Medicine Discovery & Search",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /customer/catalog"
+      },
+      {
+        "type": "action",
+        "description": "Type a medicine name into the search field"
+      },
+      {
+        "type": "action",
+        "description": "Apply a category filter"
+      },
+      {
+        "type": "action",
+        "description": "Change the sort order"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify matching medicine results are displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC017",
+    "title": "Customer opens a medicine detail page from catalog results",
+    "description": "This verifies that a customer can open a medicine detail view after browsing the catalog.",
+    "category": "Medicine Discovery & Search",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /customer/catalog"
+      },
+      {
+        "type": "action",
+        "description": "Type a medicine name into the search field"
+      },
+      {
+        "type": "action",
+        "description": "Click a result to view its details"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the medicine detail view is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC018",
+    "title": "Staff can reject a prescription with remarks",
+    "description": "This test verifies that a staff user can reject a pending prescription and record remarks for the decision.",
+    "category": "Prescription Verification Queue",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open the prescription verification queue"
+      },
+      {
+        "type": "action",
+        "description": "Open a pending prescription"
+      },
+      {
+        "type": "action",
+        "description": "Reject the prescription"
+      },
+      {
+        "type": "action",
+        "description": "Add verification remarks"
+      },
+      {
+        "type": "action",
+        "description": "Submit the verification decision"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated verification status is displayed"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC019",
+    "title": "Deactivate an active staff account",
+    "description": "This test verifies that an owner can deactivate an existing active staff account and see it marked inactive.",
+    "category": "Staff Management & RBAC",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for an owner-level account"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the staff management page"
+      },
+      {
+        "type": "action",
+        "description": "Select an active staff account"
+      },
+      {
+        "type": "action",
+        "description": "Deactivate the selected staff account"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the account is marked as inactive"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC020",
+    "title": "Switch fulfillment mode in the cart",
+    "description": "A signed-in customer can switch between delivery and pickup and see the checkout summary update accordingly.",
+    "category": "Digital Cart & Multi-Item Checkout",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/customer"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the customer login credentials with {{LOGIN_USER}} and {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /customer/cart"
+      },
+      {
+        "type": "action",
+        "description": "Choose a different fulfillment mode"
+      },
+      {
+        "type": "action",
+        "description": "Review the updated checkout summary"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected fulfillment mode is reflected in the cart summary"
+      }
+    ],
+    "priority": "High"
+  },
+  {
+    "id": "TC021",
+    "title": "Update the customer profile and address",
+    "description": "A signed-in customer can edit contact and address details and save the updated profile information.",
+    "category": "Patient Profile & Address Management",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/customer"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the customer login credentials with {{LOGIN_USER}} and {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /customer/profile"
+      },
+      {
+        "type": "action",
+        "description": "Open profile editing"
+      },
+      {
+        "type": "action",
+        "description": "Update the address and phone details"
+      },
+      {
+        "type": "action",
+        "description": "Save the changes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the updated profile details are visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC022",
+    "title": "Create a new supplier profile",
+    "description": "A staff user can add a new supplier with complete contact and address details and see it appear in the directory.",
+    "category": "Supplier Directory & Procurement Master",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the staff email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the staff password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/suppliers"
+      },
+      {
+        "type": "action",
+        "description": "Open supplier creation"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the supplier name field with a new supplier name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the supplier contact details fields with valid values"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the supplier address fields with valid values"
+      },
+      {
+        "type": "action",
+        "description": "Submit the supplier form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new supplier record is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC023",
+    "title": "Filter and search the Schedule H register",
+    "description": "A staff user can narrow the statutory ledger by classification and search for matching records by patient, doctor, or batch details.",
+    "category": "Statutory Schedule H Register",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the staff email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the staff password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/schedule_h"
+      },
+      {
+        "type": "action",
+        "description": "Select the Schedule H classification filter"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a patient name into the search field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify matching ledger entries are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the displayed results reflect the selected classification"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC024",
+    "title": "Review revenue and sales analytics",
+    "description": "A staff user can open the reports console and inspect summary metrics together with recent transaction rows.",
+    "category": "Revenue & Sales Analytics Console",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the staff email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the staff password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/reports"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify KPI summary cards are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify recent transaction rows are displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC025",
+    "title": "Customer sees validation when quantity exceeds the allowed range",
+    "description": "This verifies that a customer is prevented from ordering an excessive quantity and is shown quantity validation feedback.",
+    "category": "Clinical Monograph & Direct OTC Ordering",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/customer"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email address field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open a medicine detail page from the catalog"
+      },
+      {
+        "type": "action",
+        "description": "Increase the quantity beyond the allowed range"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a quantity validation error is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC026",
+    "title": "Search suppliers by company name or GSTIN",
+    "description": "A staff user can locate supplier records using the directory search and see matching procurement profiles.",
+    "category": "Supplier Directory & Procurement Master",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the staff email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the staff password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/suppliers"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a supplier company name into the search field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify matching supplier records are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the supplier directory remains visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC027",
+    "title": "Customer sees an empty state for an unmatched catalog search",
+    "description": "This verifies that a customer searching for an unavailable medicine is shown an empty results state.",
+    "category": "Medicine Discovery & Search",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /customer/catalog"
+      },
+      {
+        "type": "action",
+        "description": "Type a search term with no matches into the search field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty results message is displayed"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC028",
+    "title": "Reject an unsupported prescription file type",
+    "description": "A signed-in customer sees validation feedback when trying to upload an unsupported prescription file type and can then upload a supported file.",
+    "category": "Prescription Upload",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/customer"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the customer login credentials with {{LOGIN_USER}} and {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /customer/prescription/upload"
+      },
+      {
+        "type": "action",
+        "description": "Choose an unsupported prescription file"
+      },
+      {
+        "type": "action",
+        "description": "Review the validation feedback"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a file type validation error is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC029",
+    "title": "Search the Schedule H register by doctor or batch",
+    "description": "A staff user can find ledger entries by entering a prescribing doctor name or batch number in the statutory register.",
+    "category": "Statutory Schedule H Register",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the staff email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the staff password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/schedule_h"
+      },
+      {
+        "type": "action",
+        "description": "Select the H1 classification filter"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a prescribing doctor name into the search field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify matching ledger entries are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the displayed results reflect the selected classification"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC030",
+    "title": "Staff can view the prescription queue when no items are pending",
+    "description": "This test verifies that the prescription queue presents an empty state when there are no pending items to review.",
+    "category": "Prescription Verification Queue",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the sign-in form"
+      },
+      {
+        "type": "action",
+        "description": "Open the prescription verification queue"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty state message is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC031",
+    "title": "Show validation when required staff fields are missing",
+    "description": "This test verifies that the staff form prevents submission when required details are incomplete and shows validation feedback.",
+    "category": "Staff Management & RBAC",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for an owner-level account"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the staff management page"
+      },
+      {
+        "type": "action",
+        "description": "Submit the staff form without completing all required fields"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify staff form validation feedback is visible"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC032",
+    "title": "Complete supplier creation after fixing missing details",
+    "description": "A staff user sees validation feedback for incomplete supplier information and can successfully submit after filling the missing fields.",
+    "category": "Supplier Directory & Procurement Master",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the staff email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the staff password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/suppliers"
+      },
+      {
+        "type": "action",
+        "description": "Open supplier creation"
+      },
+      {
+        "type": "action",
+        "description": "Fill in only part of the supplier form"
+      },
+      {
+        "type": "action",
+        "description": "Submit the supplier form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the missing required supplier details"
+      },
+      {
+        "type": "action",
+        "description": "Submit the supplier form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the new supplier record is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the validation feedback is cleared"
+      }
+    ],
+    "priority": "Medium"
+  },
+  {
+    "id": "TC033",
+    "title": "View an empty Schedule H search result",
+    "description": "A staff user sees a clear empty state when no statutory ledger entries match the current filter and search criteria.",
+    "category": "Statutory Schedule H Register",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_USER}} into the staff email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill in {{LOGIN_PASSWORD}} into the staff password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/schedule_h"
+      },
+      {
+        "type": "action",
+        "description": "Select the Schedule H classification filter"
+      },
+      {
+        "type": "action",
+        "description": "Fill in a clearly unmatched search term into the search field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty state message is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify no ledger entries are displayed"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC034",
+    "title": "Prevent duplicate staff account creation",
+    "description": "This test verifies that attempting to add a staff account with details that already exist is blocked and the existing roster remains intact.",
+    "category": "Staff Management & RBAC",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for an owner-level account"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the staff management page"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff member name field with a unique name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff email field with a unique email address"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff password field with a valid password"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff license field with a valid license number"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff salary field with a valid salary amount"
+      },
+      {
+        "type": "action",
+        "description": "Select a staff role"
+      },
+      {
+        "type": "action",
+        "description": "Submit the staff form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff member name field with the same name"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff email field with the same email address"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff password field with the same password"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff license field with the same license number"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the staff salary field with the same salary amount"
+      },
+      {
+        "type": "action",
+        "description": "Select the same staff role"
+      },
+      {
+        "type": "action",
+        "description": "Submit the staff form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify duplicate staff validation feedback is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the staff list still shows only one matching account"
+      }
+    ],
+    "priority": "Low"
+  },
+  {
+    "id": "TC035",
+    "title": "Keep inactive staff from being treated as active",
+    "description": "This test verifies that an account deactivated by the owner remains shown as inactive in the staff list.",
+    "category": "Staff Management & RBAC",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login/admin"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the login credentials for an owner-level account"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Click the link to the staff management page"
+      },
+      {
+        "type": "action",
+        "description": "Select an active staff account"
+      },
+      {
+        "type": "action",
+        "description": "Deactivate the selected staff account"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the account is marked as inactive"
+      }
+    ],
+    "priority": "Low"
+  }
+]

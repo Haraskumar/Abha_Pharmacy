@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "background": "#faf8ff",
+        "surface-bright": "#faf8ff",
+        "on-secondary-fixed-variant": "#00513e",
+        "on-error": "#ffffff",
+        "primary-container": "#0d7a5f",
+        "on-tertiary-fixed-variant": "#004b73",
+        "surface-variant": "#dae2fd",
+        "secondary-fixed": "#a9f1d5",
+        "on-surface-variant": "#3e4944",
+        "tertiary-fixed-dim": "#93ccff",
+        "surface-dim": "#d2d9f4",
+        "inverse-on-surface": "#eef0ff",
+        "surface-container": "#eaedff",
+        "error-container": "#ffdad6",
+        "on-primary-container": "#a8ffdf",
+        "tertiary-container": "#0071ac",
+        "on-secondary-container": "#266e58",
+        "on-primary-fixed-variant": "#00513e",
+        "surface": "#faf8ff",
+        "on-primary-fixed": "#002117",
+        "surface-container-lowest": "#ffffff",
+        "on-tertiary-fixed": "#001d31",
+        "tertiary-fixed": "#cce5ff",
+        "inverse-surface": "#283044",
+        "on-tertiary-container": "#e1efff",
+        "on-background": "#131b2e",
+        "inverse-primary": "#7cd8b8",
+        "on-primary": "#ffffff",
+        "surface-container-high": "#e2e7ff",
+        "outline-variant": "#bdc9c2",
+        "primary-fixed": "#98f4d3",
+        "surface-container-highest": "#dae2fd",
+        "primary-fixed-dim": "#7cd8b8",
+        "secondary-container": "#a6eed2",
+        "surface-tint": "#006c53",
+        "secondary-fixed-dim": "#8ed5ba",
+        "primary": "#005f49",
+        "tertiary": "#005886",
+        "on-secondary": "#ffffff",
+        "on-secondary-fixed": "#002117",
+        "on-surface": "#131b2e",
+        "on-tertiary": "#ffffff",
+        "on-error-container": "#93000a",
+        "outline": "#6e7a74",
+        "secondary": "#206a54",
+        "surface-container-low": "#f2f3ff",
+        "error": "#ba1a1a"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+      },
+      "spacing": {
+        "margin-desktop": "2rem",
+        "space-xs": "0.25rem",
+        "space-lg": "1rem",
+        "space-md": "0.75rem",
+        "space-xl": "1.5rem",
+        "gutter-desktop": "1.5rem",
+        "space-sm": "0.5rem",
+        "margin": "1rem",
+        "gutter": "1rem"
+      },
+      "fontFamily": {
+        "label-sm": [
+          "Inter"
+        ],
+        "code-mono": [
+          "JetBrains Mono"
+        ],
+        "body-sm": [
+          "Inter"
+        ],
+        "headline-md": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-sm": [
+          "Plus Jakarta Sans"
+        ],
+        "label-lg": [
+          "Inter"
+        ],
+        "label-md": [
+          "Inter"
+        ],
+        "body-lg": [
+          "Inter"
+        ],
+        "body-md": [
+          "Inter"
+        ],
+        "display-lg": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-lg": [
+          "Plus Jakarta Sans"
+        ]
+      },
+      "fontSize": {
+        "label-sm": [
+          "11px",
+          {
+            "lineHeight": "14px",
+            "letterSpacing": "0.04em",
+            "fontWeight": "600"
+          }
+        ],
+        "code-mono": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "fontWeight": "500"
+          }
+        ],
+        "body-sm": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "fontWeight": "400"
+          }
+        ],
+        "headline-md": [
+          "20px",
+          {
+            "lineHeight": "28px",
+            "letterSpacing": "-0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "headline-sm": [
+          "16px",
+          {
+            "lineHeight": "24px",
+            "fontWeight": "600"
+          }
+        ],
+        "label-lg": [
+          "14px",
+          {
+            "lineHeight": "20px",
+            "fontWeight": "500"
+          }
+        ],
+        "label-md": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "letterSpacing": "0.025em",
+            "fontWeight": "600"
+          }
+        ],
+        "body-lg": [
+          "16px",
+          {
+            "lineHeight": "24px",
+            "fontWeight": "400"
+          }
+        ],
+        "body-md": [
+          "14px",
+          {
+            "lineHeight": "20px",
+            "fontWeight": "400"
+          }
+        ],
+        "display-lg": [
+          "32px",
+          {
+            "lineHeight": "40px",
+            "letterSpacing": "-0.02em",
+            "fontWeight": "700"
+          }
+        ],
+        "headline-lg": [
+          "24px",
+          {
+            "lineHeight": "32px",
+            "letterSpacing": "-0.015em",
+            "fontWeight": "600"
+          }
+        ]
+      }
+    }
+  }
+}</script></head><body class="bg-surface text-on-surface font-body-md text-body-md"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-gutter-desktop flex items-center justify-between"><div class="flex items-center gap-space-lg"><img alt="Abha Pharmacy Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UKKshijGLJayZJ52kylv1QYyrmTW9iDDNuwRGi8t8djnc9DmbtdF0cXohcFL5FZxP5sbiFwvVGx64TzlsmaVkCcr9uKx_LsHFjbS_GlKfc9GOPkHnCxDOaGcx6p5iy7Zh44i_zm-_tETqST-5ZfuC5uhUmPScByFwD7Hsp3-Th-OZ40rpI4yOLgbuJsMaZJ0Di-B8kxEcMFMQNtGZRCsqFQyv-_8GgFWECFTzREdMBCukbyS3zPfM11yM"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-none">Abha Pharmacy</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Clinical Management System</span></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="inline-flex items-center gap-space-xs bg-secondary-container px-space-md py-space-xs rounded-full"><span class="material-symbols-outlined text-[16px] text-on-secondary-container">verified_user</span><span class="font-label-sm text-label-sm text-on-secondary-container uppercase tracking-wide">Operational Staff Portal</span></div><a class="inline-flex items-center gap-space-xs bg-surface-container-high px-space-sm py-space-xs rounded-full text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[14px]">swap_horiz</span><span class="font-label-sm text-label-sm">Switch to Customer View</span></a></div><div class="flex items-center gap-space-xl"><div class="hidden xl:flex items-center gap-space-md text-on-surface-variant"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px]">calendar_today</span><span class="font-label-md text-label-md">Oct 24, 2024</span></div><div class="h-4 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-label-sm text-label-sm text-primary uppercase font-bold">System Online • Node-01</span></div></div><div class="h-6 w-px bg-surface-container-highest hidden sm:block"></div><div class="flex items-center gap-space-md"><div class="flex flex-col text-right hidden sm:flex"><span class="font-label-lg text-label-lg text-on-surface">Dr. Tariq Al-Mansoor</span><span class="font-label-sm text-label-sm text-on-surface-variant">Chief Pharmacist • License #PH-4921</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-64 bg-surface-container-lowest z-40 flex flex-col justify-between py-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.03)] overflow-y-auto"><div class="flex flex-col gap-space-xs px-space-md"><div class="px-space-md py-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Clinical Operations</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="staff-dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-label-lg text-label-lg">Dashboard</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="pos-walk-in" href="#"><span class="material-symbols-outlined text-[20px]">point_of_sale</span><span class="font-label-lg text-label-lg">POS Walk-in</span></a><a aria-current="page" class="flex items-center gap-space-md px-space-md py-space-sm transition-colors bg-primary-container text-on-primary-container font-semibold rounded-lg" data-path="prescriptions-queue" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-label-lg text-label-lg">Prescriptions Queue</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="online-orders-management" href="#"><span class="material-symbols-outlined text-[20px]">local_shipping</span><span class="font-label-lg text-label-lg">Online Orders</span></a></nav><div class="h-px bg-surface-container-high my-space-xs mx-space-sm"></div><div class="px-space-md py-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Inventory Control</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="inventory-and-batches" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span class="font-label-lg text-label-lg">Inventory &amp; Batches</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="medicines-catalog" href="#"><span class="material-symbols-outlined text-[20px]">medication</span><span class="font-label-lg text-label-lg">Medicines Catalog</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="suppliers" href="#"><span class="material-symbols-outlined text-[20px]">handshake</span><span class="font-label-lg text-label-lg">Suppliers</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="stock-and-expiry-alerts" href="#"><span class="material-symbols-outlined text-[20px]">notification_important</span><span class="font-label-lg text-label-lg">Stock &amp; Expiry Alerts</span></a></nav><div class="h-px bg-surface-container-high my-space-xs mx-space-sm"></div><div class="px-space-md py-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Audits &amp; Identity</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="revenue-reports" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span><span class="font-label-lg text-label-lg">Revenue Reports</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="staff-profile" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span class="font-label-lg text-label-lg">Staff Profile</span></a></nav></div><div class="px-space-md pt-space-md border-t border-surface-container-high flex flex-col gap-space-xs"><div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant">Terminal: REG-04</span><span class="font-code-mono text-code-mono text-primary font-medium">READY</span></div></div></aside><div class="pl-64"><main class="w-full pt-16 bg-surface min-h-screen px-gutter-desktop py-space-xl"><div class="flex flex-col w-full">
+<!-- System Hub Sub-bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg mb-space-xl">
+<div>
+<div class="flex items-center gap-space-sm mb-space-xs">
+<span class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm uppercase tracking-wide">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+          Clinical Verification &amp; Fulfillment Deck
+        </span>
+<span class="font-code-mono text-code-mono text-on-surface-variant">NODE::DISPENSE-STF-01</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Prescription Review &amp; Order Outflow</h1>
+</div>
+<!-- Dual Tab Switcher -->
+<div class="flex items-center p-1 bg-surface-container-high rounded-xl shadow-inner self-start lg:self-auto">
+<button class="flex items-center gap-space-sm px-space-lg py-space-sm rounded-lg font-label-lg text-label-lg transition-all duration-150 bg-surface-container-lowest text-primary shadow-sm font-semibold" id="tab-btn-prescriptions" onclick="switchMainTab('prescriptions')">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Rx Verification Queue</span>
+<span class="px-space-xs py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm" id="rx-count-badge">3</span>
+</button>
+<button class="flex items-center gap-space-sm px-space-lg py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-all duration-150" id="tab-btn-orders" onclick="switchMainTab('orders')">
+<span class="material-symbols-outlined text-[18px]">inventory</span>
+<span>Orders Fulfillment</span>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm" id="order-count-badge">4</span>
+</button>
+</div>
+</div>
+<!-- SECTION 1: PRESCRIPTION VERIFICATION QUEUE -->
+<section class="w-full flex flex-col gap-space-xl" id="section-prescriptions">
+<!-- Operational Triage Stats Strip -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md">
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Pending Review</p>
+<p class="font-headline-lg text-headline-lg text-on-surface font-bold mt-1">3 <span class="font-body-sm text-body-sm text-error font-normal">(1 Urgent)</span></p>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">pending_actions</span>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Verified Today</p>
+<p class="font-headline-lg text-headline-lg text-on-surface font-bold mt-1">28</p>
+</div>
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[24px]">task_alt</span>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Rejected Today</p>
+<p class="font-headline-lg text-headline-lg text-on-surface font-bold mt-1">2</p>
+</div>
+<div class="w-10 h-10 rounded-lg bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined text-[24px]">rule</span>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Verifier On-Duty</p>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">Dr. Rajesh Sharma</p>
+<p class="font-code-mono text-code-mono text-primary leading-none">STF-01</p>
+</div>
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[24px]">clinical_notes</span>
+</div>
+</div>
+</div>
+<!-- Main Split Layout: Table of Prescriptions & Inspection Canvas -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-xl items-start">
+<!-- Left Column: Pending Prescriptions Table (7 cols) -->
+<div class="xl:col-span-7 bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-space-lg bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">inventory_2</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Queue: Prescription Inflow</h2>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+            Syncing live with customer portal
+          </div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-md px-space-lg">Prescription ID</th>
+<th class="py-space-md px-space-md">Patient &amp; Prescriber</th>
+<th class="py-space-md px-space-md">Upload Timestamp</th>
+<th class="py-space-md px-space-md">Customer Note</th>
+<th class="py-space-md px-space-md">Status</th>
+<th class="py-space-md px-space-lg text-right">Inspect</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-body-md font-body-md" id="rx-table-body">
+<!-- Item 1 (Selected) -->
+<tr class="cursor-pointer bg-primary/5 hover:bg-primary/10 transition-colors" id="rx-row-RX-2025-0891" onclick="selectPrescription('RX-2025-0891')">
+<td class="py-space-md px-space-lg whitespace-nowrap">
+<span class="font-code-mono text-code-mono font-bold text-primary">RX-2025-0891</span>
+<div class="font-code-mono text-code-mono text-on-surface-variant">CUST-8842</div>
+</td>
+<td class="py-space-md px-space-md">
+<p class="font-label-lg text-label-lg font-semibold text-on-surface">Sunita Patel</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">stethoscope</span> Dr. V. Mehta
+                  </p>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">2025-05-10</div>
+<div class="font-code-mono text-code-mono text-on-surface-variant">11:15 AM</div>
+</td>
+<td class="py-space-md px-space-md max-w-xs">
+<span class="truncate block text-on-surface-variant text-body-sm font-body-sm italic" title="Please dispense 1 month supply of thyroid medication">"Please dispense 1 month supply of thyroid medication"</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full text-label-sm font-label-sm bg-[#FFFBEB] text-[#D97706] font-bold">Pending</span>
+</td>
+<td class="py-space-md px-space-lg text-right">
+<span class="material-symbols-outlined text-primary text-[20px]">chevron_right</span>
+</td>
+</tr>
+<!-- Item 2 -->
+<tr class="cursor-pointer hover:bg-surface-container-low transition-colors" id="rx-row-RX-2025-0892" onclick="selectPrescription('RX-2025-0892')">
+<td class="py-space-md px-space-lg whitespace-nowrap">
+<span class="font-code-mono text-code-mono font-bold text-on-surface">RX-2025-0892</span>
+<div class="font-code-mono text-code-mono text-on-surface-variant">CUST-3901</div>
+</td>
+<td class="py-space-md px-space-md">
+<p class="font-label-lg text-label-lg font-semibold text-on-surface">Ramesh K. Joshi</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">stethoscope</span> Dr. Anita Sen
+                  </p>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">2025-05-10</div>
+<div class="font-code-mono text-code-mono text-on-surface-variant">10:48 AM</div>
+</td>
+<td class="py-space-md px-space-md max-w-xs">
+<span class="truncate block text-on-surface-variant text-body-sm font-body-sm italic" title="Urgent renewal of cardiovascular statins">"Urgent renewal of cardiovascular statins"</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full text-label-sm font-label-sm bg-[#FFFBEB] text-[#D97706] font-bold">Pending</span>
+</td>
+<td class="py-space-md px-space-lg text-right">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</td>
+</tr>
+<!-- Item 3 -->
+<tr class="cursor-pointer hover:bg-surface-container-low transition-colors" id="rx-row-RX-2025-0893" onclick="selectPrescription('RX-2025-0893')">
+<td class="py-space-md px-space-lg whitespace-nowrap">
+<span class="font-code-mono text-code-mono font-bold text-on-surface">RX-2025-0893</span>
+<div class="font-code-mono text-code-mono text-on-surface-variant">CUST-4112</div>
+</td>
+<td class="py-space-md px-space-md">
+<p class="font-label-lg text-label-lg font-semibold text-on-surface">Fatima Zahra</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">stethoscope</span> Dr. H. Qureshi
+                  </p>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">2025-05-10</div>
+<div class="font-code-mono text-code-mono text-on-surface-variant">09:30 AM</div>
+</td>
+<td class="py-space-md px-space-md max-w-xs">
+<span class="truncate block text-on-surface-variant text-body-sm font-body-sm italic" title="Post-consultation antibiotics cycle">"Post-consultation antibiotics cycle"</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full text-label-sm font-label-sm bg-[#FFFBEB] text-[#D97706] font-bold">Pending</span>
+</td>
+<td class="py-space-md px-space-lg text-right">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">chevron_right</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Audited Recent Actions Footer -->
+<div class="p-space-md bg-surface-container-low mt-auto flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Displaying 3 active submissions awaiting legal audit</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+            Encrypted Health Records Pipeline
+          </span>
+</div>
+</div>
+<!-- Right Column: Detail Inspection View (5 cols) -->
+<div class="xl:col-span-5 flex flex-col gap-space-lg">
+<!-- Inspection Container -->
+<div class="bg-surface-container-lowest rounded-xl shadow-md overflow-hidden">
+<!-- Protected Banner -->
+<div class="bg-inverse-surface text-inverse-on-surface px-space-lg py-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary-fixed text-[18px]">verified_user</span>
+<span class="font-label-sm text-label-sm tracking-wide uppercase font-semibold">Protected Resource</span>
+</div>
+<div class="font-code-mono text-code-mono text-secondary-fixed bg-surface-variant/20 px-space-sm py-0.5 rounded">
+              Access authorized for StaffID: STF-01
+            </div>
+</div>
+<!-- Prescription Card Content -->
+<div class="p-space-lg flex flex-col gap-space-lg">
+<!-- Inspection Header with Dynamic Data -->
+<div class="flex items-start justify-between">
+<div>
+<span class="font-code-mono text-code-mono text-primary font-bold text-lg" id="view-rx-id">RX-2025-0891</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold mt-1" id="view-patient-name">Sunita Patel</h3>
+<div class="flex flex-wrap gap-x-space-md gap-y-1 mt-1 text-on-surface-variant font-body-sm text-body-sm">
+<span>CustomerID: <strong class="text-on-surface font-code-mono" id="view-customer-id">CUST-8842</strong></span>
+<span>•</span>
+<span>Doctor: <strong class="text-on-surface" id="view-doctor-name">Dr. V. Mehta</strong></span>
+</div>
+</div>
+<div class="text-right">
+<span class="inline-flex items-center px-space-sm py-1 rounded-full text-label-sm font-label-sm bg-[#FFFBEB] text-[#D97706] font-bold" id="view-status-badge">
+                  Pending Verification
+                </span>
+<p class="font-code-mono text-code-mono text-on-surface-variant mt-1" id="view-upload-timestamp">2025-05-10 11:15 AM</p>
+</div>
+</div>
+<!-- Customer Upload Instructions Callout -->
+<div class="p-space-md rounded-lg bg-surface-container-low text-on-surface">
+<div class="flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold mb-1">
+<span class="material-symbols-outlined text-[16px]">notes</span> Customer Instructions
+              </div>
+<p class="font-body-md text-body-md italic text-on-surface" id="view-instructions">
+                "Please dispense 1 month supply of thyroid medication"
+              </p>
+</div>
+<!-- Uploaded Image Preview Mockup -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm uppercase font-semibold">Digitized Clinical Script (Uploaded by Patient)</span>
+<span class="font-code-mono text-code-mono text-xs">SCAN_PAGE_1.TIFF</span>
+</div>
+<div class="relative w-full rounded-xl overflow-hidden shadow-inner bg-surface-container-highest min-h-[300px] flex items-center justify-center group">
+<img class="w-full h-80 object-cover object-top transition-transform duration-300 group-hover:scale-105" data-alt="High-resolution clinical medical prescription slip on doctor clinic letterhead, handwritten script details for Thyroxine Sodium 50mcg, verified official blue ink stamp and doctor signature, sterile medical studio lighting, sharp focus on dosage instructions" id="view-rx-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8XmA7YLopRau7rqMNU_E7w-aGDn8-RU3qBLpOE8R5rYvnhyUC9OLrvd1jG0CHeL6aubzG9V4t46bOFZxO24_Kw6tNu3GEMdYMM8OccGO05SzdX_UdKwt1RVvw2A_cQWy8a1T9q6ymLA4WzpjRv8Q-IlGEfB5o-nAppLEsAQ5T8-71m6RAUKL_3vKLrC-Fn8r_u9qonVhPwx6WS9wJwuahKcXbUinrWX7Lahwvn75vc6tQ3CkW1wApng"/>
+<!-- Overlay watermark simulation -->
+<div class="absolute bottom-2 left-2 right-2 p-space-sm bg-inverse-surface/85 backdrop-blur-md rounded-lg text-inverse-on-surface flex items-center justify-between text-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed">document_scanner</span>
+<span class="font-code-mono">MD-CERTIFIED: REG# 78129/KA</span>
+</div>
+<span class="text-inverse-on-surface/80">Tamper Seal Intact</span>
+</div>
+</div>
+</div>
+<!-- Decision Form -->
+<form class="flex flex-col gap-space-md pt-space-xs" onsubmit="event.preventDefault();">
+<div>
+<label class="block font-label-md text-label-md font-semibold text-on-surface mb-1" for="pharmacist-remarks-input">
+                  Pharmacist Clinical Remarks <span class="text-error">*</span>
+</label>
+<textarea class="w-full px-space-md py-space-sm rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-outline shadow-inner font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary" id="pharmacist-remarks-input" placeholder="Enter clinical assessment, dosage checks, or reason for rejection..." rows="3">Valid prescription from Dr. V. Mehta. Dosage approved for 30 tabs Thyroxine 50mcg.</textarea>
+</div>
+<!-- Digital Identity Stamp Preview -->
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center gap-space-md">
+<span class="material-symbols-outlined text-primary text-[24px]">verified</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Digital Staff Signature Stamp</span>
+<span class="font-code-mono text-code-mono text-on-surface-variant" id="staff-stamp-preview">Verified by Dr. Rajesh Sharma (StaffID: STF-01) at 2025-05-10 11:45 AM</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="grid grid-cols-2 gap-space-md mt-space-xs">
+<button class="flex items-center justify-center gap-space-sm py-space-md px-space-lg rounded-xl bg-primary text-on-primary font-label-lg text-label-lg font-bold hover:bg-primary-container transition-all shadow-md" onclick="executeRxVerification('Verified')" type="button">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span>Approve / Verify Rx</span>
+</button>
+<button class="flex items-center justify-center gap-space-sm py-space-md px-space-lg rounded-xl bg-error text-on-error font-label-lg text-label-lg font-bold hover:bg-error/90 transition-all shadow-md" onclick="executeRxVerification('Rejected')" type="button">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+<span>Reject Prescription</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: ONLINE ORDERS & FULFILLMENT -->
+<section class="w-full flex-col gap-space-xl hidden" id="section-orders">
+<!-- Active Fulfillment Stats -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md">
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Awaiting Packing</p>
+<p class="font-headline-lg text-headline-lg text-on-surface font-bold mt-1">2 <span class="font-label-md text-label-md font-semibold text-primary">In Prep</span></p>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">conveyor_belt</span>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Ready at Dispatch</p>
+<p class="font-headline-lg text-headline-lg text-on-surface font-bold mt-1">1 Order</p>
+</div>
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[24px]">outbox</span>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Completed Orders</p>
+<p class="font-headline-lg text-headline-lg text-on-surface font-bold mt-1">16 Today</p>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[24px]">fact_check</span>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Dispatched Courier</p>
+<p class="font-headline-sm text-headline-sm text-on-surface font-bold mt-1">Abha Express Fleet</p>
+<p class="font-code-mono text-code-mono text-tertiary">Run #04 active</p>
+</div>
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[24px]">local_shipping</span>
+</div>
+</div>
+</div>
+<!-- Active Orders Management Table Container -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-space-lg bg-surface-container-low flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">package_2</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Active Customer Orders &amp; Medication Fulfillment</h2>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Filter by Flow:</span>
+<span class="px-space-sm py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold">All Active (4)</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-md px-space-lg">Order ID &amp; Customer</th>
+<th class="py-space-md px-space-md">Date &amp; Time</th>
+<th class="py-space-md px-space-md">Order Type</th>
+<th class="py-space-md px-space-md">Prescription Link</th>
+<th class="py-space-md px-space-md">Delivery Address</th>
+<th class="py-space-md px-space-md">Payment &amp; Discount</th>
+<th class="py-space-md px-space-md">Order Status</th>
+<th class="py-space-md px-space-lg text-right">Items &amp; Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-body-md font-body-md" id="orders-table-body">
+<!-- Row 1: ORD-7701 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-lg whitespace-nowrap">
+<span class="font-code-mono text-code-mono font-bold text-primary">ORD-7701</span>
+<div class="font-code-mono text-code-mono text-on-surface-variant">CustomerID: CUST-8842</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">2025-05-10</div>
+<div class="font-code-mono text-code-mono text-on-surface-variant">11:20 AM</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[13px]">local_shipping</span> Home Delivery
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="font-code-mono text-code-mono bg-primary/10 text-primary px-space-xs py-0.5 rounded font-semibold">RX-2025-0891</span>
+</td>
+<td class="py-space-md px-space-md max-w-xs">
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">#42, Palm Heights, MG Road</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Bengaluru - 560001</p>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1">
+<span class="font-label-md text-label-md font-bold text-on-surface">UPI</span>
+<span class="px-space-xs py-0.2 rounded text-[10px] bg-secondary-container text-on-secondary-container font-semibold uppercase">Completed</span>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Discount: ₹45.00</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full text-label-sm font-label-sm bg-[#FFFBEB] text-[#D97706] font-bold" id="badge-status-ORD-7701">
+                  Order Processing
+                </span>
+</td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<button class="px-space-md py-space-xs rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md font-semibold transition-colors" onclick="openOrderDrawer('ORD-7701')">
+                  View Items (2)
+                </button>
+</td>
+</tr>
+<!-- Row 2: ORD-7702 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-lg whitespace-nowrap">
+<span class="font-code-mono text-code-mono font-bold text-primary">ORD-7702</span>
+<div class="font-code-mono text-code-mono text-on-surface-variant">CustomerID: CUST-5104</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">2025-05-10</div>
+<div class="font-code-mono text-code-mono text-on-surface-variant">10:55 AM</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[13px]">storefront</span> Pickup
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="font-code-mono text-code-mono text-on-surface-variant font-medium">OTC (No Rx)</span>
+</td>
+<td class="py-space-md px-space-md max-w-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant italic">Store Counter Collection (REG-04)</span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1">
+<span class="font-label-md text-label-md font-bold text-on-surface">Card</span>
+<span class="px-space-xs py-0.2 rounded text-[10px] bg-secondary-container text-on-secondary-container font-semibold uppercase">Completed</span>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Discount: ₹0.00</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full text-label-sm font-label-sm bg-[#ECFDF5] text-[#0A5C47] font-bold" id="badge-status-ORD-7702">
+                  Order Ready
+                </span>
+</td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<button class="px-space-md py-space-xs rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md font-semibold transition-colors" onclick="openOrderDrawer('ORD-7702')">
+                  View Items (1)
+                </button>
+</td>
+</tr>
+<!-- Row 3: ORD-7703 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-md px-space-lg whitespace-nowrap">
+<span class="font-code-mono text-code-mono font-bold text-primary">ORD-7703</span>
+<div class="font-code-mono text-code-mono text-on-surface-variant">CustomerID: CUST-3901</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">2025-05-10</div>
+<div class="font-code-mono text-code-mono text-on-surface-variant">10:10 AM</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[13px]">autorenew</span> Refill-related order
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="font-code-mono text-code-mono bg-primary/10 text-primary px-space-xs py-0.5 rounded font-semibold">RX-2025-0892</span>
+</td>
+<td class="py-space-md px-space-md max-w-xs">
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">Flat 302, Green Meadows</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Bengaluru - 560034</p>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1">
+<span class="font-label-md text-label-md font-bold text-on-surface">Cash</span>
+<span class="px-space-xs py-0.2 rounded text-[10px] bg-[#FFFBEB] text-[#D97706] font-semibold uppercase">Pending</span>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Discount: ₹70.00</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full text-label-sm font-label-sm bg-[#FFFBEB] text-[#D97706] font-bold" id="badge-status-ORD-7703">
+                  Order Processing
+                </span>
+</td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<button class="px-space-md py-space-xs rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md font-semibold transition-colors" onclick="openOrderDrawer('ORD-7703')">
+                  View Items (3)
+                </button>
+</td>
+</tr>
+<!-- Row 4: ORD-7699 (Completed) -->
+<tr class="hover:bg-surface-container-low transition-colors opacity-80">
+<td class="py-space-md px-space-lg whitespace-nowrap">
+<span class="font-code-mono text-code-mono font-bold text-on-surface">ORD-7699</span>
+<div class="font-code-mono text-code-mono text-on-surface-variant">CustomerID: CUST-1922</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="font-label-md text-label-md text-on-surface">2025-05-10</div>
+<div class="font-code-mono text-code-mono text-on-surface-variant">09:12 AM</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-space-sm py-0.5 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[13px]">local_shipping</span> Home Delivery
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="font-code-mono text-code-mono bg-surface-container text-on-surface px-space-xs py-0.5 rounded font-medium">RX-2025-0880</span>
+</td>
+<td class="py-space-md px-space-md max-w-xs">
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">#12, 4th Cross, Indiranagar</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Bengaluru - 560038</p>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1">
+<span class="font-label-md text-label-md font-bold text-on-surface">UPI</span>
+<span class="px-space-xs py-0.2 rounded text-[10px] bg-secondary-container text-on-secondary-container font-semibold uppercase">Completed</span>
+</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Discount: ₹25.00</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-bold" id="badge-status-ORD-7699">
+                  Order Completed
+                </span>
+</td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<button class="px-space-md py-space-xs rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md font-semibold transition-colors" onclick="openOrderDrawer('ORD-7699')">
+                  View Items (1)
+                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Slide-over Drawer for Order Items & Clinical Dispensation Action -->
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-xs z-50 hidden transition-opacity" id="order-drawer-backdrop" onclick="closeOrderDrawer()"></div>
+<aside class="fixed top-0 right-0 bottom-0 w-full max-w-xl bg-surface-container-lowest shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col" id="order-drawer">
+<!-- Drawer Header -->
+<div class="p-space-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">medical_services</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Order Items &amp; Dispense Pack</h3>
+<p class="font-code-mono text-code-mono text-on-surface-variant" id="drawer-order-id">ORD-7701</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full hover:bg-surface-container-highest flex items-center justify-center text-on-surface-variant" onclick="closeOrderDrawer()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Drawer Content / Order Entity Items -->
+<div class="p-space-lg flex-1 overflow-y-auto flex flex-col gap-space-lg">
+<!-- Order Summary Card -->
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Customer ID:</span>
+<span class="font-code-mono text-on-surface font-semibold" id="drawer-customer-id">CUST-8842</span>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Linked Rx:</span>
+<span class="font-code-mono text-primary font-bold" id="drawer-prescription-id">RX-2025-0891</span>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm">
+<span class="text-on-surface-variant">Current Fulfillment State:</span>
+<span class="font-semibold text-primary" id="drawer-order-status">Order Processing</span>
+</div>
+</div>
+<!-- Order Items Table -->
+<div>
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm uppercase font-semibold text-on-surface-variant tracking-wider">Dispensation Item Manifest</span>
+<span class="font-code-mono text-code-mono text-xs text-primary">BARCODE AUDITED</span>
+</div>
+<div class="bg-surface-container-low rounded-xl overflow-hidden">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm uppercase">
+<th class="py-space-sm px-space-md">Seq</th>
+<th class="py-space-sm px-space-md">Medicine &amp; Batch</th>
+<th class="py-space-sm px-space-md text-right">Qty</th>
+<th class="py-space-sm px-space-md text-right">Unit Price</th>
+<th class="py-space-sm px-space-md text-right">Line Total</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container" id="drawer-items-body">
+<!-- Rendered via JS -->
+</tbody>
+</table>
+</div>
+</div>
+<!-- Packing Verification Checklist -->
+<div class="p-space-md rounded-xl bg-secondary-container/30 flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm font-bold text-on-secondary-container uppercase">Pharmacist Packaging Confirmation</span>
+<label class="flex items-center gap-space-sm font-body-sm text-body-sm text-on-surface cursor-pointer">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0" type="checkbox"/>
+<span>Batch numbers matched against physical pharmacy shelf</span>
+</label>
+<label class="flex items-center gap-space-sm font-body-sm text-body-sm text-on-surface cursor-pointer">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0" type="checkbox"/>
+<span>Expiry dates verified (&gt; 6 months safety margin)</span>
+</label>
+<label class="flex items-center gap-space-sm font-body-sm text-body-sm text-on-surface cursor-pointer">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0" type="checkbox"/>
+<span>Patient usage instructions and dosage label printed</span>
+</label>
+</div>
+</div>
+<!-- Drawer Action Footer with strict Operational Badges & Buttons -->
+<div class="p-space-lg bg-surface-container-low flex flex-col gap-space-md">
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Order Status Control</span>
+<span class="font-code-mono text-code-mono text-primary">OP: REG-04</span>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<button class="flex items-center justify-center gap-space-xs py-space-md px-space-md rounded-xl bg-secondary text-on-secondary font-label-lg text-label-lg font-bold hover:bg-secondary/90 transition-all shadow-sm" onclick="updateCurrentOrderStatus('Order Ready')" type="button">
+<span class="material-symbols-outlined text-[18px]">inventory</span>
+<span>Update → 'Order Ready'</span>
+</button>
+<button class="flex items-center justify-center gap-space-xs py-space-md px-space-md rounded-xl bg-primary text-on-primary font-label-lg text-label-lg font-bold hover:bg-primary-container transition-all shadow-sm" onclick="updateCurrentOrderStatus('Order Completed')" type="button">
+<span class="material-symbols-outlined text-[18px]">done_all</span>
+<span>Mark 'Order Completed'</span>
+</button>
+</div>
+</div>
+</aside>
+</div>
+<!-- Dynamic Operational Logic Engine -->
+<script>
+  // PRESCRIPTION Entities Data Store
+  const prescriptionsData = {
+    'RX-2025-0891': {
+      PrescriptionID: 'RX-2025-0891',
+      CustomerID: 'CUST-8842',
+      PatientName: 'Sunita Patel',
+      DoctorName: 'Dr. V. Mehta',
+      UploadDate: '2025-05-10',
+      UploadTime: '11:15 AM',
+      Instructions: 'Please dispense 1 month supply of thyroid medication',
+      VerificationStatus: 'Pending',
+      PharmacistRemarks: 'Valid prescription from Dr. V. Mehta. Dosage approved for 30 tabs Thyroxine 50mcg.',
+      StaffID: 'STF-01',
+      VerificationDate: '2025-05-10',
+      VerificationTime: '11:45 AM'
+    },
+    'RX-2025-0892': {
+      PrescriptionID: 'RX-2025-0892',
+      CustomerID: 'CUST-3901',
+      PatientName: 'Ramesh K. Joshi',
+      DoctorName: 'Dr. Anita Sen',
+      UploadDate: '2025-05-10',
+      UploadTime: '10:48 AM',
+      Instructions: 'Urgent renewal of cardiovascular statins',
+      VerificationStatus: 'Pending',
+      PharmacistRemarks: 'Reviewed medical history. Atorvastatin 20mg approved for 60 days.',
+      StaffID: 'STF-01',
+      VerificationDate: '2025-05-10',
+      VerificationTime: '11:45 AM'
+    },
+    'RX-2025-0893': {
+      PrescriptionID: 'RX-2025-0893',
+      CustomerID: 'CUST-4112',
+      PatientName: 'Fatima Zahra',
+      DoctorName: 'Dr. H. Qureshi',
+      UploadDate: '2025-05-10',
+      UploadTime: '09:30 AM',
+      Instructions: 'Post-consultation antibiotics cycle',
+      VerificationStatus: 'Pending',
+      PharmacistRemarks: 'Amoxicillin 500mg verified. Caution advised regarding food intake.',
+      StaffID: 'STF-01',
+      VerificationDate: '2025-05-10',
+      VerificationTime: '11:45 AM'
+    }
+  };
+
+  // ORDER Entities Data Store
+  const ordersData = {
+    'ORD-7701': {
+      OrderID: 'ORD-7701',
+      CustomerID: 'CUST-8842',
+      OrderDate: '2025-05-10',
+      OrderTime: '11:20 AM',
+      OrderType: 'Home Delivery',
+      OrderStatus: 'Order Processing',
+      PaymentMethod: 'UPI',
+      PaymentStatus: 'Completed',
+      DiscountAmount: '₹45.00',
+      Address: {
+        HouseNo: '#42',
+        Street: 'Palm Heights, MG Road',
+        City: 'Bengaluru',
+        Pincode: '560001'
+      },
+      PrescriptionID: 'RX-2025-0891',
+      Items: [
+        { ItemSeqNo: 1, MedicineID: 'MED-THY-01', BatchNo: 'BTH-2024-991', Quantity: 30, UnitPriceAtSale: 4.50 },
+        { ItemSeqNo: 2, MedicineID: 'MED-VIT-D3', BatchNo: 'BTH-2024-412', Quantity: 10, UnitPriceAtSale: 12.00 }
+      ]
+    },
+    'ORD-7702': {
+      OrderID: 'ORD-7702',
+      CustomerID: 'CUST-5104',
+      OrderDate: '2025-05-10',
+      OrderTime: '10:55 AM',
+      OrderType: 'Pickup',
+      OrderStatus: 'Order Ready',
+      PaymentMethod: 'Card',
+      PaymentStatus: 'Completed',
+      DiscountAmount: '₹0.00',
+      Address: null,
+      PrescriptionID: 'N/A (OTC)',
+      Items: [
+        { ItemSeqNo: 1, MedicineID: 'MED-PCM-650', BatchNo: 'BTH-2025-102', Quantity: 15, UnitPriceAtSale: 2.20 }
+      ]
+    },
+    'ORD-7703': {
+      OrderID: 'ORD-7703',
+      CustomerID: 'CUST-3901',
+      OrderDate: '2025-05-10',
+      OrderTime: '10:10 AM',
+      OrderType: 'Refill-related order',
+      OrderStatus: 'Order Processing',
+      PaymentMethod: 'Cash',
+      PaymentStatus: 'Pending',
+      DiscountAmount: '₹70.00',
+      Address: {
+        HouseNo: 'Flat 302',
+        Street: 'Green Meadows',
+        City: 'Bengaluru',
+        Pincode: '560034'
+      },
+      PrescriptionID: 'RX-2025-0892',
+      Items: [
+        { ItemSeqNo: 1, MedicineID: 'MED-ATV-20', BatchNo: 'BTH-2024-811', Quantity: 60, UnitPriceAtSale: 8.50 },
+        { ItemSeqNo: 2, MedicineID: 'MED-ASP-75', BatchNo: 'BTH-2024-884', Quantity: 30, UnitPriceAtSale: 1.80 },
+        { ItemSeqNo: 3, MedicineID: 'MED-OME-20', BatchNo: 'BTH-2025-002', Quantity: 30, UnitPriceAtSale: 5.00 }
+      ]
+    },
+    'ORD-7699': {
+      OrderID: 'ORD-7699',
+      CustomerID: 'CUST-1922',
+      OrderDate: '2025-05-10',
+      OrderTime: '09:12 AM',
+      OrderType: 'Home Delivery',
+      OrderStatus: 'Order Completed',
+      PaymentMethod: 'UPI',
+      PaymentStatus: 'Completed',
+      DiscountAmount: '₹25.00',
+      Address: {
+        HouseNo: '#12',
+        Street: '4th Cross, Indiranagar',
+        City: 'Bengaluru',
+        Pincode: '560038'
+      },
+      PrescriptionID: 'RX-2025-0880',
+      Items: [
+        { ItemSeqNo: 1, MedicineID: 'MED-AMX-500', BatchNo: 'BTH-2025-301', Quantity: 10, UnitPriceAtSale: 15.00 }
+      ]
+    }
+  };
+
+  let activeRxId = 'RX-2025-0891';
+  let activeDrawerOrderId = null;
+
+  // TAB SWITCHER
+  function switchMainTab(tab) {
+    const rxSec = document.getElementById('section-prescriptions');
+    const ordSec = document.getElementById('section-orders');
+    const rxBtn = document.getElementById('tab-btn-prescriptions');
+    const ordBtn = document.getElementById('tab-btn-orders');
+
+    if (tab === 'prescriptions') {
+      rxSec.classList.remove('hidden');
+      ordSec.classList.add('hidden');
+      rxBtn.className = 'flex items-center gap-space-sm px-space-lg py-space-sm rounded-lg font-label-lg text-label-lg transition-all duration-150 bg-surface-container-lowest text-primary shadow-sm font-semibold';
+      ordBtn.className = 'flex items-center gap-space-sm px-space-lg py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-all duration-150';
+    } else {
+      rxSec.classList.add('hidden');
+      ordSec.classList.remove('hidden');
+      ordBtn.className = 'flex items-center gap-space-sm px-space-lg py-space-sm rounded-lg font-label-lg text-label-lg transition-all duration-150 bg-surface-container-lowest text-primary shadow-sm font-semibold';
+      rxBtn.className = 'flex items-center gap-space-sm px-space-lg py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-all duration-150';
+    }
+  }
+
+  // SELECT PRESCRIPTION IN TABLE
+  function selectPrescription(rxId) {
+    activeRxId = rxId;
+    const data = prescriptionsData[rxId];
+    if (!data) return;
+
+    // Highlight row
+    document.querySelectorAll('#rx-table-body tr').forEach(r => {
+      r.classList.remove('bg-primary/5', 'bg-primary/10');
+    });
+    const selectedRow = document.getElementById('rx-row-' + rxId);
+    if (selectedRow) selectedRow.classList.add('bg-primary/5');
+
+    // Populate Inspector
+    document.getElementById('view-rx-id').textContent = data.PrescriptionID;
+    document.getElementById('view-customer-id').textContent = data.CustomerID;
+    document.getElementById('view-patient-name').textContent = data.PatientName;
+    document.getElementById('view-doctor-name').textContent = data.DoctorName;
+    document.getElementById('view-upload-timestamp').textContent = `${data.UploadDate} ${data.UploadTime}`;
+    document.getElementById('view-instructions').textContent = `"${data.Instructions}"`;
+    document.getElementById('pharmacist-remarks-input').value = data.PharmacistRemarks || '';
+
+    // Update status badge
+    const badge = document.getElementById('view-status-badge');
+    badge.textContent = data.VerificationStatus;
+    if (data.VerificationStatus === 'Verified') {
+      badge.className = 'inline-flex items-center px-space-sm py-1 rounded-full text-label-sm font-label-sm bg-[#ECFDF5] text-[#0A5C47] font-bold';
+    } else if (data.VerificationStatus === 'Rejected') {
+      badge.className = 'inline-flex items-center px-space-sm py-1 rounded-full text-label-sm font-label-sm bg-[#FEF2F2] text-[#DC2626] font-bold';
+    } else {
+      badge.className = 'inline-flex items-center px-space-sm py-1 rounded-full text-label-sm font-label-sm bg-[#FFFBEB] text-[#D97706] font-bold';
+    }
+
+    // Stamp text
+    document.getElementById('staff-stamp-preview').textContent = `Verified by Dr. Rajesh Sharma (StaffID: ${data.StaffID}) at ${data.VerificationDate} ${data.VerificationTime}`;
+  }
+
+  // EXECUTE APPROVE OR REJECT ACTION
+  function executeRxVerification(status) {
+    const rx = prescriptionsData[activeRxId];
+    if (!rx) return;
+
+    const remarks = document.getElementById('pharmacist-remarks-input').value.trim();
+    if (!remarks) {
+      alert('Clinical remarks are required for audit trail before taking an action.');
+      return;
+    }
+
+    rx.VerificationStatus = status;
+    rx.PharmacistRemarks = remarks;
+    rx.StaffID = 'STF-01';
+    
+    // Now timestamp
+    const now = new Date();
+    const dStr = now.toISOString().split('T')[0];
+    const tStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    rx.VerificationDate = dStr;
+    rx.VerificationTime = tStr;
+
+    selectPrescription(activeRxId);
+
+    // Update row status badge in the list
+    const row = document.getElementById('rx-row-' + activeRxId);
+    if (row) {
+      const statusCell = row.cells[4];
+      if (status === 'Verified') {
+        statusCell.innerHTML = `<span class="inline-flex items-center px-space-sm py-0.5 rounded-full text-label-sm font-label-sm bg-[#ECFDF5] text-[#0A5C47] font-bold">Verified</span>`;
+      } else {
+        statusCell.innerHTML = `<span class="inline-flex items-center px-space-sm py-0.5 rounded-full text-label-sm font-label-sm bg-[#FEF2F2] text-[#DC2626] font-bold">Rejected</span>`;
+      }
+    }
+
+    // Recount pending
+    let pendingCount = Object.values(prescriptionsData).filter(item => item.VerificationStatus === 'Pending').length;
+    document.getElementById('rx-count-badge').textContent = pendingCount;
+  }
+
+  // ORDER DRAWER ACTIONS
+  function openOrderDrawer(orderId) {
+    activeDrawerOrderId = orderId;
+    const order = ordersData[orderId];
+    if (!order) return;
+
+    document.getElementById('drawer-order-id').textContent = order.OrderID;
+    document.getElementById('drawer-customer-id').textContent = order.CustomerID;
+    document.getElementById('drawer-prescription-id').textContent = order.PrescriptionID;
+    document.getElementById('drawer-order-status').textContent = order.OrderStatus;
+
+    const tbody = document.getElementById('drawer-items-body');
+    tbody.innerHTML = '';
+
+    order.Items.forEach(item => {
+      const lineTotal = (item.Quantity * item.UnitPriceAtSale).toFixed(2);
+      const tr = document.createElement('tr');
+      tr.className = 'hover:bg-surface-container transition-colors';
+      tr.innerHTML = `
+        <td class="py-space-sm px-space-md font-code-mono text-on-surface-variant">${item.ItemSeqNo}</td>
+        <td class="py-space-sm px-space-md">
+          <p class="font-code-mono font-bold text-on-surface">${item.MedicineID}</p>
+          <p class="text-xs text-on-surface-variant font-code-mono">Batch: ${item.BatchNo}</p>
+        </td>
+        <td class="py-space-sm px-space-md text-right font-code-mono font-semibold">${item.Quantity}</td>
+        <td class="py-space-sm px-space-md text-right font-code-mono">₹${item.UnitPriceAtSale.toFixed(2)}</td>
+        <td class="py-space-sm px-space-md text-right font-code-mono font-bold text-primary">₹${lineTotal}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    // Show drawer
+    const drawer = document.getElementById('order-drawer');
+    const backdrop = document.getElementById('order-drawer-backdrop');
+    backdrop.classList.remove('hidden');
+    setTimeout(() => {
+      drawer.classList.remove('translate-x-full');
+    }, 10);
+  }
+
+  function closeOrderDrawer() {
+    const drawer = document.getElementById('order-drawer');
+    const backdrop = document.getElementById('order-drawer-backdrop');
+    drawer.classList.add('translate-x-full');
+    setTimeout(() => {
+      backdrop.classList.add('hidden');
+    }, 300);
+  }
+
+  function updateCurrentOrderStatus(newStatus) {
+    if (!activeDrawerOrderId) return;
+    const order = ordersData[activeDrawerOrderId];
+    if (!order) return;
+
+    order.OrderStatus = newStatus;
+    document.getElementById('drawer-order-status').textContent = newStatus;
+
+    // Update row badge
+    const badge = document.getElementById('badge-status-' + activeDrawerOrderId);
+    if (badge) {
+      badge.textContent = newStatus;
+      if (newStatus === 'Order Ready') {
+        badge.className = 'inline-flex items-center px-space-sm py-0.5 rounded-full text-label-sm font-label-sm bg-[#ECFDF5] text-[#0A5C47] font-bold';
+      } else if (newStatus === 'Order Completed') {
+        badge.className = 'inline-flex items-center px-space-sm py-0.5 rounded-full text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-bold';
+      }
+    }
+
+    closeOrderDrawer();
+  }
+
+  // Initialize view
+  document.addEventListener('DOMContentLoaded', () => {
+    selectPrescription('RX-2025-0891');
+  });
+</script></main></div></body></html>

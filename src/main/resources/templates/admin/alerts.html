@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Stock &amp; Expiry Alerts - Abha Pharmacy</title>
+    <link rel="icon" type="image/png" th:href="@{/images/favicon-32.png}" href="/images/favicon-32.png"/>
+    <link rel="apple-touch-icon" th:href="@{/images/favicon.png}" href="/images/favicon.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#005f49",
+                        secondary: "#206a54",
+                        surface: "#faf8ff"
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                        mono: ["JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .anim-fade-in {
+            animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="bg-surface font-sans text-slate-800 min-h-screen flex flex-col antialiased">
+    <!-- Header -->
+    <header th:replace="~{admin/fragments/admin_header :: header}"></header>
+
+    <main class="flex-1 w-full pt-6 pb-16 anim-fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+
+            <!-- Breadcrumb & Top Bar -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-xl border border-teal-200/80 shadow-xs">
+                <div class="flex items-center gap-3.5">
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-700 shrink-0">
+                        <span class="material-symbols-outlined text-[28px]">warning</span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h1 class="font-display font-bold text-xl text-slate-900">Inventory &amp; Drug Alerts</h1>
+                            <span class="px-2 py-0.5 rounded-full text-xs font-mono font-bold"
+                                  th:classappend="${#lists.isEmpty(alerts)} ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-amber-100 text-amber-900 border border-amber-300'"
+                                  th:text="${#lists.size(alerts) + ' Active'}">0 Active</span>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-0.5">Real-time alerts for low stock thresholds and batches expiring soon.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <a th:href="@{/admin/dashboard}" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                        <span>Back to Dashboard</span>
+                    </a>
+                    <a th:href="@{/admin/grn}" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-teal-700 hover:bg-teal-800 text-white text-xs font-semibold transition-colors shadow-xs">
+                        <span class="material-symbols-outlined text-[16px]">inventory_2</span>
+                        <span>Manage Stock (GRN)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Flash Feedback Messages -->
+            <div th:if="${success}" class="w-full bg-emerald-50 text-emerald-800 p-4 rounded-xl border border-emerald-200 flex items-center gap-2.5 text-sm font-medium">
+                <span class="material-symbols-outlined text-emerald-600">check_circle</span>
+                <span th:text="${success}"></span>
+            </div>
+            <div th:if="${error}" class="w-full bg-red-50 text-red-800 p-4 rounded-xl border border-red-200 flex items-center gap-2.5 text-sm font-medium">
+                <span class="material-symbols-outlined text-red-600">error</span>
+                <span th:text="${error}"></span>
+            </div>
+
+            <!-- Metric Summary Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- 1. All Active Alerts -->
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-medium text-slate-500">Total Active Alerts</span>
+                        <div class="text-2xl font-bold font-mono text-slate-900 mt-1" th:text="${#lists.size(alerts)}">0</div>
+                    </div>
+                    <div class="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700">
+                        <span class="material-symbols-outlined text-[22px]">notifications_active</span>
+                    </div>
+                </div>
+
+                <!-- 2. Low Stock Drugs -->
+                <div class="bg-white p-4 rounded-xl border border-amber-200 shadow-xs flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-medium text-amber-700">Low Stock Drugs</span>
+                        <div class="text-2xl font-bold font-mono text-amber-900 mt-1" th:text="${lowStockCount}">0</div>
+                        <span class="text-[11px] text-slate-400">Below reorder threshold</span>
+                    </div>
+                    <div class="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center text-amber-700">
+                        <span class="material-symbols-outlined text-[22px]">inventory</span>
+                    </div>
+                </div>
+
+                <!-- 3. Expiring Soon / Expired -->
+                <div class="bg-white p-4 rounded-xl border border-rose-200 shadow-xs flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-medium text-rose-700">Expiring / Expired</span>
+                        <div class="text-2xl font-bold font-mono text-rose-900 mt-1" th:text="${expiringCount}">0</div>
+                        <span class="text-[11px] text-slate-400">Expires within 30 days</span>
+                    </div>
+                    <div class="w-10 h-10 rounded-lg bg-rose-50 flex items-center justify-center text-rose-700">
+                        <span class="material-symbols-outlined text-[22px]">event_busy</span>
+                    </div>
+                </div>
+
+                <!-- 4. Resolved Queries -->
+                <div class="bg-white p-4 rounded-xl border border-emerald-200 shadow-xs flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-medium text-emerald-700">Resolved Queries</span>
+                        <div class="text-2xl font-bold font-mono text-emerald-900 mt-1" th:text="${resolvedCount}">0</div>
+                        <span class="text-[11px] text-slate-400">Acknowledged by staff</span>
+                    </div>
+                    <div class="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-700">
+                        <span class="material-symbols-outlined text-[22px]">task_alt</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Options & Quick Search Toolbar -->
+            <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <!-- Filter Tabs: All, Low Stock, Expiring, Resolved -->
+                <div class="flex flex-wrap items-center gap-1.5" id="alertTabs">
+                    <button type="button" data-filter="ALL" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors bg-teal-700 text-white shadow-xs flex items-center gap-1.5">
+                        <span>All Alerts</span>
+                        <span class="px-1.5 py-0.2 rounded-full bg-white/20 text-[11px] font-mono" th:text="${#lists.size(alerts)}">0</span>
+                    </button>
+                    <button type="button" data-filter="LOW_STOCK" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center gap-1.5">
+                        <span>Low Stock</span>
+                        <span class="px-1.5 py-0.2 rounded-full bg-amber-100 text-amber-900 text-[11px] font-mono font-bold" th:text="${lowStockCount}">0</span>
+                    </button>
+                    <button type="button" data-filter="EXPIRING" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center gap-1.5">
+                        <span>Expiring / Expired</span>
+                        <span class="px-1.5 py-0.2 rounded-full bg-rose-100 text-rose-900 text-[11px] font-mono font-bold" th:text="${expiringCount}">0</span>
+                    </button>
+                    <button type="button" data-filter="RESOLVED" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center gap-1.5">
+                        <span>Resolved Queries</span>
+                        <span class="px-1.5 py-0.2 rounded-full bg-emerald-100 text-emerald-900 text-[11px] font-mono font-bold" th:text="${resolvedCount}">0</span>
+                    </button>
+                </div>
+
+                <!-- Instant Search Input -->
+                <div class="relative w-full md:w-72">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
+                    <input type="text" id="alertSearch" placeholder="Search medicine or batch..."
+                           class="w-full h-9 pl-9 pr-3 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-600/20 focus:border-teal-600 transition-all"/>
+                </div>
+            </div>
+
+            <!-- TAB 1, 2, 3: ACTIVE ALERTS TABLE CONTAINER -->
+            <div id="activeAlertsSection" class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+                <div class="p-4 border-b border-slate-100 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                        <h2 class="font-display font-bold text-sm text-slate-900">Active Alert Queue</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 font-mono">Showing <span id="visibleAlertCount" th:text="${#lists.size(alerts)}">0</span> alert(s)</span>
+                </div>
+
+                <!-- Empty State for Active Alerts -->
+                <div th:if="${#lists.isEmpty(alerts)}" class="py-12 px-4 text-center">
+                    <div class="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto mb-3">
+                        <span class="material-symbols-outlined text-[32px]">check_circle</span>
+                    </div>
+                    <h3 class="font-display font-bold text-base text-slate-900">All Clear — No Active Alerts</h3>
+                    <p class="text-xs text-slate-500 mt-1 max-w-md mx-auto">
+                        All medicine stocks are safely above their reorder threshold and no batches are nearing expiration.
+                    </p>
+                </div>
+
+                <!-- Active Alerts Table -->
+                <div th:unless="${#lists.isEmpty(alerts)}" class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-slate-50 text-slate-500 font-mono uppercase text-[11px] border-b border-slate-200">
+                            <tr>
+                                <th class="py-3 px-4 font-semibold">Medicine &amp; Details</th>
+                                <th class="py-3 px-4 font-semibold">Batch No</th>
+                                <th class="py-3 px-4 font-semibold">Alert Type</th>
+                                <th class="py-3 px-4 font-semibold">Stock / Expiry Details</th>
+                                <th class="py-3 px-4 font-semibold">Detected On</th>
+                                <th class="py-3 px-4 font-semibold text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 font-medium">
+                            <tr th:each="alert : ${alerts}" 
+                                class="alert-row hover:bg-slate-50/70 transition-colors"
+                                th:data-type="${alert.alertType}"
+                                th:data-name="${alert.medicineName != null ? alert.medicineName.toLowerCase() : ''}"
+                                th:data-generic="${alert.genericName != null ? alert.genericName.toLowerCase() : ''}"
+                                th:data-batch="${alert.batchNo != null ? alert.batchNo.toLowerCase() : ''}">
+                                
+                                <!-- Medicine Name & Generic -->
+                                <td class="py-3 px-4 align-top">
+                                    <div class="font-bold text-slate-900" th:text="${alert.medicineName != null ? alert.medicineName : 'Medicine #' + alert.medicineId}">Medicine Name</div>
+                                    <div class="text-[11px] text-slate-500" th:if="${alert.genericName != null}" th:text="'Generic: ' + ${alert.genericName}">Generic Salt</div>
+                                    <div class="text-[10px] text-slate-400 mt-0.5" th:if="${alert.category != null}" th:text="${alert.category}">Category</div>
+                                </td>
+
+                                <!-- Batch No -->
+                                <td class="py-3 px-4 align-top whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded bg-teal-50 border border-teal-200 text-teal-800 font-mono font-bold text-[11px]" th:text="${alert.batchNo}">BAT-000</span>
+                                </td>
+
+                                <!-- Alert Type Badge -->
+                                <td class="py-3 px-4 align-top whitespace-nowrap">
+                                    <!-- Low Stock Badge -->
+                                    <span th:if="${alert.alertType == 'LOW_STOCK'}" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-amber-100 border border-amber-300 text-amber-900 font-bold text-[11px]">
+                                        <span class="material-symbols-outlined text-[14px]">inventory</span>
+                                        <span>Low Stock</span>
+                                    </span>
+
+                                    <!-- Expired Badge -->
+                                    <span th:if="${(alert.alertType == 'EXPIRING_SOON' or alert.alertType == 'EXPIRED') and alert.isExpired()}" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-red-100 border border-red-300 text-red-900 font-bold text-[11px]">
+                                        <span class="material-symbols-outlined text-[14px]">error</span>
+                                        <span>Expired</span>
+                                    </span>
+
+                                    <!-- Expiring Soon Badge -->
+                                    <span th:if="${(alert.alertType == 'EXPIRING_SOON' or alert.alertType == 'EXPIRED') and !alert.isExpired()}" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-rose-100 border border-rose-300 text-rose-900 font-bold text-[11px]">
+                                        <span class="material-symbols-outlined text-[14px]">event_busy</span>
+                                        <span>Expiring Soon</span>
+                                    </span>
+                                </td>
+
+                                <!-- Stock / Expiry Details -->
+                                <td class="py-3 px-4 align-top">
+                                    <!-- For Low Stock -->
+                                    <div th:if="${alert.alertType == 'LOW_STOCK'}" class="space-y-0.5">
+                                        <div class="font-mono text-slate-800 font-bold">
+                                            Stock: <span class="text-amber-800 font-extrabold" th:text="${alert.quantityInStock != null ? alert.quantityInStock : 'Low'}">0</span> units
+                                        </div>
+                                        <div class="text-[11px] text-slate-500 font-mono" th:if="${alert.reorderThreshold != null}">
+                                            Reorder Threshold: <span class="font-bold text-slate-700" th:text="${alert.reorderThreshold} + ' units'">20 units</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-400" th:text="${alert.message}"></p>
+                                    </div>
+
+                                    <!-- For Expiring / Expired -->
+                                    <div th:if="${alert.alertType == 'EXPIRING_SOON' or alert.alertType == 'EXPIRED'}" class="space-y-0.5">
+                                        <div class="font-mono text-slate-800 font-bold" th:if="${alert.expiryDate != null}">
+                                            Expiry Date: <span class="text-rose-700 font-extrabold" th:text="${alert.expiryDate}">2026-10-31</span>
+                                        </div>
+                                        <div class="text-[11px] font-mono" th:if="${alert.daysRemaining != null}">
+                                            <span th:if="${alert.daysRemaining &lt; 0}" class="text-red-700 font-bold" th:text="'Expired ' + ${-alert.daysRemaining} + ' day(s) ago'">Expired</span>
+                                            <span th:if="${alert.daysRemaining == 0}" class="text-red-700 font-bold">Expires TODAY</span>
+                                            <span th:if="${alert.daysRemaining &gt; 0}" class="text-rose-700 font-semibold" th:text="'Expires in ' + ${alert.daysRemaining} + ' day(s)'">Expires soon</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-400" th:text="${alert.message}"></p>
+                                    </div>
+                                </td>
+
+                                <!-- Detection Date -->
+                                <td class="py-3 px-4 align-top whitespace-nowrap font-mono text-slate-500 text-[11px]">
+                                    <div class="text-slate-800 font-semibold" th:text="${alert.createdAt != null ? #temporals.format(alert.createdAt, 'yyyy-MM-dd') : 'Recent'}">2026-10-02</div>
+                                    <div class="text-[10px] text-slate-400" th:text="${alert.createdAt != null ? #temporals.format(alert.createdAt, 'HH:mm:ss') : ''}">10:30:00</div>
+                                </td>
+
+                                <!-- Action Button: Resolve Query -->
+                                <td class="py-3 px-4 align-top text-right whitespace-nowrap">
+                                    <form th:action="@{/admin/alerts/resolve}" method="post" class="inline-block">
+                                        <input type="hidden" name="alertId" th:value="${alert.alertId}"/>
+                                        <input type="hidden" name="redirect" value="/admin/alerts"/>
+                                        <button type="submit" 
+                                                class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-semibold text-xs transition-colors shadow-xs"
+                                                title="Mark this alert query as resolved">
+                                            <span class="material-symbols-outlined text-[15px]">check_circle</span>
+                                            <span>Resolve Query</span>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- No match search result state -->
+                <div id="noMatchActive" class="hidden py-8 px-4 text-center">
+                    <p class="text-xs text-slate-500">No active alerts match your search query.</p>
+                </div>
+            </div>
+
+            <!-- TAB 4: RESOLVED QUERIES TABLE CONTAINER (Initially Hidden) -->
+            <div id="resolvedAlertsSection" class="hidden bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+                <div class="p-4 border-b border-slate-100 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-emerald-600 text-[20px]">task_alt</span>
+                        <h2 class="font-display font-bold text-sm text-slate-900">Resolved Alert Queries History</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 font-mono">Showing <span id="visibleResolvedCount" th:text="${#lists.size(resolvedAlerts)}">0</span> resolved query(ies)</span>
+                </div>
+
+                <!-- Empty State for Resolved Alerts -->
+                <div th:if="${#lists.isEmpty(resolvedAlerts)}" class="py-12 px-4 text-center">
+                    <div class="w-14 h-14 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-3">
+                        <span class="material-symbols-outlined text-[32px]">history</span>
+                    </div>
+                    <h3 class="font-display font-bold text-base text-slate-900">No Resolved Queries Yet</h3>
+                    <p class="text-xs text-slate-500 mt-1 max-w-md mx-auto">
+                        When you resolve active alerts, they will be archived here for historical tracking.
+                    </p>
+                </div>
+
+                <!-- Resolved Alerts Table -->
+                <div th:unless="${#lists.isEmpty(resolvedAlerts)}" class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-slate-50 text-slate-500 font-mono uppercase text-[11px] border-b border-slate-200">
+                            <tr>
+                                <th class="py-3 px-4 font-semibold">Medicine &amp; Batch</th>
+                                <th class="py-3 px-4 font-semibold">Original Alert</th>
+                                <th class="py-3 px-4 font-semibold">Message</th>
+                                <th class="py-3 px-4 font-semibold">Resolved On</th>
+                                <th class="py-3 px-4 font-semibold">Resolved By</th>
+                                <th class="py-3 px-4 font-semibold text-right">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 font-medium">
+                            <tr th:each="r : ${resolvedAlerts}" 
+                                class="resolved-row hover:bg-slate-50/70 transition-colors"
+                                th:data-name="${r.medicineName != null ? r.medicineName.toLowerCase() : ''}"
+                                th:data-generic="${r.genericName != null ? r.genericName.toLowerCase() : ''}"
+                                th:data-batch="${r.batchNo != null ? r.batchNo.toLowerCase() : ''}">
+                                
+                                <!-- Medicine & Batch -->
+                                <td class="py-3 px-4 align-top">
+                                    <div class="font-bold text-slate-900" th:text="${r.medicineName != null ? r.medicineName : 'Medicine #' + r.medicineId}">Medicine Name</div>
+                                    <div class="text-[11px] text-slate-500 font-mono" th:text="'Batch: ' + ${r.batchNo}">Batch: BAT-00</div>
+                                </td>
+
+                                <!-- Original Alert Type -->
+                                <td class="py-3 px-4 align-top whitespace-nowrap">
+                                    <span th:if="${r.alertType == 'LOW_STOCK'}" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 font-bold text-[11px] border border-slate-200">
+                                        <span class="material-symbols-outlined text-[13px]">inventory</span>
+                                        <span>Low Stock</span>
+                                    </span>
+                                    <span th:unless="${r.alertType == 'LOW_STOCK'}" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 font-bold text-[11px] border border-slate-200">
+                                        <span class="material-symbols-outlined text-[13px]">event_busy</span>
+                                        <span>Expiry</span>
+                                    </span>
+                                </td>
+
+                                <!-- Message -->
+                                <td class="py-3 px-4 align-top">
+                                    <p class="text-slate-600 line-clamp-2" th:text="${r.message}"></p>
+                                </td>
+
+                                <!-- Resolved Timestamp -->
+                                <td class="py-3 px-4 align-top whitespace-nowrap font-mono text-slate-500 text-[11px]">
+                                    <div class="text-slate-800 font-semibold" th:text="${r.resolvedAt != null ? #temporals.format(r.resolvedAt, 'yyyy-MM-dd') : (r.resolvedDate != null ? r.resolvedDate : 'Resolved')}">2026-10-02</div>
+                                    <div class="text-[10px] text-slate-400" th:text="${r.resolvedAt != null ? #temporals.format(r.resolvedAt, 'HH:mm:ss') : ''}">12:00:00</div>
+                                </td>
+
+                                <!-- Resolved By -->
+                                <td class="py-3 px-4 align-top">
+                                    <div class="font-semibold text-slate-800 flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[15px] text-teal-700">person</span>
+                                        <span th:text="${r.resolvedByStaffName != null ? r.resolvedByStaffName : 'Staff Pharmacist'}">Staff</span>
+                                    </div>
+                                    <div class="text-[10px] text-slate-400 font-mono" th:text="${r.actionTaken != null ? r.actionTaken : 'Acknowledged'}">Acknowledged</div>
+                                </td>
+
+                                <!-- Status Badge -->
+                                <td class="py-3 px-4 align-top text-right whitespace-nowrap">
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-bold text-[11px]">
+                                        <span class="material-symbols-outlined text-[13px]">done</span>
+                                        <span>Resolved</span>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- No match search result state -->
+                <div id="noMatchResolved" class="hidden py-8 px-4 text-center">
+                    <p class="text-xs text-slate-500">No resolved queries match your search query.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Interactive Filtering & Tab Switch Script -->
+    <script>
+        (function() {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const activeSection = document.getElementById('activeAlertsSection');
+            const resolvedSection = document.getElementById('resolvedAlertsSection');
+            const searchInput = document.getElementById('alertSearch');
+            let currentFilter = 'ALL';
+
+            function updateView() {
+                const query = (searchInput.value || '').trim().toLowerCase();
+
+                if (currentFilter === 'RESOLVED') {
+                    activeSection.classList.add('hidden');
+                    resolvedSection.classList.remove('hidden');
+
+                    const rows = resolvedSection.querySelectorAll('.resolved-row');
+                    let visibleCount = 0;
+                    rows.forEach(row => {
+                        const name = row.getAttribute('data-name') || '';
+                        const generic = row.getAttribute('data-generic') || '';
+                        const batch = row.getAttribute('data-batch') || '';
+                        const matchesQuery = !query || name.includes(query) || generic.includes(query) || batch.includes(query);
+
+                        if (matchesQuery) {
+                            row.style.display = '';
+                            visibleCount++;
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+
+                    const counter = document.getElementById('visibleResolvedCount');
+                    if (counter) counter.textContent = visibleCount;
+                    const noMatch = document.getElementById('noMatchResolved');
+                    if (noMatch) {
+                        noMatch.classList.toggle('hidden', visibleCount > 0 || rows.length === 0);
+                    }
+                } else {
+                    activeSection.classList.remove('hidden');
+                    resolvedSection.classList.add('hidden');
+
+                    const rows = activeSection.querySelectorAll('.alert-row');
+                    let visibleCount = 0;
+                    rows.forEach(row => {
+                        const type = row.getAttribute('data-type') || '';
+                        const name = row.getAttribute('data-name') || '';
+                        const generic = row.getAttribute('data-generic') || '';
+                        const batch = row.getAttribute('data-batch') || '';
+
+                        const matchesType = (currentFilter === 'ALL') ||
+                            (currentFilter === 'LOW_STOCK' && type === 'LOW_STOCK') ||
+                            (currentFilter === 'EXPIRING' && (type === 'EXPIRING_SOON' || type === 'EXPIRED'));
+
+                        const matchesQuery = !query || name.includes(query) || generic.includes(query) || batch.includes(query);
+
+                        if (matchesType && matchesQuery) {
+                            row.style.display = '';
+                            visibleCount++;
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+
+                    const counter = document.getElementById('visibleAlertCount');
+                    if (counter) counter.textContent = visibleCount;
+                    const noMatch = document.getElementById('noMatchActive');
+                    if (noMatch) {
+                        noMatch.classList.toggle('hidden', visibleCount > 0 || rows.length === 0);
+                    }
+                }
+            }
+
+            // Tab Click Handling
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => {
+                        t.className = 'tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center gap-1.5';
+                    });
+                    tab.className = 'tab-btn px-3.5 py-1.5 rounded-lg text-xs font-bold transition-colors bg-teal-700 text-white shadow-xs flex items-center gap-1.5';
+                    currentFilter = tab.getAttribute('data-filter');
+                    updateView();
+                });
+            });
+
+            // Search handling
+            if (searchInput) {
+                searchInput.addEventListener('input', updateView);
+            }
+
+            // Initialize view
+            updateView();
+        })();
+    </script>
+</body>
+</html>

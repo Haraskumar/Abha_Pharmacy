@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title th:text="${medicine.medicineName} + ' - Clinical Monograph - Abha Pharmacy'">Clinical Formulation Monograph - Abha Pharmacy</title>
+    <link rel="icon" type="image/png" th:href="@{/images/favicon-32.png}" href="/images/favicon-32.png"/>
+    <link rel="apple-touch-icon" th:href="@{/images/favicon.png}" href="/images/favicon.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        background: "#faf8ff",
+                        surface: "#faf8ff",
+                        "surface-bright": "#faf8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f2f3ff",
+                        "surface-container": "#eaedff",
+                        "surface-container-high": "#e2e7ff",
+                        "surface-container-highest": "#dae2fd",
+                        "on-surface": "#131b2e",
+                        "on-surface-variant": "#3e4944",
+                        primary: "#005f49",
+                        "primary-container": "#0d7a5f",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#a8ffdf",
+                        secondary: "#206a54",
+                        "secondary-container": "#a6eed2",
+                        "on-secondary-container": "#266e58",
+                        tertiary: "#005886",
+                        "tertiary-container": "#0071ac",
+                        "tertiary-fixed": "#cce5ff",
+                        outline: "#6e7a74",
+                        "outline-variant": "#bdc9c2",
+                        error: "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a"
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                        mono: ["JetBrains Mono", "monospace"]
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-sans min-h-screen flex flex-col">
+    <!-- Header -->
+    <header th:replace="~{customer/fragments/customer_header :: header}"></header>
+
+    <main class="w-full pt-20 pb-16 px-6 lg:px-12 flex-1">
+        <div class="max-w-[1360px] mx-auto flex flex-col gap-6">
+
+            <!-- Flash Notification Banners -->
+            <div th:if="${error}" class="bg-error-container text-on-error-container px-4 py-3 rounded-xl text-xs font-bold flex items-center gap-2 border border-error/20" id="flash-error-banner">
+                <span class="material-symbols-outlined text-[18px]">error</span>
+                <span th:text="${error}">Error message</span>
+            </div>
+            <div th:if="${success}" class="bg-secondary-container text-on-secondary-container px-4 py-3 rounded-xl text-xs font-bold flex items-center gap-2 border border-secondary/20" id="flash-success-banner">
+                <span class="material-symbols-outlined text-[18px]">check_circle</span>
+                <span th:text="${success}">Success message</span>
+            </div>
+
+            <!-- Sub-header Breadcrumb & Verified Patient Ribbon -->
+            <section class="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex flex-col gap-1">
+                    <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-on-surface-variant text-xs font-medium">
+                        <a href="/customer/dashboard" class="hover:text-primary transition-colors flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">home</span>
+                            <span>Home</span>
+                        </a>
+                        <span class="text-outline-variant">/</span>
+                        <a href="/customer/catalog" class="hover:text-primary transition-colors">Medicine Discovery</a>
+                        <span class="text-outline-variant">/</span>
+                        <span class="text-on-surface font-semibold truncate" th:text="${medicine.medicineName}">Medicine Name</span>
+                    </nav>
+                    <a href="/customer/catalog" class="inline-flex items-center gap-1 text-primary hover:underline text-xs font-semibold mt-1">
+                        <span class="material-symbols-outlined text-[15px]">arrow_back</span>
+                        <span>Back to Medicine Catalog</span>
+                    </a>
+                </div>
+
+                <div class="inline-flex items-center gap-3 bg-surface-container-low px-4 py-2 rounded-full shadow-xs self-start sm:self-auto">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+                        <span class="font-mono text-xs font-bold text-on-surface" th:text="'PATIENT: #' + (${session.customerId != null ? 'AB-' + session.customerId : 'GUEST'})">PATIENT ID</span>
+                        <span class="text-outline-variant">•</span>
+                        <span class="text-xs font-semibold text-on-surface" th:text="${session.customerName != null ? session.customerName : 'Registered User'}">Name</span>
+                    </div>
+                    <div class="inline-flex items-center gap-1 bg-secondary-container text-on-secondary-container px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wide">
+                        <span class="material-symbols-outlined text-[13px]">verified</span>
+                        <span>MOH VERIFIED</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Formulation Master Header Card -->
+            <section class="w-full bg-surface-container-lowest rounded-2xl shadow-sm p-6 lg:p-8 relative overflow-hidden border border-outline-variant/30">
+                <div class="absolute top-0 left-0 right-0 h-1.5 bg-primary"></div>
+                <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+
+                    <!-- Left Details -->
+                    <div class="xl:col-span-8 flex flex-col gap-4">
+                        <!-- Badges -->
+                        <div class="flex flex-wrap items-center gap-2.5">
+                            <div th:if="${medicine.requiresPrescription}"
+                                 class="inline-flex items-center gap-1.5 bg-amber-100 text-amber-900 border border-amber-300 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                                <span class="material-symbols-outlined text-[16px]">prescription</span>
+                                <span>Prescription Required</span>
+                            </div>
+                            <div th:unless="${medicine.requiresPrescription}"
+                                 class="inline-flex items-center gap-1.5 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                                <span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                <span>Over The Counter (OTC)</span>
+                            </div>
+                            <div class="inline-flex items-center gap-1 bg-surface-container text-tertiary px-3 py-1 rounded-full text-xs font-semibold">
+                                <span class="material-symbols-outlined text-[14px]">local_shipping</span>
+                                <span>Instant Hub Dispensation</span>
+                            </div>
+                        </div>
+
+                        <!-- Name and Generic -->
+                        <div>
+                            <div class="flex items-baseline flex-wrap gap-3">
+                                <h1 class="font-display font-extrabold text-2xl lg:text-3xl text-on-surface tracking-tight" th:text="${medicine.medicineName}">Medicine Name</h1>
+                                <span class="font-mono text-xs px-2.5 py-1 bg-surface-container rounded font-bold text-on-surface-variant" th:text="'FORM-' + ${medicine.medicineId}">FORM-00</span>
+                            </div>
+                            <p class="text-base text-secondary font-semibold mt-1" th:text="'Active Salt / Molecule: ' + ${medicine.genericName}">Active Molecule</p>
+                        </div>
+
+                        <!-- Metadata row -->
+                        <div class="flex flex-wrap items-center gap-y-2 gap-x-6 text-on-surface-variant text-xs font-medium pt-1">
+                            <div class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[16px] text-outline">factory</span>
+                                <span>Manufacturer:</span>
+                                <strong class="text-on-surface font-semibold" th:text="${medicine.manufacturer}">PharmaCorp</strong>
+                            </div>
+                            <div class="h-3 w-px bg-surface-container-highest hidden sm:block"></div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[16px] text-outline">category</span>
+                                <span>Dosage Form:</span>
+                                <strong class="text-on-surface font-semibold" th:text="${medicine.category}">Tablet</strong>
+                            </div>
+                            <div class="h-3 w-px bg-surface-container-highest hidden sm:block"></div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-[16px] text-outline">thermostat</span>
+                                <span>Storage:</span>
+                                <strong class="text-on-surface font-semibold" th:text="${medicine.storageCondition}">Room Temp</strong>
+                            </div>
+                        </div>
+
+                        <!-- Availability Strip -->
+                        <div class="flex flex-wrap items-center gap-3 p-3 bg-surface-container-low rounded-xl mt-1">
+                            <div class="flex items-center gap-2 font-semibold text-xs"
+                                 th:classappend="${medicine.totalStock != null and medicine.totalStock > 0 ? 'text-primary' : 'text-error'}">
+                                <span class="w-2.5 h-2.5 rounded-full"
+                                      th:classappend="${medicine.totalStock != null and medicine.totalStock > 0 ? 'bg-primary animate-ping' : 'bg-error'}"></span>
+                                <span th:text="${medicine.totalStock != null and medicine.totalStock > 0 ? 'In Stock: ' + medicine.totalStock + ' units available for dispensation' : 'Currently Out of Stock at Central Dispensary'}">Stock status</span>
+                            </div>
+                            <span class="text-outline-variant">•</span>
+                            <span class="text-xs text-on-surface-variant font-mono">Central Koramangala Hub Dispensary Shelf</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Pricing Card -->
+                    <div class="xl:col-span-4 bg-surface-container-low rounded-xl p-6 flex flex-col justify-between h-full border border-outline-variant/30">
+                        <div>
+                            <span class="text-xs uppercase tracking-wider text-on-surface-variant font-semibold block">Retail Unit Price (Patient Tariff)</span>
+                            <div class="flex items-baseline gap-1.5 mt-2">
+                                <span class="font-display text-3xl font-extrabold text-primary" th:text="${medicine.latestPrice != null ? '₹' + medicine.latestPrice : '₹25.00'}">₹25.00</span>
+                                <span class="text-xs text-on-surface-variant font-semibold">/ unit</span>
+                            </div>
+                            <p class="text-xs text-on-surface-variant mt-1.5">
+                                Standard Dispensation Pack • Base Unit Price (Inclusive of all Health GST Levies)
+                            </p>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-surface-container flex items-center gap-3 bg-surface-container-lowest p-3 rounded-lg">
+                            <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary flex-shrink-0">
+                                <span class="material-symbols-outlined text-[24px]">pill</span>
+                            </div>
+                            <div class="flex flex-col min-w-0">
+                                <span class="text-xs font-bold text-on-surface truncate" th:text="${medicine.medicineName}">Formulation</span>
+                                <span class="text-[11px] text-on-surface-variant font-mono">Standard Clinical Packaging</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Specifications Grid (3 Bespoke Clinical Cards) -->
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-surface-container-lowest rounded-xl p-6 shadow-xs border border-outline-variant/30 flex flex-col justify-between">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-[22px]">medical_services</span>
+                        </div>
+                        <span class="font-mono text-xs bg-surface-container px-2 py-0.5 rounded text-tertiary font-semibold" th:text="${medicine.category}">CATEGORY</span>
+                    </div>
+                    <div>
+                        <span class="text-xs uppercase tracking-wider text-on-surface-variant font-semibold">Therapeutic Category</span>
+                        <h2 class="font-display font-bold text-lg text-on-surface mt-1" th:text="${medicine.category}">Analgesic</h2>
+                        <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+                            Formulation indicated for specialized symptomatic treatment according to therapeutic classification standards.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-surface-container flex items-center justify-between text-xs text-on-surface-variant">
+                        <span>Quality Standard</span>
+                        <span class="text-primary font-semibold">IP / BP Grade</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-surface-container-lowest rounded-xl p-6 shadow-xs border border-outline-variant/30 flex flex-col justify-between">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+                            <span class="material-symbols-outlined text-[22px]">device_thermostat</span>
+                        </div>
+                        <div class="flex items-center gap-1 text-primary font-semibold text-xs bg-secondary-container/50 px-2 py-0.5 rounded">
+                            <span class="material-symbols-outlined text-[13px]">check</span>
+                            <span>Compliant</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-xs uppercase tracking-wider text-on-surface-variant font-semibold">Stability &amp; Storage Protocol</span>
+                        <h2 class="font-display font-bold text-lg text-on-surface mt-1" th:text="${medicine.storageCondition}">Controlled Storage</h2>
+                        <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+                            Maintain strictly in original container away from direct sunlight, excessive heat, and moisture. Keep cap firmly sealed.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-surface-container flex flex-col gap-1.5">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-on-surface-variant">Optimal Storage Protocol</span>
+                            <span class="font-mono text-primary font-bold">Cold-Chain Monitored</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-surface-container-lowest rounded-xl p-6 shadow-xs border border-outline-variant/30 flex flex-col justify-between">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center text-tertiary">
+                            <span class="material-symbols-outlined text-[22px]">policy</span>
+                        </div>
+                        <span class="font-mono text-xs bg-surface-container-high px-2 py-0.5 rounded text-on-surface font-semibold">VERIFIED</span>
+                    </div>
+                    <div>
+                        <span class="text-xs uppercase tracking-wider text-on-surface-variant font-semibold">Quality Standard</span>
+                        <h2 class="font-display font-bold text-lg text-on-surface mt-1"
+                            th:text="${medicine.requiresPrescription ? 'Schedule H Prescription' : 'Schedule OTC Formulary'}">Formulary</h2>
+                        <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+                            Verified authentic pharmaceutical formulation with active batch registry and quality assurance tracking.
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-surface-container flex items-center justify-between text-xs">
+                        <span class="text-on-surface-variant">Reorder Threshold:</span>
+                        <span class="font-mono font-bold text-on-surface" th:text="${medicine.reorderThreshold} + ' Units'">20 Units</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Monograph Dossier -->
+            <section class="w-full bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden border border-outline-variant/30">
+                <div class="bg-surface-container-high px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-2.5">
+                        <span class="material-symbols-outlined text-primary text-[22px]">menu_book</span>
+                        <h3 class="font-display font-bold text-base text-on-surface">Clinical Monograph &amp; Pharmacological Dossier</h3>
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 bg-surface-container-lowest px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant">
+                        <span class="w-2 h-2 rounded-full bg-primary"></span>
+                        <span>Verified Formulary Dossier • Ref: IP/BP Standards</span>
+                    </div>
+                </div>
+
+                <div class="p-6 lg:p-8 flex flex-col gap-6">
+                    <!-- Section A -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                        <div class="lg:col-span-3 flex flex-col">
+                            <span class="text-xs uppercase tracking-wider text-primary font-bold">Section A</span>
+                            <h4 class="font-display font-bold text-base text-on-surface mt-0.5">Indications &amp; Clinical Usage</h4>
+                        </div>
+                        <div class="lg:col-span-9 flex flex-col gap-4">
+                            <p class="text-sm text-on-surface leading-relaxed" th:text="${medicine.description}">
+                                Formulation description and clinical indications.
+                            </p>
+                            <!-- Dosing Table -->
+                            <div class="bg-surface-container-low rounded-xl p-4 overflow-x-auto">
+                                <table class="w-full text-left text-xs">
+                                    <thead>
+                                        <tr class="text-on-surface-variant uppercase tracking-wider border-b border-surface-container-high">
+                                            <th class="pb-2 font-semibold">Patient Cohort</th>
+                                            <th class="pb-2 font-semibold">Standard Dose</th>
+                                            <th class="pb-2 font-semibold">Frequency</th>
+                                            <th class="pb-2 text-right font-semibold">Max 24h Ceiling</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-surface-container-high text-on-surface">
+                                        <tr>
+                                            <td class="py-2.5 font-bold">Adults &amp; Adolescents (&gt;50kg)</td>
+                                            <td class="py-2.5">1 - 2 Units as Prescribed</td>
+                                            <td class="py-2.5">Every 6 to 8 hours as needed</td>
+                                            <td class="py-2.5 text-right font-mono font-bold text-primary">Standard Ceiling</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2.5 font-bold">Pediatric / Underweight (&lt;50kg)</td>
+                                            <td class="py-2.5">Strictly as directed by Physician</td>
+                                            <td class="py-2.5">As per Pediatric Chart</td>
+                                            <td class="py-2.5 text-right font-mono font-bold text-on-surface">Physician Protocol</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full h-px bg-surface-container"></div>
+
+                    <!-- Section B -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                        <div class="lg:col-span-3 flex flex-col">
+                            <span class="text-xs uppercase tracking-wider text-error font-bold">Section B</span>
+                            <h4 class="font-display font-bold text-base text-on-surface mt-0.5">Critical Precautions &amp; Warnings</h4>
+                        </div>
+                        <div class="lg:col-span-9">
+                            <div class="bg-error-container/40 rounded-xl p-5 flex flex-col sm:flex-row gap-4 items-start">
+                                <div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center flex-shrink-0 text-error">
+                                    <span class="material-symbols-outlined text-[22px]">warning</span>
+                                </div>
+                                <div class="flex flex-col gap-1.5 text-on-surface text-xs">
+                                    <h5 class="font-bold text-sm text-on-error-container">Clinical Contraindications Alert</h5>
+                                    <p class="text-on-surface-variant leading-relaxed">
+                                        <strong>Absolute Contraindications:</strong> Documented hypersensitivity to formulation salt, severe acute organ impairment, or incompatible concurrent medication therapy.
+                                    </p>
+                                    <ul class="list-disc list-inside text-on-surface-variant space-y-1 mt-1">
+                                        <li><strong>Storage Notice:</strong> Keep strictly out of reach of children and domestic animals.</li>
+                                        <li><strong>Medical Consultation:</strong> Consult a licensed physician immediately if symptoms persist or adverse events manifest.</li>
+                                        <li><strong>Emergency Hotline:</strong> In case of accidental ingestion or acute allergic reaction, call emergency services (112 / 108).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Action & Dispensation Protocol Bar -->
+            <section class="w-full bg-surface-container-lowest rounded-2xl shadow-md p-6 border border-outline-variant/30">
+                <div class="flex flex-col xl:flex-row items-stretch xl:items-center justify-between gap-6">
+
+                    <!-- OTC Order Section -->
+                    <div th:unless="${medicine.requiresPrescription}" class="flex flex-col sm:flex-row items-stretch sm:items-center gap-6">
+                        <div th:if="${medicine.totalStock != null and medicine.totalStock > 0}" class="flex flex-col gap-2">
+                            <div class="flex flex-wrap items-center gap-4">
+                                <!-- Stepper -->
+                                <div class="flex items-center bg-surface-container-low rounded-xl p-1">
+                                    <button type="button" id="qty-minus" aria-label="Decrease Quantity" class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface transition-colors shadow-xs">
+                                        <span class="material-symbols-outlined text-[18px]">remove</span>
+                                    </button>
+                                    <div class="px-4 flex flex-col items-center">
+                                        <span id="qty-display" class="font-mono font-bold text-on-surface text-sm">1</span>
+                                        <span class="text-[10px] text-on-surface-variant">Unit(s)</span>
+                                    </div>
+                                    <button type="button" id="qty-plus" aria-label="Increase Quantity" class="w-9 h-9 flex items-center justify-center rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface transition-colors shadow-xs">
+                                        <span class="material-symbols-outlined text-[18px]">add</span>
+                                    </button>
+                                </div>
+
+                                <!-- Total -->
+                                <div class="flex flex-col">
+                                    <div class="flex items-baseline gap-1">
+                                        <span class="text-xs text-on-surface-variant uppercase font-semibold">Payable:</span>
+                                        <span id="price-total" class="font-display text-xl font-bold text-primary" th:text="${medicine.latestPrice != null ? '₹' + medicine.latestPrice : '₹25.00'}">₹25.00</span>
+                                    </div>
+                                    <span id="tabs-summary" class="text-xs text-on-surface-variant">1 unit selected</span>
+                                </div>
+
+                                <!-- Submit Form -->
+                                <form th:action="@{/customer/order/otc}" method="post" class="m-0" id="otc-order-form">
+                                    <input type="hidden" name="medicineId" th:value="${medicine.medicineId}"/>
+                                    <input type="hidden" name="quantity" id="form-qty" value="1"/>
+                                    <button type="button" id="add-to-cart-btn" class="bg-primary hover:bg-primary-container text-on-primary font-bold text-sm px-6 py-3 rounded-xl shadow-xs transition-all flex items-center justify-center gap-2 active:scale-[0.99]">
+                                        <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+                                        <span>Add to Cart</span>
+                                    </button>
+                                </form>
+                            </div>
+                            <!-- Quantity Validation Warning -->
+                            <div id="qty-warning" class="hidden text-xs text-error font-semibold flex items-center gap-1.5 p-2 bg-error-container/30 rounded-lg">
+                                <span class="material-symbols-outlined text-[16px]">warning</span>
+                                <span>Quantity exceeds allowed limit: Maximum retail OTC formulation order is 10 units per transaction.</span>
+                            </div>
+                        </div>
+                        <div th:unless="${medicine.totalStock != null and medicine.totalStock > 0}" class="flex items-center gap-3">
+                            <span class="px-4 py-2 bg-error-container text-on-error-container rounded-xl text-xs font-bold">Currently Out of Stock</span>
+                            <span class="text-xs text-on-surface-variant">Stock replenishments in progress via Central Warehouse.</span>
+                        </div>
+                    </div>
+
+                    <!-- Prescription Required Section -->
+                    <div th:if="${medicine.requiresPrescription}" class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                        <div class="flex flex-col">
+                            <span class="text-xs font-semibold text-amber-800">Prescription Required</span>
+                            <span class="text-xs text-on-surface-variant">Requires a valid doctor prescription to order</span>
+                        </div>
+                        <a href="/customer/prescription/upload" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-container text-on-primary px-6 py-3 rounded-xl text-xs font-bold transition-all shadow-xs">
+                            <span class="material-symbols-outlined text-[18px]">upload_file</span>
+                            <span>Upload Prescription to Order</span>
+                        </a>
+                    </div>
+
+                    <!-- Direct Cart Uplink -->
+                    <div class="flex items-center gap-3 pt-3 xl:pt-0 border-t xl:border-t-0 border-surface-container">
+                        <a href="/customer/cart" class="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:underline">
+                            <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+                            <span>Open Digital Cart &amp; Checkout</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Pharmacist Helpline -->
+                <div class="mt-4 pt-3 border-t border-surface-container flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-on-surface-variant">
+                    <div class="flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-[16px] text-primary">support_agent</span>
+                        <span>Need clinical guidance? Central Dispensary Helpline: <strong class="text-on-surface">1800-209-ABHA (24/7)</strong></span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-primary"></span>
+                        <span class="text-primary font-semibold">Online Dispensation Active</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="w-full bg-surface-container-low py-6 border-t border-surface-container">
+        <div class="max-w-[1360px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-on-surface-variant">
+            <div class="flex items-center gap-2">
+                <span class="font-display font-bold text-primary">Abha Pharmacy</span>
+                <span>• Quality Healthcare &amp; Digital Pharmacy Care. All rights reserved.</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="/customer/catalog" class="hover:text-primary transition-colors">Catalog</a>
+                <a href="/customer/orders" class="hover:text-primary transition-colors">My Orders</a>
+                <a href="/customer/profile" class="hover:text-primary transition-colors">Profile</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive script for quantity calculation -->
+    <script th:inline="javascript">
+        (function() {
+            const minusBtn = document.getElementById('qty-minus');
+            const plusBtn = document.getElementById('qty-plus');
+            const qtyDisplay = document.getElementById('qty-display');
+            const priceTotal = document.getElementById('price-total');
+            const tabsSummary = document.getElementById('tabs-summary');
+            const formQty = document.getElementById('form-qty');
+
+            if (!minusBtn || !plusBtn || !qtyDisplay || !priceTotal) return;
+
+            /*[# th:if="${medicine.latestPrice != null}"]*/
+            const unitPrice = /*[[${medicine.latestPrice}]]*/ 25.0;
+            /*[/]*/
+            /*[# th:unless="${medicine.latestPrice != null}"]*/
+            const unitPrice = 25.0;
+            /*[/]*/
+
+            let currentQty = 1;
+            const medIdInput = document.querySelector('input[name="medicineId"]');
+            const medId = medIdInput ? medIdInput.value : null;
+
+            // Check if already in cart
+            if (medId) {
+                let cart = JSON.parse(localStorage.getItem('abha_cart') || '{}');
+                if (cart[medId] && cart[medId] > 0) {
+                    currentQty = cart[medId];
+                }
+            }
+
+            function update() {
+                qtyDisplay.textContent = currentQty;
+                if (formQty) formQty.value = currentQty;
+                const total = (currentQty * unitPrice).toFixed(2);
+                priceTotal.textContent = '₹' + total;
+                tabsSummary.textContent = currentQty + ' unit(s) selected (₹' + total + ')';
+            }
+
+            function checkWarning() {
+                const warning = document.getElementById('qty-warning');
+                if (warning) {
+                    if (currentQty > 10) {
+                        warning.classList.remove('hidden');
+                    } else {
+                        warning.classList.add('hidden');
+                    }
+                }
+            }
+
+            // Run initial display update
+            update();
+
+            minusBtn.addEventListener('click', function() {
+                if (currentQty > 1) {
+                    currentQty--;
+                    update();
+                    checkWarning();
+                }
+            });
+
+            plusBtn.addEventListener('click', function() {
+                if (currentQty < 20) {
+                    currentQty++;
+                    update();
+                    checkWarning();
+                }
+            });
+
+            
+            const addBtn = document.getElementById('add-to-cart-btn');
+            if (addBtn) {
+                addBtn.addEventListener('click', function(e) {
+                    if (currentQty <= 10) {
+                        e.preventDefault();
+                        
+                        // Change button to Go To Cart
+                        addBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">shopping_cart_checkout</span><span>Go to Cart (' + currentQty + ' items)</span>';
+                        addBtn.classList.remove('bg-primary');
+                        addBtn.classList.add('bg-secondary-container', 'text-on-secondary-container');
+                        
+                        // Save exact selected quantity to localStorage
+                        let cart = JSON.parse(localStorage.getItem('abha_cart') || '{}');
+                        if (medId) {
+                            if (currentQty > 0) {
+                                cart[medId] = currentQty;
+                            } else {
+                                delete cart[medId];
+                            }
+                            localStorage.setItem('abha_cart', JSON.stringify(cart));
+                        }
+                        
+                        // Update click handler to navigate to cart
+                        addBtn.onclick = function() {
+                            window.location.href = '/customer/cart';
+                        };
+                        
+                        // Show floating cart indicator
+                        let floatingCart = document.getElementById('floating-cart-indicator');
+                        if (!floatingCart) {
+                            floatingCart = document.createElement('a');
+                            floatingCart.id = 'floating-cart-indicator';
+                            floatingCart.href = '/customer/cart';
+                            floatingCart.className = 'fixed bottom-6 right-6 bg-primary text-on-primary px-4 py-3 rounded-full shadow-lg flex items-center gap-2 font-bold text-sm z-50 hover:bg-primary-container transition-transform hover:-translate-y-1';
+                            document.body.appendChild(floatingCart);
+                        }
+                        const totalItems = Object.values(cart).reduce((a, b) => a + b, 0);
+                        floatingCart.innerHTML = `<span class="material-symbols-outlined">shopping_cart</span><span>Go to Cart (${totalItems})</span>`;
+                    }
+                });
+            }
+
+            const orderForm = document.getElementById('otc-order-form');
+            if (orderForm) {
+                orderForm.addEventListener('submit', function(e) {
+                    if (currentQty > 10) {
+                        e.preventDefault();
+                        checkWarning();
+                        const warning = document.getElementById('qty-warning');
+                        if (warning) {
+                            warning.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

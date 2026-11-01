@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/fragments/admin_head :: head}">
+    <title>Staff Management &amp; Role-Based Access Control - Abha Pharmacy</title>
+</head>
+<body class="bg-surface-container-low font-body-md text-on-surface antialiased min-h-screen flex flex-col">
+    <header th:replace="~{admin/fragments/admin_header :: header}"></header>
+
+    <main class="flex-1 p-6 max-w-[1680px] w-full mx-auto space-y-6">
+
+        <!-- Top Admin Header Bar -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-surface-container-lowest p-6 rounded-xl shadow-xs border border-outline-variant/30">
+            <div class="flex flex-col gap-1.5">
+                <div class="flex items-center gap-2.5 flex-wrap">
+                    <h1 class="font-display font-extrabold text-2xl text-on-surface tracking-tight">Staff Management &amp; Access Control</h1>
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs uppercase tracking-wider font-bold">
+                        <span class="material-symbols-outlined text-[15px]">security</span>
+                        <span>OWNER Authorization Level</span>
+                    </span>
+                </div>
+                <div class="flex items-center gap-4 text-secondary text-xs flex-wrap">
+                    <span class="flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+                        <span>Active Session: <strong class="text-on-surface" th:text="${session.staffName != null ? 'Dr. ' + session.staffName : 'Super Admin'}">Dr. Admin</strong></span>
+                    </span>
+                    <span class="w-1 h-1 rounded-full bg-outline"></span>
+                    <span class="font-mono text-outline" th:text="'STF-' + ${session.staffId}">STF-01</span>
+                    <span class="w-1 h-1 rounded-full bg-outline"></span>
+                    <span class="text-secondary font-semibold">Node STF-01 Authenticated</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+                <a th:href="@{/admin/dashboard}" class="inline-flex items-center gap-1.5 px-4 py-2 bg-surface-container text-on-surface text-xs font-semibold rounded-lg hover:bg-surface-container-high transition-colors border border-outline-variant/30">
+                    <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                    <span>Back to Dashboard</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Flash messages -->
+        <div th:if="${success}" class="bg-emerald-50 text-emerald-800 p-4 rounded-xl border border-emerald-200 flex items-center gap-3 text-sm font-semibold">
+            <span class="material-symbols-outlined">check_circle</span>
+            <span th:text="${success}"></span>
+        </div>
+        <div th:if="${error}" class="bg-error-container text-on-error-container p-4 rounded-xl flex items-center gap-3 text-sm font-semibold">
+            <span class="material-symbols-outlined">error</span>
+            <span th:text="${error}"></span>
+        </div>
+
+        <!-- Summary KPI Ribbon (3 Cards) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="bg-surface-container-lowest p-6 rounded-xl shadow-xs border border-outline-variant/30 flex items-start justify-between">
+                <div class="flex flex-col gap-1">
+                    <span class="text-xs uppercase tracking-wider text-outline font-semibold">Total Registered Personnel</span>
+                    <div class="flex items-baseline gap-2 mt-1">
+                        <span class="font-display font-extrabold text-3xl text-on-surface" th:text="${staffList != null ? staffList.size() : 0}">0</span>
+                        <span class="text-xs font-semibold text-secondary">Personnel Accounts</span>
+                    </div>
+                    <p class="text-xs text-on-surface-variant flex items-center gap-1 mt-1">
+                        <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                        <span>Role-based access enforced via SHA-256</span>
+                    </p>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-surface-container-high text-primary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[26px]">groups</span>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-surface-container-lowest p-6 rounded-xl shadow-xs border border-outline-variant/30 flex items-start justify-between">
+                <div class="flex flex-col gap-1">
+                    <span class="text-xs uppercase tracking-wider text-outline font-semibold">Licensed Pharmacists</span>
+                    <div class="flex items-baseline gap-2 mt-1">
+                        <span class="font-display font-extrabold text-3xl text-primary" th:text="${pharmacistCount != null ? pharmacistCount : 0}">0</span>
+                        <span class="text-xs font-semibold text-on-surface-variant">Licensed</span>
+                    </div>
+                    <p class="text-xs text-on-surface-variant flex items-center gap-1 mt-1">
+                        <span class="material-symbols-outlined text-secondary text-[16px]">verified</span>
+                        <span>Active at Dispensary Gate Nodes</span>
+                    </p>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[26px]">prescriptions</span>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-surface-container-lowest p-6 rounded-xl shadow-xs border border-outline-variant/30 flex items-start justify-between">
+                <div class="flex flex-col gap-1">
+                    <span class="text-xs uppercase tracking-wider text-outline font-semibold">Monthly Payroll Liability</span>
+                    <div class="flex items-baseline gap-1 mt-1">
+                        <span class="font-display font-extrabold text-3xl text-on-surface" th:text="${totalPayroll != null ? '₹' + totalPayroll : '₹0.00'}">₹0.00</span>
+                    </div>
+                    <p class="text-xs text-on-surface-variant flex items-center gap-1 mt-1">
+                        <span class="material-symbols-outlined text-outline text-[16px]">account_balance_wallet</span>
+                        <span>Aggregated Active Base Liability</span>
+                    </p>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-surface-container-high text-tertiary flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-[26px]">payments</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two Column Layout (40% / 60%) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+            <!-- Left Side (40%): Onboard New Staff Form Card -->
+            <div class="lg:col-span-5 bg-surface-container-lowest p-6 rounded-xl shadow-xs border border-outline-variant/30 flex flex-col gap-5">
+                <div class="flex items-start justify-between border-b border-surface-container pb-3">
+                    <div class="flex flex-col gap-0.5">
+                        <div class="flex items-center gap-2 text-primary font-display font-bold text-base">
+                            <span class="material-symbols-outlined text-[22px]">person_add</span>
+                            <span>Staff Onboarding &amp; RBAC</span>
+                        </div>
+                        <p class="text-xs text-outline">Direct OWNER authentication required. Encrypted credentials.</p>
+                    </div>
+                    <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-mono text-[11px] font-bold">FORM-STF</span>
+                </div>
+
+                <form th:action="@{/admin/staff/add}" method="post" class="flex flex-col gap-4 text-xs">
+                    <!-- Name Grid (2 cols) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="flex flex-col gap-1">
+                            <label class="font-semibold text-on-surface-variant">First Name <span class="text-error">*</span></label>
+                            <input type="text" name="firstName" required placeholder="e.g. Rajesh"
+                                   class="h-10 px-3 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/40 focus:outline-none focus:border-primary transition" />
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label class="font-semibold text-on-surface-variant">Last Name <span class="text-error">*</span></label>
+                            <input type="text" name="lastName" required placeholder="e.g. Varma"
+                                   class="h-10 px-3 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/40 focus:outline-none focus:border-primary transition" />
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="flex flex-col gap-1">
+                        <label class="font-semibold text-on-surface-variant">Professional Email Address <span class="text-error">*</span></label>
+                        <div class="relative flex items-center">
+                            <span class="material-symbols-outlined absolute left-3 text-outline text-[18px]">mail</span>
+                            <input type="email" name="email" required placeholder="staff@abhapharmacy.com"
+                                   class="w-full h-10 pl-9 pr-3 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/40 focus:outline-none focus:border-primary transition" />
+                        </div>
+                    </div>
+
+                    <!-- Temporary Password -->
+                    <div class="flex flex-col gap-1">
+                        <label class="font-semibold text-on-surface-variant">Temporary Password <span class="text-error">*</span></label>
+                        <div class="relative flex items-center">
+                            <span class="material-symbols-outlined absolute left-3 text-outline text-[18px]">lock</span>
+                            <input type="password" name="rawPassword" required placeholder="••••••••••••"
+                                   class="w-full h-10 pl-9 pr-3 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/40 focus:outline-none focus:border-primary transition" />
+                        </div>
+                        <span class="text-[11px] text-outline flex items-center gap-1 mt-0.5">
+                            <span class="material-symbols-outlined text-[13px] text-secondary">verified_user</span>
+                            <span>Stored strictly as secure SHA-256 hash.</span>
+                        </span>
+                    </div>
+
+                    <!-- Role Selection -->
+                    <div class="flex flex-col gap-1">
+                        <label class="font-semibold text-on-surface-variant">Role Selection &amp; Permissions <span class="text-error">*</span></label>
+                        <select name="role" required
+                                class="h-10 px-3 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/40 focus:outline-none focus:border-primary transition">
+                            <option value="PHARMACIST">PHARMACIST (Prescription verification &amp; drug dispensation)</option>
+                            <option value="OWNER">OWNER (Full administrative &amp; audit access)</option>
+                        </select>
+                    </div>
+
+                    <!-- License Number -->
+                    <div class="flex flex-col gap-1">
+                        <label class="font-semibold text-on-surface-variant">Pharmacy Council License Number</label>
+                        <div class="relative flex items-center">
+                            <span class="material-symbols-outlined absolute left-3 text-outline text-[18px]">badge</span>
+                            <input type="text" name="licenseNumber" placeholder="e.g. PB-PHA-2024-8841"
+                                   class="w-full h-10 pl-9 pr-3 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/40 focus:outline-none focus:border-primary transition" />
+                        </div>
+                    </div>
+
+                    <!-- Hire Date & Salary (2 cols) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="flex flex-col gap-1">
+                            <label class="font-semibold text-on-surface-variant">Hire Date <span class="text-error">*</span></label>
+                            <input type="date" name="hireDate" required
+                                   class="h-10 px-3 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/40 focus:outline-none focus:border-primary transition" />
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <label class="font-semibold text-on-surface-variant">Monthly Salary (₹)</label>
+                            <input type="number" step="0.01" min="0" name="salary" placeholder="50000.00"
+                                   class="h-10 px-3 rounded-lg bg-surface-container-low text-on-surface border border-outline-variant/40 focus:outline-none focus:border-primary transition" />
+                        </div>
+                    </div>
+
+                    <button type="submit"
+                            class="mt-2 w-full py-3 bg-primary hover:bg-primary-container text-on-primary font-bold rounded-xl transition-all shadow-xs flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">how_to_reg</span>
+                        <span>Register Staff Member</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right Side (60%): Registered Staff Directory & Permissions Table -->
+            <div class="lg:col-span-7 bg-surface-container-lowest p-6 rounded-xl shadow-xs border border-outline-variant/30 flex flex-col gap-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-surface-container pb-3">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-[22px]">admin_panel_settings</span>
+                        <div>
+                            <h2 class="font-display font-bold text-base text-on-surface">Registered Staff &amp; Access Controls</h2>
+                            <p class="text-xs text-outline">Manage active personnel, role hierarchies, and account deactivations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Input -->
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-2.5 text-[18px] text-outline">search</span>
+                    <input type="text" id="staffFilterInput"
+                           placeholder="Filter staff by Name, Email, or Role..."
+                           class="w-full pl-9 pr-3 py-2 bg-surface-container-low rounded-lg text-xs text-on-surface placeholder:text-outline border border-outline-variant/40 focus:outline-none focus:border-primary transition" />
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse" id="staffTable">
+                        <thead>
+                            <tr class="bg-surface-container-low text-outline text-[11px] uppercase tracking-wider font-semibold border-b border-surface-container">
+                                <th class="py-3 px-3">Staff Member</th>
+                                <th class="py-3 px-3">Role &amp; Permissions</th>
+                                <th class="py-3 px-3">License &amp; Compliance</th>
+                                <th class="py-3 px-3 text-right">Compensation</th>
+                                <th class="py-3 px-3 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-surface-container text-xs">
+                            <tr th:each="s : ${staffList}" class="hover:bg-surface-container-low/50 transition-colors staff-row">
+                                <!-- Name and ID -->
+                                <td class="py-3.5 px-3">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold text-sm shrink-0"
+                                             th:text="${s.firstName != null ? s.firstName.substring(0, 1) : 'S'}">S</div>
+                                        <div class="min-w-0">
+                                            <div class="font-bold text-on-surface font-display text-sm truncate" th:text="${s.firstName + ' ' + s.lastName}">Name</div>
+                                            <div class="font-mono text-[11px] text-outline" th:text="'STF-' + ${s.staffId} + ' • ' + ${s.email}">Email</div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <!-- Role -->
+                                <td class="py-3.5 px-3">
+                                    <span th:if="${s.role == 'OWNER'}" class="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-bold text-[11px]">OWNER</span>
+                                    <span th:if="${s.role == 'PHARMACIST'}" class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-bold text-[11px]">PHARMACIST</span>
+                                    <span th:if="${s.role == 'INACTIVE'}" class="px-2.5 py-0.5 rounded-full bg-surface-container text-outline font-bold text-[11px]">INACTIVE</span>
+                                    <span th:if="${s.role != 'OWNER' and s.role != 'PHARMACIST' and s.role != 'INACTIVE'}"
+                                          class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface font-bold text-[11px]"
+                                          th:text="${s.role}">ROLE</span>
+                                </td>
+
+                                <!-- License -->
+                                <td class="py-3.5 px-3">
+                                    <div class="font-mono font-semibold text-on-surface"
+                                         th:text="${s.licenseNumber != null and !s.licenseNumber.isEmpty() ? s.licenseNumber : 'Exempt / General'}">License</div>
+                                    <div class="text-[10px] text-outline" th:text="'Hired: ' + (${s.hireDate != null ? s.hireDate : 'N/A'})">Hired Date</div>
+                                </td>
+
+                                <!-- Compensation -->
+                                <td class="py-3.5 px-3 text-right font-mono">
+                                    <div class="font-bold text-on-surface" th:text="${s.salary != null ? '₹' + s.salary : '₹0.00'}">₹0.00</div>
+                                    <div class="text-[10px] text-outline">per month</div>
+                                </td>
+
+                                <!-- Action -->
+                                <td class="py-3.5 px-3 text-right whitespace-nowrap">
+                                    <div class="flex items-center justify-end gap-1.5">
+                                        <button type="button"
+                                                class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-teal-50 text-teal-800 border border-teal-200 hover:bg-teal-100 transition-colors btn-open-edit flex items-center gap-1"
+                                                th:data-id="${s.staffId}"
+                                                th:data-fname="${s.firstName}"
+                                                th:data-lname="${s.lastName}"
+                                                th:data-role="${s.role}"
+                                                th:data-license="${s.licenseNumber}"
+                                                th:data-salary="${s.salary}">
+                                            <span class="material-symbols-outlined text-[13px]">edit</span>
+                                            <span>Change / Edit</span>
+                                        </button>
+
+                                        <div th:unless="${s.staffId == session.staffId}">
+                                            <form th:if="${s.role != 'INACTIVE'}" th:action="@{/admin/staff/deactivate}" method="post" class="inline">
+                                                <input type="hidden" name="targetStaffId" th:value="${s.staffId}">
+                                                <button type="submit" onclick="return confirm('Are you sure you want to deactivate this staff account?')"
+                                                        class="px-2.5 py-1 text-xs font-semibold rounded-lg border border-red-200 text-red-700 hover:bg-red-50 transition-colors">
+                                                    Deactivate
+                                                </button>
+                                            </form>
+                                            <form th:if="${s.role == 'INACTIVE'}" th:action="@{/admin/staff/reactivate}" method="post" class="inline">
+                                                <input type="hidden" name="targetStaffId" th:value="${s.staffId}">
+                                                <button type="submit"
+                                                        class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100 transition-colors">
+                                                    Reactivate
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr th:if="${#lists.isEmpty(staffList)}">
+                                <td colspan="5" class="py-8 text-center text-outline">
+                                    No staff accounts found in system.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Modal for Owner to Edit / Change Staff Details -->
+    <div id="editStaffModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-slate-200 anim-modal-scale">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+                <div class="flex items-center gap-2 text-teal-800">
+                    <span class="material-symbols-outlined text-[24px]">manage_accounts</span>
+                    <h3 class="font-display font-bold text-base text-slate-900">Change Staff Permissions &amp; Profile</h3>
+                </div>
+                <button type="button" onclick="closeEditStaffModal()" class="text-slate-400 hover:text-slate-600 p-1">
+                    <span class="material-symbols-outlined text-[20px]">close</span>
+                </button>
+            </div>
+
+            <form th:action="@{/admin/staff/update}" method="post" class="space-y-4 text-xs">
+                <input type="hidden" name="targetStaffId" id="editStaffId">
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="font-semibold text-slate-700 block mb-1">First Name</label>
+                        <input type="text" name="firstName" id="editFirstName" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-teal-600/30">
+                    </div>
+                    <div>
+                        <label class="font-semibold text-slate-700 block mb-1">Last Name</label>
+                        <input type="text" name="lastName" id="editLastName" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-teal-600/30">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="font-semibold text-slate-700 block mb-1">Role &amp; Authorization Level</label>
+                    <select name="role" id="editRole" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-teal-600/30">
+                        <option value="PHARMACIST">PHARMACIST (Prescriptions, POS &amp; Inventory operations)</option>
+                        <option value="OWNER">OWNER (Executive Financial, Reports &amp; Personnel Control)</option>
+                        <option value="INACTIVE">INACTIVE (Deactivated Account / Denied Access)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="font-semibold text-slate-700 block mb-1">Pharmacy License Number</label>
+                    <input type="text" name="licenseNumber" id="editLicenseNumber" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-900 font-mono focus:outline-none focus:ring-2 focus:ring-teal-600/30">
+                </div>
+
+                <div>
+                    <label class="font-semibold text-slate-700 block mb-1">Monthly Salary (₹)</label>
+                    <input type="number" step="0.01" name="salary" id="editSalary" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-900 font-mono focus:outline-none focus:ring-2 focus:ring-teal-600/30">
+                </div>
+
+                <div>
+                    <label class="font-semibold text-slate-700 block mb-1">Reset Password (leave empty to retain current password)</label>
+                    <input type="password" name="newPassword" id="editNewPassword" placeholder="Enter new password if changing" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-teal-600/30">
+                </div>
+
+                <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100 mt-4">
+                    <button type="button" onclick="closeEditStaffModal()" class="px-4 py-2 rounded-lg border border-slate-300 text-slate-600 hover:bg-slate-50 font-semibold transition">Cancel</button>
+                    <button type="submit" class="px-4 py-2 rounded-lg bg-teal-700 hover:bg-teal-800 text-white font-bold shadow-xs transition">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-white border-t border-slate-200 py-3 px-6 text-xs text-slate-500 mt-auto">
+        <div class="max-w-[1680px] mx-auto flex items-center justify-between">
+            <span>Abha Core OS • Role-Based Access Control Audit</span>
+            <span>Cryptographic multi-factor authentication active</span>
+        </div>
+    </footer>
+
+    <!-- Filter and Modal script -->
+    <script>
+        (function() {
+            const input = document.getElementById('staffFilterInput');
+            const rows = document.querySelectorAll('.staff-row');
+            if (input) {
+                input.addEventListener('input', () => {
+                    const q = input.value.toLowerCase().trim();
+                    rows.forEach(r => {
+                        const text = r.textContent.toLowerCase();
+                        r.style.display = !q || text.includes(q) ? '' : 'none';
+                    });
+                });
+            }
+
+            const modal = document.getElementById('editStaffModal');
+            document.querySelectorAll('.btn-open-edit').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.getElementById('editStaffId').value = btn.getAttribute('data-id') || '';
+                    document.getElementById('editFirstName').value = btn.getAttribute('data-fname') || '';
+                    document.getElementById('editLastName').value = btn.getAttribute('data-lname') || '';
+                    document.getElementById('editRole').value = btn.getAttribute('data-role') || 'PHARMACIST';
+                    document.getElementById('editLicenseNumber').value = btn.getAttribute('data-license') || '';
+                    document.getElementById('editSalary').value = btn.getAttribute('data-salary') || '';
+                    document.getElementById('editNewPassword').value = '';
+                    modal.classList.remove('hidden');
+                });
+            });
+
+            window.closeEditStaffModal = function() {
+                modal.classList.add('hidden');
+            };
+        })();
+    </script>
+</body>
+</html>

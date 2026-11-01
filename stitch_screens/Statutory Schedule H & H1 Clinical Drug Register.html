@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface": "#faf8ff", "on-secondary-fixed-variant": "#00513e", "on-error-container": "#93000a", "inverse-primary": "#7cd8b8", "tertiary-fixed-dim": "#93ccff", "tertiary-container": "#0071ac", "on-surface": "#131b2e", "background": "#faf8ff", "tertiary-fixed": "#cce5ff", "on-tertiary-container": "#e1efff", "secondary": "#206a54", "on-primary-fixed-variant": "#00513e", "surface-variant": "#dae2fd", "error-container": "#ffdad6", "secondary-container": "#a6eed2", "on-surface-variant": "#3e4944", "outline": "#6e7a74", "surface-container-high": "#e2e7ff", "surface-container-lowest": "#ffffff", "primary-fixed": "#98f4d3", "error": "#ba1a1a", "surface-container-highest": "#dae2fd", "outline-variant": "#bdc9c2", "on-primary-fixed": "#002117", "on-tertiary-fixed-variant": "#004b73", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "inverse-surface": "#283044", "on-secondary": "#ffffff", "surface-tint": "#006c53", "on-error": "#ffffff", "on-secondary-container": "#266e58", "on-background": "#131b2e", "primary": "#005f49", "secondary-fixed-dim": "#8ed5ba", "primary-fixed-dim": "#7cd8b8", "inverse-on-surface": "#eef0ff", "surface-container-low": "#f2f3ff", "on-secondary-fixed": "#002117", "on-primary-container": "#a8ffdf", "on-tertiary-fixed": "#001d31", "primary-container": "#0d7a5f", "tertiary": "#005886", "surface-container": "#eaedff", "surface-bright": "#faf8ff", "secondary-fixed": "#a9f1d5", "surface-dim": "#d2d9f4" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin-desktop": "2rem", "margin": "1rem", "space-xl": "1.5rem", "space-lg": "1rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1rem", "space-md": "0.75rem", "gutter-desktop": "1.5rem" }, "fontFamily": { "label-lg": [ "Inter" ], "body-lg": [ "Inter" ], "body-md": [ "Inter" ], "headline-md": [ "Plus Jakarta Sans" ], "label-sm": [ "Inter" ], "body-sm": [ "Inter" ], "headline-sm": [ "Plus Jakarta Sans" ], "code-mono": [ "JetBrains Mono" ], "display-lg": [ "Plus Jakarta Sans" ], "label-md": [ "Inter" ], "headline-lg": [ "Plus Jakarta Sans" ] }, "fontSize": { "label-lg": [ "14px", { "lineHeight": "20px", "fontWeight": "500" } ], "body-lg": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ], "body-md": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ], "headline-md": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "16px", "fontWeight": "400" } ], "headline-sm": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ], "code-mono": [ "12px", { "lineHeight": "16px", "fontWeight": "500" } ], "display-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.025em", "fontWeight": "600" } ], "headline-lg": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" } ] } } } };</script></head><body class="bg-surface text-on-surface font-body-md text-body-md"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col justify-between py-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col gap-space-lg"><div class="px-space-lg flex items-center gap-space-md"><img alt="Brand logo. - Primary color: #0d7a5f
+- Font: plusJakartaSans
+- Mode: light
+- Roundness: rounded-sm
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XTFfPMFs6lpg3XvevtJc4wDvFpbJTrfVLYUKLsJJHSrHljnWKj5fC-GJgyQ4DXdec4FV9d7C8lur-dZEYQlThZ94oEELBauJ7PxH3TpLBUs4Im3EVijfLSw5mkxDkFbF-g6JRzulSn_2U1RoJGeuriQOQqXIjh5LpwXNhwmExOBdHhbBq_jbHzlFoIUodJfWfMuVPUdtKrvLR4Cj8kMSx2HDZbx-3Anqn27frWhTQRMdaoP5taW-4JHQs"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-none">Abha Core</span><span class="font-label-sm text-label-sm text-outline tracking-wider uppercase mt-0.5">Pharma OS</span></div></div><div class="px-space-md"><div class="h-px w-full bg-surface-container-highest"></div></div><nav class="flex flex-col gap-space-xs px-space-md" data-active-classes="bg-primary-container text-on-primary font-semibold rounded-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span>Dashboard</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="pos-walk-in" href="#"><span class="material-symbols-outlined text-[20px]">point_of_sale</span>POS Walk-in</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="prescriptions-queue" href="#"><span class="material-symbols-outlined text-[20px]">clinical_notes</span>Prescriptions Queue</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="inventory-batches" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span>Inventory &amp; Batches</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="schedule-h-h1-register" href="#"><span class="material-symbols-outlined text-[20px]">gavel</span>Schedule H &amp; H1 Register</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="online-orders" href="#"><span class="material-symbols-outlined text-[20px]">shopping_bag</span>Online Orders</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="alerts" href="#"><span class="material-symbols-outlined text-[20px]">warning</span>Alerts</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="suppliers" href="#"><span class="material-symbols-outlined text-[20px]">local_shipping</span>Suppliers</a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="reports" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span>Reports</a></nav></div><div class="px-space-md flex flex-col gap-space-xs"><div class="bg-surface-container-lowest p-space-md rounded-lg shadow-[0_1px_2px_rgba(15,23,42,0.04)]"><div class="flex items-center justify-between mb-space-xs"><span class="font-label-sm text-label-sm text-outline">Dispensary Gate</span><span class="w-2 h-2 rounded-full bg-secondary"></span></div><p class="font-code-mono text-code-mono text-on-surface font-semibold">DISP-TERMINAL-04</p></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-gutter-desktop"><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-space-xs rounded-full"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span></span><span class="font-label-sm text-label-sm text-secondary font-semibold uppercase tracking-wider">Gateway Online • CDSCO Synced</span></div><div class="hidden md:flex items-center gap-space-xs text-outline font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px]">schedule</span><span>Next Audit: 18:00 IST</span></div></div><div class="flex items-center gap-space-lg"><div class="flex items-center gap-space-md text-right"><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface font-semibold">Pharm. Rajesh Varma, R.Ph</span><span class="font-code-mono text-code-mono text-outline">Lic #PB-DL-19842A</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="relative pt-16 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<div class="px-gutter-desktop py-space-lg flex flex-col gap-space-lg">
+<!-- TOP STATUTORY BANNER -->
+<div class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex items-start gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[28px]">gavel</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Schedule H &amp; H1 Statutory Drug Register (Rule 65 Compliance)</h1>
+<span class="bg-surface-container-low text-secondary font-label-sm text-label-sm px-2.5 py-0.5 rounded-full uppercase tracking-wider">Form 21 Mandate</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Under Rule 65 of the Indian Drugs &amp; Cosmetics Act 1945 &amp; Rules 1945 for restricted antibiotic, hypnotic, and psychotropic dispensation.
+            </p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0 flex-wrap">
+<button class="flex items-center gap-space-xs bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md px-3.5 py-2 rounded-lg transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">table_view</span>
+            Download Excise CSV
+          </button>
+<button class="flex items-center gap-space-xs bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg transition-all shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+            Export Form 21 Inspection PDF
+          </button>
+</div>
+</div>
+<!-- METADATA CHIPS ROW -->
+<div class="flex items-center gap-space-sm flex-wrap pt-space-xs">
+<div class="flex items-center gap-1.5 bg-[#FFFBEB] text-[#B45309] px-2.5 py-1 rounded-full font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">lock_clock</span>
+<span>Mandatory 3-Year Retention Period</span>
+</div>
+<div class="flex items-center gap-1.5 bg-[#ECFDF5] text-primary px-2.5 py-1 rounded-full font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Live CDSCO Synchronized</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low text-on-surface-variant px-2.5 py-1 rounded-full font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">badge</span>
+<span>Duty Pharmacist: <strong class="font-semibold text-on-surface">Dr. Rajesh Sharma (Lic #PB-PHA-2018-4912)</strong></span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container-low text-on-surface-variant px-2.5 py-1 rounded-full font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+<span>Inspection Ready: <strong class="font-semibold text-on-surface font-code-mono">Node STF-01</strong></span>
+</div>
+</div>
+</div>
+<!-- FILTERS & AUDIT SEARCH RIBBON -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<!-- Search & Status Row -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md items-center">
+<!-- Search bar -->
+<div class="lg:col-span-6 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest transition-colors" placeholder="Filter by Doctor Medical Council Reg Number, Patient Name, or Drug Batch No..." type="text"/>
+</div>
+<!-- Date Range Filter -->
+<div class="lg:col-span-4 flex items-center gap-space-xs bg-surface-container-low p-1 rounded-lg">
+<div class="flex items-center gap-1 px-2 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<span>Range</span>
+</div>
+<input class="bg-surface-container-lowest rounded px-2 py-1 font-code-mono text-code-mono text-on-surface text-xs focus:outline-none" type="date" value="2024-10-01"/>
+<span class="text-outline text-xs">to</span>
+<input class="bg-surface-container-lowest rounded px-2 py-1 font-code-mono text-code-mono text-on-surface text-xs focus:outline-none" type="date" value="2024-10-24"/>
+</div>
+<!-- Status Filter Select -->
+<div class="lg:col-span-2">
+<select class="w-full bg-surface-container-low text-on-surface font-label-md text-label-md px-3 py-2 rounded-lg focus:outline-none">
+<option>All Dispensed</option>
+<option>Physician Verified</option>
+<option>Emergency Refill</option>
+</select>
+</div>
+</div>
+<!-- Quick Range & Schedule Pills -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm pt-space-xs">
+<!-- Drug Schedule Pills -->
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-sm text-label-sm text-outline mr-1 uppercase tracking-wider">Classification:</span>
+<button class="px-3 py-1 rounded-full font-label-sm text-label-sm bg-primary text-on-primary" type="button">
+            All Schedules (428)
+          </button>
+<button class="px-3 py-1 rounded-full font-label-sm text-label-sm bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors" type="button">
+            Schedule H (294)
+          </button>
+<button class="px-3 py-1 rounded-full font-label-sm text-label-sm bg-surface-container-low text-on-surface hover:bg-surface-container transition-colors" type="button">
+            Schedule H1 (118)
+          </button>
+<button class="px-3 py-1 rounded-full font-label-sm text-label-sm bg-error-container text-on-error-container hover:opacity-90 transition-opacity" type="button">
+            Schedule X (16)
+          </button>
+</div>
+<!-- Quick Time Presets -->
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-outline mr-1">Period:</span>
+<button class="px-2.5 py-1 rounded font-label-sm text-label-sm bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button">Today</button>
+<button class="px-2.5 py-1 rounded font-label-sm text-label-sm bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button">This Week</button>
+<button class="px-2.5 py-1 rounded font-label-sm text-label-sm bg-primary-container text-on-primary font-semibold" type="button">This Month</button>
+<button class="px-2.5 py-1 rounded font-label-sm text-label-sm bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" type="button">FY 2024-25</button>
+</div>
+</div>
+</div>
+<!-- STATUTORY LEDGER TABLE -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-space-md font-semibold whitespace-nowrap">Entry Date &amp; Time (ISO)</th>
+<th class="py-3 px-space-md font-semibold whitespace-nowrap">Register ID</th>
+<th class="py-3 px-space-md font-semibold">Patient Name &amp; Residential Address</th>
+<th class="py-3 px-space-md font-semibold">Prescribing Doctor &amp; Reg #</th>
+<th class="py-3 px-space-md font-semibold">Schedule Category &amp; Drug Formulation</th>
+<th class="py-3 px-space-md font-semibold">Manufacturer &amp; Batch No.</th>
+<th class="py-3 px-space-md font-semibold whitespace-nowrap text-right">Qty &amp; Duration</th>
+<th class="py-3 px-space-md font-semibold whitespace-nowrap text-right">Pharmacist Sign-Off Token</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-on-surface font-body-sm text-body-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-3 px-space-md whitespace-nowrap font-code-mono text-code-mono text-on-surface-variant">
+                2024-10-24 10:14:22
+              </td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<span class="font-code-mono text-code-mono font-semibold text-primary">REG-2024-1142</span>
+</td>
+<td class="py-3 px-space-md min-w-[200px]">
+<div class="font-medium text-on-surface">Sunita Patel</div>
+<div class="text-outline text-xs line-clamp-1">42/B Civil Lines, Jaipur (PIN 302006)</div>
+</td>
+<td class="py-3 px-space-md min-w-[180px]">
+<div class="font-medium text-on-surface">Dr. V. Mehta</div>
+<div class="font-code-mono text-[11px] text-tertiary">RMC-1998-1104</div>
+</td>
+<td class="py-3 px-space-md min-w-[220px]">
+<div class="flex items-center gap-1.5 mb-0.5">
+<span class="bg-[#FFFBEB] text-[#B45309] font-label-sm text-[10px] px-1.5 py-0.2 rounded font-semibold uppercase">Schedule H1</span>
+</div>
+<div class="font-medium text-on-surface">Augmentin 625 Duo</div>
+<div class="text-outline text-xs">Amoxicillin 500mg + Clav 125mg</div>
+</td>
+<td class="py-3 px-space-md min-w-[170px]">
+<div class="text-on-surface">GlaxoSmithKline</div>
+<div class="font-code-mono text-code-mono text-xs text-on-surface-variant">BAT-2024-8891</div>
+</td>
+<td class="py-3 px-space-md text-right whitespace-nowrap font-code-mono text-code-mono">
+<span class="font-semibold text-on-surface">10 Tabs</span>
+<div class="text-outline text-xs">5 Days (BID)</div>
+</td>
+<td class="py-3 px-space-md text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1 bg-[#ECFDF5] text-primary px-2 py-0.5 rounded font-code-mono text-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                  STF-01-SIGN-88A2
+                </div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container-low/30 hover:bg-surface-container-low/70 transition-colors">
+<td class="py-3 px-space-md whitespace-nowrap font-code-mono text-code-mono text-on-surface-variant">
+                2024-10-24 09:48:05
+              </td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<span class="font-code-mono text-code-mono font-semibold text-primary">REG-2024-1141</span>
+</td>
+<td class="py-3 px-space-md min-w-[200px]">
+<div class="font-medium text-on-surface">Ramesh K. Joshi</div>
+<div class="text-outline text-xs line-clamp-1">Flat 12 Sunrise Apts, Jaipur</div>
+</td>
+<td class="py-3 px-space-md min-w-[180px]">
+<div class="font-medium text-on-surface">Dr. Anita Sen</div>
+<div class="font-code-mono text-[11px] text-tertiary">DMC-2011-9042</div>
+</td>
+<td class="py-3 px-space-md min-w-[220px]">
+<div class="flex items-center gap-1.5 mb-0.5">
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-[10px] px-1.5 py-0.2 rounded font-semibold uppercase">Schedule H</span>
+</div>
+<div class="font-medium text-on-surface">Cipro 500mg</div>
+<div class="text-outline text-xs">Ciprofloxacin HCl 500mg</div>
+</td>
+<td class="py-3 px-space-md min-w-[170px]">
+<div class="text-on-surface">Cipla Ltd</div>
+<div class="font-code-mono text-code-mono text-xs text-on-surface-variant">BAT-2024-3321</div>
+</td>
+<td class="py-3 px-space-md text-right whitespace-nowrap font-code-mono text-code-mono">
+<span class="font-semibold text-on-surface">10 Tabs</span>
+<div class="text-outline text-xs">5 Days (BID)</div>
+</td>
+<td class="py-3 px-space-md text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1 bg-[#ECFDF5] text-primary px-2 py-0.5 rounded font-code-mono text-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                  STF-01-SIGN-77C1
+                </div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/70 transition-colors">
+<td class="py-3 px-space-md whitespace-nowrap font-code-mono text-code-mono text-on-surface-variant">
+                2024-10-24 09:12:30
+              </td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<span class="font-code-mono text-code-mono font-semibold text-primary">REG-2024-1140</span>
+</td>
+<td class="py-3 px-space-md min-w-[200px]">
+<div class="font-medium text-on-surface">Fatima Zahra</div>
+<div class="text-outline text-xs line-clamp-1">104 Johari Bazaar, Jaipur</div>
+</td>
+<td class="py-3 px-space-md min-w-[180px]">
+<div class="font-medium text-on-surface">Dr. H. Qureshi</div>
+<div class="font-code-mono text-[11px] text-tertiary">RMC-2005-4412</div>
+</td>
+<td class="py-3 px-space-md min-w-[220px]">
+<div class="flex items-center gap-1.5 mb-0.5">
+<span class="bg-[#FFFBEB] text-[#B45309] font-label-sm text-[10px] px-1.5 py-0.2 rounded font-semibold uppercase">Schedule H1</span>
+</div>
+<div class="font-medium text-on-surface">Azithromycin 500mg</div>
+<div class="text-outline text-xs">Azee-500</div>
+</td>
+<td class="py-3 px-space-md min-w-[170px]">
+<div class="text-on-surface">Cipla Ltd</div>
+<div class="font-code-mono text-code-mono text-xs text-on-surface-variant">BAT-AZE-4412</div>
+</td>
+<td class="py-3 px-space-md text-right whitespace-nowrap font-code-mono text-code-mono">
+<span class="font-semibold text-on-surface">3 Tabs</span>
+<div class="text-outline text-xs">3 Days (OD)</div>
+</td>
+<td class="py-3 px-space-md text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1 bg-[#ECFDF5] text-primary px-2 py-0.5 rounded font-code-mono text-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                  STF-01-SIGN-99D4
+                </div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-surface-container-low/30 hover:bg-surface-container-low/70 transition-colors">
+<td class="py-3 px-space-md whitespace-nowrap font-code-mono text-code-mono text-on-surface-variant">
+                2024-10-23 18:35:10
+              </td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<span class="font-code-mono text-code-mono font-semibold text-primary">REG-2024-1139</span>
+</td>
+<td class="py-3 px-space-md min-w-[200px]">
+<div class="font-medium text-on-surface">Harish Chawla</div>
+<div class="text-outline text-xs line-clamp-1">Plot 8 Vaishali Nagar, Jaipur</div>
+</td>
+<td class="py-3 px-space-md min-w-[180px]">
+<div class="font-medium text-on-surface">Dr. S. K. Gupta</div>
+<div class="font-code-mono text-[11px] text-tertiary">MCI-1994-3810</div>
+</td>
+<td class="py-3 px-space-md min-w-[220px]">
+<div class="flex items-center gap-1.5 mb-0.5">
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-[10px] px-1.5 py-0.2 rounded font-semibold uppercase">Schedule H</span>
+</div>
+<div class="font-medium text-on-surface">Glycomet-GP2</div>
+<div class="text-outline text-xs">Metformin 500mg + Glimepiride 2mg</div>
+</td>
+<td class="py-3 px-space-md min-w-[170px]">
+<div class="text-on-surface">USV Private Ltd</div>
+<div class="font-code-mono text-code-mono text-xs text-on-surface-variant">BAT-2023-7140</div>
+</td>
+<td class="py-3 px-space-md text-right whitespace-nowrap font-code-mono text-code-mono">
+<span class="font-semibold text-on-surface">30 Tabs</span>
+<div class="text-outline text-xs">30 Days (OD)</div>
+</td>
+<td class="py-3 px-space-md text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1 bg-[#ECFDF5] text-primary px-2 py-0.5 rounded font-code-mono text-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                  STF-01-SIGN-33E8
+                </div>
+</td>
+</tr>
+<!-- Row 5 (Schedule X strict) -->
+<tr class="bg-error-container/15 hover:bg-error-container/25 transition-colors">
+<td class="py-3 px-space-md whitespace-nowrap font-code-mono text-code-mono text-on-surface-variant">
+                2024-10-23 16:20:45
+              </td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<span class="font-code-mono text-code-mono font-semibold text-error">REG-2024-1138</span>
+</td>
+<td class="py-3 px-space-md min-w-[200px]">
+<div class="font-medium text-on-surface">Meera Banerjee</div>
+<div class="text-outline text-xs line-clamp-1">55 C-Scheme, Jaipur</div>
+</td>
+<td class="py-3 px-space-md min-w-[180px]">
+<div class="font-medium text-on-surface">Dr. R. Sen</div>
+<div class="font-code-mono text-[11px] text-tertiary">WBMC-2002-8871</div>
+</td>
+<td class="py-3 px-space-md min-w-[220px]">
+<div class="flex items-center gap-1.5 mb-0.5">
+<span class="bg-error text-on-error font-label-sm text-[10px] px-1.5 py-0.2 rounded font-semibold uppercase">Schedule X • Psychotropic</span>
+</div>
+<div class="font-medium text-on-surface">Alprazolam 0.5mg</div>
+<div class="text-outline text-xs">Restyl 0.5 (Triplicate Verified)</div>
+</td>
+<td class="py-3 px-space-md min-w-[170px]">
+<div class="text-on-surface">Torrent Pharma</div>
+<div class="font-code-mono text-code-mono text-xs text-on-surface-variant">BAT-ALP-9021</div>
+</td>
+<td class="py-3 px-space-md text-right whitespace-nowrap font-code-mono text-code-mono">
+<span class="font-semibold text-error">10 Tabs</span>
+<div class="text-outline text-xs">10 Days (HS)</div>
+</td>
+<td class="py-3 px-space-md text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1 bg-surface-container-high text-on-surface-variant px-2 py-0.5 rounded font-code-mono text-xs font-semibold">
+<span class="material-symbols-outlined text-[14px] text-error">policy</span>
+                  STF-01-SIGN-12B9
+                </div>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="bg-surface-container-low/30 hover:bg-surface-container-low/70 transition-colors">
+<td class="py-3 px-space-md whitespace-nowrap font-code-mono text-code-mono text-on-surface-variant">
+                2024-10-23 14:05:19
+              </td>
+<td class="py-3 px-space-md whitespace-nowrap">
+<span class="font-code-mono text-code-mono font-semibold text-primary">REG-2024-1137</span>
+</td>
+<td class="py-3 px-space-md min-w-[200px]">
+<div class="font-medium text-on-surface">Kavita Verma</div>
+<div class="text-outline text-xs line-clamp-1">98 Tonk Road, Jaipur</div>
+</td>
+<td class="py-3 px-space-md min-w-[180px]">
+<div class="font-medium text-on-surface">Dr. M. Roy</div>
+<div class="font-code-mono text-[11px] text-tertiary">RMC-2016-5590</div>
+</td>
+<td class="py-3 px-space-md min-w-[220px]">
+<div class="flex items-center gap-1.5 mb-0.5">
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-[10px] px-1.5 py-0.2 rounded font-semibold uppercase">Schedule H</span>
+</div>
+<div class="font-medium text-on-surface">Pantoprazole 40mg + Domperidone 30mg</div>
+<div class="text-outline text-xs">Pantocid DSR formulation</div>
+</td>
+<td class="py-3 px-space-md min-w-[170px]">
+<div class="text-on-surface">Alkem Labs</div>
+<div class="font-code-mono text-code-mono text-xs text-on-surface-variant">BAT-PAN-4102</div>
+</td>
+<td class="py-3 px-space-md text-right whitespace-nowrap font-code-mono text-code-mono">
+<span class="font-semibold text-on-surface">15 Caps</span>
+<div class="text-outline text-xs">15 Days (OD)</div>
+</td>
+<td class="py-3 px-space-md text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-1 bg-[#ECFDF5] text-primary px-2 py-0.5 rounded font-code-mono text-xs font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                  STF-01-SIGN-44F2
+                </div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- PAGINATION & AGGREGATE SUMMARY FOOTER -->
+<div class="bg-surface-container-low/50 px-space-lg py-3 flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md font-body-sm text-body-sm text-on-surface-variant flex-wrap">
+<span>Showing <strong class="font-semibold text-on-surface">1 - 6</strong> of <strong class="font-semibold text-on-surface">428</strong> statutory records</span>
+<span class="hidden sm:inline text-outline">•</span>
+<span class="bg-surface-container-high text-on-surface px-2.5 py-0.5 rounded font-label-sm text-label-sm">
+            Total Dispensed under Rule 65 today: <strong class="font-semibold">18 units</strong>
+</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-container transition-colors disabled:opacity-50" type="button">
+            Previous
+          </button>
+<button class="w-7 h-7 rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold flex items-center justify-center" type="button">
+            1
+          </button>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-surface-container flex items-center justify-center transition-colors" type="button">
+            2
+          </button>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-surface-container flex items-center justify-center transition-colors" type="button">
+            3
+          </button>
+<span class="text-outline px-1">...</span>
+<button class="w-7 h-7 rounded bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-surface-container flex items-center justify-center transition-colors" type="button">
+            72
+          </button>
+<button class="px-2.5 py-1 rounded bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-surface-container transition-colors" type="button">
+            Next
+          </button>
+</div>
+</div>
+</div>
+<!-- BOTTOM REGULATORY ATTESTATION CARD -->
+<div class="bg-primary/5 rounded-xl p-space-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-start gap-space-md max-w-3xl">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[22px]">verified</span>
+</div>
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Statutory Pharmacist Attestation</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+            All transactions recorded herein are immutable, cryptographically timestamped, and cross-referenced with uploaded digital prescription archives. Retained under Rule 65(3) &amp; 65(4) of the Drugs &amp; Cosmetics Act for periodic inspection by CDSCO and State Drug Controllers.
+          </p>
+</div>
+</div>
+<div class="flex flex-col items-start md:items-end shrink-0 bg-surface-container-lowest/80 backdrop-blur p-space-md rounded-lg">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-0.5">Licensing Verification Stamp</span>
+<span class="font-code-mono text-code-mono text-primary font-semibold">DISPENSARY NODE: REG-04</span>
+<span class="font-code-mono text-[11px] text-on-surface">LIC: PB-PHA-2018-4912</span>
+<div class="flex items-center gap-1 mt-1 text-secondary font-label-sm text-[11px]">
+<span class="material-symbols-outlined text-[14px]">shield</span>
+<span>SHA-256 LEDGER AUDITED</span>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

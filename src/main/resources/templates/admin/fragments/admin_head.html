@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Abha Pharmacy - POS Billing &amp; Dispensing Console</title>
+  <link rel="icon" type="image/png" th:href="@{/images/favicon-32.png}" href="/images/favicon-32.png">
+  <link rel="apple-touch-icon" th:href="@{/images/favicon.png}" href="/images/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "background": "#faf8ff",
+            "surface": "#faf8ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f2f3ff",
+            "surface-container": "#eaedff",
+            "surface-container-high": "#e2e7ff",
+            "surface-container-highest": "#dae2fd",
+            "on-surface": "#131b2e",
+            "on-surface-variant": "#3e4944",
+            "primary-container": "#0d7a5f",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#a8ffdf",
+            "secondary": "#206a54",
+            "secondary-container": "#a6eed2",
+            "on-secondary-container": "#266e58",
+            "tertiary": "#005886",
+            "tertiary-container": "#0071ac",
+            "tertiary-fixed": "#cce5ff",
+            "outline": "#6e7a74",
+            "outline-variant": "#bdc9c2",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a",
+
+            primary: {
+              DEFAULT: '#0f766e',
+              dark: '#0c5e58',
+              light: '#e6f4f2',
+              surface: '#f0fdfa'
+            },
+            clinical: {
+              blue: '#0284c7',
+              amber: '#d97706',
+              red: '#dc2626',
+              emerald: '#059669',
+              slate: '#f8fafc',
+              border: '#e2e8f0'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+    .badge-sch-h { background-color: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+    .badge-otc { background-color: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+    .badge-abha { background-color: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes modalScale {
+      from { opacity: 0; transform: scale(0.96) translateY(-4px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    main {
+      animation: fadeInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .modal-content {
+      animation: modalScale 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .hover-elevate {
+      transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .hover-elevate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -5px rgba(15, 118, 110, 0.12), 0 4px 6px -2px rgba(15, 118, 110, 0.05);
+    }
+  </style>
+
+</head>
+</html>

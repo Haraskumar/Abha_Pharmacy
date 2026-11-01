@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/fragments/admin_head :: head}">
+    <title>Manage Prescriptions - Abha Pharmacy Admin</title>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col">
+    <header th:replace="~{admin/fragments/admin_header :: header}"></header>
+
+    <main class="flex-1 p-6 max-w-7xl w-full mx-auto space-y-6">
+        <div class="flex items-center justify-between bg-white p-6 rounded-xl shadow-xs border border-teal-200/80">
+            <div>
+                <h1 class="font-display font-extrabold text-2xl text-slate-900 tracking-tight">Prescription Verification Queue</h1>
+                <p class="text-xs text-slate-500 mt-1">Review uploaded prescriptions, verify validity under Schedule H, and convert to fulfilled orders.</p>
+            </div>
+            <span class="px-3.5 py-1 bg-teal-700 text-white rounded-full text-xs font-bold shadow-xs" th:text="(${prescriptions != null ? #lists.size(prescriptions) : 0}) + ' Pending'">0 Pending</span>
+        </div>
+
+        <!-- Flash messages -->
+        <div th:if="${success}" class="p-4 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs rounded-xl flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px]">check_circle</span>
+            <span th:text="${success}">Success message</span>
+        </div>
+        <div th:if="${error}" class="p-4 bg-red-50 border border-red-200 text-red-800 text-xs rounded-xl flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px]">error</span>
+            <span th:text="${error}">Error message</span>
+        </div>
+
+        <div th:if="${prescriptions == null or prescriptions.isEmpty()}" class="bg-white p-12 text-center rounded-2xl shadow-xs border border-teal-200/80">
+            <span class="material-symbols-outlined text-[48px] text-teal-600 mb-2">task_alt</span>
+            <p class="font-bold text-slate-800 text-base">All prescriptions processed</p>
+            <p class="text-xs text-slate-500 mt-1">There are no pending prescriptions awaiting verification.</p>
+        </div>
+
+        <div th:unless="${prescriptions == null or prescriptions.isEmpty()}" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div th:each="p : ${prescriptions}" class="bg-white rounded-2xl shadow-xs border border-teal-200/80 overflow-hidden flex flex-col justify-between">
+                <div>
+                    <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-teal-50/40">
+                        <span class="font-mono font-bold text-teal-800 text-sm" th:text="'Rx #' + ${p.prescriptionId}">Rx #00</span>
+                        <span class="text-xs text-slate-500 font-mono" th:text="${p.uploadDate} + (${p.uploadTime != null ? ' ' + p.uploadTime : ''})"></span>
+                    </div>
+                    
+                    <div class="p-4 space-y-3">
+                        <div th:if="${p.prescriptionImageUrl != null and !p.prescriptionImageUrl.isEmpty()}">
+                            <a th:href="@{'/files/prescriptions/' + ${p.prescriptionImageUrl}}" target="_blank" class="block group relative">
+                                <img th:src="@{'/files/prescriptions/' + ${p.prescriptionImageUrl}}" alt="Prescription Scan" class="w-full h-44 object-cover rounded-xl border border-slate-200 group-hover:opacity-95 transition-opacity bg-slate-50">
+                                <span class="absolute bottom-2 right-2 bg-black/60 text-white text-[11px] px-2 py-0.5 rounded-md flex items-center gap-1 backdrop-blur-xs">
+                                    <span class="material-symbols-outlined text-[12px]">zoom_in</span> Inspect Image
+                                </span>
+                            </a>
+                        </div>
+                        <div th:unless="${p.prescriptionImageUrl != null and !p.prescriptionImageUrl.isEmpty()}" class="w-full h-24 bg-slate-100 rounded-xl flex items-center justify-center text-slate-400 text-xs">
+                            No image file attached
+                        </div>
+
+                        <div class="text-xs space-y-1">
+                            <div class="flex items-center justify-between">
+                                <span class="text-slate-500">Patient ID:</span>
+                                <span class="font-mono font-bold text-slate-800" th:text="'CUST-' + ${p.customerId}"></span>
+                            </div>
+                            <div class="flex items-center justify-between" th:if="${p.doctorName != null}">
+                                <span class="text-slate-500">Doctor:</span>
+                                <span class="font-semibold text-slate-800" th:text="'Dr. ' + ${p.doctorName}"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-slate-50 p-3 rounded-xl text-xs text-slate-700 border border-slate-100">
+                            <span class="font-bold text-slate-900 block mb-0.5">Patient Instructions:</span>
+                            <span class="text-slate-600 italic" th:text="${p.instructions != null and !p.instructions.isEmpty() ? p.instructions : 'No specific patient notes.'}"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-slate-50 flex gap-2 border-t border-slate-100">
+                    <form th:action="@{/admin/prescriptions/verify}" method="post" class="flex-1">
+                        <input type="hidden" name="prescriptionId" th:value="${p.prescriptionId}"/>
+                        <input type="hidden" name="status" value="REJECTED"/>
+                        <button type="submit" onclick="return confirm('Are you sure you want to reject this prescription?')" class="w-full py-2 bg-red-100 hover:bg-red-200 text-red-800 text-xs font-bold rounded-xl transition-colors">Reject</button>
+                    </form>
+                    
+                    <a th:href="@{/admin/prescriptions/fulfill(prescriptionId=${p.prescriptionId})}" class="flex-1 py-2 bg-teal-700 hover:bg-teal-800 text-white text-xs font-bold rounded-xl text-center flex items-center justify-center gap-1 transition-colors shadow-xs">
+                        <span class="material-symbols-outlined text-[15px]">check_circle</span>
+                        <span>Fulfill Order</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recently Processed & Verified Prescriptions -->
+        <div class="mt-10 space-y-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h2 class="font-display font-bold text-lg text-slate-900">Audit Log: Processed Prescriptions</h2>
+                    <p class="text-xs text-slate-500">Archived verification outcomes, physician endorsements, and pharmacist remarks.</p>
+                </div>
+                <span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-mono font-bold border border-slate-200" th:text="(${processedPrescriptions != null ? #lists.size(processedPrescriptions) : 0}) + ' Processed'">0 Processed</span>
+            </div>
+
+            <div th:if="${processedPrescriptions != null and !processedPrescriptions.isEmpty()}" class="bg-white rounded-2xl shadow-xs border border-teal-200/80 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs">
+                        <thead>
+                            <tr class="bg-teal-50/60 text-slate-700 text-[11px] uppercase tracking-wider font-bold border-b border-teal-100">
+                                <th class="py-3 px-4">Rx Ref</th>
+                                <th class="py-3 px-4">Patient ID</th>
+                                <th class="py-3 px-4">Doctor</th>
+                                <th class="py-3 px-4">Verification Status</th>
+                                <th class="py-3 px-4">Pharmacist Remarks</th>
+                                <th class="py-3 px-4">Processed Timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 font-medium">
+                            <tr th:each="proc : ${processedPrescriptions}" class="hover:bg-slate-50/70 transition-colors">
+                                <td class="py-3 px-4 font-mono font-bold text-teal-800" th:text="'Rx #' + ${proc.prescriptionId}">Rx #00</td>
+                                <td class="py-3 px-4 font-mono font-bold text-slate-900" th:text="'CUST-' + ${proc.customerId}">CUST-1</td>
+                                <td class="py-3 px-4 font-medium text-slate-900" th:text="${proc.doctorName != null ? 'Dr. ' + proc.doctorName : 'Prescribing Physician'}">Dr. Physician</td>
+                                <td class="py-3 px-4">
+                                    <span th:if="${proc.verificationStatus == 'APPROVED'}" class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-0.5 rounded-full text-[11px] font-bold">
+                                        <span class="material-symbols-outlined text-[13px]">check_circle</span>
+                                        <span>Approved</span>
+                                    </span>
+                                    <span th:if="${proc.verificationStatus == 'REJECTED'}" class="inline-flex items-center gap-1 bg-rose-50 text-rose-800 border border-rose-200 px-2.5 py-0.5 rounded-full text-[11px] font-bold">
+                                        <span class="material-symbols-outlined text-[13px]">cancel</span>
+                                        <span>Rejected</span>
+                                    </span>
+                                    <span th:if="${proc.verificationStatus != 'APPROVED' and proc.verificationStatus != 'REJECTED'}" class="inline-flex items-center gap-1 bg-slate-100 text-slate-800 px-2.5 py-0.5 rounded-full text-[11px] font-bold" th:text="${proc.verificationStatus}">Status</span>
+                                </td>
+                                <td class="py-3 px-4 text-slate-600 max-w-xs">
+                                    <span th:text="${proc.pharmacistRemarks != null and !proc.pharmacistRemarks.isEmpty() ? proc.pharmacistRemarks : 'Verified by clinical pharmacist.'}">Remarks</span>
+                                </td>
+                                <td class="py-3 px-4 font-mono text-[11px] text-slate-400" th:text="${proc.verificationDate} + (${proc.verificationTime != null ? ' ' + proc.verificationTime : ''})">2026-10-02</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

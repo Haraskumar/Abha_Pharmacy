@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link rel="icon" type="image/png" th:href="@{/images/favicon-32.png}" href="/images/favicon-32.png"/><link rel="apple-touch-icon" th:href="@{/images/favicon.png}" href="/images/favicon.png"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "background": "#faf8ff",
+        "surface-bright": "#faf8ff",
+        "on-secondary-fixed-variant": "#00513e",
+        "on-error": "#ffffff",
+        "primary-container": "#0d7a5f",
+        "on-tertiary-fixed-variant": "#004b73",
+        "surface-variant": "#dae2fd",
+        "secondary-fixed": "#a9f1d5",
+        "on-surface-variant": "#3e4944",
+        "tertiary-fixed-dim": "#93ccff",
+        "surface-dim": "#d2d9f4",
+        "inverse-on-surface": "#eef0ff",
+        "surface-container": "#eaedff",
+        "error-container": "#ffdad6",
+        "on-primary-container": "#a8ffdf",
+        "tertiary-container": "#0071ac",
+        "on-secondary-container": "#266e58",
+        "on-primary-fixed-variant": "#00513e",
+        "surface": "#faf8ff",
+        "on-primary-fixed": "#002117",
+        "surface-container-lowest": "#ffffff",
+        "on-tertiary-fixed": "#001d31",
+        "tertiary-fixed": "#cce5ff",
+        "inverse-surface": "#283044",
+        "on-tertiary-container": "#e1efff",
+        "on-background": "#131b2e",
+        "inverse-primary": "#7cd8b8",
+        "on-primary": "#ffffff",
+        "surface-container-high": "#e2e7ff",
+        "outline-variant": "#bdc9c2",
+        "primary-fixed": "#98f4d3",
+        "surface-container-highest": "#dae2fd",
+        "primary-fixed-dim": "#7cd8b8",
+        "secondary-container": "#a6eed2",
+        "surface-tint": "#006c53",
+        "secondary-fixed-dim": "#8ed5ba",
+        "primary": "#005f49",
+        "tertiary": "#005886",
+        "on-secondary": "#ffffff",
+        "on-secondary-fixed": "#002117",
+        "on-surface": "#131b2e",
+        "on-tertiary": "#ffffff",
+        "on-error-container": "#93000a",
+        "outline": "#6e7a74",
+        "secondary": "#206a54",
+        "surface-container-low": "#f2f3ff",
+        "error": "#ba1a1a"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+      },
+      "spacing": {
+        "margin-desktop": "2rem",
+        "space-xs": "0.25rem",
+        "space-lg": "1rem",
+        "space-md": "0.75rem",
+        "space-xl": "1.5rem",
+        "gutter-desktop": "1.5rem",
+        "space-sm": "0.5rem",
+        "margin": "1rem",
+        "gutter": "1rem"
+      },
+      "fontFamily": {
+        "label-sm": [
+          "Inter"
+        ],
+        "code-mono": [
+          "JetBrains Mono"
+        ],
+        "body-sm": [
+          "Inter"
+        ],
+        "headline-md": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-sm": [
+          "Plus Jakarta Sans"
+        ],
+        "label-lg": [
+          "Inter"
+        ],
+        "label-md": [
+          "Inter"
+        ],
+        "body-lg": [
+          "Inter"
+        ],
+        "body-md": [
+          "Inter"
+        ],
+        "display-lg": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-lg": [
+          "Plus Jakarta Sans"
+        ]
+      },
+      "fontSize": {
+        "label-sm": [
+          "11px",
+          {
+            "lineHeight": "14px",
+            "letterSpacing": "0.04em",
+            "fontWeight": "600"
+          }
+        ],
+        "code-mono": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "fontWeight": "500"
+          }
+        ],
+        "body-sm": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "fontWeight": "400"
+          }
+        ],
+        "headline-md": [
+          "20px",
+          {
+            "lineHeight": "28px",
+            "letterSpacing": "-0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "headline-sm": [
+          "16px",
+          {
+            "lineHeight": "24px",
+            "fontWeight": "600"
+          }
+        ],
+        "label-lg": [
+          "14px",
+          {
+            "lineHeight": "20px",
+            "fontWeight": "500"
+          }
+        ],
+        "label-md": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "letterSpacing": "0.025em",
+            "fontWeight": "600"
+          }
+        ],
+        "body-lg": [
+          "16px",
+          {
+            "lineHeight": "24px",
+            "fontWeight": "400"
+          }
+        ],
+        "body-md": [
+          "14px",
+          {
+            "lineHeight": "20px",
+            "fontWeight": "400"
+          }
+        ],
+        "display-lg": [
+          "32px",
+          {
+            "lineHeight": "40px",
+            "letterSpacing": "-0.02em",
+            "fontWeight": "700"
+          }
+        ],
+        "headline-lg": [
+          "24px",
+          {
+            "lineHeight": "32px",
+            "letterSpacing": "-0.015em",
+            "fontWeight": "600"
+          }
+        ]
+      }
+    }
+  }
+}</script></head><body class="bg-surface text-on-surface font-body-md text-body-md"><header th:replace="~{customer/fragments/customer_header :: header}"></header><main class="w-full pt-16 bg-surface min-h-screen px-gutter-desktop py-space-xl"><div class="flex flex-col w-full">
+<!-- Interactive Customer Banner & Identity Summary -->
+<div class="w-full bg-surface-container-low rounded-xl p-space-lg mb-space-lg shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-sm text-headline-sm" th:text="${session.customerName != null ? session.customerName.substring(0,1) : '?'}">
+        PP
+      </div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-surface" th:text="${session.customerName != null ? session.customerName : 'Guest'}">Guest</span>
+<span class="font-code-mono text-[11px] px-space-xs py-0.5 rounded bg-surface-container-high text-primary font-medium">Verified Patient</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Abha Pharmacy Patient Portal</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md w-full md:w-auto">
+
+<a class="inline-flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-space-xs rounded-lg font-label-md text-label-md hover:opacity-95 transition-opacity" data-path="upload-prescription" href="/customer/prescription/upload">
+<span class="material-symbols-outlined text-[16px]">upload_file</span>
+<span>Upload Rx</span>
+</a>
+</div>
+</div>
+<!-- Search & Clinical Discovery Filter Canvas -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mb-space-lg">
+<div class="flex flex-col gap-space-lg">
+<!-- Search Input Toolbar -->
+<div class="w-full flex flex-col md:flex-row gap-space-md items-stretch">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full h-11 pl-11 pr-space-md rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline text-body-md font-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" id="searchInput" placeholder="Search medicine by Name or Generic Name (e.g. Paracetamol, Amoxicillin, Metformin...)" th:value="${param.keyword}" type="text"/>
+</div>
+<div class="flex items-center gap-space-xs">
+<div class="relative">
+<select class="h-11 px-space-md bg-surface-container-low text-on-surface font-label-md text-label-md rounded-lg focus:outline-none cursor-pointer pr-8 appearance-none" id="sortSelect">
+<option value="name-asc">Sort: Name (A-Z)</option>
+<option value="price-asc">Sort: Price (Low to High)</option>
+<option value="price-desc">Sort: Price (High to Low)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[18px]">expand_more</span>
+</div>
+<button class="h-11 px-space-md bg-surface-container-high hover:bg-surface-container text-on-surface font-label-md text-label-md rounded-lg transition-colors flex items-center gap-space-xs" id="clearFilters">
+<span class="material-symbols-outlined text-[16px]">filter_alt_off</span>
+<span>Reset</span>
+</button>
+</div>
+</div>
+<!-- Category Filter Tabs -->
+<div class="flex flex-wrap items-center gap-space-xs pt-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant mr-space-xs">Categories:</span>
+<button class="category-btn px-space-md py-space-xs rounded-lg font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-colors" data-category="All">
+          All
+        </button>
+<button class="category-btn px-space-md py-space-xs rounded-lg font-label-md text-label-md bg-surface-container-low hover:bg-surface-container-high text-on-surface transition-colors" th:each="cat : ${categories}" th:data-category="${cat}" th:text="${cat}">
+          Category
+        </button>
+</div>
+</div>
+</div>
+<!-- Formulary Active Status Bar -->
+<div class="w-full flex items-center justify-between mb-space-md px-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-md text-label-md text-on-surface">Registered Clinical Catalog</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">• Showing <span class="font-code-mono font-bold text-on-surface" id="itemCount" th:text="${#lists.size(medicines)}">6</span> therapeutic formulations</span>
+</div>
+<div class="hidden sm:flex items-center gap-space-lg text-on-surface-variant font-label-sm text-label-sm">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-600"></span> Available for Dispensation</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Valid Prescription Checked</span>
+</div>
+</div>
+<!-- Medicine Cards Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-space-lg" id="medicinesGrid">
+<!-- Item 1: Dolo 650mg -->
+<div class="med-card bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow relative" data-available="true" data-category="Pain Relief" data-generic="Paracetamol" data-name="Dolo 650mg" data-price="32.50" data-rx="false" th:attr="data-id=${medicine.medicineId}, data-available=${medicine.totalStock != null and medicine.totalStock &gt; 0}, data-category=${medicine.category}, data-name=${medicine.medicineName}, data-price=${medicine.latestPrice != null ? medicine.latestPrice : 0}, data-generic=${medicine.genericName}" th:each="medicine : ${medicines}">
+<div>
+<div class="flex items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex flex-wrap gap-1">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-secondary-container text-on-secondary-container" th:if="${!medicine.requiresPrescription}">
+              OTC / No Rx
+            </span><span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-amber-100 text-amber-900" th:if="${medicine.requiresPrescription}">Prescription Required</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-800">
+              Available
+            </span>
+</div>
+<span class="font-code-mono text-code-mono text-on-surface-variant bg-surface-container-low px-1.5 py-0.5 rounded" th:text="${medicine.category}">
+            Pain Relief
+          </span>
+</div>
+<div class="mb-space-xs">
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight" th:text="${medicine.medicineName}">Dolo 650mg</h2>
+<p class="font-body-sm text-body-sm text-primary font-medium" th:text="'Generic: ' + ${medicine.genericName}">Generic: Paracetamol (650mg)</p>
+</div>
+<div class="flex items-center gap-space-xs mb-space-md text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px]">apartment</span>
+<span class="font-label-sm text-label-sm" th:text="${medicine.manufacturer}">Micro Labs Ltd</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-space-sm mb-space-md flex flex-col gap-1">
+<p class="font-body-sm text-body-sm text-on-surface line-clamp-2" th:text="${medicine.description}">
+            Antipyretic and analgesic tablet formulated for rapid reduction of mild to moderate fever and relief of body aches.
+          </p>
+<div class="flex items-center gap-1 text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-[14px]">thermostat</span>
+<span class="font-body-sm text-[11px]" th:text="${medicine.storageCondition != null ? medicine.storageCondition : 'Normal Storage'}">Store below 25°C in a dry place</span>
+</div>
+</div>
+</div>
+<div class="pt-space-sm flex flex-col gap-space-sm">
+<div class="flex items-baseline justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Base Unit Price</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface" th:text="'₹' + (${medicine.latestPrice != null ? medicine.latestPrice : '0.00'})">₹32.50</span>
+</div>
+
+<!-- Small Section for In-Cart Info & Go to Cart Link -->
+<div class="cart-info-box hidden items-center justify-between px-3 py-1.5 rounded-lg bg-teal-50 border border-teal-200 text-xs transition-all" th:id="'cart-box-' + ${medicine.medicineId}">
+    <span class="text-teal-900 font-semibold flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-[16px] text-teal-700">shopping_bag</span>
+        <span class="cart-count-label">0 in cart</span>
+    </span>
+    <a th:href="@{/customer/cart}" class="inline-flex items-center gap-1 text-teal-700 hover:text-teal-950 font-bold hover:underline">
+        <span>Go to Cart</span>
+        <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+    </a>
+</div>
+
+<!-- Card Action Buttons -->
+<div class="flex items-center gap-2">
+    <a class="h-10 px-3 rounded-lg bg-white hover:bg-teal-50 text-teal-800 font-label-md text-label-md transition-colors flex items-center justify-center shadow-xs border border-teal-200" th:href="@{/customer/medicine/{id}(id=${medicine.medicineId})}">Details</a>
+    
+    <!-- OTC Medicine: Add to Cart OR Quantity Stepper (- / +) -->
+    <th:block th:if="${!medicine.requiresPrescription}">
+        <!-- Single Add to Cart Button (shown when not in cart) -->
+        <button type="button" 
+                class="catalog-add-cart-btn flex-1 h-10 bg-teal-700 hover:bg-teal-800 text-white rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all shadow-xs"
+                th:id="'add-btn-' + ${medicine.medicineId}"
+                th:data-id="${medicine.medicineId}">
+            <span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+            <span class="cart-btn-text">Add to Cart</span>
+        </button>
+
+        <!-- Stepper Controls with Minus and Plus (shown when in cart) -->
+        <div th:id="'stepper-' + ${medicine.medicineId}"
+             class="catalog-stepper hidden flex-1 h-10 items-center justify-between bg-teal-50 border border-teal-300 rounded-lg p-1 shadow-2xs">
+            <!-- Minus Button: Decreases Quantity -->
+            <button type="button" 
+                    class="catalog-minus-btn w-8 h-8 rounded-md bg-white hover:bg-teal-100 text-teal-800 border border-teal-200 flex items-center justify-center font-bold text-base transition-colors shrink-0 shadow-2xs"
+                    th:data-id="${medicine.medicineId}"
+                    title="Decrease quantity">
+                <span class="material-symbols-outlined text-[18px]">remove</span>
+            </button>
+
+            <!-- Quantity in Cart Display -->
+            <span class="catalog-qty-val font-mono font-bold text-xs text-teal-950 flex items-center gap-1 px-1">
+                <span class="qty-num">1</span>
+                <span class="text-[10px] text-teal-700 font-sans font-medium">in cart</span>
+            </span>
+
+            <!-- Plus Button: Increases Quantity -->
+            <button type="button" 
+                    class="catalog-plus-btn w-8 h-8 rounded-md bg-teal-700 hover:bg-teal-800 text-white flex items-center justify-center font-bold text-base transition-colors shrink-0 shadow-2xs"
+                    th:data-id="${medicine.medicineId}"
+                    title="Increase quantity">
+                <span class="material-symbols-outlined text-[18px]">add</span>
+            </button>
+        </div>
+    </th:block>
+
+    <!-- Prescription Medicine: Upload Rx button -->
+    <a th:if="${medicine.requiresPrescription}"
+       th:href="@{/customer/prescription/upload}"
+       class="flex-1 h-10 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 rounded-lg font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors shadow-xs">
+        <span class="material-symbols-outlined text-[18px]">upload_file</span>
+        <span>Upload Rx</span>
+    </a>
+</div>
+
+</div>
+</div>
+<!-- Item 2: Augmentin 625 Duo -->
+
+<!-- Item 3: Glycomet 500mg SR -->
+
+<!-- Item 4: Pan-40 -->
+
+<!-- Item 5: Cetzine 10mg -->
+
+<!-- Item 6: Amoxil 500mg (Out of Stock Example) -->
+
+</div>
+<!-- Empty Search Results State -->
+<div class="hidden w-full bg-surface-container-lowest rounded-xl p-space-xl shadow-sm text-center flex-col items-center justify-center my-space-lg" id="noResultsState">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-primary mb-space-md">
+<span class="material-symbols-outlined text-[28px]">medication</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">No matching formulation found</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-md mx-auto mb-space-lg">
+      We couldn't find an exact match for your search criteria. Please verify spelling or upload your doctor's prescription for manual verification.
+    </p>
+<a class="inline-flex items-center gap-space-xs bg-primary text-on-primary px-space-lg py-space-sm rounded-lg font-label-md text-label-md hover:opacity-95" data-path="upload-prescription" href="/customer/prescription/upload">
+<span class="material-symbols-outlined text-[18px]">upload_file</span>
+<span>Upload Prescription for Verification</span>
+</a>
+</div>
+<!-- Clinical Quality & Formulary Guidance Assurance -->
+<div class="mt-space-xl w-full bg-surface-container-low rounded-xl p-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-center gap-space-md">
+<span class="material-symbols-outlined text-primary text-[32px]">health_and_safety</span>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Registered Clinical Formulary</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">All drugs are sourced directly from authorized manufacturers under strict cold-chain logistics.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm text-primary font-semibold uppercase">Pharmacy License: AB-MED-2024-99</span>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const searchInput = document.getElementById('searchInput');
+    const sortSelect = document.getElementById('sortSelect');
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const clearBtn = document.getElementById('clearFilters');
+    const grid = document.getElementById('medicinesGrid');
+    const noResults = document.getElementById('noResultsState');
+    const itemCountSpan = document.getElementById('itemCount');
+    let currentCategory = 'All';
+
+    function filterAndSort() {
+      const query = (searchInput.value || '').trim().toLowerCase();
+      const cards = Array.from(grid.querySelectorAll('.med-card'));
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const name = (card.getAttribute('data-name') || '').toLowerCase();
+        const generic = (card.getAttribute('data-generic') || '').toLowerCase();
+        const category = card.getAttribute('data-category') || '';
+
+        const matchesQuery = !query || name.includes(query) || generic.includes(query);
+        const matchesCategory = (currentCategory === 'All') || (category === currentCategory);
+
+        if (matchesQuery && matchesCategory) {
+          card.classList.remove('hidden');
+          card.classList.add('flex');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+          card.classList.remove('flex');
+        }
+      });
+
+      // Sorting visible cards
+      const sortValue = sortSelect.value;
+      const visibleCards = cards.filter(c => !c.classList.contains('hidden'));
+      
+      visibleCards.sort((a, b) => {
+        if (sortValue === 'price-asc') {
+          return parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price'));
+        } else if (sortValue === 'price-desc') {
+          return parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price'));
+        } else {
+          return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
+        }
+      });
+
+      visibleCards.forEach(card => grid.appendChild(card));
+
+      itemCountSpan.textContent = visibleCount;
+      if (visibleCount === 0) {
+        noResults.classList.remove('hidden');
+        noResults.classList.add('flex');
+      } else {
+        noResults.classList.add('hidden');
+        noResults.classList.remove('flex');
+      }
+    }
+
+    // Category button handling
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        categoryBtns.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+          b.classList.add('bg-surface-container-low', 'text-on-surface');
+        });
+        btn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+        btn.classList.remove('bg-surface-container-low', 'text-on-surface');
+        currentCategory = btn.getAttribute('data-category');
+        filterAndSort();
+      });
+    });
+
+    searchInput.addEventListener('input', filterAndSort);
+    sortSelect.addEventListener('change', filterAndSort);
+
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      currentCategory = 'All';
+      categoryBtns.forEach(b => {
+        if (b.getAttribute('data-category') === 'All') {
+          b.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+          b.classList.remove('bg-surface-container-low', 'text-on-surface');
+        } else {
+          b.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+          b.classList.add('bg-surface-container-low', 'text-on-surface');
+        }
+      });
+      sortSelect.value = 'name-asc';
+      filterAndSort();
+    });
+
+    // Cart Synchronization Logic
+    function getCart() {
+      try {
+        return JSON.parse(localStorage.getItem('abha_cart') || '{}');
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem('abha_cart', JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const cart = getCart();
+      let totalCount = 0;
+
+      // Update in-card elements
+      document.querySelectorAll('.med-card').forEach(card => {
+        const id = card.getAttribute('data-id') || 
+                   (card.querySelector('.catalog-add-cart-btn') ? card.querySelector('.catalog-add-cart-btn').getAttribute('data-id') : null) ||
+                   (card.querySelector('.catalog-minus-btn') ? card.querySelector('.catalog-minus-btn').getAttribute('data-id') : null);
+        if (!id) return;
+
+        const count = cart[id] || 0;
+        totalCount += count;
+
+        const box = card.querySelector('#cart-box-' + id);
+        const addBtn = card.querySelector('#add-btn-' + id);
+        const stepper = card.querySelector('#stepper-' + id);
+
+        if (count > 0) {
+          // Show in-card status box
+          if (box) {
+            box.classList.remove('hidden');
+            box.classList.add('flex');
+            const label = box.querySelector('.cart-count-label');
+            if (label) label.textContent = count + (count === 1 ? ' unit in cart' : ' units in cart');
+          }
+
+          // Hide single Add to Cart button, Show Stepper with - and +
+          if (addBtn) {
+            addBtn.classList.add('hidden');
+            addBtn.classList.remove('flex');
+          }
+          if (stepper) {
+            stepper.classList.remove('hidden');
+            stepper.classList.add('flex');
+            const qtyNum = stepper.querySelector('.qty-num');
+            if (qtyNum) qtyNum.textContent = count;
+          }
+        } else {
+          // Hide in-card status box
+          if (box) {
+            box.classList.add('hidden');
+            box.classList.remove('flex');
+          }
+
+          // Show single Add to Cart button, Hide Stepper
+          if (addBtn) {
+            addBtn.classList.remove('hidden');
+            addBtn.classList.add('flex');
+            const btnText = addBtn.querySelector('.cart-btn-text');
+            if (btnText) btnText.textContent = 'Add to Cart';
+          }
+          if (stepper) {
+            stepper.classList.add('hidden');
+            stepper.classList.remove('flex');
+          }
+        }
+      });
+
+      // Update sticky bottom cart bar
+      const stickyBar = document.getElementById('stickyCartBar');
+      const stickyCount = document.getElementById('stickyCartItems');
+      if (stickyBar && stickyCount) {
+        if (totalCount > 0) {
+          stickyCount.textContent = totalCount;
+          stickyBar.classList.remove('hidden');
+          stickyBar.classList.add('flex');
+        } else {
+          stickyBar.classList.add('hidden');
+          stickyBar.classList.remove('flex');
+        }
+      }
+    }
+
+    // Attach click events using event delegation on the grid container
+    if (grid) {
+      grid.addEventListener('click', function(e) {
+        // 1. Click Add to Cart
+        const addBtn = e.target.closest('.catalog-add-cart-btn');
+        if (addBtn) {
+          e.preventDefault();
+          const id = addBtn.getAttribute('data-id');
+          const cart = getCart();
+          cart[id] = 1;
+          saveCart(cart);
+          return;
+        }
+
+        // 2. Click Plus (Increase quantity)
+        const plusBtn = e.target.closest('.catalog-plus-btn');
+        if (plusBtn) {
+          e.preventDefault();
+          const id = plusBtn.getAttribute('data-id');
+          const cart = getCart();
+          let current = cart[id] || 0;
+          if (current < 20) {
+            cart[id] = current + 1;
+            saveCart(cart);
+          }
+          return;
+        }
+
+        // 3. Click Minus (Decrease quantity or remove if 0)
+        const minusBtn = e.target.closest('.catalog-minus-btn');
+        if (minusBtn) {
+          e.preventDefault();
+          const id = minusBtn.getAttribute('data-id');
+          const cart = getCart();
+          let current = cart[id] || 0;
+          if (current > 1) {
+            cart[id] = current - 1;
+          } else {
+            delete cart[id];
+          }
+          saveCart(cart);
+          return;
+        }
+      });
+    }
+
+    // Run initial filter on load (handles any pre-filled keyword from query param)
+    filterAndSort();
+    updateCartUI();
+  })();
+</script>
+
+<!-- Floating Sticky Cart Summary Bar -->
+<div id="stickyCartBar" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 backdrop-blur-md text-white px-5 py-3 rounded-2xl shadow-xl border border-slate-700 items-center gap-6 max-w-xl w-[92%] sm:w-auto justify-between">
+    <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-teal-600 flex items-center justify-center text-white shrink-0">
+            <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+        </div>
+        <div>
+            <div class="text-xs font-bold text-white flex items-center gap-1.5">
+                <span id="stickyCartItems" class="text-teal-300 font-mono text-sm">0</span> items in Cart
+            </div>
+            <div class="text-[11px] text-slate-300">Formulations ready for checkout</div>
+        </div>
+    </div>
+    <a th:href="@{/customer/cart}" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs transition-colors shrink-0 shadow-sm">
+        <span>Go to Cart</span>
+        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+    </a>
+</div>
+</main><footer class="w-full bg-surface-container-low py-space-xl"><div class="w-full px-gutter-desktop flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant"><div class="flex items-center gap-space-sm"><span class="font-headline-sm text-headline-sm text-primary">Abha Pharmacy</span><span class="font-body-sm text-body-sm">© 2024 Quality Healthcare &amp; Digital Pharmacy Care. All rights reserved.</span></div><div class="flex items-center gap-space-lg"><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Emergency Hotline: 937</a><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Patient Privacy Policy</a><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Clinical Drug Formulary</a></div></div></footer></body></html>

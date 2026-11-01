@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>My Orders &amp; Tracking - Abha Pharmacy</title>
+    <link rel="icon" type="image/png" th:href="@{/images/favicon-32.png}" href="/images/favicon-32.png"/>
+    <link rel="apple-touch-icon" th:href="@{/images/favicon.png}" href="/images/favicon.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:"#005f49","primary-container":"#0d7a5f","on-primary":"#ffffff",surface:"#faf8ff","surface-container-lowest":"#ffffff","surface-container-low":"#f2f3ff","surface-container":"#eaedff","surface-container-high":"#e2e7ff","on-surface":"#131b2e","on-surface-variant":"#3e4944",outline:"#6e7a74","outline-variant":"#bdc9c2","secondary-container":"#a6eed2","on-secondary-container":"#266e58",error:"#ba1a1a"}}}}</script>
+</head>
+<body class="bg-surface text-on-surface font-[Inter] min-h-screen">
+    <!-- Header -->
+    <header th:replace="~{customer/fragments/customer_header :: header}"></header>
+
+    <main class="w-full pt-20 pb-12 px-8 max-w-5xl mx-auto">
+        <div th:if="${success}" class="w-full bg-emerald-50 text-emerald-800 p-4 rounded-xl mb-6 flex items-center gap-2 text-sm shadow-sm border border-emerald-200">
+            <span class="material-symbols-outlined text-[20px]">check_circle</span>
+            <span th:text="${success}"></span>
+        </div>
+        <div th:if="${error}" class="w-full bg-red-50 text-red-800 p-4 rounded-xl mb-6 flex items-center gap-2 text-sm shadow-sm border border-red-200">
+            <span class="material-symbols-outlined text-[20px]">error</span>
+            <span th:text="${error}"></span>
+        </div>
+
+        <div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/30 mb-8 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined text-[24px]">local_shipping</span>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-on-surface font-[Plus_Jakarta_Sans]">Order History &amp; Dispatch Tracking</h2>
+                    <p class="text-xs text-on-surface-variant">Real-time fulfillment updates, item receipts, and delivery destinations.</p>
+                </div>
+            </div>
+            <a href="/customer/catalog" class="px-4 py-2 bg-primary text-on-primary rounded-xl text-xs font-semibold hover:opacity-95 transition-opacity flex items-center gap-1 shadow-sm">
+                <span class="material-symbols-outlined text-[16px]">add</span>
+                <span>New OTC Order</span>
+            </a>
+        </div>
+
+        <div th:if="${orders == null or orders.isEmpty()}" class="bg-surface-container-lowest rounded-2xl p-12 text-center text-on-surface-variant text-sm border border-outline-variant/30">
+            <span class="material-symbols-outlined text-[48px] text-outline mb-2">inventory_2</span>
+            <p class="font-semibold text-base text-on-surface">No orders placed yet</p>
+            <p class="text-xs mt-1">Explore our catalog or upload a prescription to receive your medications.</p>
+            <a href="/customer/catalog" class="inline-flex items-center gap-1.5 mt-4 px-4 py-2 bg-primary text-on-primary rounded-xl text-xs font-semibold hover:opacity-95 transition-opacity">
+                Explore Catalog
+            </a>
+        </div>
+
+        <div th:unless="${orders == null or orders.isEmpty()}" class="space-y-6">
+            <div th:each="o : ${orders}" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/30 flex flex-col gap-4">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 pb-3 border-b border-surface-container">
+                    <div class="flex items-center gap-3 flex-wrap">
+                        <span class="font-mono text-base font-bold text-primary" th:text="'ORD-' + ${o.orderId}">ORD-00</span>
+                        <span class="text-xs font-bold px-3 py-1 rounded-full uppercase"
+                              th:classappend="${o.orderStatus == 'COMPLETED' ? 'bg-emerald-100 text-emerald-800' : (o.orderStatus == 'CANCELLED' ? 'bg-red-100 text-red-800' : 'bg-secondary-container text-on-secondary-container')}"
+                              th:text="${o.orderStatus}">STATUS</span>
+                        <span class="bg-surface-container text-on-surface text-xs font-semibold px-2.5 py-0.5 rounded-full inline-flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">local_shipping</span>
+                            <span th:text="${o.orderType}">DELIVERY</span>
+                        </span>
+                    </div>
+                    <div class="text-xs text-on-surface-variant font-mono">
+                        <span th:text="'Date: ' + ${o.orderDate} + (${o.orderTime != null ? ' ' + o.orderTime : ''})"></span>
+                    </div>
+                </div>
+
+                <!-- Destination & Settlement -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-surface-container-low p-4 rounded-xl">
+                        <span class="text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant block mb-1">Delivery Destination</span>
+                        <p class="text-sm font-semibold text-on-surface" th:text="${o.houseNo != null ? (o.houseNo + ', ' + o.street) : 'In-Store / On-file address'}">Address</p>
+                        <p class="text-xs text-on-surface-variant mt-0.5" th:text="${o.city != null ? (o.city + ' • Pincode: ' + o.pincode) : ''}">City • Pincode</p>
+                    </div>
+                    <div class="bg-surface-container-low p-4 rounded-xl">
+                        <span class="text-[11px] font-semibold uppercase tracking-wider text-on-surface-variant block mb-1">Billing &amp; Settlement</span>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-on-surface-variant">Payment Method:</span>
+                            <span class="font-semibold text-on-surface" th:text="${o.paymentMethod != null ? o.paymentMethod : 'COD'}">COD</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs mt-1">
+                            <span class="text-on-surface-variant">Payment Status:</span>
+                            <span class="font-bold" th:classappend="${o.paymentStatus == 'PAID' ? 'text-primary' : 'text-amber-800'}" th:text="${o.paymentStatus != null ? o.paymentStatus : 'PENDING'}">PENDING</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs mt-1" th:if="${o.transactionRef != null and !o.transactionRef.isEmpty()}">
+                            <span class="text-on-surface-variant">Transaction Ref:</span>
+                            <span class="font-mono font-bold text-teal-800 text-[11px]" th:text="${o.transactionRef}">TXN-UPI-00</span>
+                        </div>
+                        <div class="pt-2 mt-2 border-t border-surface-container flex justify-end">
+                            <button type="button" onclick="window.print()" class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-teal-50 hover:bg-teal-100 border border-teal-200 text-teal-800 font-bold text-[11px] transition">
+                                <span class="material-symbols-outlined text-[14px]">receipt_long</span>
+                                <span>Print / Save Tax Invoice</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Items Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead>
+                            <tr class="bg-surface-container-low text-on-surface-variant font-semibold uppercase">
+                                <th class="py-2.5 px-3 rounded-l">Item #</th>
+                                <th class="py-2.5 px-3">Medicine ID / Batch</th>
+                                <th class="py-2.5 px-3 text-right">Quantity</th>
+                                <th class="py-2.5 px-3 text-right">Unit Price</th>
+                                <th class="py-2.5 px-3 text-right rounded-r">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-surface-container">
+                            <tr th:each="it : ${orderItemsMap[o.orderId]}" class="hover:bg-surface-container-low/40">
+                                <td class="py-2.5 px-3 font-mono text-outline" th:text="${it.itemSeqNo}">1</td>
+                                <td class="py-2.5 px-3 font-semibold text-on-surface">
+                                    <span th:text="'Med #' + ${it.medicineId}"></span>
+                                    <span class="text-outline font-mono text-[11px]" th:if="${it.batchNo != null}" th:text="'(Batch: ' + ${it.batchNo} + ')'"></span>
+                                </td>
+                                <td class="py-2.5 px-3 text-right font-mono font-bold" th:text="${it.quantity}">1</td>
+                                <td class="py-2.5 px-3 text-right font-mono" th:text="'₹' + ${it.unitPriceAtSale}">₹0.00</td>
+                                <td class="py-2.5 px-3 text-right font-mono font-bold text-on-surface" th:text="'₹' + (${it.quantity * it.unitPriceAtSale})">₹0.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer with Refill Action -->
+                <div class="flex items-center justify-between pt-2 border-t border-surface-container">
+                    <span class="text-xs text-on-surface-variant">Need this medicine regularly?</span>
+                    <form th:action="@{/customer/refill/order}" method="post">
+                        <input type="hidden" name="orderId" th:value="${o.orderId}"/>
+                        <button type="submit" class="px-3.5 py-1.5 bg-surface-container hover:bg-surface-container-high text-on-surface rounded-xl text-xs font-semibold flex items-center gap-1 transition-colors">
+                            <span class="material-symbols-outlined text-[15px]">autorenew</span>
+                            <span>Order Refill</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

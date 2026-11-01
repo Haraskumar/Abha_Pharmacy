@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "background": "#faf8ff",
+        "surface-bright": "#faf8ff",
+        "on-secondary-fixed-variant": "#00513e",
+        "on-error": "#ffffff",
+        "primary-container": "#0d7a5f",
+        "on-tertiary-fixed-variant": "#004b73",
+        "surface-variant": "#dae2fd",
+        "secondary-fixed": "#a9f1d5",
+        "on-surface-variant": "#3e4944",
+        "tertiary-fixed-dim": "#93ccff",
+        "surface-dim": "#d2d9f4",
+        "inverse-on-surface": "#eef0ff",
+        "surface-container": "#eaedff",
+        "error-container": "#ffdad6",
+        "on-primary-container": "#a8ffdf",
+        "tertiary-container": "#0071ac",
+        "on-secondary-container": "#266e58",
+        "on-primary-fixed-variant": "#00513e",
+        "surface": "#faf8ff",
+        "on-primary-fixed": "#002117",
+        "surface-container-lowest": "#ffffff",
+        "on-tertiary-fixed": "#001d31",
+        "tertiary-fixed": "#cce5ff",
+        "inverse-surface": "#283044",
+        "on-tertiary-container": "#e1efff",
+        "on-background": "#131b2e",
+        "inverse-primary": "#7cd8b8",
+        "on-primary": "#ffffff",
+        "surface-container-high": "#e2e7ff",
+        "outline-variant": "#bdc9c2",
+        "primary-fixed": "#98f4d3",
+        "surface-container-highest": "#dae2fd",
+        "primary-fixed-dim": "#7cd8b8",
+        "secondary-container": "#a6eed2",
+        "surface-tint": "#006c53",
+        "secondary-fixed-dim": "#8ed5ba",
+        "primary": "#005f49",
+        "tertiary": "#005886",
+        "on-secondary": "#ffffff",
+        "on-secondary-fixed": "#002117",
+        "on-surface": "#131b2e",
+        "on-tertiary": "#ffffff",
+        "on-error-container": "#93000a",
+        "outline": "#6e7a74",
+        "secondary": "#206a54",
+        "surface-container-low": "#f2f3ff",
+        "error": "#ba1a1a"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+      },
+      "spacing": {
+        "margin-desktop": "2rem",
+        "space-xs": "0.25rem",
+        "space-lg": "1rem",
+        "space-md": "0.75rem",
+        "space-xl": "1.5rem",
+        "gutter-desktop": "1.5rem",
+        "space-sm": "0.5rem",
+        "margin": "1rem",
+        "gutter": "1rem"
+      },
+      "fontFamily": {
+        "label-sm": [
+          "Inter"
+        ],
+        "code-mono": [
+          "JetBrains Mono"
+        ],
+        "body-sm": [
+          "Inter"
+        ],
+        "headline-md": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-sm": [
+          "Plus Jakarta Sans"
+        ],
+        "label-lg": [
+          "Inter"
+        ],
+        "label-md": [
+          "Inter"
+        ],
+        "body-lg": [
+          "Inter"
+        ],
+        "body-md": [
+          "Inter"
+        ],
+        "display-lg": [
+          "Plus Jakarta Sans"
+        ],
+        "headline-lg": [
+          "Plus Jakarta Sans"
+        ]
+      },
+      "fontSize": {
+        "label-sm": [
+          "11px",
+          {
+            "lineHeight": "14px",
+            "letterSpacing": "0.04em",
+            "fontWeight": "600"
+          }
+        ],
+        "code-mono": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "fontWeight": "500"
+          }
+        ],
+        "body-sm": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "fontWeight": "400"
+          }
+        ],
+        "headline-md": [
+          "20px",
+          {
+            "lineHeight": "28px",
+            "letterSpacing": "-0.01em",
+            "fontWeight": "600"
+          }
+        ],
+        "headline-sm": [
+          "16px",
+          {
+            "lineHeight": "24px",
+            "fontWeight": "600"
+          }
+        ],
+        "label-lg": [
+          "14px",
+          {
+            "lineHeight": "20px",
+            "fontWeight": "500"
+          }
+        ],
+        "label-md": [
+          "12px",
+          {
+            "lineHeight": "16px",
+            "letterSpacing": "0.025em",
+            "fontWeight": "600"
+          }
+        ],
+        "body-lg": [
+          "16px",
+          {
+            "lineHeight": "24px",
+            "fontWeight": "400"
+          }
+        ],
+        "body-md": [
+          "14px",
+          {
+            "lineHeight": "20px",
+            "fontWeight": "400"
+          }
+        ],
+        "display-lg": [
+          "32px",
+          {
+            "lineHeight": "40px",
+            "letterSpacing": "-0.02em",
+            "fontWeight": "700"
+          }
+        ],
+        "headline-lg": [
+          "24px",
+          {
+            "lineHeight": "32px",
+            "letterSpacing": "-0.015em",
+            "fontWeight": "600"
+          }
+        ]
+      }
+    }
+  }
+}</script></head><body class="bg-surface text-on-surface font-body-md text-body-md"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-gutter-desktop flex items-center justify-between"><div class="flex items-center gap-space-lg"><img alt="Abha Pharmacy Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UKKshijGLJayZJ52kylv1QYyrmTW9iDDNuwRGi8t8djnc9DmbtdF0cXohcFL5FZxP5sbiFwvVGx64TzlsmaVkCcr9uKx_LsHFjbS_GlKfc9GOPkHnCxDOaGcx6p5iy7Zh44i_zm-_tETqST-5ZfuC5uhUmPScByFwD7Hsp3-Th-OZ40rpI4yOLgbuJsMaZJ0Di-B8kxEcMFMQNtGZRCsqFQyv-_8GgFWECFTzREdMBCukbyS3zPfM11yM"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-none">Abha Pharmacy</span><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Clinical Management System</span></div><div class="h-6 w-px bg-surface-container-highest"></div><div class="inline-flex items-center gap-space-xs bg-secondary-container px-space-md py-space-xs rounded-full"><span class="material-symbols-outlined text-[16px] text-on-secondary-container">verified_user</span><span class="font-label-sm text-label-sm text-on-secondary-container uppercase tracking-wide">Operational Staff Portal</span></div><a class="inline-flex items-center gap-space-xs bg-surface-container-high px-space-sm py-space-xs rounded-full text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[14px]">swap_horiz</span><span class="font-label-sm text-label-sm">Switch to Customer View</span></a></div><div class="flex items-center gap-space-xl"><div class="hidden xl:flex items-center gap-space-md text-on-surface-variant"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px]">calendar_today</span><span class="font-label-md text-label-md">Oct 24, 2024</span></div><div class="h-4 w-px bg-surface-container-highest"></div><div class="flex items-center gap-space-xs"><span class="w-2 h-2 rounded-full bg-primary"></span><span class="font-label-sm text-label-sm text-primary uppercase font-bold">System Online • Node-01</span></div></div><div class="h-6 w-px bg-surface-container-highest hidden sm:block"></div><div class="flex items-center gap-space-md"><div class="flex flex-col text-right hidden sm:flex"><span class="font-label-lg text-label-lg text-on-surface">Dr. Tariq Al-Mansoor</span><span class="font-label-sm text-label-sm text-on-surface-variant">Chief Pharmacist • License #PH-4921</span></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><aside class="fixed left-0 top-16 bottom-0 w-64 bg-surface-container-lowest z-40 flex flex-col justify-between py-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.03)] overflow-y-auto"><div class="flex flex-col gap-space-xs px-space-md"><div class="px-space-md py-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Clinical Operations</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a aria-current="page" class="flex items-center gap-space-md px-space-md py-space-sm transition-colors bg-primary-container text-on-primary-container font-semibold rounded-lg" data-path="staff-dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span class="font-label-lg text-label-lg">Dashboard</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="pos-walk-in" href="#"><span class="material-symbols-outlined text-[20px]">point_of_sale</span><span class="font-label-lg text-label-lg">POS Walk-in</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="prescriptions-queue" href="#"><span class="material-symbols-outlined text-[20px]">receipt_long</span><span class="font-label-lg text-label-lg">Prescriptions Queue</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="online-orders-management" href="#"><span class="material-symbols-outlined text-[20px]">local_shipping</span><span class="font-label-lg text-label-lg">Online Orders</span></a></nav><div class="h-px bg-surface-container-high my-space-xs mx-space-sm"></div><div class="px-space-md py-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Inventory Control</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="inventory-and-batches" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span class="font-label-lg text-label-lg">Inventory &amp; Batches</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="medicines-catalog" href="#"><span class="material-symbols-outlined text-[20px]">medication</span><span class="font-label-lg text-label-lg">Medicines Catalog</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="suppliers" href="#"><span class="material-symbols-outlined text-[20px]">handshake</span><span class="font-label-lg text-label-lg">Suppliers</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="stock-and-expiry-alerts" href="#"><span class="material-symbols-outlined text-[20px]">notification_important</span><span class="font-label-lg text-label-lg">Stock &amp; Expiry Alerts</span></a></nav><div class="h-px bg-surface-container-high my-space-xs mx-space-sm"></div><div class="px-space-md py-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Audits &amp; Identity</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary-container font-semibold rounded-lg"><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="revenue-reports" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span><span class="font-label-lg text-label-lg">Revenue Reports</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="staff-profile" href="#"><span class="material-symbols-outlined text-[20px]">badge</span><span class="font-label-lg text-label-lg">Staff Profile</span></a></nav></div><div class="px-space-md pt-space-md border-t border-surface-container-high flex flex-col gap-space-xs"><div class="bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface-variant">Terminal: REG-04</span><span class="font-code-mono text-code-mono text-primary font-medium">READY</span></div></div></aside><div class="pl-64"><main class="w-full pt-16 bg-surface min-h-screen px-gutter-desktop py-space-xl"><div class="flex flex-col w-full">
+<!-- Role Context & Operational Header Strip -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm mb-space-lg">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex items-start sm:items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[26px]">medical_services</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm flex-wrap">
+<span class="font-headline-md text-headline-md text-on-surface">Dr. Rajesh Sharma</span>
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase">Pharmacist / Owner</span>
+<span class="inline-flex items-center gap-1 font-code-mono text-code-mono text-primary bg-surface-container px-space-sm py-0.5 rounded-lg">
+<span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span>
+              ID: STF-01
+            </span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+            Registered Pharmacy License: <span class="font-code-mono text-code-mono text-on-surface">PB-PHA-2018-4912</span> • Abha Central Clinic Hub (Reg-04)
+          </span>
+</div>
+</div>
+<!-- Quick Action Jump Buttons -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<a class="inline-flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-space-sm rounded-lg hover:bg-primary-container transition-colors shadow-sm font-label-lg text-label-lg" data-path="pos-walk-in" href="#">
+<span class="material-symbols-outlined text-[18px]">point_of_sale</span>
+<span>Open Walk-in POS</span>
+</a>
+<a class="inline-flex items-center gap-space-xs bg-surface-container-high text-on-surface px-space-md py-space-sm rounded-lg hover:bg-surface-container-highest transition-colors font-label-lg text-label-lg" data-path="inventory-and-batches" href="#">
+<span class="material-symbols-outlined text-[18px]">inventory</span>
+<span>Manage Batches</span>
+</a>
+<a class="inline-flex items-center gap-space-xs bg-surface-container-high text-on-surface px-space-md py-space-sm rounded-lg hover:bg-surface-container-highest transition-colors font-label-lg text-label-lg" data-path="suppliers" href="#">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+<span>Record Supplier Delivery</span>
+</a>
+<button class="inline-flex items-center gap-space-xs bg-surface-container-high text-on-surface-variant hover:text-on-surface px-space-md py-space-sm rounded-lg hover:bg-surface-container-highest transition-colors font-label-lg text-label-lg" id="batch-resolve-btn">
+<span class="material-symbols-outlined text-[18px]">task_alt</span>
+<span>Resolve Alerts</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Operational Summary Metric Grid (5 Requirements Mapped) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md mb-space-lg">
+<!-- 1. Low-Stock Alerts -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Low-Stock Active</span>
+<div class="w-8 h-8 rounded-lg bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">trending_down</span>
+</div>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display-lg text-display-lg text-error">04</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">items</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Below defined ReorderThreshold</p>
+</div>
+<div class="mt-space-sm pt-space-xs bg-surface-container-low px-space-sm py-1 rounded">
+<a class="font-label-sm text-label-sm text-error font-semibold inline-flex items-center gap-1 hover:underline" data-path="stock-and-expiry-alerts" href="#">
+<span>Inspect critical stock</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 2. Near-Expiry Batches -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Near-Expiry</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">hourglass_bottom</span>
+</div>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display-lg text-display-lg text-on-surface">03</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">batches</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Expiring within 30-day window</p>
+</div>
+<div class="mt-space-sm pt-space-xs bg-surface-container-low px-space-sm py-1 rounded">
+<a class="font-label-sm text-label-sm text-primary font-semibold inline-flex items-center gap-1 hover:underline" data-path="stock-and-expiry-alerts" href="#">
+<span>Batch quarantine logs</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 3. Pending Online Orders -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Pending Orders</span>
+<div class="w-8 h-8 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+</div>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display-lg text-display-lg text-tertiary">14</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">total</span>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-label-sm text-label-sm mt-1">
+<span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-tertiary inline-block"></span> Pickup: <strong>6</strong></span>
+<span>•</span>
+<span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary inline-block"></span> Home Delivery: <strong>8</strong></span>
+</div>
+</div>
+<div class="mt-space-sm pt-space-xs bg-surface-container-low px-space-sm py-1 rounded">
+<a class="font-label-sm text-label-sm text-tertiary font-semibold inline-flex items-center gap-1 hover:underline" data-path="online-orders-management" href="#">
+<span>Open order queue</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 4. Prescription Queue -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Rx Pending Review</span>
+<div class="w-8 h-8 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</div>
+</div>
+<div class="mt-space-sm">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display-lg text-display-lg text-primary">05</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">scripts</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Pharmacist clinical validation</p>
+</div>
+<div class="mt-space-sm pt-space-xs bg-surface-container-low px-space-sm py-1 rounded">
+<a class="font-label-sm text-label-sm text-primary font-semibold inline-flex items-center gap-1 hover:underline" href="#rx-table-section">
+<span>Jump to verification</span>
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span>
+</a>
+</div>
+</div>
+<!-- 5. Revenue Dynamic Hub -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Completed Sales</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">currency_rupee</span>
+</div>
+</div>
+<div class="mt-space-sm">
+<span class="font-display-lg text-display-lg text-on-surface tracking-tight" id="revenue-amount-display">₹48,650.00</span>
+<div class="flex items-center gap-space-xs mt-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant" id="revenue-timeframe-tag">Today's POS &amp; Online Net</span>
+</div>
+</div>
+<div class="mt-space-sm pt-space-xs bg-surface-container-low px-space-xs py-1 rounded flex items-center justify-between">
+<span class="font-code-mono text-[10px] text-on-surface-variant">MySQL JdbcTemplate</span>
+<span class="w-2 h-2 rounded-full bg-primary" title="Live Synced"></span>
+</div>
+</div>
+</div>
+<!-- Operational Split Layout: Revenue Selector & Clinical Overview Panel -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-lg">
+<!-- Left: Revenue Switcher Panel (Database JdbcTemplate Aggregate) -->
+<div class="lg:col-span-4 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">finance_chip</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Revenue Report Hub</h3>
+</div>
+<span class="font-code-mono text-code-mono text-on-surface-variant bg-surface-container px-space-xs py-0.5 rounded">STF-01 AUDIT</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+          Select aggregation window strictly reconciled from completed customer checkout records and POS registers:
+        </p>
+<!-- Segmented Tab Switcher -->
+<div class="grid grid-cols-3 gap-1 bg-surface-container-low p-1 rounded-lg mb-space-md">
+<button class="py-space-xs px-space-sm rounded-md font-label-sm text-label-sm font-semibold transition-all bg-surface-container-lowest text-primary shadow-sm" id="tab-daily" onclick="setRevenueView('daily')" type="button">
+            Daily
+          </button>
+<button class="py-space-xs px-space-sm rounded-md font-label-sm text-label-sm font-medium transition-all text-on-surface-variant hover:text-on-surface" id="tab-weekly" onclick="setRevenueView('weekly')" type="button">
+            Weekly
+          </button>
+<button class="py-space-xs px-space-sm rounded-md font-label-sm text-label-sm font-medium transition-all text-on-surface-variant hover:text-on-surface" id="tab-monthly" onclick="setRevenueView('monthly')" type="button">
+            Monthly
+          </button>
+</div>
+<!-- Breakdown Details Box -->
+<div class="bg-surface-container-low p-space-md rounded-lg space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="rev-metric-1-lbl">Walk-in POS Invoices:</span>
+<span class="font-code-mono text-code-mono text-on-surface font-semibold" id="rev-pos-val">₹36,420.00</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="rev-metric-2-lbl">Online Prescriptions / Cart:</span>
+<span class="font-code-mono text-code-mono text-on-surface font-semibold" id="rev-online-val">₹12,230.00</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tax Collected (CGST/SGST):</span>
+<span class="font-code-mono text-code-mono text-on-surface" id="rev-tax-val">₹2,430.50</span>
+</div>
+<div class="bg-surface-container-high h-px w-full my-space-xs"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Total Net Recorded:</span>
+<span class="font-headline-sm text-headline-sm text-primary font-semibold" id="rev-total-val">₹48,650.00</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low rounded-lg p-space-sm flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-primary">data_saver_on</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Last Batch Sync: 10:04:12 AM</span>
+</div>
+<a class="font-label-sm text-label-sm text-primary font-semibold hover:underline" data-path="revenue-reports" href="#">Full Analytics →</a>
+</div>
+</div>
+<!-- Right: Clinical Operational Status & Pharmacist Brief -->
+<div class="lg:col-span-8 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">fact_check</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Shift Brief &amp; Compliance Status</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Terminal Station: REG-04</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md mb-space-md">
+<div class="bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center gap-space-xs text-on-surface-variant mb-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm uppercase">Active Duty</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface">Morning Shift</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">08:00 - 16:30 IST • 4h 22m elapsed</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center gap-space-xs text-on-surface-variant mb-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-label-sm text-label-sm uppercase">Schedule H &amp; X Audit</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-primary">Compliant</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">All controlled narcotics double-locked</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center gap-space-xs text-on-surface-variant mb-1">
+<span class="material-symbols-outlined text-[16px]">ac_unit</span>
+<span class="font-label-sm text-label-sm uppercase">Cold Storage Temp</span>
+</div>
+<span class="font-headline-sm text-headline-sm text-on-surface font-code-mono">3.8 °C</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Refrigerated Units #1 &amp; #2 Normal</p>
+</div>
+</div>
+<!-- Inline SVG Performance Chart (2KB) -->
+<div class="bg-surface-container-low p-space-md rounded-lg">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Today's Dispensation Velocity (Hourly Scripts &amp; OTC)</span>
+<span class="font-code-mono text-code-mono text-primary font-semibold">Peak: 38 items/hr (11:00 AM)</span>
+</div>
+<svg class="w-full h-16 text-primary" fill="none" preserveaspectratio="none" viewbox="0 0 600 64">
+<path d="M 0 54 Q 50 48, 100 42 T 200 30 T 300 12 T 400 24 T 500 18 T 600 28 L 600 64 L 0 64 Z" fill="currentColor" fill-opacity="0.08"></path>
+<path d="M 0 54 Q 50 48, 100 42 T 200 30 T 300 12 T 400 24 T 500 18 T 600 28" stroke="currentColor" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Marker Points -->
+<circle cx="100" cy="42" fill="currentColor" r="3"></circle>
+<circle cx="200" cy="30" fill="currentColor" r="3"></circle>
+<circle class="stroke-surface-container-lowest" cx="300" cy="12" fill="#005f49" r="4" stroke-width="2"></circle>
+<circle cx="400" cy="24" fill="currentColor" r="3"></circle>
+<circle cx="500" cy="18" fill="currentColor" r="3"></circle>
+</svg>
+<div class="flex justify-between text-on-surface-variant font-code-mono text-[10px] mt-1">
+<span>08:00 AM</span>
+<span>09:30 AM</span>
+<span>11:00 AM (Rush)</span>
+<span>12:30 PM</span>
+<span>02:00 PM</span>
+<span>03:30 PM (Current)</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-xs text-on-surface-variant font-body-sm text-body-sm">
+<span>Logged under Chief License PB-PHA-2018-4912</span>
+<span class="font-code-mono text-code-mono text-primary">Session Token: STF-01-AUTH-VALID</span>
+</div>
+</div>
+</div>
+<!-- Critical Stock & Expiry Alerts Table (ALERT Entity) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm mb-space-lg overflow-hidden">
+<div class="p-space-lg flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm bg-surface-container-low">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-error text-[20px]">warning</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Active Critical Stock &amp; Expiry Alerts</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+          ALERT Entity records requiring immediate pharmacist acknowledgment or purchase order escalation
+        </p>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+          3 Pending Action
+        </span>
+<a class="font-label-sm text-label-sm text-primary font-semibold hover:underline" data-path="stock-and-expiry-alerts" href="#">View All Alerts →</a>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm uppercase">
+<th class="py-space-sm px-space-md">Alert ID</th>
+<th class="py-space-sm px-space-md">Alert Type</th>
+<th class="py-space-sm px-space-md">Message / Diagnostic</th>
+<th class="py-space-sm px-space-md">Medicine ID &amp; Name</th>
+<th class="py-space-sm px-space-md">Batch No</th>
+<th class="py-space-sm px-space-md">Created At</th>
+<th class="py-space-sm px-space-md">Status</th>
+<th class="py-space-sm px-space-md text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-transparent font-body-md text-body-md text-on-surface">
+<!-- Row 1: ALT-101 -->
+<tr class="hover:bg-surface-container-low transition-colors" id="row-ALT-101">
+<td class="py-space-sm px-space-md font-code-mono text-code-mono font-semibold text-primary">ALT-101</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+                Low Stock
+              </span>
+</td>
+<td class="py-space-sm px-space-md font-medium">Stock is 14 units (Threshold: 30)</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Paracetamol 650mg</span>
+<span class="font-code-mono text-[11px] text-on-surface-variant">MED-001</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono">B-402</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono text-on-surface-variant">2025-05-10 08:30</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-error font-semibold" id="badge-ALT-101">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Active
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-space-sm py-1 rounded font-label-sm text-label-sm transition-colors" onclick="openResolveModal('ALT-101', 'Low Stock', 'MED-001 (Paracetamol 650mg)', 'B-402')">
+                Quick Resolve
+              </button>
+</td>
+</tr>
+<!-- Row 2: ALT-102 -->
+<tr class="hover:bg-surface-container-low transition-colors bg-surface-container-low/30" id="row-ALT-102">
+<td class="py-space-sm px-space-md font-code-mono text-code-mono font-semibold text-primary">ALT-102</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm font-semibold">
+                Near Expiry
+              </span>
+</td>
+<td class="py-space-sm px-space-md font-medium text-error">Batch expires in 18 days (2025-05-28)</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Amoxicillin 500mg</span>
+<span class="font-code-mono text-[11px] text-on-surface-variant">MED-004</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono">B-318</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono text-on-surface-variant">2025-05-09 14:15</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-error font-semibold" id="badge-ALT-102">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Active
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-space-sm py-1 rounded font-label-sm text-label-sm transition-colors" onclick="openResolveModal('ALT-102', 'Near Expiry', 'MED-004 (Amoxicillin 500mg)', 'B-318')">
+                Quick Resolve
+              </button>
+</td>
+</tr>
+<!-- Row 3: ALT-103 -->
+<tr class="hover:bg-surface-container-low transition-colors" id="row-ALT-103">
+<td class="py-space-sm px-space-md font-code-mono text-code-mono font-semibold text-primary">ALT-103</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+                Low Stock
+              </span>
+</td>
+<td class="py-space-sm px-space-md font-medium">Stock is 8 units (Threshold: 25)</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Metformin 500mg</span>
+<span class="font-code-mono text-[11px] text-on-surface-variant">MED-007</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono">B-512</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono text-on-surface-variant">2025-05-10 09:00</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-error font-semibold" id="badge-ALT-103">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Active
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-space-sm py-1 rounded font-label-sm text-label-sm transition-colors" onclick="openResolveModal('ALT-103', 'Low Stock', 'MED-007 (Metformin 500mg)', 'B-512')">
+                Quick Resolve
+              </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Pending Prescriptions Review Quick Queue -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden mb-space-lg" id="rx-table-section">
+<div class="p-space-lg flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm bg-surface-container-low">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">prescriptions</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Pending Prescriptions Review Quick Queue</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+          Patient uploaded Rx documents awaiting verified signature, dosage checking, and drug interaction review
+        </p>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm font-semibold">
+          5 Total In Queue
+        </span>
+<a class="font-label-sm text-label-sm text-primary font-semibold hover:underline" data-path="prescriptions-queue" href="#">Full Rx Queue →</a>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm uppercase">
+<th class="py-space-sm px-space-md">Prescription ID</th>
+<th class="py-space-sm px-space-md">Customer ID</th>
+<th class="py-space-sm px-space-md">Patient Name</th>
+<th class="py-space-sm px-space-md">Doctor Name</th>
+<th class="py-space-sm px-space-md">Upload Date &amp; Time</th>
+<th class="py-space-sm px-space-md">Instructions / Notes</th>
+<th class="py-space-sm px-space-md">Status</th>
+<th class="py-space-sm px-space-md text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-transparent font-body-md text-body-md text-on-surface">
+<!-- Rx 1 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-md font-code-mono text-code-mono font-semibold text-primary">RX-8941</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono text-on-surface-variant">CUST-1044</td>
+<td class="py-space-sm px-space-md font-medium">Suresh Narang (58y / M)</td>
+<td class="py-space-sm px-space-md">Dr. V. K. Mehta (Cardio)</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono text-on-surface-variant">
+<span>2025-05-10</span> • <span>09:12 AM</span>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant max-w-xs truncate" title="Post-MI continuation regimen. Check Telmisartan 40mg + Atorvastatin.">
+              Post-MI continuation regimen. Check Telmisartan 40mg + Atorvastatin.
+            </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold">
+                Pending
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-1 rounded font-label-sm text-label-sm transition-colors shadow-sm" onclick="reviewRx('RX-8941', 'Suresh Narang', 'Dr. V. K. Mehta')">
+                Review &amp; Verify
+              </button>
+</td>
+</tr>
+<!-- Rx 2 -->
+<tr class="hover:bg-surface-container-low transition-colors bg-surface-container-low/30">
+<td class="py-space-sm px-space-md font-code-mono text-code-mono font-semibold text-primary">RX-8942</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono text-on-surface-variant">CUST-0892</td>
+<td class="py-space-sm px-space-md font-medium">Anita Kulkarni (34y / F)</td>
+<td class="py-space-sm px-space-md">Dr. P. Deshmukh (ENT)</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono text-on-surface-variant">
+<span>2025-05-10</span> • <span>09:44 AM</span>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant max-w-xs truncate" title="Acute sinusitis. Amoxicillin-Clav 625mg for 5 days. Verify allergy.">
+              Acute sinusitis. Amoxicillin-Clav 625mg for 5 days. Verify allergy.
+            </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold">
+                Pending
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-1 rounded font-label-sm text-label-sm transition-colors shadow-sm" onclick="reviewRx('RX-8942', 'Anita Kulkarni', 'Dr. P. Deshmukh')">
+                Review &amp; Verify
+              </button>
+</td>
+</tr>
+<!-- Rx 3 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-md font-code-mono text-code-mono font-semibold text-primary">RX-8943</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono text-on-surface-variant">CUST-2101</td>
+<td class="py-space-sm px-space-md font-medium">Harish Chawla (62y / M)</td>
+<td class="py-space-sm px-space-md">Dr. S. K. Gupta (Endo)</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono text-on-surface-variant">
+<span>2025-05-10</span> • <span>10:02 AM</span>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant max-w-xs truncate" title="Type 2 Diabetes. Glimepiride + Metformin 1000mg Sustained Release.">
+              Type 2 Diabetes. Glimepiride + Metformin 1000mg Sustained Release.
+            </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold">
+                Pending
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-1 rounded font-label-sm text-label-sm transition-colors shadow-sm" onclick="reviewRx('RX-8943', 'Harish Chawla', 'Dr. S. K. Gupta')">
+                Review &amp; Verify
+              </button>
+</td>
+</tr>
+<!-- Rx 4 -->
+<tr class="hover:bg-surface-container-low transition-colors bg-surface-container-low/30">
+<td class="py-space-sm px-space-md font-code-mono text-code-mono font-semibold text-primary">RX-8944</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono text-on-surface-variant">CUST-1940</td>
+<td class="py-space-sm px-space-md font-medium">Meera Banerjee (29y / F)</td>
+<td class="py-space-sm px-space-md">Dr. R. Sen (Derm)</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono text-on-surface-variant">
+<span>2025-05-10</span> • <span>10:18 AM</span>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant max-w-xs truncate" title="Topical Mupirocin 2% and antihistamines for localized rash.">
+              Topical Mupirocin 2% and antihistamines for localized rash.
+            </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold">
+                Pending
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-1 rounded font-label-sm text-label-sm transition-colors shadow-sm" onclick="reviewRx('RX-8944', 'Meera Banerjee', 'Dr. R. Sen')">
+                Review &amp; Verify
+              </button>
+</td>
+</tr>
+<!-- Rx 5 -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-md font-code-mono text-code-mono font-semibold text-primary">RX-8945</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono text-on-surface-variant">CUST-0531</td>
+<td class="py-space-sm px-space-md font-medium">Kavita Verma (45y / F)</td>
+<td class="py-space-sm px-space-md">Dr. M. Roy (Gen Phys)</td>
+<td class="py-space-sm px-space-md font-code-mono text-code-mono text-on-surface-variant">
+<span>2025-05-10</span> • <span>10:35 AM</span>
+</td>
+<td class="py-space-sm px-space-md text-on-surface-variant max-w-xs truncate" title="Pantoprazole 40mg + Domperidone morning empty stomach 14 days.">
+              Pantoprazole 40mg + Domperidone morning empty stomach 14 days.
+            </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center px-space-sm py-0.5 rounded bg-surface-container-high text-primary font-label-sm text-label-sm font-semibold">
+                Pending
+              </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="bg-primary hover:bg-primary-container text-on-primary px-space-md py-1 rounded font-label-sm text-label-sm transition-colors shadow-sm" onclick="reviewRx('RX-8945', 'Kavita Verma', 'Dr. M. Roy')">
+                Review &amp; Verify
+              </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Operational Footer Bar -->
+<div class="p-space-md bg-surface-container-low rounded-xl flex flex-col sm:flex-row items-center justify-between text-on-surface-variant font-label-sm text-label-sm gap-space-sm">
+<div class="flex items-center gap-space-md">
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-primary inline-block"></span>
+        POS Register Node: Online
+      </span>
+<span>•</span>
+<span>DB Connection: Validated (Spring Boot 3.2 / MySQL 8.0)</span>
+<span>•</span>
+<span>Audit Sync: STF-01</span>
+</div>
+<div class="font-code-mono text-code-mono">
+      Server Time: 2025-05-10 10:45:12 IST
+    </div>
+</div>
+<!-- Modal 1: Quick Resolve Alert Modal -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm hidden" id="resolve-modal">
+<div class="bg-surface-container-lowest rounded-xl max-w-lg w-full p-space-lg shadow-xl mx-4">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">verified</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Resolve Clinical Alert</h3>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded" onclick="closeResolveModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg mb-space-md space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Alert Identifier:</span>
+<span class="font-code-mono text-code-mono font-bold text-primary" id="modal-alert-id">ALT-101</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Category:</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface" id="modal-alert-type">Low Stock</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Target Item:</span>
+<span class="font-body-sm text-body-sm font-medium text-on-surface" id="modal-medicine">MED-001 (Paracetamol 650mg)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Batch Reference:</span>
+<span class="font-code-mono text-code-mono text-on-surface" id="modal-batch">B-402</span>
+</div>
+</div>
+<div class="space-y-space-sm mb-space-lg">
+<label class="block font-label-sm text-label-sm text-on-surface font-semibold uppercase">Resolution Action Protocol</label>
+<select class="w-full bg-surface-container-lowest text-on-surface p-space-sm rounded-lg font-body-md text-body-md focus:outline-none" id="modal-action-select">
+<option value="po_created">Purchase Order Reorder Generated (Supplier PO-4482)</option>
+<option value="batch_quarantine">Batch Quarantined &amp; Marked for Return/Disposal</option>
+<option value="threshold_adjusted">Threshold Adjusted by Pharmacist Authorization</option>
+<option value="manual_count">Physical Inventory Count Reconciled</option>
+</select>
+<label class="block font-label-sm text-label-sm text-on-surface font-semibold uppercase mt-space-sm">Pharmacist Verification Note</label>
+<textarea class="w-full bg-surface-container-lowest text-on-surface p-space-sm rounded-lg font-body-sm text-body-sm focus:outline-none placeholder-on-surface-variant/50" id="modal-notes" placeholder="Enter clinical reason or audit reference code..." rows="2"></textarea>
+</div>
+<div class="flex items-center justify-end gap-space-sm">
+<button class="px-space-md py-space-sm rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md" onclick="closeResolveModal()">
+          Cancel
+        </button>
+<button class="bg-primary text-on-primary hover:bg-primary-container px-space-lg py-space-sm rounded-lg font-label-md text-label-md shadow-sm transition-colors" onclick="confirmResolveAlert()">
+          Confirm Resolution
+        </button>
+</div>
+</div>
+</div>
+<!-- Modal 2: Prescription Review Quick Inspection Modal -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm hidden" id="rx-modal">
+<div class="bg-surface-container-lowest rounded-xl max-w-xl w-full p-space-lg shadow-xl mx-4">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">assignment_turned_in</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Clinical Prescription Verification</h3>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface p-1 rounded" onclick="closeRxModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="space-y-space-sm mb-space-md">
+<div class="bg-surface-container-low p-space-md rounded-lg space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Prescription ID:</span>
+<span class="font-code-mono text-code-mono font-bold text-primary" id="rx-modal-id">RX-8941</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Patient:</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface" id="rx-modal-patient">Suresh Narang</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Prescribing Doctor:</span>
+<span class="font-body-sm text-body-sm text-on-surface" id="rx-modal-doctor">Dr. V. K. Mehta</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Reviewing Pharmacist:</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Dr. Rajesh Sharma (PB-PHA-2018-4912)</span>
+</div>
+</div>
+<div class="p-space-sm bg-surface-container-high rounded-lg flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">attachment</span>
+<span class="font-body-sm text-body-sm">Signed_Doctor_Prescription_Doc.pdf</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold cursor-pointer hover:underline">View File</span>
+</div>
+<!-- Safety Checklist -->
+<div class="space-y-space-xs pt-space-xs">
+<label class="flex items-center gap-space-sm text-on-surface font-body-sm text-body-sm cursor-pointer">
+<input checked="" class="w-4 h-4 accent-primary rounded" type="checkbox"/>
+<span>Dosage and frequency cross-checked against standard pharmacopeia</span>
+</label>
+<label class="flex items-center gap-space-sm text-on-surface font-body-sm text-body-sm cursor-pointer">
+<input checked="" class="w-4 h-4 accent-primary rounded" type="checkbox"/>
+<span>No contraindications or duplicate therapy found</span>
+</label>
+<label class="flex items-center gap-space-sm text-on-surface font-body-sm text-body-sm cursor-pointer">
+<input checked="" class="w-4 h-4 accent-primary rounded" type="checkbox"/>
+<span>Inventory batch allocations checked and reserved</span>
+</label>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm">
+<button class="px-space-md py-space-sm rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md" onclick="closeRxModal()">
+          Dismiss
+        </button>
+<button class="bg-primary text-on-primary hover:bg-primary-container px-space-lg py-space-sm rounded-lg font-label-md text-label-md shadow-sm transition-colors" onclick="approveRx()">
+          Approve &amp; Send to POS / Dispense
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Revenue Reporting Switcher Logic (Mapped to JdbcTemplate Records)
+  const revenueData = {
+    daily: {
+      amount: '₹48,650.00',
+      label: "Today's Completed POS & Online Sales",
+      pos: '₹36,420.00',
+      online: '₹12,230.00',
+      tax: '₹2,430.50',
+      total: '₹48,650.00'
+    },
+    weekly: {
+      amount: '₹3,14,200.00',
+      label: '7-Day Rolling Revenue (Oct 18 - Oct 24)',
+      pos: '₹2,28,400.00',
+      online: '₹85,800.00',
+      tax: '₹15,710.00',
+      total: '₹3,14,200.00'
+    },
+    monthly: {
+      amount: '₹12,85,400.00',
+      label: 'Current Month Cumulative Sales (MTD)',
+      pos: '₹9,45,100.00',
+      online: '₹3,40,300.00',
+      tax: '₹64,270.00',
+      total: '₹12,85,400.00'
+    }
+  };
+
+  function setRevenueView(type) {
+    const selected = revenueData[type];
+    if (!selected) return;
+
+    // Update main card and breakdown
+    document.getElementById('revenue-amount-display').textContent = selected.amount;
+    document.getElementById('revenue-timeframe-tag').textContent = selected.label;
+    document.getElementById('rev-pos-val').textContent = selected.pos;
+    document.getElementById('rev-online-val').textContent = selected.online;
+    document.getElementById('rev-tax-val').textContent = selected.tax;
+    document.getElementById('rev-total-val').textContent = selected.total;
+
+    // Update Tab Styles
+    ['daily', 'weekly', 'monthly'].forEach(key => {
+      const btn = document.getElementById(`tab-${key}`);
+      if (key === type) {
+        btn.className = 'py-space-xs px-space-sm rounded-md font-label-sm text-label-sm font-semibold transition-all bg-surface-container-lowest text-primary shadow-sm';
+      } else {
+        btn.className = 'py-space-xs px-space-sm rounded-md font-label-sm text-label-sm font-medium transition-all text-on-surface-variant hover:text-on-surface';
+      }
+    });
+  }
+
+  // Quick Resolve Modal State
+  let currentResolvingAlertId = null;
+
+  function openResolveModal(alertId, type, medicine, batch) {
+    currentResolvingAlertId = alertId;
+    document.getElementById('modal-alert-id').textContent = alertId;
+    document.getElementById('modal-alert-type').textContent = type;
+    document.getElementById('modal-medicine').textContent = medicine;
+    document.getElementById('modal-batch').textContent = batch;
+    document.getElementById('modal-notes').value = '';
+    document.getElementById('resolve-modal').classList.remove('hidden');
+  }
+
+  function closeResolveModal() {
+    document.getElementById('resolve-modal').classList.add('hidden');
+    currentResolvingAlertId = null;
+  }
+
+  function confirmResolveAlert() {
+    if (currentResolvingAlertId) {
+      const badge = document.getElementById(`badge-${currentResolvingAlertId}`);
+      if (badge) {
+        badge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Resolved';
+        badge.className = 'inline-flex items-center gap-1 font-label-sm text-label-sm text-primary font-semibold';
+      }
+      const row = document.getElementById(`row-${currentResolvingAlertId}`);
+      if (row) {
+        row.classList.add('opacity-50');
+      }
+    }
+    closeResolveModal();
+  }
+
+  // Prescription Review Modal State
+  let currentRxId = null;
+
+  function reviewRx(rxId, patient, doctor) {
+    currentRxId = rxId;
+    document.getElementById('rx-modal-id').textContent = rxId;
+    document.getElementById('rx-modal-patient').textContent = patient;
+    document.getElementById('rx-modal-doctor').textContent = doctor;
+    document.getElementById('rx-modal').classList.remove('hidden');
+  }
+
+  function closeRxModal() {
+    document.getElementById('rx-modal').classList.add('hidden');
+    currentRxId = null;
+  }
+
+  function approveRx() {
+    alert(`Prescription ${currentRxId} verified by Dr. Rajesh Sharma (PB-PHA-2018-4912) and forwarded to POS walk-in / order preparation!`);
+    closeRxModal();
+  }
+
+  // Action shortcut jump
+  document.getElementById('batch-resolve-btn').addEventListener('click', function() {
+    const firstActive = document.querySelector('[id^="badge-"]');
+    if (firstActive) {
+      firstActive.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+</script></main></div></body></html>
