@@ -26,7 +26,7 @@ RUN addgroup -S abhagroup && adduser -S abhauser -G abhagroup
 WORKDIR /app
 
 # Copy executable JAR from builder stage
-COPY --from=builder /build/target/Abha_Pharmacy-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY --from=builder /build/target/*.jar /app/app.jar
 
 # Setup prescription storage directory with correct permissions
 RUN mkdir -p /app/app_data/prescriptions && chown -R abhauser:abhagroup /app
