@@ -33,9 +33,8 @@ RUN mkdir -p /app/app_data/prescriptions && chown -R abhauser:abhagroup /app
 
 USER abhauser
 
-# Expose standard application port
-EXPOSE 8081
-ENV PORT=8081
+# Expose standard application ports
+EXPOSE 8081 10000
 ENV SPRING_PROFILES_ACTIVE=production
 
 # JVM Container Optimization
