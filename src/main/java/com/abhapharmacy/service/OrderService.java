@@ -40,7 +40,7 @@ public class OrderService {
         batches.sort((b1, b2) -> b1.getExpiryDate().compareTo(b2.getExpiryDate()));
         Batch activeBatch = null;
         for (Batch b : batches) {
-            if (b.getQuantityInStock() > 0 && b.getExpiryDate().isAfter(LocalDate.now())) {
+            if (b.getQuantityInStock() > 0 && b.getExpiryDate() != null && !b.getExpiryDate().isBefore(LocalDate.now())) {
                 activeBatch = b;
                 break;
             }
@@ -120,7 +120,7 @@ public class OrderService {
             batches.sort((b1, b2) -> b1.getExpiryDate().compareTo(b2.getExpiryDate()));
             Batch activeBatch = null;
             for (Batch b : batches) {
-                if (b.getQuantityInStock() >= quantity && b.getExpiryDate().isAfter(LocalDate.now())) {
+                if (b.getQuantityInStock() >= quantity && b.getExpiryDate() != null && !b.getExpiryDate().isBefore(LocalDate.now())) {
                     activeBatch = b;
                     break;
                 }
@@ -146,7 +146,8 @@ public class OrderService {
             throw new IllegalArgumentException("Cart does not contain any valid quantities.");
         }
 
-        inventoryService.checkAndCreateAlerts();
+        inventoryService.checkAndCreateAlerts();
+
         return orderId;
     }
 
@@ -310,7 +311,7 @@ public class OrderService {
 
             Batch activeBatch = null;
             for (Batch b : batches) {
-                if (b.getQuantityInStock() >= quantity && b.getExpiryDate().isAfter(LocalDate.now())) {
+                if (b.getQuantityInStock() >= quantity && b.getExpiryDate() != null && !b.getExpiryDate().isBefore(LocalDate.now())) {
                     activeBatch = b;
                     break;
                 }
