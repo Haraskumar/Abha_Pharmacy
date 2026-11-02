@@ -36,8 +36,8 @@ public class AuthInterceptor implements HandlerInterceptor {
 
         // 2. Customer Routes
         if (uri.startsWith("/customer")) {
-            // Public customer browsing endpoints
-            if (uri.startsWith("/customer/catalog") || uri.startsWith("/customer/medicine")) {
+            // Public customer browsing endpoints & AI assistant
+            if (uri.startsWith("/customer/catalog") || uri.startsWith("/customer/medicine") || uri.startsWith("/customer/ai")) {
                 return true;
             }
 

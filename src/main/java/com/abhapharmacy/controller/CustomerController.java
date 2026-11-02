@@ -285,8 +285,22 @@ public class CustomerController {
 
     @org.springframework.web.bind.annotation.ResponseBody
     @PostMapping("/ai/ask")
-    public java.util.Map<String, String> askAi(@RequestParam(required = false) String query, @org.springframework.web.bind.annotation.RequestBody(required = false) java.util.Map<String, String> body) {
-        String q = query != null ? query : (body != null ? body.get("query") : "");
+    public java.util.Map<String, String> askAi(jakarta.servlet.http.HttpServletRequest request) {
+        String q = request.getParameter("query");
+        if (q == null || q.trim().isEmpty()) {
+            try {
+                String body = new String(request.getInputStream().readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
+                if (body.contains("\"query\"")) {
+                    int idx = body.indexOf("\"query\"");
+                    int colon = body.indexOf(":", idx);
+                    int start = body.indexOf("\"", colon) + 1;
+                    int end = body.indexOf("\"", start);
+                    if (start > 0 && end > start) {
+                        q = body.substring(start, end);
+                    }
+                }
+            } catch (Exception ignored) {}
+        }
         String reply = aiService.askAiPharmacist(q, inventoryService.getAllMedicines());
         java.util.Map<String, String> res = new java.util.HashMap<>();
         res.put("reply", reply);
